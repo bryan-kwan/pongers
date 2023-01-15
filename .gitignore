@@ -10,3 +10,6 @@ output_files/*
 work/*
 *.wlf
 wlf*
+*RemoteSystemsTempFiles
+software/.metadata
+.metadata
