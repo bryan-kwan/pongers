@@ -1,0 +1,5 @@
+module top_level(input logic CLK, reset_n,
+output logic [2:0] VGA_B, VGA_R, VGA_B,
+output logic VGA_VS, VGA_HS);
+
+
