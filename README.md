@@ -1,4 +1,4 @@
-# Setting up the NIOSII/e
+# Setting up the NIOSII
 
 After cloning the repository from github, make sure you include the NIOSII processor qip file (which is named top_level.qip) and set top_level.v as the top level entity.
 
