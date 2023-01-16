@@ -7,6 +7,6 @@ logic locked;
 
 pll pll_ins(.areset(0), .inclk0(CLK), .c0(vga_clk), .locked(locked));
 
-VGADriver vgatimer_ins(.clk(vga_clk), .reset_n(reset_n), .hsync(VGA_HS), .vsync(VGA_VS));
+//VGADriver vgatimer_ins(.clk(vga_clk), .reset_n(reset_n), .hsync(VGA_HS), .vsync(VGA_VS));
 
 endmodule
