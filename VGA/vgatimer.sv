@@ -2,16 +2,35 @@ module VGADriver (
 	input logic 			  clk,  	// 83.46 MHz (PLL)
 							 reset_n,	// Active Low
 	output logic 			hsync,	// HSYNC to VGA connector
-								vsync	// VSYNC to VGA connector
-	//output logic [3:0] 	  o_red,	// RED to resistor DAC VGA connector
-								//o_green,	// GREEN to resistor DAC VGA connector
-								 //o_blue	// BLUE to resistor DAC VGA connector
+								vsync,	// VSYNC to VGA connector
+	output logic [3:0] 	o_red,	// RED to resistor DAC VGA connector
+								o_green,	// GREEN to resistor DAC VGA connector
+								o_blue	// BLUE to resistor DAC VGA connector
 );
+//logic [11:0] counter;
+//
+//always_ff @(posedge clk)
+//begin 
+//	counter++;
+//	if(counter == 12'hfff)
+//	begin
+//		hsync = 1;
+//		counter = 0;
+//	end
+//	if(counter == 12'h0ff)
+//	begin
+//		hsync = 0;
+//	end
+//end
+//endmodule
+//	
 
 logic LOW;
-assign LOW = 1'b0;
+assign LOW = 0;
 logic HIGH;
-assign HIGH = 1'b1;
+assign HIGH = 1;
+
+
 
 logic [3:0] r_red;
 logic [3:0] r_blue;
@@ -20,28 +39,27 @@ logic [3:0] r_green;
 //1280 x 800, 60 Hz
 
 //Horizontal Counter
-logic h_count;
+logic [11:0] h_count;
 logic v_en;
 
-always@(posedge clk)
+always_ff @(posedge clk)
 begin
 	if(h_count < 1679)
 		h_count <= h_count + 1;
 	else
 		begin
 			h_count <= 0;
-			v_en = HIGH;
 		end
 end
 
 //Vertical Counter
-logic v_count;
+logic [11:0] v_count;
 
-always@(posedge clk)
+always_ff@(posedge clk)
 begin
-	if(v_en)
+	if(h_count == 1679)
 	begin
-		if(v_count < 827)
+		if(v_count < 828)
 			v_count <= v_count + 1;
 		else
 			v_count <= 0;
@@ -55,10 +73,22 @@ assign vsync = (v_count >= 0 && v_count < 3) ? 1:0;
 
 
 //assign color = (h_count > (sync + back) && h_count <= (visible + sync + back - 1) && v_count > (sync + back) && v_count <= (sync + back - 1)
-assign o_red = (h_count > 336 && h_count <= 1615 && v_count > 27 && v_count <= 826) ? r_red:0;
-assign o_green = (h_count > 336 && h_count <= 1615 && v_count > 27 && v_count <= 826) ? r_green:0;
-assign o_blue = (h_count > 336 && h_count <= 1615 && v_count > 27 && v_count <= 826) ? r_blue:0;
+//assign o_red = (h_count > 336 && h_count <= 1615 && v_count > 27 && v_count <= 826) ? r_red:0;
+//assign o_green = (h_count > 336 && h_count <= 1615 && v_count > 27 && v_count <= 826) ? r_green:0;
+//assign o_blue = (h_count > 336 && h_count <= 1615 && v_count > 27 && v_count <= 826) ? r_blue:0;
 
+always_ff @ (posedge clk)
+		begin
+		
+			       
+					r_red <= 4'h0;    // white
+					r_blue <= 4'hF;
+					r_green <= 4'hF;
+		end
+	//assign color = (h_count > (sync + back) && h_count <= (visible + sync + back - 1) && v_count > (sync + back) && v_count <= (sync + back - 1)
+	assign o_red = (h_count > 336 && h_count <= 1615 && v_count > 27 && v_count <= 826) ? r_red:0;
+	assign o_green = (h_count > 336 && h_count <= 1615 && v_count > 27 && v_count <= 826) ? r_green:0;
+	assign o_blue = (h_count > 336 && h_count <= 1615 && v_count > 27 && v_count <= 826) ? r_blue:0;
 endmodule
 
 

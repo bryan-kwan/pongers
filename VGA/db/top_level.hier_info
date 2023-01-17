@@ -1,0 +1,154 @@
+|top_level
+CLK => CLK.IN1
+reset_n => reset_n.IN1
+VGA_B[0] << VGADriver:vgatimer_ins.o_blue
+VGA_B[1] << VGADriver:vgatimer_ins.o_blue
+VGA_B[2] << VGADriver:vgatimer_ins.o_blue
+VGA_B[3] << VGADriver:vgatimer_ins.o_blue
+VGA_R[0] << VGADriver:vgatimer_ins.o_red
+VGA_R[1] << VGADriver:vgatimer_ins.o_red
+VGA_R[2] << VGADriver:vgatimer_ins.o_red
+VGA_R[3] << VGADriver:vgatimer_ins.o_red
+VGA_G[0] << VGADriver:vgatimer_ins.o_green
+VGA_G[1] << VGADriver:vgatimer_ins.o_green
+VGA_G[2] << VGADriver:vgatimer_ins.o_green
+VGA_G[3] << VGADriver:vgatimer_ins.o_green
+VGA_VS << VGADriver:vgatimer_ins.vsync
+VGA_HS << VGADriver:vgatimer_ins.hsync
+out_test << CLK.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top_level|pll:pll_ins
+areset => areset.IN1
+inclk0 => sub_wire1[0].IN1
+c0 <= altpll:altpll_component.clk
+locked <= altpll:altpll_component.locked
+
+
+|top_level|pll:pll_ins|altpll:altpll_component
+inclk[0] => pll_altpll:auto_generated.inclk[0]
+inclk[1] => pll_altpll:auto_generated.inclk[1]
+fbin => ~NO_FANOUT~
+pllena => ~NO_FANOUT~
+clkswitch => ~NO_FANOUT~
+areset => pll_altpll:auto_generated.areset
+pfdena => ~NO_FANOUT~
+clkena[0] => ~NO_FANOUT~
+clkena[1] => ~NO_FANOUT~
+clkena[2] => ~NO_FANOUT~
+clkena[3] => ~NO_FANOUT~
+clkena[4] => ~NO_FANOUT~
+clkena[5] => ~NO_FANOUT~
+extclkena[0] => ~NO_FANOUT~
+extclkena[1] => ~NO_FANOUT~
+extclkena[2] => ~NO_FANOUT~
+extclkena[3] => ~NO_FANOUT~
+scanclk => ~NO_FANOUT~
+scanclkena => ~NO_FANOUT~
+scanaclr => ~NO_FANOUT~
+scanread => ~NO_FANOUT~
+scanwrite => ~NO_FANOUT~
+scandata => ~NO_FANOUT~
+phasecounterselect[0] => ~NO_FANOUT~
+phasecounterselect[1] => ~NO_FANOUT~
+phasecounterselect[2] => ~NO_FANOUT~
+phasecounterselect[3] => ~NO_FANOUT~
+phaseupdown => ~NO_FANOUT~
+phasestep => ~NO_FANOUT~
+configupdate => ~NO_FANOUT~
+fbmimicbidir <> <GND>
+clk[0] <= clk[0].DB_MAX_OUTPUT_PORT_TYPE
+clk[1] <= clk[1].DB_MAX_OUTPUT_PORT_TYPE
+clk[2] <= clk[2].DB_MAX_OUTPUT_PORT_TYPE
+clk[3] <= clk[3].DB_MAX_OUTPUT_PORT_TYPE
+clk[4] <= clk[4].DB_MAX_OUTPUT_PORT_TYPE
+extclk[0] <= <GND>
+extclk[1] <= <GND>
+extclk[2] <= <GND>
+extclk[3] <= <GND>
+clkbad[0] <= <GND>
+clkbad[1] <= <GND>
+enable1 <= <GND>
+enable0 <= <GND>
+activeclock <= <GND>
+clkloss <= <GND>
+locked <= pll_altpll:auto_generated.locked
+scandataout <= <GND>
+scandone <= <GND>
+sclkout0 <= <GND>
+sclkout1 <= <GND>
+phasedone <= <GND>
+vcooverrange <= <GND>
+vcounderrange <= <GND>
+fbout <= <GND>
+fref <= <GND>
+icdrclk <= <GND>
+
+
+|top_level|pll:pll_ins|altpll:altpll_component|pll_altpll:auto_generated
+areset => pll_lock_sync.ACLR
+areset => pll1.ARESET
+clk[0] <= pll1.CLK
+clk[1] <= pll1.CLK1
+clk[2] <= pll1.CLK2
+clk[3] <= pll1.CLK3
+clk[4] <= pll1.CLK4
+inclk[0] => pll1.CLK
+inclk[1] => pll1.CLK1
+locked <= locked.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top_level|VGADriver:vgatimer_ins
+clk => r_green[0].CLK
+clk => r_green[1].CLK
+clk => r_green[2].CLK
+clk => r_green[3].CLK
+clk => r_blue[0].CLK
+clk => r_blue[1].CLK
+clk => r_blue[2].CLK
+clk => r_blue[3].CLK
+clk => r_red[0].CLK
+clk => r_red[1].CLK
+clk => r_red[2].CLK
+clk => r_red[3].CLK
+clk => v_count[0].CLK
+clk => v_count[1].CLK
+clk => v_count[2].CLK
+clk => v_count[3].CLK
+clk => v_count[4].CLK
+clk => v_count[5].CLK
+clk => v_count[6].CLK
+clk => v_count[7].CLK
+clk => v_count[8].CLK
+clk => v_count[9].CLK
+clk => v_count[10].CLK
+clk => v_count[11].CLK
+clk => h_count[0].CLK
+clk => h_count[1].CLK
+clk => h_count[2].CLK
+clk => h_count[3].CLK
+clk => h_count[4].CLK
+clk => h_count[5].CLK
+clk => h_count[6].CLK
+clk => h_count[7].CLK
+clk => h_count[8].CLK
+clk => h_count[9].CLK
+clk => h_count[10].CLK
+clk => h_count[11].CLK
+reset_n => ~NO_FANOUT~
+hsync <= hsync.DB_MAX_OUTPUT_PORT_TYPE
+vsync <= vsync.DB_MAX_OUTPUT_PORT_TYPE
+o_red[0] <= o_red.DB_MAX_OUTPUT_PORT_TYPE
+o_red[1] <= o_red.DB_MAX_OUTPUT_PORT_TYPE
+o_red[2] <= o_red.DB_MAX_OUTPUT_PORT_TYPE
+o_red[3] <= o_red.DB_MAX_OUTPUT_PORT_TYPE
+o_green[0] <= o_green.DB_MAX_OUTPUT_PORT_TYPE
+o_green[1] <= o_green.DB_MAX_OUTPUT_PORT_TYPE
+o_green[2] <= o_green.DB_MAX_OUTPUT_PORT_TYPE
+o_green[3] <= o_green.DB_MAX_OUTPUT_PORT_TYPE
+o_blue[0] <= o_blue.DB_MAX_OUTPUT_PORT_TYPE
+o_blue[1] <= o_blue.DB_MAX_OUTPUT_PORT_TYPE
+o_blue[2] <= o_blue.DB_MAX_OUTPUT_PORT_TYPE
+o_blue[3] <= o_blue.DB_MAX_OUTPUT_PORT_TYPE
+
+
