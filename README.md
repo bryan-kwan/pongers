@@ -13,9 +13,13 @@ Once you have written your C program, go to Project / Build Project. If it is yo
 Note that after generating the verilog files from platform designer, you must change the names of the VGA signals from the VGA driver component. Eg. Change vga_conduit_HS to VGA_HS in order to match the default pin naming. 
 
 You should make sure the following signals are connected in pin planner after using generate:
+
 VGA_HS, VGA_VS, VGA_R, VGA_G, VGA_B
+
 clk_clk (NIOS II clock)
+
 DRAM_CLK (Connect this to the -3ns phase shifted 100MHz clock from the PLL)
+
 You may also hook up the GPIO, LEDR, SW, buttons, etc. if you want.
 
 # Setup of the SDRAM Controller
