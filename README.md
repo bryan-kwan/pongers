@@ -8,6 +8,61 @@ You can use Tools / NIOS II Software Build Tools for Eclipse (It's safer to use 
 
 Once you have written your C program, go to Project / Build Project. If it is your first time running this, you may see a settings screen pop up. Afterwards, you will see an .elf file was generated. After you program the hardware onto the board in Quartus Tools / Programmer, you can load the .elf file code into the NIOS core by right clicking the .elf file and selecting Run As / NIOS II Hardware.
 
-# Hooking up the VGA pins on the DE10-Lite After Using Generate
+# Pin assignments on the DE10-Lite After Using Generate
 
-Note that after generating the verilog files from platform designer, you must change the names of the VGA signals from the VGA driver component. Eg. Change vga_conduit_HS to VGA_HS in order to match the default pin naming.
+Note that after generating the verilog files from platform designer, you must change the names of the VGA signals from the VGA driver component. Eg. Change vga_conduit_HS to VGA_HS in order to match the default pin naming. 
+
+You should make sure the following signals are connected in pin planner after using generate:
+VGA_HS, VGA_VS, VGA_R, VGA_G, VGA_B
+clk_clk (NIOS II clock)
+DRAM_CLK (Connect this to the -3ns phase shifted 100MHz clock from the PLL)
+You may also hook up the GPIO, LEDR, SW, buttons, etc. if you want.
+
+# Setup of the SDRAM Controller
+
+Setup of the SDRAM Controller was taken from <a href="https://github.com/hildebrandmw/de10lite-hdl/tree/master/components/dram">this guide</a>. 
+
+A copy of the instructions are provided below.
+
+### Memory Profile
+
+| Parameter      | Value     |
+|----------------|-----------|
+| Bits           | 16        |
+| Chip select    | 1         |
+| Banks          | 4         |
+| Rows           | 13        |
+| Columns        | 10        |
+
+### Timing
+
+| Parameter                       | Setting   |
+|---------------------------------|-----------|
+| CAS Latency                     | 2         |
+| Initialization refresh cycles   | 8         |
+| Issue one refresh every         | 7.8125 ns |
+| Delay after powerup             | 100 us    |
+| `t_rfc`                         | 55 ns     |
+| `t_rp`                          | 15 ns     |
+| `t_rcd`                         | 15 ns     |
+| `t_ac`                          | 6 ns      |
+| `t_wr`                          | 14 ns     |
+
+## Clocking
+The SDRAM controller (and SDRAM itself ... wouldn't really make much
+sense to clock the two at different frequencies ... ) should be clocked with a 
+```
+100 MHz
+```
+clock. What is a little less obvious is that the external clock should be
+phase shifted by
+```
+-3 ns
+```
+to accomodate for signal propogation delay. Both of these signals can be
+generated from the available `50 MHz` clock using a PLL. An overview
+of this scheme is summarized in the figure below.
+
+## IO Timing Constraints
+To ensure the DRAM control signals more or less arrive at the same time,
+the DRAM IO pins should be timing constrained.
