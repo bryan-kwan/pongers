@@ -1,4 +1,4 @@
-// (C) 2001-2022 Intel Corporation. All rights reserved.
+// (C) 2001-2017 Intel Corporation. All rights reserved.
 // Your use of Intel Corporation's design tools, logic functions and other 
 // software and tools, and its AMPP partner logic functions, and any output 
 // files from any of the foregoing (including device programming or simulation 
@@ -11,18 +11,18 @@
 // agreement for further details.
 
 
-// $Id: //acds/rel/21.1std/ip/merlin/altera_irq_mapper/altera_irq_mapper.sv.terp#1 $
+// $Id: //acds/rel/17.1std/ip/merlin/altera_irq_mapper/altera_irq_mapper.sv.terp#1 $
 // $Revision: #1 $
-// $Date: 2020/06/22 $
-// $Author: psgswbuild $
+// $Date: 2017/07/30 $
+// $Author: swbranch $
 
 // -------------------------------------------------------
 // Altera IRQ Mapper
 //
 // Parameters
-//   NUM_RCVRS        : 1
+//   NUM_RCVRS        : 2
 //   SENDER_IRW_WIDTH : 32
-//   IRQ_MAP          : 0:0
+//   IRQ_MAP          : 0:0,1:1
 //
 // -------------------------------------------------------
 
@@ -40,6 +40,7 @@ module top_level_irq_mapper
     // IRQ Receivers
     // -------------------
     input                receiver0_irq,
+    input                receiver1_irq,
 
     // -------------------
     // Command Source (Output)
@@ -52,6 +53,7 @@ module top_level_irq_mapper
 	sender_irq = 0;
 
         sender_irq[0] = receiver0_irq;
+        sender_irq[1] = receiver1_irq;
     end
 
 endmodule
