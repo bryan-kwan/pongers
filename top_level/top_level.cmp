@@ -1,8 +1,32 @@
 	component top_level is
 		port (
-			clk_clk                         : in  std_logic                    := 'X';             -- clk
-			ledr_external_connection_export : out std_logic_vector(7 downto 0);                    -- export
-			sw_external_connection_export   : in  std_logic_vector(7 downto 0) := (others => 'X')  -- export
+			bridge_memory_address           : in    std_logic_vector(26 downto 0) := (others => 'X'); -- address
+			bridge_memory_byte_enable       : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- byte_enable
+			bridge_memory_read              : in    std_logic                     := 'X';             -- read
+			bridge_memory_write             : in    std_logic                     := 'X';             -- write
+			bridge_memory_write_data        : in    std_logic_vector(15 downto 0) := (others => 'X'); -- write_data
+			bridge_memory_acknowledge       : out   std_logic;                                        -- acknowledge
+			bridge_memory_read_data         : out   std_logic_vector(15 downto 0);                    -- read_data
+			clk_clk                         : in    std_logic                     := 'X';             -- clk
+			ledr_external_connection_export : out   std_logic_vector(7 downto 0);                     -- export
+			memory_addr                     : out   std_logic_vector(12 downto 0);                    -- addr
+			memory_ba                       : out   std_logic_vector(1 downto 0);                     -- ba
+			memory_cas_n                    : out   std_logic;                                        -- cas_n
+			memory_cke                      : out   std_logic;                                        -- cke
+			memory_cs_n                     : out   std_logic;                                        -- cs_n
+			memory_dq                       : inout std_logic_vector(15 downto 0) := (others => 'X'); -- dq
+			memory_dqm                      : out   std_logic_vector(1 downto 0);                     -- dqm
+			memory_ras_n                    : out   std_logic;                                        -- ras_n
+			memory_we_n                     : out   std_logic;                                        -- we_n
+			sw_external_connection_export   : in    std_logic_vector(7 downto 0)  := (others => 'X'); -- export
+			vga_conduit_CLK                 : out   std_logic;                                        -- CLK
+			vga_conduit_HS                  : out   std_logic;                                        -- HS
+			vga_conduit_VS                  : out   std_logic;                                        -- VS
+			vga_conduit_BLANK               : out   std_logic;                                        -- BLANK
+			vga_conduit_SYNC                : out   std_logic;                                        -- SYNC
+			vga_conduit_R                   : out   std_logic_vector(3 downto 0);                     -- R
+			vga_conduit_G                   : out   std_logic_vector(3 downto 0);                     -- G
+			vga_conduit_B                   : out   std_logic_vector(3 downto 0)                      -- B
 		);
 	end component top_level;
 
