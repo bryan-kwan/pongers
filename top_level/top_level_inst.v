@@ -17,6 +17,14 @@
 		.bridge_memory_write             (<connected-to-bridge_memory_write>),             //                         .write
 		.bridge_memory_write_data        (<connected-to-bridge_memory_write_data>),        //                         .write_data
 		.bridge_memory_acknowledge       (<connected-to-bridge_memory_acknowledge>),       //                         .acknowledge
-		.bridge_memory_read_data         (<connected-to-bridge_memory_read_data>)          //                         .read_data
+		.bridge_memory_read_data         (<connected-to-bridge_memory_read_data>),         //                         .read_data
+		.vga_conduit_CLK                 (<connected-to-vga_conduit_CLK>),                 //              vga_conduit.CLK
+		.vga_conduit_HS                  (<connected-to-vga_conduit_HS>),                  //                         .HS
+		.vga_conduit_VS                  (<connected-to-vga_conduit_VS>),                  //                         .VS
+		.vga_conduit_BLANK               (<connected-to-vga_conduit_BLANK>),               //                         .BLANK
+		.vga_conduit_SYNC                (<connected-to-vga_conduit_SYNC>),                //                         .SYNC
+		.vga_conduit_R                   (<connected-to-vga_conduit_R>),                   //                         .R
+		.vga_conduit_G                   (<connected-to-vga_conduit_G>),                   //                         .G
+		.vga_conduit_B                   (<connected-to-vga_conduit_B>)                    //                         .B
 	);
 

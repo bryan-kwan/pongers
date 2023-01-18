@@ -18,7 +18,15 @@
 			bridge_memory_write             : in    std_logic                     := 'X';             -- write
 			bridge_memory_write_data        : in    std_logic_vector(15 downto 0) := (others => 'X'); -- write_data
 			bridge_memory_acknowledge       : out   std_logic;                                        -- acknowledge
-			bridge_memory_read_data         : out   std_logic_vector(15 downto 0)                     -- read_data
+			bridge_memory_read_data         : out   std_logic_vector(15 downto 0);                    -- read_data
+			vga_conduit_CLK                 : out   std_logic;                                        -- CLK
+			vga_conduit_HS                  : out   std_logic;                                        -- HS
+			vga_conduit_VS                  : out   std_logic;                                        -- VS
+			vga_conduit_BLANK               : out   std_logic;                                        -- BLANK
+			vga_conduit_SYNC                : out   std_logic;                                        -- SYNC
+			vga_conduit_R                   : out   std_logic_vector(3 downto 0);                     -- R
+			vga_conduit_G                   : out   std_logic_vector(3 downto 0);                     -- G
+			vga_conduit_B                   : out   std_logic_vector(3 downto 0)                      -- B
 		);
 	end component top_level;
 
@@ -42,6 +50,14 @@
 			bridge_memory_write             => CONNECTED_TO_bridge_memory_write,             --                         .write
 			bridge_memory_write_data        => CONNECTED_TO_bridge_memory_write_data,        --                         .write_data
 			bridge_memory_acknowledge       => CONNECTED_TO_bridge_memory_acknowledge,       --                         .acknowledge
-			bridge_memory_read_data         => CONNECTED_TO_bridge_memory_read_data          --                         .read_data
+			bridge_memory_read_data         => CONNECTED_TO_bridge_memory_read_data,         --                         .read_data
+			vga_conduit_CLK                 => CONNECTED_TO_vga_conduit_CLK,                 --              vga_conduit.CLK
+			vga_conduit_HS                  => CONNECTED_TO_vga_conduit_HS,                  --                         .HS
+			vga_conduit_VS                  => CONNECTED_TO_vga_conduit_VS,                  --                         .VS
+			vga_conduit_BLANK               => CONNECTED_TO_vga_conduit_BLANK,               --                         .BLANK
+			vga_conduit_SYNC                => CONNECTED_TO_vga_conduit_SYNC,                --                         .SYNC
+			vga_conduit_R                   => CONNECTED_TO_vga_conduit_R,                   --                         .R
+			vga_conduit_G                   => CONNECTED_TO_vga_conduit_G,                   --                         .G
+			vga_conduit_B                   => CONNECTED_TO_vga_conduit_B                    --                         .B
 		);
 

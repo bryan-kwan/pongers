@@ -1,4 +1,4 @@
-// (C) 2001-2022 Intel Corporation. All rights reserved.
+// (C) 2001-2017 Intel Corporation. All rights reserved.
 // Your use of Intel Corporation's design tools, logic functions and other 
 // software and tools, and its AMPP partner logic functions, and any output 
 // files from any of the foregoing (including device programming or simulation 
@@ -56,15 +56,15 @@ module top_level_video_vga_controller_0 (
  *                           Parameter Declarations                          *
  *****************************************************************************/
 
-parameter CW								= 7;
+parameter CW								= 3;
 parameter DW								= 29;
 
 parameter R_UI								= 29;
-parameter R_LI								= 22;
+parameter R_LI								= 26;
 parameter G_UI								= 19;
-parameter G_LI								= 12;
+parameter G_LI								= 16;
 parameter B_UI								= 9;
-parameter B_LI								= 2;
+parameter B_LI								= 6;
 
 /* Number of pixels */
 parameter H_ACTIVE 						= 640;

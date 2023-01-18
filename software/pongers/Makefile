@@ -142,7 +142,7 @@ ACDS_VERSION := 17.1
 ELF := pongers.elf
 
 # Paths to C, C++, and assembly source files.
-C_SRCS := hello_world.c
+C_SRCS := pongers.c
 CXX_SRCS :=
 ASM_SRCS :=
 

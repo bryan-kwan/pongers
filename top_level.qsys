@@ -225,6 +225,14 @@
          type = "String";
       }
    }
+   element video_pixel_buffer_dma_0
+   {
+      datum _sortIndex
+      {
+         value = "13";
+         type = "int";
+      }
+   }
    element video_vga_controller_0
    {
       datum _sortIndex
@@ -273,6 +281,11 @@
  <interface
    name="sw_external_connection"
    internal="sw.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="vga_conduit"
+   internal="video_vga_controller_0.external_interface"
    type="conduit"
    dir="end" />
  <module name="altpll_0" kind="altpll" version="17.1" enabled="1">
@@ -773,7 +786,7 @@
   <parameter name="dataAddrWidth" value="28" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='new_sdram_controller_0.s1' start='0x4000000' end='0x8000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='onchip_memory2_0.s1' start='0x8020000' end='0x803F400' type='altera_avalon_onchip_memory2.s1' /><slave name='top_level.debug_mem_slave' start='0x8040800' end='0x8041000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='timer_0.s1' start='0x8041000' end='0x8041020' type='altera_avalon_timer.s1' /><slave name='altpll_1.pll_slave' start='0x8041020' end='0x8041030' type='altpll.pll_slave' /><slave name='sw.s1' start='0x8041030' end='0x8041040' type='altera_avalon_pio.s1' /><slave name='ledr.s1' start='0x8041040' end='0x8041050' type='altera_avalon_pio.s1' /><slave name='altpll_0.pll_slave' start='0x8041050' end='0x8041060' type='altpll.pll_slave' /><slave name='sysid_qsys_0.control_slave' start='0x8041060' end='0x8041068' type='altera_avalon_sysid_qsys.control_slave' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x8041068' end='0x8041070' type='altera_avalon_jtag_uart.avalon_jtag_slave' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='video_pixel_buffer_dma_0.avalon_control_slave' start='0x0' end='0x10' type='altera_up_avalon_video_pixel_buffer_dma.avalon_control_slave' /><slave name='new_sdram_controller_0.s1' start='0x4000000' end='0x8000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='onchip_memory2_0.s1' start='0x8020000' end='0x803F400' type='altera_avalon_onchip_memory2.s1' /><slave name='top_level.debug_mem_slave' start='0x8040800' end='0x8041000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='timer_0.s1' start='0x8041000' end='0x8041020' type='altera_avalon_timer.s1' /><slave name='altpll_1.pll_slave' start='0x8041020' end='0x8041030' type='altpll.pll_slave' /><slave name='sw.s1' start='0x8041030' end='0x8041040' type='altera_avalon_pio.s1' /><slave name='ledr.s1' start='0x8041040' end='0x8041050' type='altera_avalon_pio.s1' /><slave name='altpll_0.pll_slave' start='0x8041050' end='0x8041060' type='altpll.pll_slave' /><slave name='sysid_qsys_0.control_slave' start='0x8041060' end='0x8041068' type='altera_avalon_sysid_qsys.control_slave' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x8041068' end='0x8041070' type='altera_avalon_jtag_uart.avalon_jtag_slave' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -932,10 +945,24 @@
   <parameter name="userDefinedSettings" value="" />
  </module>
  <module
+   name="video_pixel_buffer_dma_0"
+   kind="altera_up_avalon_video_pixel_buffer_dma"
+   version="17.1"
+   enabled="1">
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="25000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="MAX 10" />
+  <parameter name="addr_mode" value="X-Y" />
+  <parameter name="back_start_address" value="0" />
+  <parameter name="color_space" value="30-bit RGB" />
+  <parameter name="image_height" value="480" />
+  <parameter name="image_width" value="640" />
+  <parameter name="start_address" value="0" />
+ </module>
+ <module
    name="video_vga_controller_0"
    kind="altera_up_avalon_video_vga_controller"
    version="17.1"
-   enabled="0">
+   enabled="1">
   <parameter name="AUTO_CLK_CLOCK_RATE" value="25000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="MAX 10" />
   <parameter name="board" value="DE10-Lite" />
@@ -950,6 +977,24 @@
    end="new_sdram_controller_0.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x04000000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.1"
+   start="video_pixel_buffer_dma_0.avalon_pixel_dma_master"
+   end="new_sdram_controller_0.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x04000000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.1"
+   start="top_level.data_master"
+   end="video_pixel_buffer_dma_0.avalon_control_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1070,10 +1115,20 @@
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
+   kind="avalon_streaming"
+   version="17.1"
+   start="video_pixel_buffer_dma_0.avalon_pixel_source"
+   end="video_vga_controller_0.avalon_vga_sink" />
+ <connection
    kind="clock"
    version="17.1"
    start="altpll_0.c0"
    end="video_vga_controller_0.clk" />
+ <connection
+   kind="clock"
+   version="17.1"
+   start="altpll_0.c0"
+   end="video_pixel_buffer_dma_0.clk" />
  <connection
    kind="clock"
    version="17.1"
@@ -1162,6 +1217,11 @@
    version="17.1"
    start="clk_0.clk_reset"
    end="bridge_0.reset" />
+ <connection
+   kind="reset"
+   version="17.1"
+   start="clk_0.clk_reset"
+   end="video_pixel_buffer_dma_0.reset" />
  <connection
    kind="reset"
    version="17.1"
