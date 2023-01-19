@@ -66,7 +66,7 @@ set_location_assignment PIN_T21 -to memory_ba[0]
 set_location_assignment PIN_T22 -to memory_ba[1]
 set_location_assignment PIN_U21 -to memory_cas_n
 set_location_assignment PIN_N22 -to memory_cke
-set_location_assignment PIN_L14 -to dram_clk_clk
+set_location_assignment PIN_L14 -to clk_shift_clk
 set_location_assignment PIN_U20 -to memory_cs_n
 set_location_assignment PIN_Y21 -to memory_dq[0]
 set_location_assignment PIN_Y20 -to memory_dq[1]
@@ -263,7 +263,7 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_ba[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_ba[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_cas_n
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_cke
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dram_clk_clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk_shift_clk
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_cs_n
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_dq[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_dq[1]

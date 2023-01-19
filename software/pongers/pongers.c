@@ -23,10 +23,10 @@ int main()
 	usleep(1000000);// 1sec
 
 	// Draw
-	alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev, 100, 50, 149, 99, 0xF800, 0);
-	alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev, 150, 100, 199, 149, 0x07E0, 0);
-	alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev, 200, 150, 249, 199, 0x001F, 0);
-
+	alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev, 50, 50, 100, 100, 0xF800, 0);
+	alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev, 100, 100, 150, 150, 0x07E0, 0);
+	alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev, 150, 150, 200, 200, 0x001F, 0);
+	alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev, 0, 0, 50, 50, 0xFFFF, 0);
 	return 0;
 }
 

@@ -1,6 +1,5 @@
 	top_level u0 (
 		.clk_clk                         (<connected-to-clk_clk>),                         //                      clk.clk
-		.dram_clk_clk                    (<connected-to-dram_clk_clk>),                    //                 dram_clk.clk
 		.ledr_external_connection_export (<connected-to-ledr_external_connection_export>), // ledr_external_connection.export
 		.memory_addr                     (<connected-to-memory_addr>),                     //                   memory.addr
 		.memory_ba                       (<connected-to-memory_ba>),                       //                         .ba
@@ -19,6 +18,7 @@
 		.vga_conduit_SYNC                (<connected-to-vga_conduit_SYNC>),                //                         .SYNC
 		.vga_conduit_R                   (<connected-to-vga_conduit_R>),                   //                         .R
 		.vga_conduit_G                   (<connected-to-vga_conduit_G>),                   //                         .G
-		.vga_conduit_B                   (<connected-to-vga_conduit_B>)                    //                         .B
+		.vga_conduit_B                   (<connected-to-vga_conduit_B>),                   //                         .B
+		.clk_shift_clk                   (<connected-to-clk_shift_clk>)                    //                clk_shift.clk
 	);
 

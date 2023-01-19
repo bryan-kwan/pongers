@@ -5,7 +5,7 @@
 `timescale 1 ps / 1 ps
 module top_level (
 		input  wire        clk_clk,                         //                      clk.clk
-		output wire        dram_clk_clk,                    //                 dram_clk.clk
+		output wire        clk_shift_clk,                   //                clk_shift.clk
 		output wire [7:0]  ledr_external_connection_export, // ledr_external_connection.export
 		output wire [12:0] memory_addr,                     //                   memory.addr
 		output wire [1:0]  memory_ba,                       //                         .ba
@@ -27,16 +27,25 @@ module top_level (
 		output wire [3:0]  vga_conduit_B                    //                         .B
 	);
 
-	wire         video_pixel_buffer_dma_0_avalon_pixel_source_valid;                         // video_pixel_buffer_dma_0:stream_valid -> video_vga_controller_0:valid
-	wire  [29:0] video_pixel_buffer_dma_0_avalon_pixel_source_data;                          // video_pixel_buffer_dma_0:stream_data -> video_vga_controller_0:data
-	wire         video_pixel_buffer_dma_0_avalon_pixel_source_ready;                         // video_vga_controller_0:ready -> video_pixel_buffer_dma_0:stream_ready
-	wire         video_pixel_buffer_dma_0_avalon_pixel_source_startofpacket;                 // video_pixel_buffer_dma_0:stream_startofpacket -> video_vga_controller_0:startofpacket
-	wire         video_pixel_buffer_dma_0_avalon_pixel_source_endofpacket;                   // video_pixel_buffer_dma_0:stream_endofpacket -> video_vga_controller_0:endofpacket
-	wire         altpll_0_c0_clk;                                                            // altpll_0:c0 -> [mm_interconnect_0:altpll_0_c0_clk, rst_controller_002:clk, video_pixel_buffer_dma_0:clk, video_vga_controller_0:clk]
-	wire         altpll_1_c1_clk;                                                            // altpll_1:c1 -> [mm_interconnect_0:altpll_1_c1_clk, new_sdram_controller_0:clk, rst_controller_001:clk]
-	wire         top_level_debug_reset_request_reset;                                        // top_level:debug_reset_request -> [rst_controller:reset_in0, rst_controller_001:reset_in0, rst_controller_002:reset_in0]
+	wire         video_dual_clock_buffer_0_avalon_dc_buffer_source_valid;                    // video_dual_clock_buffer_0:stream_out_valid -> video_vga_controller_0:valid
+	wire  [29:0] video_dual_clock_buffer_0_avalon_dc_buffer_source_data;                     // video_dual_clock_buffer_0:stream_out_data -> video_vga_controller_0:data
+	wire         video_dual_clock_buffer_0_avalon_dc_buffer_source_ready;                    // video_vga_controller_0:ready -> video_dual_clock_buffer_0:stream_out_ready
+	wire         video_dual_clock_buffer_0_avalon_dc_buffer_source_startofpacket;            // video_dual_clock_buffer_0:stream_out_startofpacket -> video_vga_controller_0:startofpacket
+	wire         video_dual_clock_buffer_0_avalon_dc_buffer_source_endofpacket;              // video_dual_clock_buffer_0:stream_out_endofpacket -> video_vga_controller_0:endofpacket
+	wire         video_pixel_buffer_dma_0_avalon_pixel_source_valid;                         // video_pixel_buffer_dma_0:stream_valid -> video_rgb_resampler_0:stream_in_valid
+	wire   [7:0] video_pixel_buffer_dma_0_avalon_pixel_source_data;                          // video_pixel_buffer_dma_0:stream_data -> video_rgb_resampler_0:stream_in_data
+	wire         video_pixel_buffer_dma_0_avalon_pixel_source_ready;                         // video_rgb_resampler_0:stream_in_ready -> video_pixel_buffer_dma_0:stream_ready
+	wire         video_pixel_buffer_dma_0_avalon_pixel_source_startofpacket;                 // video_pixel_buffer_dma_0:stream_startofpacket -> video_rgb_resampler_0:stream_in_startofpacket
+	wire         video_pixel_buffer_dma_0_avalon_pixel_source_endofpacket;                   // video_pixel_buffer_dma_0:stream_endofpacket -> video_rgb_resampler_0:stream_in_endofpacket
+	wire         video_rgb_resampler_0_avalon_rgb_source_valid;                              // video_rgb_resampler_0:stream_out_valid -> video_scaler_0:stream_in_valid
+	wire  [29:0] video_rgb_resampler_0_avalon_rgb_source_data;                               // video_rgb_resampler_0:stream_out_data -> video_scaler_0:stream_in_data
+	wire         video_rgb_resampler_0_avalon_rgb_source_ready;                              // video_scaler_0:stream_in_ready -> video_rgb_resampler_0:stream_out_ready
+	wire         video_rgb_resampler_0_avalon_rgb_source_startofpacket;                      // video_rgb_resampler_0:stream_out_startofpacket -> video_scaler_0:stream_in_startofpacket
+	wire         video_rgb_resampler_0_avalon_rgb_source_endofpacket;                        // video_rgb_resampler_0:stream_out_endofpacket -> video_scaler_0:stream_in_endofpacket
+	wire         altpll_0_c0_clk;                                                            // altpll_0:c0 -> [rst_controller_001:clk, video_dual_clock_buffer_0:clk_stream_out, video_vga_controller_0:clk]
+	wire         top_level_debug_reset_request_reset;                                        // top_level:debug_reset_request -> [rst_controller:reset_in0, rst_controller_001:reset_in0]
 	wire         video_pixel_buffer_dma_0_avalon_pixel_dma_master_waitrequest;               // mm_interconnect_0:video_pixel_buffer_dma_0_avalon_pixel_dma_master_waitrequest -> video_pixel_buffer_dma_0:master_waitrequest
-	wire  [31:0] video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdata;                  // mm_interconnect_0:video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdata -> video_pixel_buffer_dma_0:master_readdata
+	wire   [7:0] video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdata;                  // mm_interconnect_0:video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdata -> video_pixel_buffer_dma_0:master_readdata
 	wire  [31:0] video_pixel_buffer_dma_0_avalon_pixel_dma_master_address;                   // video_pixel_buffer_dma_0:master_address -> mm_interconnect_0:video_pixel_buffer_dma_0_avalon_pixel_dma_master_address
 	wire         video_pixel_buffer_dma_0_avalon_pixel_dma_master_read;                      // video_pixel_buffer_dma_0:master_read -> mm_interconnect_0:video_pixel_buffer_dma_0_avalon_pixel_dma_master_read
 	wire         video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdatavalid;             // mm_interconnect_0:video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdatavalid -> video_pixel_buffer_dma_0:master_readdatavalid
@@ -102,11 +111,6 @@ module top_level (
 	wire         mm_interconnect_0_altpll_0_pll_slave_read;                                  // mm_interconnect_0:altpll_0_pll_slave_read -> altpll_0:read
 	wire         mm_interconnect_0_altpll_0_pll_slave_write;                                 // mm_interconnect_0:altpll_0_pll_slave_write -> altpll_0:write
 	wire  [31:0] mm_interconnect_0_altpll_0_pll_slave_writedata;                             // mm_interconnect_0:altpll_0_pll_slave_writedata -> altpll_0:writedata
-	wire  [31:0] mm_interconnect_0_altpll_1_pll_slave_readdata;                              // altpll_1:readdata -> mm_interconnect_0:altpll_1_pll_slave_readdata
-	wire   [1:0] mm_interconnect_0_altpll_1_pll_slave_address;                               // mm_interconnect_0:altpll_1_pll_slave_address -> altpll_1:address
-	wire         mm_interconnect_0_altpll_1_pll_slave_read;                                  // mm_interconnect_0:altpll_1_pll_slave_read -> altpll_1:read
-	wire         mm_interconnect_0_altpll_1_pll_slave_write;                                 // mm_interconnect_0:altpll_1_pll_slave_write -> altpll_1:write
-	wire  [31:0] mm_interconnect_0_altpll_1_pll_slave_writedata;                             // mm_interconnect_0:altpll_1_pll_slave_writedata -> altpll_1:writedata
 	wire         mm_interconnect_0_ledr_s1_chipselect;                                       // mm_interconnect_0:ledr_s1_chipselect -> ledr:chipselect
 	wire  [31:0] mm_interconnect_0_ledr_s1_readdata;                                         // ledr:readdata -> mm_interconnect_0:ledr_s1_readdata
 	wire   [1:0] mm_interconnect_0_ledr_s1_address;                                          // mm_interconnect_0:ledr_s1_address -> ledr:address
@@ -117,10 +121,20 @@ module top_level (
 	wire         irq_mapper_receiver0_irq;                                                   // jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	wire         irq_mapper_receiver1_irq;                                                   // timer_0:irq -> irq_mapper:receiver1_irq
 	wire  [31:0] top_level_irq_irq;                                                          // irq_mapper:sender_irq -> top_level:irq
-	wire         rst_controller_reset_out_reset;                                             // rst_controller:reset_out -> [altpll_0:reset, altpll_1:reset, irq_mapper:reset, jtag_uart_0:rst_n, ledr:reset_n, mm_interconnect_0:altpll_0_inclk_interface_reset_reset_bridge_in_reset_reset, onchip_memory2_0:reset, rst_translator:in_reset, sw:reset_n, sysid_qsys_0:reset_n, timer_0:reset_n, top_level:reset_n]
+	wire         video_scaler_0_avalon_scaler_source_valid;                                  // video_scaler_0:stream_out_valid -> avalon_st_adapter:in_0_valid
+	wire  [29:0] video_scaler_0_avalon_scaler_source_data;                                   // video_scaler_0:stream_out_data -> avalon_st_adapter:in_0_data
+	wire         video_scaler_0_avalon_scaler_source_ready;                                  // avalon_st_adapter:in_0_ready -> video_scaler_0:stream_out_ready
+	wire   [1:0] video_scaler_0_avalon_scaler_source_channel;                                // video_scaler_0:stream_out_channel -> avalon_st_adapter:in_0_channel
+	wire         video_scaler_0_avalon_scaler_source_startofpacket;                          // video_scaler_0:stream_out_startofpacket -> avalon_st_adapter:in_0_startofpacket
+	wire         video_scaler_0_avalon_scaler_source_endofpacket;                            // video_scaler_0:stream_out_endofpacket -> avalon_st_adapter:in_0_endofpacket
+	wire         avalon_st_adapter_out_0_valid;                                              // avalon_st_adapter:out_0_valid -> video_dual_clock_buffer_0:stream_in_valid
+	wire  [29:0] avalon_st_adapter_out_0_data;                                               // avalon_st_adapter:out_0_data -> video_dual_clock_buffer_0:stream_in_data
+	wire         avalon_st_adapter_out_0_ready;                                              // video_dual_clock_buffer_0:stream_in_ready -> avalon_st_adapter:out_0_ready
+	wire         avalon_st_adapter_out_0_startofpacket;                                      // avalon_st_adapter:out_0_startofpacket -> video_dual_clock_buffer_0:stream_in_startofpacket
+	wire         avalon_st_adapter_out_0_endofpacket;                                        // avalon_st_adapter:out_0_endofpacket -> video_dual_clock_buffer_0:stream_in_endofpacket
+	wire         rst_controller_reset_out_reset;                                             // rst_controller:reset_out -> [altpll_0:reset, avalon_st_adapter:in_rst_0_reset, irq_mapper:reset, jtag_uart_0:rst_n, ledr:reset_n, mm_interconnect_0:video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset, new_sdram_controller_0:reset_n, onchip_memory2_0:reset, rst_translator:in_reset, sw:reset_n, sysid_qsys_0:reset_n, timer_0:reset_n, top_level:reset_n, video_dual_clock_buffer_0:reset_stream_in, video_pixel_buffer_dma_0:reset, video_rgb_resampler_0:reset, video_scaler_0:reset]
 	wire         rst_controller_reset_out_reset_req;                                         // rst_controller:reset_req -> [onchip_memory2_0:reset_req, rst_translator:reset_req_in, top_level:reset_req]
-	wire         rst_controller_001_reset_out_reset;                                         // rst_controller_001:reset_out -> [mm_interconnect_0:new_sdram_controller_0_reset_reset_bridge_in_reset_reset, new_sdram_controller_0:reset_n]
-	wire         rst_controller_002_reset_out_reset;                                         // rst_controller_002:reset_out -> [mm_interconnect_0:video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset, video_pixel_buffer_dma_0:reset, video_vga_controller_0:reset]
+	wire         rst_controller_001_reset_out_reset;                                         // rst_controller_001:reset_out -> [video_dual_clock_buffer_0:reset_stream_out, video_vga_controller_0:reset]
 
 	top_level_altpll_0 altpll_0 (
 		.clk                (clk_clk),                                        //       inclk_interface.clk
@@ -131,34 +145,7 @@ module top_level (
 		.readdata           (mm_interconnect_0_altpll_0_pll_slave_readdata),  //                      .readdata
 		.writedata          (mm_interconnect_0_altpll_0_pll_slave_writedata), //                      .writedata
 		.c0                 (altpll_0_c0_clk),                                //                    c0.clk
-		.scandone           (),                                               //           (terminated)
-		.scandataout        (),                                               //           (terminated)
-		.c1                 (),                                               //           (terminated)
-		.c2                 (),                                               //           (terminated)
-		.c3                 (),                                               //           (terminated)
-		.c4                 (),                                               //           (terminated)
-		.areset             (1'b0),                                           //           (terminated)
-		.locked             (),                                               //           (terminated)
-		.phasedone          (),                                               //           (terminated)
-		.phasecounterselect (3'b000),                                         //           (terminated)
-		.phaseupdown        (1'b0),                                           //           (terminated)
-		.phasestep          (1'b0),                                           //           (terminated)
-		.scanclk            (1'b0),                                           //           (terminated)
-		.scanclkena         (1'b0),                                           //           (terminated)
-		.scandata           (1'b0),                                           //           (terminated)
-		.configupdate       (1'b0)                                            //           (terminated)
-	);
-
-	top_level_altpll_1 altpll_1 (
-		.clk                (clk_clk),                                        //       inclk_interface.clk
-		.reset              (rst_controller_reset_out_reset),                 // inclk_interface_reset.reset
-		.read               (mm_interconnect_0_altpll_1_pll_slave_read),      //             pll_slave.read
-		.write              (mm_interconnect_0_altpll_1_pll_slave_write),     //                      .write
-		.address            (mm_interconnect_0_altpll_1_pll_slave_address),   //                      .address
-		.readdata           (mm_interconnect_0_altpll_1_pll_slave_readdata),  //                      .readdata
-		.writedata          (mm_interconnect_0_altpll_1_pll_slave_writedata), //                      .writedata
-		.c0                 (dram_clk_clk),                                   //                    c0.clk
-		.c1                 (altpll_1_c1_clk),                                //                    c1.clk
+		.c1                 (clk_shift_clk),                                  //                    c1.clk
 		.scandone           (),                                               //           (terminated)
 		.scandataout        (),                                               //           (terminated)
 		.c2                 (),                                               //           (terminated)
@@ -201,8 +188,8 @@ module top_level (
 	);
 
 	top_level_new_sdram_controller_0 new_sdram_controller_0 (
-		.clk            (altpll_1_c1_clk),                                           //   clk.clk
-		.reset_n        (~rst_controller_001_reset_out_reset),                       // reset.reset_n
+		.clk            (clk_clk),                                                   //   clk.clk
+		.reset_n        (~rst_controller_reset_out_reset),                           // reset.reset_n
 		.az_addr        (mm_interconnect_0_new_sdram_controller_0_s1_address),       //    s1.address
 		.az_be_n        (~mm_interconnect_0_new_sdram_controller_0_s1_byteenable),   //      .byteenable_n
 		.az_cs          (mm_interconnect_0_new_sdram_controller_0_s1_chipselect),    //      .chipselect
@@ -292,9 +279,26 @@ module top_level (
 		.dummy_ci_port                       ()                                                         // custom_instruction_master.readra
 	);
 
+	top_level_video_dual_clock_buffer_0 video_dual_clock_buffer_0 (
+		.clk_stream_in            (clk_clk),                                                         //         clock_stream_in.clk
+		.reset_stream_in          (rst_controller_reset_out_reset),                                  //         reset_stream_in.reset
+		.clk_stream_out           (altpll_0_c0_clk),                                                 //        clock_stream_out.clk
+		.reset_stream_out         (rst_controller_001_reset_out_reset),                              //        reset_stream_out.reset
+		.stream_in_ready          (avalon_st_adapter_out_0_ready),                                   //   avalon_dc_buffer_sink.ready
+		.stream_in_startofpacket  (avalon_st_adapter_out_0_startofpacket),                           //                        .startofpacket
+		.stream_in_endofpacket    (avalon_st_adapter_out_0_endofpacket),                             //                        .endofpacket
+		.stream_in_valid          (avalon_st_adapter_out_0_valid),                                   //                        .valid
+		.stream_in_data           (avalon_st_adapter_out_0_data),                                    //                        .data
+		.stream_out_ready         (video_dual_clock_buffer_0_avalon_dc_buffer_source_ready),         // avalon_dc_buffer_source.ready
+		.stream_out_startofpacket (video_dual_clock_buffer_0_avalon_dc_buffer_source_startofpacket), //                        .startofpacket
+		.stream_out_endofpacket   (video_dual_clock_buffer_0_avalon_dc_buffer_source_endofpacket),   //                        .endofpacket
+		.stream_out_valid         (video_dual_clock_buffer_0_avalon_dc_buffer_source_valid),         //                        .valid
+		.stream_out_data          (video_dual_clock_buffer_0_avalon_dc_buffer_source_data)           //                        .data
+	);
+
 	top_level_video_pixel_buffer_dma_0 video_pixel_buffer_dma_0 (
-		.clk                  (altpll_0_c0_clk),                                                            //                     clk.clk
-		.reset                (rst_controller_002_reset_out_reset),                                         //                   reset.reset
+		.clk                  (clk_clk),                                                                    //                     clk.clk
+		.reset                (rst_controller_reset_out_reset),                                             //                   reset.reset
 		.master_readdatavalid (video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdatavalid),             // avalon_pixel_dma_master.readdatavalid
 		.master_waitrequest   (video_pixel_buffer_dma_0_avalon_pixel_dma_master_waitrequest),               //                        .waitrequest
 		.master_address       (video_pixel_buffer_dma_0_avalon_pixel_dma_master_address),                   //                        .address
@@ -314,31 +318,58 @@ module top_level (
 		.stream_data          (video_pixel_buffer_dma_0_avalon_pixel_source_data)                           //                        .data
 	);
 
+	top_level_video_rgb_resampler_0 video_rgb_resampler_0 (
+		.clk                      (clk_clk),                                                    //               clk.clk
+		.reset                    (rst_controller_reset_out_reset),                             //             reset.reset
+		.stream_in_startofpacket  (video_pixel_buffer_dma_0_avalon_pixel_source_startofpacket), //   avalon_rgb_sink.startofpacket
+		.stream_in_endofpacket    (video_pixel_buffer_dma_0_avalon_pixel_source_endofpacket),   //                  .endofpacket
+		.stream_in_valid          (video_pixel_buffer_dma_0_avalon_pixel_source_valid),         //                  .valid
+		.stream_in_ready          (video_pixel_buffer_dma_0_avalon_pixel_source_ready),         //                  .ready
+		.stream_in_data           (video_pixel_buffer_dma_0_avalon_pixel_source_data),          //                  .data
+		.stream_out_ready         (video_rgb_resampler_0_avalon_rgb_source_ready),              // avalon_rgb_source.ready
+		.stream_out_startofpacket (video_rgb_resampler_0_avalon_rgb_source_startofpacket),      //                  .startofpacket
+		.stream_out_endofpacket   (video_rgb_resampler_0_avalon_rgb_source_endofpacket),        //                  .endofpacket
+		.stream_out_valid         (video_rgb_resampler_0_avalon_rgb_source_valid),              //                  .valid
+		.stream_out_data          (video_rgb_resampler_0_avalon_rgb_source_data)                //                  .data
+	);
+
+	top_level_video_scaler_0 video_scaler_0 (
+		.clk                      (clk_clk),                                               //                  clk.clk
+		.reset                    (rst_controller_reset_out_reset),                        //                reset.reset
+		.stream_in_startofpacket  (video_rgb_resampler_0_avalon_rgb_source_startofpacket), //   avalon_scaler_sink.startofpacket
+		.stream_in_endofpacket    (video_rgb_resampler_0_avalon_rgb_source_endofpacket),   //                     .endofpacket
+		.stream_in_valid          (video_rgb_resampler_0_avalon_rgb_source_valid),         //                     .valid
+		.stream_in_ready          (video_rgb_resampler_0_avalon_rgb_source_ready),         //                     .ready
+		.stream_in_data           (video_rgb_resampler_0_avalon_rgb_source_data),          //                     .data
+		.stream_out_ready         (video_scaler_0_avalon_scaler_source_ready),             // avalon_scaler_source.ready
+		.stream_out_startofpacket (video_scaler_0_avalon_scaler_source_startofpacket),     //                     .startofpacket
+		.stream_out_endofpacket   (video_scaler_0_avalon_scaler_source_endofpacket),       //                     .endofpacket
+		.stream_out_valid         (video_scaler_0_avalon_scaler_source_valid),             //                     .valid
+		.stream_out_data          (video_scaler_0_avalon_scaler_source_data),              //                     .data
+		.stream_out_channel       (video_scaler_0_avalon_scaler_source_channel)            //                     .channel
+	);
+
 	top_level_video_vga_controller_0 video_vga_controller_0 (
-		.clk           (altpll_0_c0_clk),                                            //                clk.clk
-		.reset         (rst_controller_002_reset_out_reset),                         //              reset.reset
-		.data          (video_pixel_buffer_dma_0_avalon_pixel_source_data),          //    avalon_vga_sink.data
-		.startofpacket (video_pixel_buffer_dma_0_avalon_pixel_source_startofpacket), //                   .startofpacket
-		.endofpacket   (video_pixel_buffer_dma_0_avalon_pixel_source_endofpacket),   //                   .endofpacket
-		.valid         (video_pixel_buffer_dma_0_avalon_pixel_source_valid),         //                   .valid
-		.ready         (video_pixel_buffer_dma_0_avalon_pixel_source_ready),         //                   .ready
-		.VGA_CLK       (vga_conduit_CLK),                                            // external_interface.export
-		.VGA_HS        (vga_conduit_HS),                                             //                   .export
-		.VGA_VS        (vga_conduit_VS),                                             //                   .export
-		.VGA_BLANK     (vga_conduit_BLANK),                                          //                   .export
-		.VGA_SYNC      (vga_conduit_SYNC),                                           //                   .export
-		.VGA_R         (vga_conduit_R),                                              //                   .export
-		.VGA_G         (vga_conduit_G),                                              //                   .export
-		.VGA_B         (vga_conduit_B)                                               //                   .export
+		.clk           (altpll_0_c0_clk),                                                 //                clk.clk
+		.reset         (rst_controller_001_reset_out_reset),                              //              reset.reset
+		.data          (video_dual_clock_buffer_0_avalon_dc_buffer_source_data),          //    avalon_vga_sink.data
+		.startofpacket (video_dual_clock_buffer_0_avalon_dc_buffer_source_startofpacket), //                   .startofpacket
+		.endofpacket   (video_dual_clock_buffer_0_avalon_dc_buffer_source_endofpacket),   //                   .endofpacket
+		.valid         (video_dual_clock_buffer_0_avalon_dc_buffer_source_valid),         //                   .valid
+		.ready         (video_dual_clock_buffer_0_avalon_dc_buffer_source_ready),         //                   .ready
+		.VGA_CLK       (vga_conduit_CLK),                                                 // external_interface.export
+		.VGA_HS        (vga_conduit_HS),                                                  //                   .export
+		.VGA_VS        (vga_conduit_VS),                                                  //                   .export
+		.VGA_BLANK     (vga_conduit_BLANK),                                               //                   .export
+		.VGA_SYNC      (vga_conduit_SYNC),                                                //                   .export
+		.VGA_R         (vga_conduit_R),                                                   //                   .export
+		.VGA_G         (vga_conduit_G),                                                   //                   .export
+		.VGA_B         (vga_conduit_B)                                                    //                   .export
 	);
 
 	top_level_mm_interconnect_0 mm_interconnect_0 (
-		.altpll_0_c0_clk                                                (altpll_0_c0_clk),                                                            //                                          altpll_0_c0.clk
-		.altpll_1_c1_clk                                                (altpll_1_c1_clk),                                                            //                                          altpll_1_c1.clk
 		.clk_0_clk_clk                                                  (clk_clk),                                                                    //                                            clk_0_clk.clk
-		.altpll_0_inclk_interface_reset_reset_bridge_in_reset_reset     (rst_controller_reset_out_reset),                                             // altpll_0_inclk_interface_reset_reset_bridge_in_reset.reset
-		.new_sdram_controller_0_reset_reset_bridge_in_reset_reset       (rst_controller_001_reset_out_reset),                                         //   new_sdram_controller_0_reset_reset_bridge_in_reset.reset
-		.video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset     (rst_controller_002_reset_out_reset),                                         // video_pixel_buffer_dma_0_reset_reset_bridge_in_reset.reset
+		.video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset     (rst_controller_reset_out_reset),                                             // video_pixel_buffer_dma_0_reset_reset_bridge_in_reset.reset
 		.top_level_data_master_address                                  (top_level_data_master_address),                                              //                                top_level_data_master.address
 		.top_level_data_master_waitrequest                              (top_level_data_master_waitrequest),                                          //                                                     .waitrequest
 		.top_level_data_master_byteenable                               (top_level_data_master_byteenable),                                           //                                                     .byteenable
@@ -362,11 +393,6 @@ module top_level (
 		.altpll_0_pll_slave_read                                        (mm_interconnect_0_altpll_0_pll_slave_read),                                  //                                                     .read
 		.altpll_0_pll_slave_readdata                                    (mm_interconnect_0_altpll_0_pll_slave_readdata),                              //                                                     .readdata
 		.altpll_0_pll_slave_writedata                                   (mm_interconnect_0_altpll_0_pll_slave_writedata),                             //                                                     .writedata
-		.altpll_1_pll_slave_address                                     (mm_interconnect_0_altpll_1_pll_slave_address),                               //                                   altpll_1_pll_slave.address
-		.altpll_1_pll_slave_write                                       (mm_interconnect_0_altpll_1_pll_slave_write),                                 //                                                     .write
-		.altpll_1_pll_slave_read                                        (mm_interconnect_0_altpll_1_pll_slave_read),                                  //                                                     .read
-		.altpll_1_pll_slave_readdata                                    (mm_interconnect_0_altpll_1_pll_slave_readdata),                              //                                                     .readdata
-		.altpll_1_pll_slave_writedata                                   (mm_interconnect_0_altpll_1_pll_slave_writedata),                             //                                                     .writedata
 		.jtag_uart_0_avalon_jtag_slave_address                          (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_address),                    //                        jtag_uart_0_avalon_jtag_slave.address
 		.jtag_uart_0_avalon_jtag_slave_write                            (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write),                      //                                                     .write
 		.jtag_uart_0_avalon_jtag_slave_read                             (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read),                       //                                                     .read
@@ -426,6 +452,39 @@ module top_level (
 		.receiver0_irq (irq_mapper_receiver0_irq),       // receiver0.irq
 		.receiver1_irq (irq_mapper_receiver1_irq),       // receiver1.irq
 		.sender_irq    (top_level_irq_irq)               //    sender.irq
+	);
+
+	top_level_avalon_st_adapter #(
+		.inBitsPerSymbol (10),
+		.inUsePackets    (1),
+		.inDataWidth     (30),
+		.inChannelWidth  (2),
+		.inErrorWidth    (0),
+		.inUseEmptyPort  (0),
+		.inUseValid      (1),
+		.inUseReady      (1),
+		.inReadyLatency  (0),
+		.outDataWidth    (30),
+		.outChannelWidth (0),
+		.outErrorWidth   (0),
+		.outUseEmptyPort (0),
+		.outUseValid     (1),
+		.outUseReady     (1),
+		.outReadyLatency (0)
+	) avalon_st_adapter (
+		.in_clk_0_clk        (clk_clk),                                           // in_clk_0.clk
+		.in_rst_0_reset      (rst_controller_reset_out_reset),                    // in_rst_0.reset
+		.in_0_data           (video_scaler_0_avalon_scaler_source_data),          //     in_0.data
+		.in_0_valid          (video_scaler_0_avalon_scaler_source_valid),         //         .valid
+		.in_0_ready          (video_scaler_0_avalon_scaler_source_ready),         //         .ready
+		.in_0_startofpacket  (video_scaler_0_avalon_scaler_source_startofpacket), //         .startofpacket
+		.in_0_endofpacket    (video_scaler_0_avalon_scaler_source_endofpacket),   //         .endofpacket
+		.in_0_channel        (video_scaler_0_avalon_scaler_source_channel),       //         .channel
+		.out_0_data          (avalon_st_adapter_out_0_data),                      //    out_0.data
+		.out_0_valid         (avalon_st_adapter_out_0_valid),                     //         .valid
+		.out_0_ready         (avalon_st_adapter_out_0_ready),                     //         .ready
+		.out_0_startofpacket (avalon_st_adapter_out_0_startofpacket),             //         .startofpacket
+		.out_0_endofpacket   (avalon_st_adapter_out_0_endofpacket)                //         .endofpacket
 	);
 
 	altera_reset_controller #(
@@ -518,71 +577,8 @@ module top_level (
 		.ADAPT_RESET_REQUEST       (0)
 	) rst_controller_001 (
 		.reset_in0      (top_level_debug_reset_request_reset), // reset_in0.reset
-		.clk            (altpll_1_c1_clk),                     //       clk.clk
-		.reset_out      (rst_controller_001_reset_out_reset),  // reset_out.reset
-		.reset_req      (),                                    // (terminated)
-		.reset_req_in0  (1'b0),                                // (terminated)
-		.reset_in1      (1'b0),                                // (terminated)
-		.reset_req_in1  (1'b0),                                // (terminated)
-		.reset_in2      (1'b0),                                // (terminated)
-		.reset_req_in2  (1'b0),                                // (terminated)
-		.reset_in3      (1'b0),                                // (terminated)
-		.reset_req_in3  (1'b0),                                // (terminated)
-		.reset_in4      (1'b0),                                // (terminated)
-		.reset_req_in4  (1'b0),                                // (terminated)
-		.reset_in5      (1'b0),                                // (terminated)
-		.reset_req_in5  (1'b0),                                // (terminated)
-		.reset_in6      (1'b0),                                // (terminated)
-		.reset_req_in6  (1'b0),                                // (terminated)
-		.reset_in7      (1'b0),                                // (terminated)
-		.reset_req_in7  (1'b0),                                // (terminated)
-		.reset_in8      (1'b0),                                // (terminated)
-		.reset_req_in8  (1'b0),                                // (terminated)
-		.reset_in9      (1'b0),                                // (terminated)
-		.reset_req_in9  (1'b0),                                // (terminated)
-		.reset_in10     (1'b0),                                // (terminated)
-		.reset_req_in10 (1'b0),                                // (terminated)
-		.reset_in11     (1'b0),                                // (terminated)
-		.reset_req_in11 (1'b0),                                // (terminated)
-		.reset_in12     (1'b0),                                // (terminated)
-		.reset_req_in12 (1'b0),                                // (terminated)
-		.reset_in13     (1'b0),                                // (terminated)
-		.reset_req_in13 (1'b0),                                // (terminated)
-		.reset_in14     (1'b0),                                // (terminated)
-		.reset_req_in14 (1'b0),                                // (terminated)
-		.reset_in15     (1'b0),                                // (terminated)
-		.reset_req_in15 (1'b0)                                 // (terminated)
-	);
-
-	altera_reset_controller #(
-		.NUM_RESET_INPUTS          (1),
-		.OUTPUT_RESET_SYNC_EDGES   ("deassert"),
-		.SYNC_DEPTH                (2),
-		.RESET_REQUEST_PRESENT     (0),
-		.RESET_REQ_WAIT_TIME       (1),
-		.MIN_RST_ASSERTION_TIME    (3),
-		.RESET_REQ_EARLY_DSRT_TIME (1),
-		.USE_RESET_REQUEST_IN0     (0),
-		.USE_RESET_REQUEST_IN1     (0),
-		.USE_RESET_REQUEST_IN2     (0),
-		.USE_RESET_REQUEST_IN3     (0),
-		.USE_RESET_REQUEST_IN4     (0),
-		.USE_RESET_REQUEST_IN5     (0),
-		.USE_RESET_REQUEST_IN6     (0),
-		.USE_RESET_REQUEST_IN7     (0),
-		.USE_RESET_REQUEST_IN8     (0),
-		.USE_RESET_REQUEST_IN9     (0),
-		.USE_RESET_REQUEST_IN10    (0),
-		.USE_RESET_REQUEST_IN11    (0),
-		.USE_RESET_REQUEST_IN12    (0),
-		.USE_RESET_REQUEST_IN13    (0),
-		.USE_RESET_REQUEST_IN14    (0),
-		.USE_RESET_REQUEST_IN15    (0),
-		.ADAPT_RESET_REQUEST       (0)
-	) rst_controller_002 (
-		.reset_in0      (top_level_debug_reset_request_reset), // reset_in0.reset
 		.clk            (altpll_0_c0_clk),                     //       clk.clk
-		.reset_out      (rst_controller_002_reset_out_reset),  // reset_out.reset
+		.reset_out      (rst_controller_001_reset_out_reset),  // reset_out.reset
 		.reset_req      (),                                    // (terminated)
 		.reset_req_in0  (1'b0),                                // (terminated)
 		.reset_in1      (1'b0),                                // (terminated)

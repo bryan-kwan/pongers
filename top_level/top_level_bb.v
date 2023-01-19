@@ -1,7 +1,6 @@
 
 module top_level (
 	clk_clk,
-	dram_clk_clk,
 	ledr_external_connection_export,
 	memory_addr,
 	memory_ba,
@@ -20,10 +19,10 @@ module top_level (
 	vga_conduit_SYNC,
 	vga_conduit_R,
 	vga_conduit_G,
-	vga_conduit_B);	
+	vga_conduit_B,
+	clk_shift_clk);	
 
 	input		clk_clk;
-	output		dram_clk_clk;
 	output	[7:0]	ledr_external_connection_export;
 	output	[12:0]	memory_addr;
 	output	[1:0]	memory_ba;
@@ -43,4 +42,5 @@ module top_level (
 	output	[3:0]	vga_conduit_R;
 	output	[3:0]	vga_conduit_G;
 	output	[3:0]	vga_conduit_B;
+	output		clk_shift_clk;
 endmodule
