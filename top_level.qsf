@@ -65,8 +65,8 @@ set_location_assignment PIN_R20 -to memory_addr[12]
 set_location_assignment PIN_T21 -to memory_ba[0]
 set_location_assignment PIN_T22 -to memory_ba[1]
 set_location_assignment PIN_U21 -to memory_cas_n
-set_location_assignment PIN_N22 -to DRAM_CKE
-set_location_assignment PIN_L14 -to altpll_1_c0_clk
+set_location_assignment PIN_N22 -to memory_cke
+set_location_assignment PIN_L14 -to clk_shift_clk
 set_location_assignment PIN_U20 -to memory_cs_n
 set_location_assignment PIN_Y21 -to memory_dq[0]
 set_location_assignment PIN_Y20 -to memory_dq[1]
@@ -84,9 +84,9 @@ set_location_assignment PIN_G22 -to memory_dq[12]
 set_location_assignment PIN_G20 -to memory_dq[13]
 set_location_assignment PIN_G19 -to memory_dq[14]
 set_location_assignment PIN_F22 -to memory_dq[15]
-set_location_assignment PIN_V22 -to DRAM_LDQM
-set_location_assignment PIN_U22 -to DRAM_RAS_N
-set_location_assignment PIN_J21 -to DRAM_UDQM
+set_location_assignment PIN_V22 -to memory_dqm[0]
+set_location_assignment PIN_U22 -to memory_ras_n
+set_location_assignment PIN_J21 -to memory_dqm[1]
 set_location_assignment PIN_V20 -to memory_we_n
 set_location_assignment PIN_C14 -to HEX0[0]
 set_location_assignment PIN_E15 -to HEX0[1]
@@ -262,8 +262,8 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_addr[12]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_ba[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_ba[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_cas_n
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CKE
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to altpll_1_c0_clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_cke
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk_shift_clk
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_cs_n
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_dq[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_dq[1]
@@ -281,9 +281,9 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_dq[12]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_dq[13]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_dq[14]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_dq[15]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_LDQM
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_RAS_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_UDQM
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_dqm[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_ras_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_dqm[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to memory_we_n
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[1]

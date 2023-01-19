@@ -152,14 +152,14 @@ SOPC_SYSID_FLAG += --id=0
 ELF_PATCH_FLAG  += --id 0
 
 # The SOPC System ID Base Address 
-# setting SOPC_SYSID_BASE_ADDRESS is 0x8041060
-SOPC_SYSID_FLAG += --sidp=0x8041060
-ELF_PATCH_FLAG  += --sidp 0x8041060
+# setting SOPC_SYSID_BASE_ADDRESS is 0x8041090
+SOPC_SYSID_FLAG += --sidp=0x8041090
+ELF_PATCH_FLAG  += --sidp 0x8041090
 
 # The SOPC Timestamp 
-# setting SOPC_TIMESTAMP is 1674096051
-SOPC_SYSID_FLAG += --timestamp=1674096051
-ELF_PATCH_FLAG  += --timestamp 1674096051
+# setting SOPC_TIMESTAMP is 1674148890
+SOPC_SYSID_FLAG += --timestamp=1674148890
+ELF_PATCH_FLAG  += --timestamp 1674148890
 
 # Enable JTAG UART driver to recover when host is inactive causing buffer to 
 # full without returning error. Printf will not fail with this recovery. none 
@@ -362,8 +362,6 @@ ELF_PATCH_FLAG  += --stdout_dev jtag_uart_0
 #                 SOFTWARE COMPONENT & DRIVER INCLUDE PATHS
 #------------------------------------------------------------------------------
 
-ALT_INCLUDE_DIRS += $(ALT_LIBRARY_ROOT_DIR)/drivers/vip/../../drivers/vip/inc
-ALT_INCLUDE_DIRS += $(ALT_LIBRARY_ROOT_DIR)/drivers/vip/../../drivers/vip/src
 ALT_INCLUDE_DIRS += $(ALT_LIBRARY_ROOT_DIR)/HAL/inc
 
 #------------------------------------------------------------------------------

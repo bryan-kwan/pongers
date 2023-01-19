@@ -4,7 +4,7 @@
  * Machine generated for CPU 'top_level' in SOPC Builder design 'top_level'
  * SOPC Builder design path: ../../top_level.sopcinfo
  *
- * Generated: Wed Jan 18 19:04:03 MST 2023
+ * Generated: Wed Jan 18 20:33:13 MST 2023
  */
 
 /*
@@ -50,11 +50,13 @@
 
 MEMORY
 {
+    new_sdram_controller_0 : ORIGIN = 0x4000000, LENGTH = 67108864
     reset : ORIGIN = 0x8020000, LENGTH = 32
     onchip_memory2_0 : ORIGIN = 0x8020020, LENGTH = 127968
 }
 
 /* Define symbols for each memory base-address */
+__alt_mem_new_sdram_controller_0 = 0x4000000;
 __alt_mem_onchip_memory2_0 = 0x8020000;
 
 OUTPUT_FORMAT( "elf32-littlenios2",
@@ -307,7 +309,24 @@ SECTIONS
      *
      */
 
-    .onchip_memory2_0 LOADADDR (.bss) + SIZEOF (.bss) : AT ( LOADADDR (.bss) + SIZEOF (.bss) )
+    .new_sdram_controller_0 : AT ( LOADADDR (.bss) + SIZEOF (.bss) )
+    {
+        PROVIDE (_alt_partition_new_sdram_controller_0_start = ABSOLUTE(.));
+        *(.new_sdram_controller_0 .new_sdram_controller_0. new_sdram_controller_0.*)
+        . = ALIGN(4);
+        PROVIDE (_alt_partition_new_sdram_controller_0_end = ABSOLUTE(.));
+    } > new_sdram_controller_0
+
+    PROVIDE (_alt_partition_new_sdram_controller_0_load_addr = LOADADDR(.new_sdram_controller_0));
+
+    /*
+     *
+     * This section's LMA is set to the .text region.
+     * crt0 will copy to this section's specified mapped region virtual memory address (VMA)
+     *
+     */
+
+    .onchip_memory2_0 LOADADDR (.new_sdram_controller_0) + SIZEOF (.new_sdram_controller_0) : AT ( LOADADDR (.new_sdram_controller_0) + SIZEOF (.new_sdram_controller_0) )
     {
         PROVIDE (_alt_partition_onchip_memory2_0_start = ABSOLUTE(.));
         *(.onchip_memory2_0 .onchip_memory2_0. onchip_memory2_0.*)

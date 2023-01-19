@@ -3,11 +3,11 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces">
   <columns>
-   <connections preferredWidth="191" />
+   <connections preferredWidth="207" />
    <irq preferredWidth="34" />
   </columns>
  </systemtable>
  <library
-   expandedCategories="Library,Project,Library/DSP,Library/DSP/Video and Image Processing" />
+   expandedCategories="Library/Qsys Interconnect,Library/Qsys Interconnect/Memory-Mapped Alpha,Library/University Program,Library/Basic Functions/On Chip Memory,Library/University Program/Audio &amp; Video/Video,Library,Project,Library/Qsys Interconnect/Memory-Mapped,Library/University Program/Audio &amp; Video,Library/Basic Functions" />
  <window width="1364" height="718" x="1" y="1" />
 </preferences>
