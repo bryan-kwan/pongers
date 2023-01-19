@@ -22,6 +22,10 @@ DRAM_CLK (Connect this to the -3ns phase shifted 100MHz clock from the PLL)
 
 You may also hook up the GPIO, LEDR, SW, buttons, etc. if you want.
 
+# VGA Display Setup
+
+The overall setup followed <a href="https://faculty-web.msoe.edu/johnsontimoj/EE3921/files3921/nios_pixel_sw.pdf">this reference</a>.
+
 # Setup of the SDRAM Controller
 
 Setup of the SDRAM Controller was taken from <a href="https://github.com/hildebrandmw/de10lite-hdl/tree/master/components/dram">this guide</a>. 
