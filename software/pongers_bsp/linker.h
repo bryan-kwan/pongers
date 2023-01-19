@@ -4,7 +4,7 @@
  * Machine generated for CPU 'top_level' in SOPC Builder design 'top_level'
  * SOPC Builder design path: ../../top_level.sopcinfo
  *
- * Generated: Sat Jan 14 14:27:37 MST 2023
+ * Generated: Wed Jan 18 19:04:03 MST 2023
  */
 
 /*
@@ -65,9 +65,9 @@
  *
  */
 
-#define ONCHIP_MEMORY2_0_REGION_BASE 0x20020
+#define ONCHIP_MEMORY2_0_REGION_BASE 0x8020020
 #define ONCHIP_MEMORY2_0_REGION_SPAN 127968
-#define RESET_REGION_BASE 0x20000
+#define RESET_REGION_BASE 0x8020000
 #define RESET_REGION_SPAN 32
 
 

@@ -3,7 +3,7 @@
 # Machine generated for CPU 'top_level' in SOPC Builder design 'top_level'
 # SOPC Builder design path: ../../top_level.sopcinfo
 #
-# Generated: Sat Jan 14 14:27:37 MST 2023
+# Generated: Wed Jan 18 19:04:03 MST 2023
 
 # DO NOT MODIFY THIS FILE
 #
@@ -47,4 +47,4 @@
 # by allowing GDB to cache memory contents on the host.
 
 # onchip_memory2_0
-memory 0x20000 0x3f400 cache
+memory 0x8020000 0x803f400 cache
