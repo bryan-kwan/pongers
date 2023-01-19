@@ -208,6 +208,17 @@ GENERATED_C_LIB_SRCS += alt_sys_init.c
 # used to build each file.
 #-------------------------------------------------------------------------------
 
+# alt_vip_cl_vfb_driver sources root 
+alt_vip_cl_vfb_driver_SRCS_ROOT := drivers/vip
+
+# alt_vip_cl_vfb_driver sources 
+alt_vip_cl_vfb_driver_CPP_LIB_SRCS := \
+	$(alt_vip_cl_vfb_driver_SRCS_ROOT)/../../drivers/vip/src/VipUtil.cpp \
+	$(alt_vip_cl_vfb_driver_SRCS_ROOT)/../../drivers/vip/src/VipCore.cpp \
+	$(alt_vip_cl_vfb_driver_SRCS_ROOT)/../../drivers/vip/src/Frame_Buffer.cpp \
+	$(alt_vip_cl_vfb_driver_SRCS_ROOT)/../../drivers/vip/src/Frame_Reader.cpp \
+	$(alt_vip_cl_vfb_driver_SRCS_ROOT)/../../drivers/vip/src/Frame_Writer.cpp
+
 # altera_avalon_jtag_uart_driver sources root 
 altera_avalon_jtag_uart_driver_SRCS_ROOT := drivers
 
@@ -276,13 +287,6 @@ altera_nios2_gen2_hal_driver_ASM_LIB_SRCS := \
 	$(altera_nios2_gen2_hal_driver_SRCS_ROOT)/src/alt_log_macro.S \
 	$(altera_nios2_gen2_hal_driver_SRCS_ROOT)/src/crt0.S
 
-# avalon_video_pixel_buffer_dma_driver sources root 
-avalon_video_pixel_buffer_dma_driver_SRCS_ROOT := drivers
-
-# avalon_video_pixel_buffer_dma_driver sources 
-avalon_video_pixel_buffer_dma_driver_C_LIB_SRCS := \
-	$(avalon_video_pixel_buffer_dma_driver_SRCS_ROOT)/src/altera_up_avalon_video_pixel_buffer_dma.c
-
 # hal sources root 
 hal_SRCS_ROOT := HAL
 
@@ -349,7 +353,6 @@ COMPONENT_C_LIB_SRCS += \
 	$(altera_avalon_sysid_qsys_driver_C_LIB_SRCS) \
 	$(altera_avalon_timer_driver_C_LIB_SRCS) \
 	$(altera_nios2_gen2_hal_driver_C_LIB_SRCS) \
-	$(avalon_video_pixel_buffer_dma_driver_C_LIB_SRCS) \
 	$(hal_C_LIB_SRCS)
 
 # Assemble all component assembly source files 
@@ -358,6 +361,7 @@ COMPONENT_ASM_LIB_SRCS += \
 
 # Assemble all component C++ source files 
 COMPONENT_CPP_LIB_SRCS += \
+	$(alt_vip_cl_vfb_driver_CPP_LIB_SRCS)
 
 #END MANAGED
 

@@ -4,7 +4,7 @@
  * Machine generated for CPU 'top_level' in SOPC Builder design 'top_level'
  * SOPC Builder design path: ../../top_level.sopcinfo
  *
- * Generated: Wed Jan 18 18:39:48 MST 2023
+ * Generated: Wed Jan 18 20:12:45 MST 2023
  */
 
 /*
@@ -134,14 +134,13 @@
  */
 
 #define __ALTERA_AVALON_JTAG_UART
-#define __ALTERA_AVALON_NEW_SDRAM_CONTROLLER
 #define __ALTERA_AVALON_ONCHIP_MEMORY2
 #define __ALTERA_AVALON_PIO
 #define __ALTERA_AVALON_SYSID_QSYS
 #define __ALTERA_AVALON_TIMER
 #define __ALTERA_NIOS2_GEN2
-#define __ALTERA_UP_AVALON_VIDEO_PIXEL_BUFFER_DMA
 #define __ALTPLL
+#define __ALT_VIP_CL_VFB
 
 
 /*
@@ -181,6 +180,20 @@
 
 
 /*
+ * alt_vip_cl_vfb_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_alt_vip_cl_vfb_0 alt_vip_cl_vfb
+#define ALT_VIP_CL_VFB_0_BASE 0x0
+#define ALT_VIP_CL_VFB_0_IRQ 2
+#define ALT_VIP_CL_VFB_0_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define ALT_VIP_CL_VFB_0_NAME "/dev/alt_vip_cl_vfb_0"
+#define ALT_VIP_CL_VFB_0_SPAN 64
+#define ALT_VIP_CL_VFB_0_TYPE "alt_vip_cl_vfb"
+
+
+/*
  * altpll_0 configuration
  *
  */
@@ -192,20 +205,6 @@
 #define ALTPLL_0_SPAN 16
 #define ALTPLL_0_TYPE "altpll"
 #define ALT_MODULE_CLASS_altpll_0 altpll
-
-
-/*
- * altpll_1 configuration
- *
- */
-
-#define ALTPLL_1_BASE 0x8041020
-#define ALTPLL_1_IRQ -1
-#define ALTPLL_1_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define ALTPLL_1_NAME "/dev/altpll_1"
-#define ALTPLL_1_SPAN 16
-#define ALTPLL_1_TYPE "altpll"
-#define ALT_MODULE_CLASS_altpll_1 altpll
 
 
 /*
@@ -262,45 +261,6 @@
 #define LEDR_RESET_VALUE 0
 #define LEDR_SPAN 16
 #define LEDR_TYPE "altera_avalon_pio"
-
-
-/*
- * new_sdram_controller_0 configuration
- *
- */
-
-#define ALT_MODULE_CLASS_new_sdram_controller_0 altera_avalon_new_sdram_controller
-#define NEW_SDRAM_CONTROLLER_0_BASE 0x4000000
-#define NEW_SDRAM_CONTROLLER_0_CAS_LATENCY 2
-#define NEW_SDRAM_CONTROLLER_0_CONTENTS_INFO
-#define NEW_SDRAM_CONTROLLER_0_INIT_NOP_DELAY 0.0
-#define NEW_SDRAM_CONTROLLER_0_INIT_REFRESH_COMMANDS 8
-#define NEW_SDRAM_CONTROLLER_0_IRQ -1
-#define NEW_SDRAM_CONTROLLER_0_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define NEW_SDRAM_CONTROLLER_0_IS_INITIALIZED 1
-#define NEW_SDRAM_CONTROLLER_0_NAME "/dev/new_sdram_controller_0"
-#define NEW_SDRAM_CONTROLLER_0_POWERUP_DELAY 100.0
-#define NEW_SDRAM_CONTROLLER_0_REFRESH_PERIOD 7.8125
-#define NEW_SDRAM_CONTROLLER_0_REGISTER_DATA_IN 1
-#define NEW_SDRAM_CONTROLLER_0_SDRAM_ADDR_WIDTH 0x19
-#define NEW_SDRAM_CONTROLLER_0_SDRAM_BANK_WIDTH 2
-#define NEW_SDRAM_CONTROLLER_0_SDRAM_COL_WIDTH 10
-#define NEW_SDRAM_CONTROLLER_0_SDRAM_DATA_WIDTH 16
-#define NEW_SDRAM_CONTROLLER_0_SDRAM_NUM_BANKS 4
-#define NEW_SDRAM_CONTROLLER_0_SDRAM_NUM_CHIPSELECTS 1
-#define NEW_SDRAM_CONTROLLER_0_SDRAM_ROW_WIDTH 13
-#define NEW_SDRAM_CONTROLLER_0_SHARED_DATA 0
-#define NEW_SDRAM_CONTROLLER_0_SIM_MODEL_BASE 0
-#define NEW_SDRAM_CONTROLLER_0_SPAN 67108864
-#define NEW_SDRAM_CONTROLLER_0_STARVATION_INDICATOR 0
-#define NEW_SDRAM_CONTROLLER_0_TRISTATE_BRIDGE_SLAVE ""
-#define NEW_SDRAM_CONTROLLER_0_TYPE "altera_avalon_new_sdram_controller"
-#define NEW_SDRAM_CONTROLLER_0_T_AC 6.0
-#define NEW_SDRAM_CONTROLLER_0_T_MRD 3
-#define NEW_SDRAM_CONTROLLER_0_T_RCD 15.0
-#define NEW_SDRAM_CONTROLLER_0_T_RFC 55.0
-#define NEW_SDRAM_CONTROLLER_0_T_RP 15.0
-#define NEW_SDRAM_CONTROLLER_0_T_WR 14.0
 
 
 /*
@@ -371,7 +331,7 @@
 #define SYSID_QSYS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_0_NAME "/dev/sysid_qsys_0"
 #define SYSID_QSYS_0_SPAN 8
-#define SYSID_QSYS_0_TIMESTAMP 1674091836
+#define SYSID_QSYS_0_TIMESTAMP 1674096051
 #define SYSID_QSYS_0_TYPE "altera_avalon_sysid_qsys"
 
 
@@ -399,19 +359,5 @@
 #define TIMER_0_TICKS_PER_SEC 1000
 #define TIMER_0_TIMEOUT_PULSE_OUTPUT 0
 #define TIMER_0_TYPE "altera_avalon_timer"
-
-
-/*
- * video_pixel_buffer_dma_0 configuration
- *
- */
-
-#define ALT_MODULE_CLASS_video_pixel_buffer_dma_0 altera_up_avalon_video_pixel_buffer_dma
-#define VIDEO_PIXEL_BUFFER_DMA_0_BASE 0x0
-#define VIDEO_PIXEL_BUFFER_DMA_0_IRQ -1
-#define VIDEO_PIXEL_BUFFER_DMA_0_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define VIDEO_PIXEL_BUFFER_DMA_0_NAME "/dev/video_pixel_buffer_dma_0"
-#define VIDEO_PIXEL_BUFFER_DMA_0_SPAN 16
-#define VIDEO_PIXEL_BUFFER_DMA_0_TYPE "altera_up_avalon_video_pixel_buffer_dma"
 
 #endif /* __SYSTEM_H_ */

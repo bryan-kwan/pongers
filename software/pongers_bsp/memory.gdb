@@ -3,7 +3,7 @@
 # Machine generated for CPU 'top_level' in SOPC Builder design 'top_level'
 # SOPC Builder design path: ../../top_level.sopcinfo
 #
-# Generated: Wed Jan 18 16:07:13 MST 2023
+# Generated: Wed Jan 18 19:04:03 MST 2023
 
 # DO NOT MODIFY THIS FILE
 #
@@ -45,9 +45,6 @@
 # Define memory regions for each memory connected to the CPU.
 # The cache attribute is specified which improves GDB performance
 # by allowing GDB to cache memory contents on the host.
-
-# new_sdram_controller_0
-memory 0x4000000 0x8000000 cache
 
 # onchip_memory2_0
 memory 0x8020000 0x803f400 cache
