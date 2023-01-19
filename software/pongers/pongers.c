@@ -3,8 +3,58 @@
 #include <io.h>
 #include <system.h>
 #include "altera_up_avalon_video_pixel_buffer_dma.h"
-//NEW_SDRAM_CONTROLLER_0_BASE
-//ONCHIP_MEMORY2_0_BASE
+
+#define SCREEN_WIDTH 320
+#define SCREEN_HEIGHT 240
+
+struct Rectangle {
+	int x;
+	int y;
+	int xspeed;
+	int yspeed;
+	int width;
+	int height;
+	int colour;
+};
+typedef struct Rectangle Rectangle;
+
+// Updates the position of each Rectangle object
+void update_rect(Rectangle rect[], int len) {
+	for(int i = 0; i< len; i++) {
+		// Update position
+		rect[i].x += rect[i].xspeed;
+		rect[i].y += rect[i].yspeed;
+		// Check for collisions
+		if(rect[i].x + rect[i].width >= SCREEN_WIDTH) {
+			rect[i].x = SCREEN_WIDTH - rect[i].width;
+			rect[i].xspeed *= -1;
+		}
+		else if (rect[i].x <= 0) {
+			rect[i].x = 0;
+			rect[i].xspeed *= -1;
+		}
+		else if (rect[i].y + rect[i].height >= SCREEN_HEIGHT) {
+			rect[i].y = SCREEN_HEIGHT - rect[i].height;
+			rect[i].yspeed *= -1;
+		}
+		else if (rect[i].y <= 0) {
+			rect[i].y = 0;
+			rect[i].yspeed *= -1;
+		}
+	}
+}
+// Renders game components on the screen
+void draw(Rectangle rect[], int len, alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, int buffer) {
+	// Clear the screen
+	alt_up_pixel_buffer_dma_clear_screen(pixel_buf_dma_dev, buffer);
+	// Draw each rectangle
+	for(int i = 0; i<len; i++) {
+		alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
+				rect[i].x, rect[i].y, rect[i].x + rect[i].width - 1,
+				rect[i].y + rect[i].height - 1,
+				rect[i].colour, buffer);
+	}
+}
 int main()
 {
 	printf("Test from Nios II!\n");
@@ -18,56 +68,17 @@ int main()
 	else
 		printf ("Opened pixel buffer device \n");
 
-	// Clear the screen
-	alt_up_pixel_buffer_dma_clear_screen(pixel_buf_dma_dev, 0);
-	usleep(1000000);// 1sec
-
-	// Draw
-	alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev, 50, 50, 100, 100, 0xF800, 0);
-	alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev, 100, 100, 150, 150, 0x07E0, 0);
-	alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev, 150, 150, 200, 200, 0x001F, 0);
-	alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev, 0, 0, 50, 50, 0xFFFF, 0);
+	// Game objects
+	int num_rectangles = 1;
+	Rectangle rect[num_rectangles];
+	Rectangle ball = {100, 100, 10, 5, 50, 50, 0xFFFF};
+	rect[0] = ball;
+	while(1) {
+		// Game logic
+		update_rect(rect, num_rectangles);
+		// Render the screen
+		draw(rect, num_rectangles, pixel_buf_dma_dev, 1);
+		usleep(10000);// 0.01sec
+	}
 	return 0;
 }
-
-// Below is some test code that is supposed to make a line move on the screen
-//#define SDRAM_0_BASE NEW_SDRAM_CONTROLLER_0_BASE
-//#define SDRAM_VIDEO_OFFSET 0
-//#define FRAME_WIDTH 640
-//#define FRAME_HEIGHT 480
-//#define COLOR_BLACK 0x00
-//#define COLOR_WHITE 0xFF
-//int main()
-//{
-//	int row = 0;
-//	int col = 0;
-//	// Clear the screen
-//	for (row = 0; row < FRAME_HEIGHT; row++){
-//		for (col = 0; col < FRAME_WIDTH; col = col + 4){
-//			IOWR_32DIRECT(NEW_SDRAM_CONTROLLER_0_BASE, SDRAM_VIDEO_OFFSET + row * FRAME_WIDTH + col, COLOR_BLACK);
-//		}
-//	}
-////	ALT_CI_CI_FRAME_DONE_0; // Custom command to trigger frame swap
-//	// Draw pattern
-//	unsigned int position = 0;
-//	while (1)
-//	{
-//	for (row = 0; row < FRAME_HEIGHT; row++)
-//	{
-//		// Clear previous position of line
-//		if (position == 0) {
-//			IOWR_8DIRECT(SDRAM_0_BASE, SDRAM_VIDEO_OFFSET + row *
-//			FRAME_WIDTH + FRAME_WIDTH - 8, COLOR_BLACK);
-//		} else {
-//			IOWR_8DIRECT(SDRAM_0_BASE, SDRAM_VIDEO_OFFSET + row *
-//			FRAME_WIDTH + position - 8, COLOR_BLACK);
-//		}
-//		// Draw new line
-//		IOWR_8DIRECT(SDRAM_0_BASE, SDRAM_VIDEO_OFFSET + row * FRAME_WIDTH
-//		+ position, COLOR_WHITE);
-//	}
-//	position = (position + 8) % 640;
-////	ALT_CI_CI_FRAME_DONE_0; // Trigger frame swap
-//	}
-//	return 0;
-//}
