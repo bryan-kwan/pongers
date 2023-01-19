@@ -38,17 +38,17 @@
 
 // ------------------------------------------
 // Generation parameters:
-//   output_name:         top_level_mm_interconnect_0_rsp_mux
+//   output_name:         top_level_mm_interconnect_0_cmd_mux_005
 //   NUM_INPUTS:          1
 //   ARBITRATION_SHARES:  1
-//   ARBITRATION_SCHEME   "no-arb"
-//   PIPELINE_ARB:        0
+//   ARBITRATION_SCHEME   "round-robin"
+//   PIPELINE_ARB:        1
 //   PKT_TRANS_LOCK:      72 (arbitration locking enabled)
 //   ST_DATA_W:           110
 //   ST_CHANNEL_W:        11
 // ------------------------------------------
 
-module top_level_mm_interconnect_0_rsp_mux
+module top_level_mm_interconnect_0_cmd_mux_005
 (
     // ----------------------
     // Sinks
@@ -80,7 +80,7 @@ module top_level_mm_interconnect_0_rsp_mux
     localparam PAYLOAD_W        = 110 + 11 + 2;
     localparam NUM_INPUTS       = 1;
     localparam SHARE_COUNTER_W  = 1;
-    localparam PIPELINE_ARB     = 0;
+    localparam PIPELINE_ARB     = 1;
     localparam ST_DATA_W        = 110;
     localparam ST_CHANNEL_W     = 11;
     localparam PKT_TRANS_LOCK   = 72;

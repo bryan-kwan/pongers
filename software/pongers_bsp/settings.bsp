@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Jan 18, 2023 8:48:01 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1674100081743</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Jan 18, 2023 9:11:48 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1674101508505</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\bryan\VSCodeWorkspace\ENEL400\software\pongers_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\top_level.sopcinfo</SopcDesignFile>
@@ -899,9 +899,9 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <MemoryMap>
-                <slaveDescriptor>alt_vip_cl_vfb_0</slaveDescriptor>
-                <addressRange>0x00000000 - 0x0000003F</addressRange>
-                <addressSpan>64</addressSpan>
+                <slaveDescriptor>video_pixel_buffer_dma_0</slaveDescriptor>
+                <addressRange>0x00000000 - 0x0000000F</addressRange>
+                <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>

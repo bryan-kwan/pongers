@@ -2,16 +2,32 @@
 #include <stdio.h>
 #include <io.h>
 #include <system.h>
+#include "altera_up_avalon_video_pixel_buffer_dma.h"
 //NEW_SDRAM_CONTROLLER_0_BASE
 //ONCHIP_MEMORY2_0_BASE
 int main()
 {
-  printf("Test from Nios II!\n");
-  for(int i=0;i<1000;i++){
-	  IOWR_16DIRECT(NEW_SDRAM_CONTROLLER_0_BASE, i, (unsigned short)0xdead);
-  }
+	printf("Test from Nios II!\n");
+	// Have to set up these pointers to open the device
+	// Reference : https://faculty-web.msoe.edu/johnsontimoj/EE3921/files3921/nios_pixel_sw.pdf
+	alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev;
+	pixel_buf_dma_dev = alt_up_pixel_buffer_dma_open_dev(VIDEO_PIXEL_BUFFER_DMA_0_NAME);
+	// Check for error
+	if ( pixel_buf_dma_dev == NULL)
+		printf ("Error: could not open pixel buffer device \n");
+	else
+		printf ("Opened pixel buffer device \n");
 
-  return 0;
+	// Clear the screen
+	alt_up_pixel_buffer_dma_clear_screen(pixel_buf_dma_dev, 0);
+	usleep(1000000);// 1sec
+
+	// Draw
+	alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev, 100, 50, 149, 99, 0xF800, 0);
+	alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev, 150, 100, 199, 149, 0x07E0, 0);
+	alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev, 200, 150, 249, 199, 0x001F, 0);
+
+	return 0;
 }
 
 // Below is some test code that is supposed to make a line move on the screen

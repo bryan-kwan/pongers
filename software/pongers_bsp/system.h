@@ -4,7 +4,7 @@
  * Machine generated for CPU 'top_level' in SOPC Builder design 'top_level'
  * SOPC Builder design path: ../../top_level.sopcinfo
  *
- * Generated: Wed Jan 18 20:45:31 MST 2023
+ * Generated: Wed Jan 18 21:11:51 MST 2023
  */
 
 /*
@@ -140,8 +140,8 @@
 #define __ALTERA_AVALON_SYSID_QSYS
 #define __ALTERA_AVALON_TIMER
 #define __ALTERA_NIOS2_GEN2
+#define __ALTERA_UP_AVALON_VIDEO_PIXEL_BUFFER_DMA
 #define __ALTPLL
-#define __ALT_VIP_CL_VFB
 
 
 /*
@@ -178,20 +178,6 @@
 #define ALT_STDOUT_PRESENT
 #define ALT_STDOUT_TYPE "altera_avalon_jtag_uart"
 #define ALT_SYSTEM_NAME "top_level"
-
-
-/*
- * alt_vip_cl_vfb_0 configuration
- *
- */
-
-#define ALT_MODULE_CLASS_alt_vip_cl_vfb_0 alt_vip_cl_vfb
-#define ALT_VIP_CL_VFB_0_BASE 0x0
-#define ALT_VIP_CL_VFB_0_IRQ 2
-#define ALT_VIP_CL_VFB_0_IRQ_INTERRUPT_CONTROLLER_ID 0
-#define ALT_VIP_CL_VFB_0_NAME "/dev/alt_vip_cl_vfb_0"
-#define ALT_VIP_CL_VFB_0_SPAN 64
-#define ALT_VIP_CL_VFB_0_TYPE "alt_vip_cl_vfb"
 
 
 /*
@@ -385,7 +371,7 @@
 #define SYSID_QSYS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_0_NAME "/dev/sysid_qsys_0"
 #define SYSID_QSYS_0_SPAN 8
-#define SYSID_QSYS_0_TIMESTAMP 1674099322
+#define SYSID_QSYS_0_TIMESTAMP 1674100865
 #define SYSID_QSYS_0_TYPE "altera_avalon_sysid_qsys"
 
 
@@ -413,5 +399,19 @@
 #define TIMER_0_TICKS_PER_SEC 1000
 #define TIMER_0_TIMEOUT_PULSE_OUTPUT 0
 #define TIMER_0_TYPE "altera_avalon_timer"
+
+
+/*
+ * video_pixel_buffer_dma_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_video_pixel_buffer_dma_0 altera_up_avalon_video_pixel_buffer_dma
+#define VIDEO_PIXEL_BUFFER_DMA_0_BASE 0x0
+#define VIDEO_PIXEL_BUFFER_DMA_0_IRQ -1
+#define VIDEO_PIXEL_BUFFER_DMA_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define VIDEO_PIXEL_BUFFER_DMA_0_NAME "/dev/video_pixel_buffer_dma_0"
+#define VIDEO_PIXEL_BUFFER_DMA_0_SPAN 16
+#define VIDEO_PIXEL_BUFFER_DMA_0_TYPE "altera_up_avalon_video_pixel_buffer_dma"
 
 #endif /* __SYSTEM_H_ */
