@@ -4,6 +4,7 @@
 
 `timescale 1 ps / 1 ps
 module top_level (
+		output wire        altpll_1_c0_clk,                 //              altpll_1_c0.clk
 		input  wire [26:0] bridge_memory_address,           //            bridge_memory.address
 		input  wire [1:0]  bridge_memory_byte_enable,       //                         .byte_enable
 		input  wire        bridge_memory_read,              //                         .read
@@ -24,13 +25,13 @@ module top_level (
 		output wire        memory_we_n,                     //                         .we_n
 		input  wire [7:0]  sw_external_connection_export,   //   sw_external_connection.export
 		output wire        vga_conduit_CLK,                 //              vga_conduit.CLK
-		output wire        VGA_HS,                  //                         .HS
-		output wire        VGA_VS,                  //                         .VS
+		output wire        vga_conduit_HS,                  //                         .HS
+		output wire        vga_conduit_VS,                  //                         .VS
 		output wire        vga_conduit_BLANK,               //                         .BLANK
 		output wire        vga_conduit_SYNC,                //                         .SYNC
-		output wire [3:0]  VGA_R,                   //                         .R
-		output wire [3:0]  VGA_G,                   //                         .G
-		output wire [3:0]  VGA_B                    //                         .B
+		output wire [3:0]  vga_conduit_R,                   //                         .R
+		output wire [3:0]  vga_conduit_G,                   //                         .G
+		output wire [3:0]  vga_conduit_B                    //                         .B
 	);
 
 	wire         video_pixel_buffer_dma_0_avalon_pixel_source_valid;                         // video_pixel_buffer_dma_0:stream_valid -> video_vga_controller_0:valid
@@ -170,7 +171,7 @@ module top_level (
 		.address            (mm_interconnect_0_altpll_1_pll_slave_address),   //                      .address
 		.readdata           (mm_interconnect_0_altpll_1_pll_slave_readdata),  //                      .readdata
 		.writedata          (mm_interconnect_0_altpll_1_pll_slave_writedata), //                      .writedata
-		.c0                 (),                                               //                    c0.clk
+		.c0                 (altpll_1_c0_clk),                                //                    c0.clk
 		.c1                 (altpll_1_c1_clk),                                //                    c1.clk
 		.scandone           (),                                               //           (terminated)
 		.scandataout        (),                                               //           (terminated)
@@ -355,13 +356,13 @@ module top_level (
 		.valid         (video_pixel_buffer_dma_0_avalon_pixel_source_valid),         //                   .valid
 		.ready         (video_pixel_buffer_dma_0_avalon_pixel_source_ready),         //                   .ready
 		.VGA_CLK       (vga_conduit_CLK),                                            // external_interface.export
-		.VGA_HS        (VGA_HS),                                             //                   .export
-		.VGA_VS        (VGA_VS),                                             //                   .export
+		.VGA_HS        (vga_conduit_HS),                                             //                   .export
+		.VGA_VS        (vga_conduit_VS),                                             //                   .export
 		.VGA_BLANK     (vga_conduit_BLANK),                                          //                   .export
 		.VGA_SYNC      (vga_conduit_SYNC),                                           //                   .export
-		.VGA_R         (VGA_R),                                              //                   .export
-		.VGA_G         (VGA_G),                                              //                   .export
-		.VGA_B         (VGA_B)                                               //                   .export
+		.VGA_R         (vga_conduit_R),                                              //                   .export
+		.VGA_G         (vga_conduit_G),                                              //                   .export
+		.VGA_B         (vga_conduit_B)                                               //                   .export
 	);
 
 	top_level_mm_interconnect_0 mm_interconnect_0 (

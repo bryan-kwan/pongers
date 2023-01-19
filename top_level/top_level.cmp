@@ -1,5 +1,6 @@
 	component top_level is
 		port (
+			altpll_1_c0_clk                 : out   std_logic;                                        -- clk
 			bridge_memory_address           : in    std_logic_vector(26 downto 0) := (others => 'X'); -- address
 			bridge_memory_byte_enable       : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- byte_enable
 			bridge_memory_read              : in    std_logic                     := 'X';             -- read
