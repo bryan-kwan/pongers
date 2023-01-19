@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="top_level" kind="top_level" version="1.0" fabric="QSYS">
  <!-- Format version 17.1 590 (Future versions may contain additional information.) -->
- <!-- 2023.01.19.10:06:02 -->
+ <!-- 2023.01.19.10:21:30 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1674147962</value>
+  <value>1674148890</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -6525,7 +6525,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1674147962</value>
+   <value>1674148890</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -6545,7 +6545,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1674147962</value>
+   <value>1674148890</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -6561,7 +6561,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1674147962</value>
+   <value>1674148890</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -11732,7 +11732,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="color_space">
    <type>java.lang.String</type>
-   <value>8-bit RGB</value>
+   <value>16-bit RGB</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -12175,7 +12175,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>master_readdata</name>
     <direction>Input</direction>
-    <width>8</width>
+    <width>16</width>
     <role>readdata</role>
    </port>
    <memoryBlock>
@@ -12591,7 +12591,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>8</value>
+    <value>16</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -12706,7 +12706,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>stream_data</name>
     <direction>Output</direction>
-    <width>8</width>
+    <width>16</width>
     <role>data</role>
    </port>
   </interface>
@@ -12720,7 +12720,7 @@ parameters are a RESULT of the module parameters. -->
 the requested settings for a module instance. -->
   <parameter name="input_type">
    <type>java.lang.String</type>
-   <value>8-bit RGB</value>
+   <value>16-bit RGB</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -12744,7 +12744,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="input_bits">
    <type>int</type>
-   <value>8</value>
+   <value>16</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -12946,7 +12946,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>8</value>
+    <value>16</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -13061,7 +13061,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>stream_in_data</name>
     <direction>Input</direction>
-    <width>8</width>
+    <width>16</width>
     <role>data</role>
    </port>
   </interface>

@@ -55,7 +55,7 @@ module top_level_video_rgb_resampler_0 (
  *                           Parameter Declarations                          *
  *****************************************************************************/
 
-parameter IDW		= 7;
+parameter IDW		= 15;
 parameter ODW		= 29;
 
 parameter IEW		= 0;
@@ -154,9 +154,9 @@ end
 assign stream_in_ready = stream_out_ready | ~stream_out_valid;
 
 // Internal Assignments
-assign r = {{3{stream_in_data[ 7: 5]}}, stream_in_data[ 7]};
-assign g = {{3{stream_in_data[ 4: 2]}}, stream_in_data[ 4]};
-assign b = {5{stream_in_data[ 1: 0]}};
+assign r = {stream_in_data[15:11], stream_in_data[15:11]};
+assign g = {stream_in_data[10: 5], stream_in_data[10: 7]};
+assign b = {stream_in_data[ 4: 0], stream_in_data[ 4: 0]};
 
 assign a = ALPHA;
 

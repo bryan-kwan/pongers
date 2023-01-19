@@ -71,9 +71,9 @@ parameter DEFAULT_BACK_BUF_ADDRESS	= 32'd0;
 parameter WW						= 8;  // Image width's address width
 parameter HW						= 7;  // Image height's address width
 
-parameter MW						= 7; // Avalon master's data width
-parameter DW						= 7; // Image pixel width
-parameter EW						= 1;  // Streaming empty signel width
+parameter MW						= 15; // Avalon master's data width
+parameter DW						= 15; // Image pixel width
+parameter EW						= 0;  // Streaming empty signel width
 
 parameter PIXELS					= 320; // Image width - number of pixels
 parameter LINES 					= 240; // Image height - number of lines
@@ -243,7 +243,7 @@ begin
 		slave_readdata[31:24] <= HW + 8'h01;
 		slave_readdata[23:16] <= WW + 8'h01;
 		slave_readdata[15: 8] <= 8'h00;
-		slave_readdata[ 7: 4] <= 4'h1;
+		slave_readdata[ 7: 4] <= 4'h2;
 		slave_readdata[ 3: 2] <= 2'h0;
 		slave_readdata[    1] <= 1'b0;
 		slave_readdata[    0] <= buffer_swap;
@@ -345,7 +345,7 @@ end
 
 // Output Assignments
 assign master_address		= buffer_start_address + 
-								{line_address, pixel_address};
+								{line_address, pixel_address, 1'b0};
 assign master_arbiterlock	= !((s_pixel_buffer == STATE_2_READ_BUFFER) |
 		(s_pixel_buffer == STATE_3_MAX_PENDING_READS_STALL));
 assign master_read			= (s_pixel_buffer == STATE_2_READ_BUFFER);
