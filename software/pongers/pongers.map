@@ -156,6 +156,7 @@ errno               0x4               c:/intelfpga/17.0/nios2eds/bin/gnu/h-x86_6
 Memory Configuration
 
 Name             Origin             Length             Attributes
+new_sdram_controller_0 0x0000000004000000 0x0000000004000000
 reset            0x0000000008020000 0x0000000000000020
 onchip_memory2_0 0x0000000008020020 0x000000000001f3e0
 *default*        0x0000000000000000 0xffffffffffffffff
@@ -174,6 +175,7 @@ LOAD ../pongers_bsp/\libhal_bsp.a
 LOAD c:/intelfpga/17.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libm.a
 END GROUP
 LOAD c:/intelfpga/17.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a
+                0x0000000004000000                __alt_mem_new_sdram_controller_0 = 0x4000000
                 0x0000000008020000                __alt_mem_onchip_memory2_0 = 0x8020000
 
 .entry          0x0000000008020000       0x20
@@ -836,6 +838,14 @@ LOAD c:/intelfpga/17.0/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-el
                 0x0000000008028cf4                alt_irq
                 0x0000000008028df4                . = ALIGN (0x4)
                 0x0000000008028df4                __bss_end = ABSOLUTE (.)
+
+.new_sdram_controller_0
+                0x0000000004000000        0x0 load address 0x0000000008028df4
+                [!provide]                        PROVIDE (_alt_partition_new_sdram_controller_0_start, ABSOLUTE (.))
+ *(.new_sdram_controller_0 .new_sdram_controller_0. new_sdram_controller_0.*)
+                0x0000000004000000                . = ALIGN (0x4)
+                [!provide]                        PROVIDE (_alt_partition_new_sdram_controller_0_end, ABSOLUTE (.))
+                [!provide]                        PROVIDE (_alt_partition_new_sdram_controller_0_load_addr, LOADADDR (.new_sdram_controller_0))
 
 .onchip_memory2_0
                 0x0000000008028df4        0x0

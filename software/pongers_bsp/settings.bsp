@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Jan 18, 2023 8:12:44 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1674097964601</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Jan 18, 2023 8:48:01 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1674100081743</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\bryan\VSCodeWorkspace\ENEL400\software\pongers_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\top_level.sopcinfo</SopcDesignFile>
@@ -905,6 +905,12 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>new_sdram_controller_0</slaveDescriptor>
+                <addressRange>0x04000000 - 0x07FFFFFF</addressRange>
+                <addressSpan>67108864</addressSpan>
+                <attributes>memory</attributes>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>onchip_memory2_0</slaveDescriptor>
                 <addressRange>0x08020000 - 0x0803F3FF</addressRange>
                 <addressSpan>128000</addressSpan>
@@ -915,6 +921,12 @@
                 <addressRange>0x08041000 - 0x0804101F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>timer</attributes>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>altpll_1</slaveDescriptor>
+                <addressRange>0x08041020 - 0x0804102F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sw</slaveDescriptor>

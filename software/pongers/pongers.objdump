@@ -29,55 +29,57 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, DATA, SMALL_DATA
   5 .bss          00000154  08028ca0  08028ca0  00008ca0  2**2
                   ALLOC, SMALL_DATA
-  6 .onchip_memory2_0 00000000  08028df4  08028df4  00008234  2**0
+  6 .new_sdram_controller_0 00000000  04000000  04000000  00008234  2**0
                   CONTENTS
-  7 .comment      00000046  00000000  00000000  00008234  2**0
+  7 .onchip_memory2_0 00000000  08028df4  08028df4  00008234  2**0
+                  CONTENTS
+  8 .comment      00000046  00000000  00000000  00008234  2**0
                   CONTENTS, READONLY
-  8 .debug_aranges 00000a10  00000000  00000000  00008280  2**3
+  9 .debug_aranges 00000a10  00000000  00000000  00008280  2**3
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_info   0001628e  00000000  00000000  00008c90  2**0
+ 10 .debug_info   0001628e  00000000  00000000  00008c90  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_abbrev 00005ef6  00000000  00000000  0001ef1e  2**0
+ 11 .debug_abbrev 00005ef6  00000000  00000000  0001ef1e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_line   00006849  00000000  00000000  00024e14  2**0
+ 12 .debug_line   00006849  00000000  00000000  00024e14  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_frame  00001540  00000000  00000000  0002b660  2**2
+ 13 .debug_frame  00001540  00000000  00000000  0002b660  2**2
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_str    00002751  00000000  00000000  0002cba0  2**0
+ 14 .debug_str    00002751  00000000  00000000  0002cba0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_loc    00004ada  00000000  00000000  0002f2f1  2**0
+ 15 .debug_loc    00004ada  00000000  00000000  0002f2f1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_alt_sim_info 00000010  00000000  00000000  00033dcc  2**2
+ 16 .debug_alt_sim_info 00000010  00000000  00000000  00033dcc  2**2
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_ranges 00000680  00000000  00000000  00033de0  2**3
+ 17 .debug_ranges 00000680  00000000  00000000  00033de0  2**3
                   CONTENTS, READONLY, DEBUGGING
- 17 .thread_model 00000003  00000000  00000000  0003695e  2**0
+ 18 .thread_model 00000003  00000000  00000000  000369de  2**0
                   CONTENTS, READONLY
- 18 .cpu          00000009  00000000  00000000  00036961  2**0
+ 19 .cpu          00000009  00000000  00000000  000369e1  2**0
                   CONTENTS, READONLY
- 19 .qsys         00000001  00000000  00000000  0003696a  2**0
+ 20 .qsys         00000001  00000000  00000000  000369ea  2**0
                   CONTENTS, READONLY
- 20 .simulation_enabled 00000001  00000000  00000000  0003696b  2**0
+ 21 .simulation_enabled 00000001  00000000  00000000  000369eb  2**0
                   CONTENTS, READONLY
- 21 .sysid_hash   00000004  00000000  00000000  0003696c  2**0
+ 22 .sysid_hash   00000004  00000000  00000000  000369ec  2**0
                   CONTENTS, READONLY
- 22 .sysid_base   00000004  00000000  00000000  00036970  2**0
+ 23 .sysid_base   00000004  00000000  00000000  000369f0  2**0
                   CONTENTS, READONLY
- 23 .sysid_time   00000004  00000000  00000000  00036974  2**0
+ 24 .sysid_time   00000004  00000000  00000000  000369f4  2**0
                   CONTENTS, READONLY
- 24 .stderr_dev   0000000b  00000000  00000000  00036978  2**0
+ 25 .stderr_dev   0000000b  00000000  00000000  000369f8  2**0
                   CONTENTS, READONLY
- 25 .stdin_dev    0000000b  00000000  00000000  00036983  2**0
+ 26 .stdin_dev    0000000b  00000000  00000000  00036a03  2**0
                   CONTENTS, READONLY
- 26 .stdout_dev   0000000b  00000000  00000000  0003698e  2**0
+ 27 .stdout_dev   0000000b  00000000  00000000  00036a0e  2**0
                   CONTENTS, READONLY
- 27 .sopc_system_name 00000009  00000000  00000000  00036999  2**0
+ 28 .sopc_system_name 00000009  00000000  00000000  00036a19  2**0
                   CONTENTS, READONLY
- 28 .quartus_project_dir 00000026  00000000  00000000  000369a2  2**0
+ 29 .quartus_project_dir 00000026  00000000  00000000  00036a22  2**0
                   CONTENTS, READONLY
- 29 .jdi          00003da4  00000000  00000000  000369c8  2**0
+ 30 .jdi          00003da4  00000000  00000000  00036a48  2**0
                   CONTENTS, READONLY
- 30 .sopcinfo     00060a89  00000000  00000000  0003a76c  2**0
+ 31 .sopcinfo     000770d0  00000000  00000000  0003a7ec  2**0
                   CONTENTS, READONLY
 SYMBOL TABLE:
 08020000 l    d  .entry	00000000 .entry
@@ -86,6 +88,7 @@ SYMBOL TABLE:
 08025778 l    d  .rodata	00000000 .rodata
 080257c8 l    d  .rwdata	00000000 .rwdata
 08028ca0 l    d  .bss	00000000 .bss
+04000000 l    d  .new_sdram_controller_0	00000000 .new_sdram_controller_0
 08028df4 l    d  .onchip_memory2_0	00000000 .onchip_memory2_0
 00000000 l    d  .comment	00000000 .comment
 00000000 l    d  .debug_aranges	00000000 .debug_aranges
@@ -321,6 +324,7 @@ SYMBOL TABLE:
 080207d8 g     F .text	00000018 __fp_unlock_all
 0802720c g     O .rwdata	00000008 alt_fs_list
 08020020 g       *ABS*	00000000 __ram_exceptions_start
+04000000 g       *ABS*	00000000 __alt_mem_new_sdram_controller_0
 080248a0 g     F .text	00000050 alt_ic_isr_register
 08027234 g       *ABS*	00000000 _edata
 08028df4 g       *ABS*	00000000 _end
@@ -806,10 +810,10 @@ alt_after_alt_main:
  8020268:	003fff06 	br	8020268 <__alt_data_end+0xfffe0e68>
 
 0802026c <main>:
-#include <stdio.h>
 #include <io.h>
 #include <system.h>
 //NEW_SDRAM_CONTROLLER_0_BASE
+//ONCHIP_MEMORY2_0_BASE
 int main()
 {
  802026c:	defffd04 	addi	sp,sp,-12
@@ -823,14 +827,14 @@ int main()
   for(int i=0;i<1000;i++){
  8020288:	e03fff15 	stw	zero,-4(fp)
  802028c:	00000806 	br	80202b0 <main+0x44>
-	  IOWR_16DIRECT(ONCHIP_MEMORY2_0_BASE, i, (unsigned short)0xdead);
+	  IOWR_16DIRECT(NEW_SDRAM_CONTROLLER_0_BASE, i, (unsigned short)0xdead);
  8020290:	e0ffff17 	ldw	r3,-4(fp)
- 8020294:	008200b4 	movhi	r2,2050
+ 8020294:	00810034 	movhi	r2,1024
  8020298:	1885883a 	add	r2,r3,r2
  802029c:	00f7ab44 	movi	r3,-8531
  80202a0:	10c0002d 	sthio	r3,0(r2)
-#include <system.h>
 //NEW_SDRAM_CONTROLLER_0_BASE
+//ONCHIP_MEMORY2_0_BASE
 int main()
 {
   printf("Test from Nios II!\n");
@@ -841,7 +845,7 @@ int main()
  80202b0:	e0bfff17 	ldw	r2,-4(fp)
  80202b4:	1080fa10 	cmplti	r2,r2,1000
  80202b8:	103ff51e 	bne	r2,zero,8020290 <__alt_data_end+0xfffe0e90>
-	  IOWR_16DIRECT(ONCHIP_MEMORY2_0_BASE, i, (unsigned short)0xdead);
+	  IOWR_16DIRECT(NEW_SDRAM_CONTROLLER_0_BASE, i, (unsigned short)0xdead);
   }
 
   return 0;
@@ -8039,22 +8043,22 @@ alt_exception_cause_generated_bad_addr(alt_exception_cause cause)
  8025374:	1885883a 	add	r2,r3,r2
  8025378:	10800017 	ldw	r2,0(r2)
  802537c:	1000683a 	jmp	r2
- 8025380:	080253c0 	call	80253c <__alt_mem_onchip_memory2_0-0x781dac4>
- 8025384:	080253c0 	call	80253c <__alt_mem_onchip_memory2_0-0x781dac4>
+ 8025380:	080253c0 	call	80253c <__alt_mem_new_sdram_controller_0-0x37fdac4>
+ 8025384:	080253c0 	call	80253c <__alt_mem_new_sdram_controller_0-0x37fdac4>
  8025388:	080253d0 	cmplti	zero,at,2383
  802538c:	080253d0 	cmplti	zero,at,2383
  8025390:	080253d0 	cmplti	zero,at,2383
- 8025394:	080253c0 	call	80253c <__alt_mem_onchip_memory2_0-0x781dac4>
+ 8025394:	080253c0 	call	80253c <__alt_mem_new_sdram_controller_0-0x37fdac4>
  8025398:	080253c8 	cmpgei	zero,at,2383
  802539c:	080253d0 	cmplti	zero,at,2383
- 80253a0:	080253c0 	call	80253c <__alt_mem_onchip_memory2_0-0x781dac4>
- 80253a4:	080253c0 	call	80253c <__alt_mem_onchip_memory2_0-0x781dac4>
+ 80253a0:	080253c0 	call	80253c <__alt_mem_new_sdram_controller_0-0x37fdac4>
+ 80253a4:	080253c0 	call	80253c <__alt_mem_new_sdram_controller_0-0x37fdac4>
  80253a8:	080253d0 	cmplti	zero,at,2383
- 80253ac:	080253c0 	call	80253c <__alt_mem_onchip_memory2_0-0x781dac4>
+ 80253ac:	080253c0 	call	80253c <__alt_mem_new_sdram_controller_0-0x37fdac4>
  80253b0:	080253c8 	cmpgei	zero,at,2383
  80253b4:	080253d0 	cmplti	zero,at,2383
  80253b8:	080253d0 	cmplti	zero,at,2383
- 80253bc:	080253c0 	call	80253c <__alt_mem_onchip_memory2_0-0x781dac4>
+ 80253bc:	080253c0 	call	80253c <__alt_mem_new_sdram_controller_0-0x37fdac4>
   case NIOS2_EXCEPTION_MISALIGNED_TARGET_PC:
   case NIOS2_EXCEPTION_TLB_READ_PERM_VIOLATION:
   case NIOS2_EXCEPTION_TLB_WRITE_PERM_VIOLATION:
@@ -8171,7 +8175,7 @@ alt_exception_cause_generated_bad_addr(alt_exception_cause cause)
  8025528:	d9400015 	stw	r5,0(sp)
  802552c:	d9800115 	stw	r6,4(sp)
  8025530:	d9c00215 	stw	r7,8(sp)
- 8025534:	00000000 	call	0 <__alt_mem_onchip_memory2_0-0x8020000>
+ 8025534:	00000000 	call	0 <__alt_mem_new_sdram_controller_0-0x4000000>
  8025538:	d9400017 	ldw	r5,0(sp)
  802553c:	d9800117 	ldw	r6,4(sp)
  8025540:	d9c00217 	ldw	r7,8(sp)
@@ -8255,7 +8259,7 @@ alt_exception_cause_generated_bad_addr(alt_exception_cause cause)
  8025670:	10003226 	beq	r2,zero,802573c <__call_exitprocs+0x178>
  8025674:	a009883a 	mov	r4,r20
  8025678:	98800015 	stw	r2,0(r19)
- 802567c:	00000000 	call	0 <__alt_mem_onchip_memory2_0-0x8020000>
+ 802567c:	00000000 	call	0 <__alt_mem_new_sdram_controller_0-0x4000000>
  8025680:	9d000017 	ldw	r20,0(r19)
  8025684:	a03fe41e 	bne	r20,zero,8025618 <__alt_data_end+0xfffe6218>
  8025688:	dfc00a17 	ldw	ra,40(sp)
