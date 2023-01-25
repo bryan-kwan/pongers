@@ -74,3 +74,10 @@ of this scheme is summarized in the figure below.
 ## IO Timing Constraints
 To ensure the DRAM control signals more or less arrive at the same time,
 the DRAM IO pins should be timing constrained.
+
+# Programming the non-volatile memory
+
+In order to permanently program the board, use the .pof file instead of the .sof file in Quartus Programmer.
+
+## Integrating the .elf file into .pof
+In the Eclipse IDE, right click the project folder and select Make Targets / Build. Make sure mem_init_generate is selected. This will generate a memory .hex file. In Quartus Platform Designer, left click on On-Chip Memory. Under Memory Initialization, select Enable non-default initialization file. Provide the .hex file that was just generated. Now generate the verilog files and program the board again.
