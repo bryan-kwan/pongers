@@ -35,51 +35,51 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS
   8 .comment      00000046  00000000  00000000  000146d8  2**0
                   CONTENTS, READONLY
-  9 .debug_aranges 00000ef8  00000000  00000000  00014720  2**3
+  9 .debug_aranges 00000f18  00000000  00000000  00014720  2**3
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_info   00024422  00000000  00000000  00015618  2**0
+ 10 .debug_info   000247c4  00000000  00000000  00015638  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_abbrev 00009186  00000000  00000000  00039a3a  2**0
+ 11 .debug_abbrev 0000923c  00000000  00000000  00039dfc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_line   0000bb5b  00000000  00000000  00042bc0  2**0
+ 12 .debug_line   0000bc56  00000000  00000000  00043038  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_frame  00002404  00000000  00000000  0004e71c  2**2
+ 13 .debug_frame  00002414  00000000  00000000  0004ec90  2**2
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    00003c9d  00000000  00000000  00050b20  2**0
+ 14 .debug_str    00003ca8  00000000  00000000  000510a4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_loc    0001786c  00000000  00000000  000547bd  2**0
+ 15 .debug_loc    0001786c  00000000  00000000  00054d4c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_alt_sim_info 00000040  00000000  00000000  0006c02c  2**2
+ 16 .debug_alt_sim_info 00000040  00000000  00000000  0006c5b8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_ranges 000018d0  00000000  00000000  0006c070  2**3
+ 17 .debug_ranges 000018d0  00000000  00000000  0006c5f8  2**3
                   CONTENTS, READONLY, DEBUGGING
- 18 .thread_model 00000003  00000000  00000000  00070dba  2**0
+ 18 .thread_model 00000003  00000000  00000000  0007135e  2**0
                   CONTENTS, READONLY
- 19 .cpu          00000009  00000000  00000000  00070dbd  2**0
+ 19 .cpu          00000009  00000000  00000000  00071361  2**0
                   CONTENTS, READONLY
- 20 .qsys         00000001  00000000  00000000  00070dc6  2**0
+ 20 .qsys         00000001  00000000  00000000  0007136a  2**0
                   CONTENTS, READONLY
- 21 .simulation_enabled 00000001  00000000  00000000  00070dc7  2**0
+ 21 .simulation_enabled 00000001  00000000  00000000  0007136b  2**0
                   CONTENTS, READONLY
- 22 .sysid_hash   00000004  00000000  00000000  00070dc8  2**0
+ 22 .sysid_hash   00000004  00000000  00000000  0007136c  2**0
                   CONTENTS, READONLY
- 23 .sysid_base   00000004  00000000  00000000  00070dcc  2**0
+ 23 .sysid_base   00000004  00000000  00000000  00071370  2**0
                   CONTENTS, READONLY
- 24 .sysid_time   00000004  00000000  00000000  00070dd0  2**0
+ 24 .sysid_time   00000004  00000000  00000000  00071374  2**0
                   CONTENTS, READONLY
- 25 .stderr_dev   0000000b  00000000  00000000  00070dd4  2**0
+ 25 .stderr_dev   0000000b  00000000  00000000  00071378  2**0
                   CONTENTS, READONLY
- 26 .stdin_dev    0000000b  00000000  00000000  00070ddf  2**0
+ 26 .stdin_dev    0000000b  00000000  00000000  00071383  2**0
                   CONTENTS, READONLY
- 27 .stdout_dev   0000000b  00000000  00000000  00070dea  2**0
+ 27 .stdout_dev   0000000b  00000000  00000000  0007138e  2**0
                   CONTENTS, READONLY
- 28 .sopc_system_name 00000009  00000000  00000000  00070df5  2**0
+ 28 .sopc_system_name 00000009  00000000  00000000  00071399  2**0
                   CONTENTS, READONLY
- 29 .quartus_project_dir 00000026  00000000  00000000  00070dfe  2**0
+ 29 .quartus_project_dir 00000026  00000000  00000000  000713a2  2**0
                   CONTENTS, READONLY
- 30 .jdi          00003d27  00000000  00000000  00070e24  2**0
+ 30 .jdi          00003d27  00000000  00000000  000713c8  2**0
                   CONTENTS, READONLY
- 31 .sopcinfo     00073956  00000000  00000000  00074b4b  2**0
+ 31 .sopcinfo     000739e5  00000000  00000000  000750ef  2**0
                   CONTENTS, READONLY
 SYMBOL TABLE:
 08020000 l    d  .entry	00000000 .entry
@@ -104,6 +104,7 @@ SYMBOL TABLE:
 08020268 l       .text	00000000 alt_after_alt_main
 00000000 l    df *ABS*	00000000 alt_irq_handler.c
 00000000 l    df *ABS*	00000000 alt_instruction_exception_entry.c
+00000000 l    df *ABS*	00000000 gameutil.c
 00000000 l    df *ABS*	00000000 pongers.c
 00000000 l    df *ABS*	00000000 lib2-mul.c
 00000000 l    df *ABS*	00000000 printf.c
@@ -943,8 +944,8 @@ alt_after_alt_main:
  8020268:	003fff06 	br	8020268 <__alt_data_end+0xfffe0e68>
 
 0802026c <update_paddle>:
-};
-typedef struct Rectangle Rectangle;
+#include "gameutil.h"
+
 
 // Updates paddle positions
 // There must be at least 2 paddles in the paddle[] array
@@ -1359,7 +1360,7 @@ void update_rect(Rectangle rect[], Rectangle paddles[], int rect_len, int paddle
  80207c0:	1007883a 	mov	r3,r2
  80207c4:	e0bffa17 	ldw	r2,-24(fp)
  80207c8:	10c5883a 	add	r2,r2,r3
- 80207cc:	00c01904 	movi	r3,100
+ 80207cc:	00c02804 	movi	r3,160
  80207d0:	10c00015 	stw	r3,0(r2)
 				// Add 1 to left player's score
 				scores[0] += 1;
@@ -1489,7 +1490,7 @@ void update_rect(Rectangle rect[], Rectangle paddles[], int rect_len, int paddle
  8020950:	1007883a 	mov	r3,r2
  8020954:	e0bffa17 	ldw	r2,-24(fp)
  8020958:	10c5883a 	add	r2,r2,r3
- 802095c:	00c01904 	movi	r3,100
+ 802095c:	00c02804 	movi	r3,160
  8020960:	10c00015 	stw	r3,0(r2)
 				// Add 1 to right player's score
 				scores[1] += 1;
@@ -1797,6 +1798,10 @@ void draw(Rectangle rect[], int len, alt_up_pixel_buffer_dma_dev * pixel_buf_dma
  8020cc8:	f800283a 	ret
 
 08020ccc <main>:
+#include "altera_avalon_pio_regs.h"
+
+#include "gameutil.h"
+
 int main()
 {
  8020ccc:	deffd004 	addi	sp,sp,-192
@@ -1832,9 +1837,9 @@ int main()
  8020d14:	e03fd515 	stw	zero,-172(fp)
 	Rectangle balls[NUM_BALLS];
 	Rectangle ball = {BALL_XDEFAULT, BALL_YDEFAULT, BALL_XSPEED, BALL_YSPEED, BALL_WIDTH, BALL_HEIGHT, BALL_COLOUR};
- 8020d18:	00801904 	movi	r2,100
+ 8020d18:	00802804 	movi	r2,160
  8020d1c:	e0bfdd15 	stw	r2,-140(fp)
- 8020d20:	00801904 	movi	r2,100
+ 8020d20:	00801e04 	movi	r2,120
  8020d24:	e0bfde15 	stw	r2,-136(fp)
  8020d28:	00800104 	movi	r2,4
  8020d2c:	e0bfdf15 	stw	r2,-132(fp)

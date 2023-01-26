@@ -36,7 +36,7 @@ module top_level_onchip_memory2_0 (
                                   )
 ;
 
-  parameter INIT_FILE = "top_level_onchip_memory2_0.hex";
+  parameter INIT_FILE = "C:/Users/bryan/VSCodeWorkspace/ENEL400/software/pongers/mem_init/top_level_onchip_memory2_0.hex";
 
 
   output  [ 31: 0] readdata;

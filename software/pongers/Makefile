@@ -142,7 +142,8 @@ ACDS_VERSION := 17.1
 ELF := pongers.elf
 
 # Paths to C, C++, and assembly source files.
-C_SRCS := pongers.c
+C_SRCS += pongers.c
+C_SRCS += gameutil.c
 CXX_SRCS :=
 ASM_SRCS :=
 
