@@ -80,4 +80,6 @@ the DRAM IO pins should be timing constrained.
 In order to permanently program the board, use the .pof file instead of the .sof file in Quartus Programmer.
 
 ## Integrating the .elf file into .pof
-In the Eclipse IDE, right click the project folder and select Make Targets / Build. Make sure mem_init_generate is selected. This will generate a memory .hex file. In Quartus Platform Designer, left click on On-Chip Memory. Under Memory Initialization, select Enable non-default initialization file. Provide the .hex file that was just generated. Now generate the verilog files and program the board again.
+In the Eclipse IDE, right click the project folder and select Make Targets / Build. Make sure mem_init_generate is selected. This will generate a memory .hex file. In Quartus Platform Designer, left click on On-Chip Memory. Under Memory Initialization, select Enable non-default initialization file. Provide the .hex file that was just generated. Now generate the verilog files and program the board again. 
+
+Alternatively, you can refer to <a href="https://www.intel.com/content/www/us/en/docs/programmable/683689/current/programming-51442.html"> this reference</a>.
