@@ -58,6 +58,7 @@ void update_rect(Rectangle rect[], Rectangle paddles[], int rect_len, int paddle
 			else { // Goal - player 1 scored
 				// Reset ball position
 				rect[i].x = BALL_XDEFAULT;
+				rect[i].xspeed*=-1;
 				// Add 1 to left player's score
 				scores[0] += 1;
 			}
@@ -71,6 +72,7 @@ void update_rect(Rectangle rect[], Rectangle paddles[], int rect_len, int paddle
 			else { // Goal - player 2 scored
 				// Reset ball position
 				rect[i].x = BALL_XDEFAULT;
+				rect[i].xspeed*=-1;
 				// Add 1 to right player's score
 				scores[1] += 1;
 			}
@@ -93,6 +95,17 @@ void clear(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, int buffer) {
 void draw(Rectangle rect[], int len, alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev,int colour, int buffer) {
 	// Draw each rectangle
 	for(int i = 0; i<len; i++) {
+		// Wait for screen refresh
+		while(alt_up_pixel_buffer_dma_check_swap_buffers_status(pixel_buf_dma_dev));
+
+		// Naive implementation of drawing each pixel - Much slower than draw_box function
+		// alt_up_pixel_buffer_dma_draw() draws to the back buffer (buffer=1)
+//		for(int x = rect[i].x; x<rect[i].x + rect[i].width; x++) {
+//			for(int y = rect[i].y; y<rect[i].y + rect[i].height; y++) {
+//				alt_up_pixel_buffer_dma_draw(pixel_buf_dma_dev, colour, x, y);
+//			}
+//		}
+
 		alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
 				rect[i].x, rect[i].y, rect[i].x + rect[i].width - 1,
 				rect[i].y + rect[i].height - 1,
@@ -100,3 +113,14 @@ void draw(Rectangle rect[], int len, alt_up_pixel_buffer_dma_dev * pixel_buf_dma
 	}
 }
 
+void run_game_tick(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, Rectangle paddles[], int paddle_len, Rectangle balls[], int ball_len, int* scores, int buffer) {
+	// Cleanup - erase old objects
+	draw(balls, NUM_BALLS, pixel_buf_dma_dev, BACKGROUND_COLOUR,buffer);
+	draw(paddles, NUM_PADDLES, pixel_buf_dma_dev, BACKGROUND_COLOUR, buffer);
+	// Game logic
+	update_rect(balls, paddles, NUM_BALLS, NUM_PADDLES, scores);
+	update_paddle(paddles, NUM_PADDLES);
+	// Render the screen
+	draw(balls, NUM_BALLS, pixel_buf_dma_dev, BALL_COLOUR, buffer);
+	draw(paddles, NUM_PADDLES, pixel_buf_dma_dev, PADDLE_COLOUR, buffer);
+}

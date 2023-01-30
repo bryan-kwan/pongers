@@ -3,11 +3,10 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces">
   <columns>
-   <connections preferredWidth="207" />
+   <connections preferredWidth="239" />
    <irq preferredWidth="34" />
   </columns>
  </systemtable>
- <library
-   expandedCategories="Library/DSP/Video and Image Processing,Library/Basic Functions/On Chip Memory,Library/Interface Protocols/PCI Express,Library/University Program/Audio &amp; Video/Video,Library/Interface Protocols/PCI Express/Example Design Components,Library/Basic Functions/Bridges and Adaptors/Memory Mapped,Library/Basic Functions/Simulation; Debug and Verification/Debug and Performance,Library/Qsys Interconnect/Memory-Mapped,Library/Interface Protocols/SerialLite,Library/Processors and Peripherals/Hard Processor Components,Library/DSP/Error Detection and Correction,Library/DSP,Library/Interface Protocols/Ethernet/10G to 1G Multi-rate Ethernet,Library/Basic Functions/Bridges and Adaptors/Reset,Library/Interface Protocols/RapidIO,Library/Processors and Peripherals/Co-Processors/Nios II Custom Instructions,Library/Interface Protocols/Transceiver PHY,Library/Interface Protocols/Ethernet,Library/Interface Protocols/Serial,Library/Processors and Peripherals/Peripherals,Library/University Program/Bridges,Library/Interface Protocols/Audio &amp; Video,Library/Basic Functions/DMA/mSGDMA Sub-core,Library/Basic Functions/Bridges and Adaptors/Streaming,Library/Processors and Peripherals/Embedded Processors,Library/Interface Protocols,Library/University Program,Library/Basic Functions/Clocks; PLLs and Resets/PLL,Library/Qsys Interconnect/Tri-State Components,Library/Processors and Peripherals/Inter-Process Communication,Library/DSP/Primitive DSP,Library/Basic Functions/Simulation; Debug and Verification,Library/Basic Functions,Library/Basic Functions/Simulation; Debug and Verification/Simulation,Library/Tri-State Components,Library/Basic Functions/DMA,Library/Basic Functions/Bridges and Adaptors,Library/Basic Functions/Configuration and Programming,Project,Library/Memory Interfaces and Controllers/Flash,Library/Qsys Interconnect,Library/Basic Functions/Simulation; Debug and Verification/Verification,Library/University Program/Audio &amp; Video,Library/Basic Functions/Bridges and Adaptors/Interrupt,Library/Basic Functions/Clocks; PLLs and Resets,Library/Interface Protocols/PCI Express/QSYS Example Designs,Library/Basic Functions/Bridges and Adaptors/Clock,Library/Memory Interfaces and Controllers,Library/Processors and Peripherals,Library/Processors and Peripherals/Co-Processors,Library" />
+ <library expandedCategories="Library,Project" />
  <window width="1364" height="718" x="1" y="1" />
 </preferences>
