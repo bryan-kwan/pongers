@@ -95,8 +95,6 @@ void clear(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, int buffer) {
 void draw(Rectangle rect[], int len, alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev,int colour, int buffer) {
 	// Draw each rectangle
 	for(int i = 0; i<len; i++) {
-		// Wait for screen refresh
-		while(alt_up_pixel_buffer_dma_check_swap_buffers_status(pixel_buf_dma_dev));
 
 		// Naive implementation of drawing each pixel - Much slower than draw_box function
 		// alt_up_pixel_buffer_dma_draw() draws to the back buffer (buffer=1)
@@ -114,6 +112,9 @@ void draw(Rectangle rect[], int len, alt_up_pixel_buffer_dma_dev * pixel_buf_dma
 }
 
 void run_game_tick(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, Rectangle paddles[], int paddle_len, Rectangle balls[], int ball_len, int* scores, int buffer) {
+	// Wait for screen refresh
+	alt_up_pixel_buffer_dma_swap_buffers(pixel_buf_dma_dev);
+	while(alt_up_pixel_buffer_dma_check_swap_buffers_status(pixel_buf_dma_dev));
 	// Cleanup - erase old objects
 	draw(balls, NUM_BALLS, pixel_buf_dma_dev, BACKGROUND_COLOUR,buffer);
 	draw(paddles, NUM_PADDLES, pixel_buf_dma_dev, BACKGROUND_COLOUR, buffer);
