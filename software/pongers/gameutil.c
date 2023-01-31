@@ -10,11 +10,10 @@
 
 // Updates paddle positions
 // There must be at least 2 paddles in the paddle[] array
-void update_paddle(Rectangle paddle[], int len) {
+void update_paddle(Rectangle paddle[], int len, int* user_input) {
 	// Adjust speed according to user input
-	int SW = IORD(SW_BASE, 0);
-	int SW_0 = 0b00000001 & SW;
-	int SW_1 = 0b00000010 & SW;
+	int SW_0 = user_input[0];
+	int SW_1 = user_input[1];
 	if(SW_0) // SW_0 is on (left paddle)
 		paddle[0].yspeed = -PADDLE_SPEED;
 	else
@@ -111,17 +110,24 @@ void draw(Rectangle rect[], int len, alt_up_pixel_buffer_dma_dev * pixel_buf_dma
 	}
 }
 
-void run_game_tick(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, Rectangle paddles[], int paddle_len, Rectangle balls[], int ball_len, int* scores, int buffer) {
+void run_game_tick(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, Rectangle paddles[], int paddle_len, Rectangle balls[], int ball_len, int* scores, int buffer, int* user_input) {
 	// Wait for screen refresh
 	alt_up_pixel_buffer_dma_swap_buffers(pixel_buf_dma_dev);
 	while(alt_up_pixel_buffer_dma_check_swap_buffers_status(pixel_buf_dma_dev));
+	get_user_input(user_input);
 	// Cleanup - erase old objects
 	draw(balls, NUM_BALLS, pixel_buf_dma_dev, BACKGROUND_COLOUR,buffer);
 	draw(paddles, NUM_PADDLES, pixel_buf_dma_dev, BACKGROUND_COLOUR, buffer);
 	// Game logic
 	update_rect(balls, paddles, NUM_BALLS, NUM_PADDLES, scores);
-	update_paddle(paddles, NUM_PADDLES);
+	update_paddle(paddles, NUM_PADDLES, user_input);
 	// Render the screen
 	draw(balls, NUM_BALLS, pixel_buf_dma_dev, BALL_COLOUR, buffer);
 	draw(paddles, NUM_PADDLES, pixel_buf_dma_dev, PADDLE_COLOUR, buffer);
+}
+void get_user_input(int* user_input) {
+	int SW = IORD(SW_BASE, 0);
+	for(int i = 0; i<8; i++) {
+		user_input[i] = (0b1 << i) & SW;
+	}
 }

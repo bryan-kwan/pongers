@@ -49,11 +49,11 @@ int main()
 	paddles[0] = paddle_left;
 	paddles[1] = paddle_right;
 
-
+	int user_input[8];
 	// Clear screen
 	clear(pixel_buf_dma_dev, 0); // Current screen
 	while(1) {
-		run_game_tick(pixel_buf_dma_dev, paddles, NUM_PADDLES, balls, NUM_BALLS, scores, 0);
+		run_game_tick(pixel_buf_dma_dev, paddles, NUM_PADDLES, balls, NUM_BALLS, scores, 0, user_input);
 		usleep(10000);
 	}
 	return 0;
