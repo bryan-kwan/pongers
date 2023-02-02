@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include "altera_up_avalon_video_pixel_buffer_dma.h"
 #include "altera_avalon_pio_regs.h"
+#include "altera_up_avalon_video_character_buffer_with_dma.h"
 
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 240
@@ -26,7 +27,7 @@ void update_paddle(Rectangle paddle[], int len) {
 	// Adjust speed according to user input
 	int SW = IORD(SW_BASE, 0);
 	SW = SW - 128;
-	printf("%SW value: d\n", SW);
+	//printf("%SW value: d\n", SW);
 	if(SW>0) // SW is on
 		paddle[0].yspeed = -5;
 	else
@@ -90,6 +91,8 @@ int main()
 	printf("Test from Nios II!\n");
 	// Have to set up these pointers to open the device
 	// Reference : https://faculty-web.msoe.edu/johnsontimoj/EE3921/files3921/nios_pixel_sw.pdf
+
+	//Pixel Buffer
 	alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev;
 	pixel_buf_dma_dev = alt_up_pixel_buffer_dma_open_dev(VIDEO_PIXEL_BUFFER_DMA_0_NAME);
 	// Check for error
@@ -97,6 +100,19 @@ int main()
 		printf ("Error: could not open pixel buffer device \n");
 	else
 		printf ("Opened pixel buffer device \n");
+
+	//Character Buffer
+	alt_up_char_buffer_dev * char_buf_dev;
+	char_buf_dev = alt_up_char_buffer_open_dev("/dev/video_character_buffer_with_dma_0");
+	//Check for error:
+	if(char_buf_dev == NULL)
+		printf ("Error: could not open character buffer device \n");
+	else
+		printf("Opened character buffer device \n");
+	alt_up_char_buffer_init(char_buf_dev);
+	alt_up_char_buffer_init(char_buf_dev);
+	alt_up_char_buffer_string(char_buf_dev, "Pongers!!!", 37, 2);
+
 
 	// Game objects
 	int num_balls = 1;

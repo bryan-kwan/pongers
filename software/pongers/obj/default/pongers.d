@@ -6,7 +6,8 @@ obj/default/pongers.o: pongers.c ../pongers_bsp//HAL/inc/io.h \
  ../pongers_bsp//HAL/inc/sys/alt_dev.h \
  ../pongers_bsp//HAL/inc/sys/alt_llist.h \
  ../pongers_bsp//HAL/inc/priv/alt_dev_llist.h \
- ../pongers_bsp//drivers/inc/altera_avalon_pio_regs.h
+ ../pongers_bsp//drivers/inc/altera_avalon_pio_regs.h \
+ ../pongers_bsp//drivers/inc/altera_up_avalon_video_character_buffer_with_dma.h
 
 ../pongers_bsp//HAL/inc/io.h:
 
@@ -27,3 +28,5 @@ obj/default/pongers.o: pongers.c ../pongers_bsp//HAL/inc/io.h \
 ../pongers_bsp//HAL/inc/priv/alt_dev_llist.h:
 
 ../pongers_bsp//drivers/inc/altera_avalon_pio_regs.h:
+
+../pongers_bsp//drivers/inc/altera_up_avalon_video_character_buffer_with_dma.h:

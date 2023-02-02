@@ -1,6 +1,7 @@
 	component top_level is
 		port (
 			clk_clk                         : in    std_logic                     := 'X';             -- clk
+			clk_shift_clk                   : out   std_logic;                                        -- clk
 			ledr_external_connection_export : out   std_logic_vector(7 downto 0);                     -- export
 			memory_addr                     : out   std_logic_vector(12 downto 0);                    -- addr
 			memory_ba                       : out   std_logic_vector(1 downto 0);                     -- ba
@@ -19,14 +20,14 @@
 			vga_conduit_SYNC                : out   std_logic;                                        -- SYNC
 			vga_conduit_R                   : out   std_logic_vector(3 downto 0);                     -- R
 			vga_conduit_G                   : out   std_logic_vector(3 downto 0);                     -- G
-			vga_conduit_B                   : out   std_logic_vector(3 downto 0);                     -- B
-			clk_shift_clk                   : out   std_logic                                         -- clk
+			vga_conduit_B                   : out   std_logic_vector(3 downto 0)                      -- B
 		);
 	end component top_level;
 
 	u0 : component top_level
 		port map (
 			clk_clk                         => CONNECTED_TO_clk_clk,                         --                      clk.clk
+			clk_shift_clk                   => CONNECTED_TO_clk_shift_clk,                   --                clk_shift.clk
 			ledr_external_connection_export => CONNECTED_TO_ledr_external_connection_export, -- ledr_external_connection.export
 			memory_addr                     => CONNECTED_TO_memory_addr,                     --                   memory.addr
 			memory_ba                       => CONNECTED_TO_memory_ba,                       --                         .ba
@@ -45,7 +46,6 @@
 			vga_conduit_SYNC                => CONNECTED_TO_vga_conduit_SYNC,                --                         .SYNC
 			vga_conduit_R                   => CONNECTED_TO_vga_conduit_R,                   --                         .R
 			vga_conduit_G                   => CONNECTED_TO_vga_conduit_G,                   --                         .G
-			vga_conduit_B                   => CONNECTED_TO_vga_conduit_B,                   --                         .B
-			clk_shift_clk                   => CONNECTED_TO_clk_shift_clk                    --                clk_shift.clk
+			vga_conduit_B                   => CONNECTED_TO_vga_conduit_B                    --                         .B
 		);
 
