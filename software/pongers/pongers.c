@@ -31,19 +31,17 @@ int main()
 			{{0, 0, 0, 0, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_COLOUR}, //Paddles
 					{SCREEN_WIDTH-PADDLE_WIDTH, 0, 0, 0, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_COLOUR}},
 			{0,0,0,0,0,0,0,0}, //User input
-			0 // Game time
+			0 // Game time in s
 	};
-	int time = game.time; // Game timer measured in s
-
 	//Display strings
 	char time_str[10];
-	sprintf(time_str, "Time: %u", time);
+	sprintf(time_str, "Time: %u", game.time);
 	char score_str[20];
 
 	// Alarm setup - executes the callback function periodically (every second)
 	alt_u32 alarm_callback(void *context) {
-		time += 1;
-		sprintf(time_str, "Time: %u", time);
+		game.time += 1;
+		sprintf(time_str, "Time: %u", game.time);
 		return alt_ticks_per_second();
 	}
 	static alt_alarm alarm;
@@ -198,6 +196,7 @@ int main()
 		scores[1] = 0;
 		// Reset game time
 		game -> time = 0;
+		sprintf(time_str, "Time: %u", game->time);
 	}
 	int check_win(Game* game) {
 		int* scores = game->scores;
