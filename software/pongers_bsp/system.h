@@ -4,7 +4,7 @@
  * Machine generated for CPU 'top_level' in SOPC Builder design 'top_level'
  * SOPC Builder design path: ../../top_level.sopcinfo
  *
- * Generated: Tue Jan 31 15:46:34 MST 2023
+ * Generated: Mon Feb 06 11:25:21 MST 2023
  */
 
 /*
@@ -202,8 +202,8 @@
 
 #define ALT_INCLUDE_INSTRUCTION_RELATED_EXCEPTION_API
 #define ALT_MAX_FD 32
-#define ALT_SYS_CLK none
-#define ALT_TIMESTAMP_CLK none
+#define ALT_SYS_CLK TIMER_0
+#define ALT_TIMESTAMP_CLK TIMER_0
 
 
 /*
@@ -358,7 +358,7 @@
 #define SYSID_QSYS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_0_NAME "/dev/sysid_qsys_0"
 #define SYSID_QSYS_0_SPAN 8
-#define SYSID_QSYS_0_TIMESTAMP 1675204700
+#define SYSID_QSYS_0_TIMESTAMP 1675707695
 #define SYSID_QSYS_0_TYPE "altera_avalon_sysid_qsys"
 
 

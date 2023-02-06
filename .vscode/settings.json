@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "gameutil.h": "c",
+        "alt_types.h": "c"
+    }
+}

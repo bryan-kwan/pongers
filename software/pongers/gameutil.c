@@ -1,0 +1,143 @@
+/*
+ * gameutil.c
+ *
+ *  Created on: Jan 26, 2023
+ *      Author: bryan
+ */
+
+#include "gameutil.h"
+
+
+// Updates paddle positions
+	void update_paddle(Game* game) {
+		int* user_input = (game -> user_input);
+		int len = (game->paddles_len);
+		Rectangle* paddle = (game -> paddles);
+		// Adjust speed according to user input
+		int SW_0 = user_input[0];
+		int SW_1 = user_input[1];
+		if(SW_0) // SW_0 is on (left paddle)
+			paddle[0].yspeed = -PADDLE_SPEED;
+		else
+			paddle[0].yspeed = PADDLE_SPEED;
+		if(SW_1) // SW_1 is on (right paddle)
+			paddle[1].yspeed = -PADDLE_SPEED;
+		else
+			paddle[1].yspeed = PADDLE_SPEED;
+		// Adjust paddle positions
+		for(int i = 0; i< len; i++) {
+			// Update position
+			paddle[i].y += paddle[i].yspeed;
+			paddle[0].x = 0;
+			paddle[1].x = SCREEN_WIDTH - paddle[1].width;
+			// Check for collisions
+			if (paddle[i].y + paddle[i].height >= SCREEN_HEIGHT) {
+				paddle[i].y = SCREEN_HEIGHT - paddle[i].height;
+				paddle[i].yspeed = 0;
+			}
+			else if (paddle[i].y <= 0) {
+				paddle[i].y = 0;
+				paddle[i].yspeed = 0;
+			}
+		}
+	}
+	// Updates the position of each Rectangle object
+	// "bounces" each object upon collision with screen top/bottom edges
+	// or paddle objects
+	void update_ball(Game* game) {
+		int rect_len = (game -> balls_len);
+		Rectangle* rect = (game -> balls);
+		Rectangle* paddles = (game -> paddles);
+		int* scores = (game -> scores);
+		for(int i = 0; i< rect_len; i++) {
+			// Update position
+			rect[i].x += rect[i].xspeed;
+			rect[i].y += rect[i].yspeed;
+			// Check for collisions
+			if(rect[i].x + rect[i].width >= SCREEN_WIDTH || rect[i].x + rect[i].width >= paddles[1].x) {
+				// Collision with right paddle
+				if(rect[i].y + rect[i].height >= paddles[1].y && rect[i].y <= paddles[1].y + paddles[1].height) {
+					rect[i].x = paddles[1].x - rect[i].width;
+					rect[i].xspeed*=-1; // Bounce
+				}
+				else { // Goal - player 1 scored
+					// Reset ball position
+					rect[i].x = BALL_XDEFAULT;
+					rect[i].xspeed*=-1;
+					// Add 1 to left player's score
+					scores[0] += 1;
+				}
+			}
+			else if (rect[i].x <= 0 || rect[i].x <= paddles[0].width) {
+				// Collision with left paddle
+				if(rect[i].y + rect[i].height >= paddles[0].y && rect[i].y <= paddles[0].y + paddles[0].height) {
+					rect[i].x = paddles[0].x + paddles[0].width;
+					rect[i].xspeed*=-1; //Bounce
+				}
+				else { // Goal - player 2 scored
+					// Reset ball position
+					rect[i].x = BALL_XDEFAULT;
+					rect[i].xspeed*=-1;
+					// Add 1 to right player's score
+					scores[1] += 1;
+				}
+			}
+			else if (rect[i].y + rect[i].height >= SCREEN_HEIGHT) {
+				rect[i].y = SCREEN_HEIGHT - rect[i].height;
+				rect[i].yspeed *= -1;
+			}
+			else if (rect[i].y <= 0) {
+				rect[i].y = 0;
+				rect[i].yspeed *= -1;
+			}
+		}
+	}
+	void clear(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, alt_up_char_buffer_dev * char_buf_dev,int buffer) {
+		// Clear the screen
+		alt_up_pixel_buffer_dma_clear_screen(pixel_buf_dma_dev, buffer);
+		alt_up_char_buffer_clear(char_buf_dev);
+	}
+	// Renders game components on the screen
+	void draw(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev,int colour, int buffer, Rectangle rect[], int len) {
+		// Draw each rectangle
+		for(int i = 0; i<len; i++) {
+
+			// Naive implementation of drawing each pixel - Much slower than draw_box function
+			// alt_up_pixel_buffer_dma_draw() draws to the back buffer (buffer=1)
+	//		for(int x = rect[i].x; x<rect[i].x + rect[i].width; x++) {
+	//			for(int y = rect[i].y; y<rect[i].y + rect[i].height; y++) {
+	//				alt_up_pixel_buffer_dma_draw(pixel_buf_dma_dev, colour, x, y);
+	//			}
+	//		}
+
+			alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
+					rect[i].x, rect[i].y, rect[i].x + rect[i].width - 1,
+					rect[i].y + rect[i].height - 1,
+					colour, buffer);
+		}
+	}
+	void get_user_input(int* user_input) {
+		int SW = IORD(SW_BASE, 0);
+		for(int i = 0; i<8; i++) {
+			user_input[i] = (0b1 << i) & SW;
+		}
+	}
+	void run_game_tick(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, int buffer, Game* game) {
+		int* user_input = (game -> user_input);
+		Rectangle* balls = (game -> balls);
+		Rectangle* paddles = (game -> paddles);
+		// Wait for screen refresh
+		alt_up_pixel_buffer_dma_swap_buffers(pixel_buf_dma_dev);
+		while(alt_up_pixel_buffer_dma_check_swap_buffers_status(pixel_buf_dma_dev));
+
+		get_user_input(user_input);
+		// Cleanup - erase old objects
+		draw(pixel_buf_dma_dev, BACKGROUND_COLOUR,buffer, balls, NUM_BALLS);
+		draw(pixel_buf_dma_dev, BACKGROUND_COLOUR, buffer, paddles, NUM_PADDLES);
+		// Game logic
+		update_ball(game);
+		update_paddle(game);
+		// Render the screen
+		draw(pixel_buf_dma_dev, BALL_COLOUR, buffer, balls, NUM_BALLS);
+		draw(pixel_buf_dma_dev, PADDLE_COLOUR, buffer, paddles, NUM_PADDLES);
+	}
