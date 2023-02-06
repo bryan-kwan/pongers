@@ -10,8 +10,37 @@
 
 // Updates paddle positions
 // There must be at least 2 paddles in the paddle[] array
-void update_paddle(Rectangle paddle[], int len, int* user_input) {
+void update_paddle(Rectangle paddle[], int len, float* user_input) {
 	// Adjust speed according to user input
+
+	if(*user_input>=2.6){
+		paddle[1].yspeed = *user_input;
+		paddle[0].yspeed = *user_input;
+	}
+	else if(*user_input<=2.4){
+		paddle[1].yspeed = -(5-*user_input);
+		paddle[0].yspeed = -(5-*user_input);
+	}
+	else{
+		paddle[1].yspeed =0;
+		paddle[0].yspeed = 0;
+	}
+	for(int i = 0; i< len; i++) {
+			// Update position
+			paddle[i].y += paddle[i].yspeed;
+			paddle[0].x = 10;
+			paddle[1].x = SCREEN_WIDTH - paddle[1].width;
+			// Check for collisions
+			if (paddle[i].y + paddle[i].height >= SCREEN_HEIGHT) {
+				paddle[i].y = SCREEN_HEIGHT - paddle[i].height;
+				paddle[i].yspeed = 0;
+			}
+			else if (paddle[i].y <= 0) {
+				paddle[i].y = 0;
+				paddle[i].yspeed = 0;
+			}
+
+	/*
 	int SW_0 = user_input[0];
 	int SW_1 = user_input[1];
 	if(SW_0) // SW_0 is on (left paddle)
@@ -36,7 +65,9 @@ void update_paddle(Rectangle paddle[], int len, int* user_input) {
 		else if (paddle[i].y <= 0) {
 			paddle[i].y = 0;
 			paddle[i].yspeed = 0;
-		}
+			*/
+		//}
+
 	}
 }
 // Updates the position of each Rectangle object
@@ -110,11 +141,11 @@ void draw(Rectangle rect[], int len, alt_up_pixel_buffer_dma_dev * pixel_buf_dma
 	}
 }
 
-void run_game_tick(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, Rectangle paddles[], int paddle_len, Rectangle balls[], int ball_len, int* scores, int buffer, int* user_input) {
+void run_game_tick(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, Rectangle paddles[], int paddle_len, Rectangle balls[], int ball_len, int* scores, int buffer, float* user_input) {
 	// Wait for screen refresh
 	alt_up_pixel_buffer_dma_swap_buffers(pixel_buf_dma_dev);
 	while(alt_up_pixel_buffer_dma_check_swap_buffers_status(pixel_buf_dma_dev));
-	get_user_input(user_input);
+	//get_user_input(user_input);
 	// Cleanup - erase old objects
 	draw(balls, NUM_BALLS, pixel_buf_dma_dev, BACKGROUND_COLOUR,buffer);
 	draw(paddles, NUM_PADDLES, pixel_buf_dma_dev, BACKGROUND_COLOUR, buffer);
@@ -131,3 +162,4 @@ void get_user_input(int* user_input) {
 		user_input[i] = (0b1 << i) & SW;
 	}
 }
+

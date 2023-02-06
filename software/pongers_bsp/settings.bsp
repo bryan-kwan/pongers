@@ -2,9 +2,9 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Jan 31, 2023 2:06:49 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1675199209024</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>C:\Users\bryan\VSCodeWorkspace\ENEL400\software\pongers_bsp</BspGeneratedLocation>
+        <BspGeneratedTimeStamp>5-Feb-2023 7:09:55 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1675649395963</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>C:\Quartus17.1\ENEL400\pongers\software\pongers_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\top_level.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
@@ -906,49 +906,61 @@
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>onchip_memory2_0</slaveDescriptor>
-                <addressRange>0x08040000 - 0x0805F3FF</addressRange>
+                <addressRange>0x08020000 - 0x0803F3FF</addressRange>
                 <addressSpan>128000</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>modular_adc_0_sample_store_csr</slaveDescriptor>
+                <addressRange>0x08041000 - 0x080411FF</addressRange>
+                <addressSpan>512</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>timer_0</slaveDescriptor>
-                <addressRange>0x08081020 - 0x0808103F</addressRange>
+                <addressRange>0x08041220 - 0x0804123F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sw</slaveDescriptor>
-                <addressRange>0x08081050 - 0x0808105F</addressRange>
+                <addressRange>0x08041250 - 0x0804125F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>ledr</slaveDescriptor>
-                <addressRange>0x08081060 - 0x0808106F</addressRange>
+                <addressRange>0x08041260 - 0x0804126F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>altpll_0</slaveDescriptor>
-                <addressRange>0x08081070 - 0x0808107F</addressRange>
+                <addressRange>0x08041270 - 0x0804127F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>video_pixel_buffer_dma_0</slaveDescriptor>
-                <addressRange>0x08081080 - 0x0808108F</addressRange>
+                <addressRange>0x08041280 - 0x0804128F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>modular_adc_0_sequencer_csr</slaveDescriptor>
+                <addressRange>0x08041290 - 0x08041297</addressRange>
+                <addressSpan>8</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>sysid_qsys_0</slaveDescriptor>
-                <addressRange>0x08081090 - 0x08081097</addressRange>
+                <addressRange>0x08041298 - 0x0804129F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart_0</slaveDescriptor>
-                <addressRange>0x08081098 - 0x0808109F</addressRange>
+                <addressRange>0x080412A0 - 0x080412A7</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>

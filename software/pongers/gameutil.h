@@ -10,7 +10,6 @@
 #include <system.h>
 #include <stdio.h>
 #include <io.h>
-#include <system.h>
 #include <unistd.h>
 #include "altera_up_avalon_video_pixel_buffer_dma.h"
 #include "altera_avalon_pio_regs.h"
@@ -42,11 +41,11 @@ struct Rectangle {
 	int colour;
 };
 typedef struct Rectangle Rectangle;
-void update_paddle(Rectangle paddle[], int len, int* user_input);
+void update_paddle(Rectangle paddle[], int len, float* user_input);
 void update_rect(Rectangle rect[], Rectangle paddles[], int rect_len, int paddle_len, int* scores);
 void clear(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, int buffer);
 void draw(Rectangle rect[], int len, alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev,int colour, int buffer);
-void run_game_tick(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, Rectangle paddles[], int paddle_len, Rectangle balls[], int ball_len, int* scores, int buffer, int* user_input);
+void run_game_tick(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, Rectangle paddles[], int paddle_len, Rectangle balls[], int ball_len, int* scores, int buffer, float* user_input);
 void get_user_input(int* user_input);
 
 #endif /* GAMEUTIL_H_ */

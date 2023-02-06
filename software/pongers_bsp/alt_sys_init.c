@@ -4,7 +4,7 @@
  * Machine generated for CPU 'top_level' in SOPC Builder design 'top_level'
  * SOPC Builder design path: ../../top_level.sopcinfo
  *
- * Generated: Wed Jan 18 21:11:51 MST 2023
+ * Generated: Sun Feb 05 17:50:49 MST 2023
  */
 
 /*
@@ -62,6 +62,7 @@
 #include "altera_avalon_jtag_uart.h"
 #include "altera_avalon_sysid_qsys.h"
 #include "altera_avalon_timer.h"
+#include "altera_modular_adc.h"
 #include "altera_up_avalon_video_pixel_buffer_dma.h"
 
 /*
@@ -72,6 +73,7 @@ ALTERA_NIOS2_GEN2_IRQ_INSTANCE ( TOP_LEVEL, top_level);
 ALTERA_AVALON_JTAG_UART_INSTANCE ( JTAG_UART_0, jtag_uart_0);
 ALTERA_AVALON_SYSID_QSYS_INSTANCE ( SYSID_QSYS_0, sysid_qsys_0);
 ALTERA_AVALON_TIMER_INSTANCE ( TIMER_0, timer_0);
+ALTERA_MODULAR_ADC_INSTANCE ( MODULAR_ADC_0, modular_adc_0);
 ALTERA_UP_AVALON_VIDEO_PIXEL_BUFFER_DMA_INSTANCE ( VIDEO_PIXEL_BUFFER_DMA_0, video_pixel_buffer_dma_0);
 
 /*
@@ -98,5 +100,6 @@ void alt_sys_init( void )
     ALTERA_AVALON_TIMER_INIT ( TIMER_0, timer_0);
     ALTERA_AVALON_JTAG_UART_INIT ( JTAG_UART_0, jtag_uart_0);
     ALTERA_AVALON_SYSID_QSYS_INIT ( SYSID_QSYS_0, sysid_qsys_0);
+    ALTERA_MODULAR_ADC_INIT ( MODULAR_ADC_0, modular_adc_0);
     ALTERA_UP_AVALON_VIDEO_PIXEL_BUFFER_DMA_INIT ( VIDEO_PIXEL_BUFFER_DMA_0, video_pixel_buffer_dma_0);
 }

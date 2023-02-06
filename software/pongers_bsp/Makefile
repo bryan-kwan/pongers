@@ -93,12 +93,12 @@ OBJ_DIR := ./obj
 
 # This following VERSION comment indicates the version of the tool used to 
 # generate this makefile. A makefile variable is provided for VERSION as well. 
-# ACDS_VERSION: 17.0
-ACDS_VERSION := 17.0
+# ACDS_VERSION: 17.1
+ACDS_VERSION := 17.1
 
 # This following BUILD_NUMBER comment indicates the build number of the tool 
 # used to generate this makefile. 
-# BUILD_NUMBER: 595
+# BUILD_NUMBER: 590
 
 SETTINGS_FILE := settings.bsp
 SOPC_FILE := ../../top_level.sopcinfo
@@ -239,6 +239,13 @@ altera_avalon_timer_driver_C_LIB_SRCS := \
 	$(altera_avalon_timer_driver_SRCS_ROOT)/src/altera_avalon_timer_ts.c \
 	$(altera_avalon_timer_driver_SRCS_ROOT)/src/altera_avalon_timer_vars.c
 
+# altera_modular_adc_driver sources root 
+altera_modular_adc_driver_SRCS_ROOT := drivers
+
+# altera_modular_adc_driver sources 
+altera_modular_adc_driver_C_LIB_SRCS := \
+	$(altera_modular_adc_driver_SRCS_ROOT)/src/altera_modular_adc.c
+
 # altera_nios2_gen2_hal_driver sources root 
 altera_nios2_gen2_hal_driver_SRCS_ROOT := HAL
 
@@ -348,6 +355,7 @@ COMPONENT_C_LIB_SRCS += \
 	$(altera_avalon_jtag_uart_driver_C_LIB_SRCS) \
 	$(altera_avalon_sysid_qsys_driver_C_LIB_SRCS) \
 	$(altera_avalon_timer_driver_C_LIB_SRCS) \
+	$(altera_modular_adc_driver_C_LIB_SRCS) \
 	$(altera_nios2_gen2_hal_driver_C_LIB_SRCS) \
 	$(avalon_video_pixel_buffer_dma_driver_C_LIB_SRCS) \
 	$(hal_C_LIB_SRCS)

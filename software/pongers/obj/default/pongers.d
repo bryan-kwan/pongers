@@ -9,7 +9,13 @@ obj/default/pongers.o: pongers.c ../pongers_bsp//HAL/inc/io.h \
  ../pongers_bsp//drivers/inc/altera_avalon_pio_regs.h \
  ../pongers_bsp//HAL/inc/sys/alt_alarm.h \
  ../pongers_bsp//HAL/inc/sys/alt_llist.h \
- ../pongers_bsp//HAL/inc/priv/alt_alarm.h gameutil.h
+ ../pongers_bsp//HAL/inc/priv/alt_alarm.h \
+ ../pongers_bsp//drivers/inc/altera_modular_adc.h \
+ ../pongers_bsp//HAL/inc/os/alt_sem.h \
+ ../pongers_bsp//HAL/inc/priv/alt_no_error.h \
+ ../pongers_bsp//drivers/inc/altera_modular_adc_sequencer_regs.h \
+ ../pongers_bsp//drivers/inc/altera_modular_adc_sample_store_regs.h \
+ gameutil.h
 
 ../pongers_bsp//HAL/inc/io.h:
 
@@ -36,5 +42,15 @@ obj/default/pongers.o: pongers.c ../pongers_bsp//HAL/inc/io.h \
 ../pongers_bsp//HAL/inc/sys/alt_llist.h:
 
 ../pongers_bsp//HAL/inc/priv/alt_alarm.h:
+
+../pongers_bsp//drivers/inc/altera_modular_adc.h:
+
+../pongers_bsp//HAL/inc/os/alt_sem.h:
+
+../pongers_bsp//HAL/inc/priv/alt_no_error.h:
+
+../pongers_bsp//drivers/inc/altera_modular_adc_sequencer_regs.h:
+
+../pongers_bsp//drivers/inc/altera_modular_adc_sample_store_regs.h:
 
 gameutil.h:

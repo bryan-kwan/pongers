@@ -7,6 +7,7 @@
 #include "altera_avalon_pio_regs.h"
 #include "sys/alt_alarm.h"
 #include "alt_types.h"
+#include "altera_modular_adc.h"
 
 #include "gameutil.h"
 
@@ -15,6 +16,13 @@
 
 int main()
 {
+	printf("Entered Main\n");
+	alt_u32 adc_val;
+
+
+	adc_stop(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
+	adc_set_mode_run_once(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
+
 	int time; // Game timer measured in s
 	// Have to set up these pointers to open the device
 	// Reference : https://faculty-web.msoe.edu/johnsontimoj/EE3921/files3921/nios_pixel_sw.pdf
@@ -49,12 +57,24 @@ int main()
 	paddles[0] = paddle_left;
 	paddles[1] = paddle_right;
 
-	int user_input[8];
+	float* user_input;
+	float adc_volt;
 	// Clear screen
 	clear(pixel_buf_dma_dev, 0); // Current screen
+
+
 	while(1) {
+		alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE, &adc_val, MODULAR_ADC_0_SAMPLE_STORE_CSR_CSD_LENGTH);
+		adc_volt = (float)adc_val * 5.0 / 4096.0;
+		user_input = &adc_volt;
 		run_game_tick(pixel_buf_dma_dev, paddles, NUM_PADDLES, balls, NUM_BALLS, scores, 0, user_input);
+		adc_start(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
 		usleep(10000);
+
+
+
+
+		//printf("adc value = %lu\t adc_voltage = %f\t", adc_val, adc_volt);
 	}
 	return 0;
 }
