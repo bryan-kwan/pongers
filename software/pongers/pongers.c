@@ -6,7 +6,7 @@
 
 int main()
 {
-	int time; // Game timer measured in s
+	int time = 0; // Game timer measured in s
 	// Have to set up these pointers to open the device
 	// Reference : https://faculty-web.msoe.edu/johnsontimoj/EE3921/files3921/nios_pixel_sw.pdf
 	alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev;
@@ -25,16 +25,12 @@ int main()
 
 	alt_up_char_buffer_init(char_buf_dev);
 	alt_up_char_buffer_init(char_buf_dev);
-	// Alarm setup - executes the callback function periodically (every second)
-	alt_u32 alarm_callback(void *context) {
-		time += 1;
-		return alt_ticks_per_second();
-	}
-	static alt_alarm alarm;
-	// Setup alarm to call the callback function every N_TICKS
-	if (alt_alarm_start(&alarm, alt_ticks_per_second(), alarm_callback, NULL) < 0){
-		printf ("No System Clock Available\n");
-	}
+
+	//Display strings
+	char time_str[10];
+	sprintf(time_str, "Time: %u", time);
+	char score_str[20];
+
 	// Game objects
 	Game game = {SCREEN_WIDTH, SCREEN_HEIGHT, {0,0}, NUM_BALLS, NUM_PADDLES,
 			{{BALL_XDEFAULT, BALL_YDEFAULT, BALL_XSPEED, BALL_YSPEED, BALL_WIDTH, BALL_HEIGHT, BALL_COLOUR}}, //Balls
@@ -42,6 +38,18 @@ int main()
 					{SCREEN_WIDTH-PADDLE_WIDTH, 0, 0, 0, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_COLOUR}},
 			{0,0,0,0,0,0,0,0} //User input
 	};
+
+	// Alarm setup - executes the callback function periodically (every second)
+	alt_u32 alarm_callback(void *context) {
+		time += 1;
+		sprintf(time_str, "Time: %u", time);
+		return alt_ticks_per_second();
+	}
+	static alt_alarm alarm;
+	// Setup alarm to call the callback function every N_TICKS
+	if (alt_alarm_start(&alarm, alt_ticks_per_second(), alarm_callback, NULL) < 0){
+		printf ("No System Clock Available\n");
+	}
 
 	// The makefile is not working as intended so the linker is unable to compile the dependencies.
 	// As a result, we have to manually include the functions here ********
@@ -181,13 +189,12 @@ int main()
 	// ****************
 	// Clear screen
 	clear(pixel_buf_dma_dev, char_buf_dev,0); // Current screen
-	//Write string
-	const char time_str[] = "test";
-	alt_up_char_buffer_string(char_buf_dev, time_str, 10, 10);
-	alt_up_char_buffer_string(char_buf_dev, "Pongers!!!", 37, 2);
 	//clear(pixel_buf_dma_dev, 0, char_buf_dev); // Char buffer
 	while(1) {
 		run_game_tick(pixel_buf_dma_dev, 0, &game);
+		sprintf(score_str, "%u - %u", game.scores[0], game.scores[1]);
+		alt_up_char_buffer_string(char_buf_dev, score_str, 37, 2);
+		alt_up_char_buffer_string(char_buf_dev, time_str, 65, 2);
 		usleep(10000);
 	}
 	return 0;

@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Feb 6, 2023 11:25:21 AM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1675707921306</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Feb 6, 2023 11:37:43 AM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1675708663773</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\bryan\VSCodeWorkspace\ENEL400\software\pongers_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\top_level.sopcinfo</SopcDesignFile>
