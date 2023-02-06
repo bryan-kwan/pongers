@@ -16,6 +16,12 @@
 		// Adjust speed according to user input
 		int SW_0 = user_input[0];
 		int SW_1 = user_input[1];
+		if(user_input[3]) {
+			paddle[0].height=SCREEN_HEIGHT;
+		}
+		if(user_input[4]) {
+			paddle[1].height=SCREEN_HEIGHT;
+		}
 		if(SW_0) // SW_0 is on (left paddle)
 			paddle[0].yspeed = -PADDLE_SPEED;
 		else
@@ -122,7 +128,28 @@
 			user_input[i] = (0b1 << i) & SW;
 		}
 	}
-	void run_game_tick(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, int buffer, Game* game) {
+	void reset_game(Game* game) {
+		// Reset score
+		int* scores = game -> scores;
+		scores[0] = 0;
+		scores[1] = 0;
+		// Reset game time
+		game -> time = 0;
+	}
+	int check_win(Game* game) {
+		int* scores = game->scores;
+		if(scores[0]>=MAX_SCORE || scores[1]>=MAX_SCORE){
+			reset_game(game);
+			return 1;
+		}
+		return 0;
+
+	}
+	void run_game_tick(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, alt_up_char_buffer_dev * char_buf_dev, int buffer, Game* game) {
+		// Check for winner
+		if(check_win(game)) {
+			clear(pixel_buf_dma_dev, char_buf_dev,0);
+		}
 		int* user_input = (game -> user_input);
 		Rectangle* balls = (game -> balls);
 		Rectangle* paddles = (game -> paddles);

@@ -54,6 +54,20 @@ int main()
 
 	// The makefile is not working as intended so the linker is unable to compile the dependencies.
 	// As a result, we have to manually include the functions here ********
+	void cheat_code(Game* game) {
+		int* user_input = game->user_input;
+		Rectangle* paddles = game ->paddles;
+		if(user_input[3]) {
+			paddles[0].height=SCREEN_HEIGHT-1;
+			paddles[0].y=0;
+			paddles[0].yspeed=0;
+		} else { paddles[0].height=PADDLE_HEIGHT-1;}
+		if(user_input[4]) {
+			paddles[1].height=SCREEN_HEIGHT-1;
+			paddles[1].y=0;
+			paddles[1].yspeed=0;
+		} else {paddles[1].height=PADDLE_HEIGHT-1;}
+	}
 	// Updates paddle positions
 	void update_paddle(Game* game) {
 		int* user_input = (game -> user_input);
@@ -90,6 +104,11 @@ int main()
 	// Updates the position of each Rectangle object
 	// "bounces" each object upon collision with screen top/bottom edges
 	// or paddle objects
+	int sign(int n) {
+		if(n<0)
+			return -1;
+		return 1;
+	}
 	void update_ball(Game* game) {
 		int rect_len = (game -> balls_len);
 		Rectangle* rect = (game -> balls);
@@ -105,6 +124,8 @@ int main()
 				if(rect[i].y + rect[i].height >= paddles[1].y && rect[i].y <= paddles[1].y + paddles[1].height) {
 					rect[i].x = paddles[1].x - rect[i].width;
 					rect[i].xspeed*=-1; // Bounce
+					if(sign(rect[i].yspeed)!=sign(paddles[1].yspeed)&& paddles[1].yspeed!=0) // Ball bounces in direction of paddle movement
+						rect[i].yspeed*=-1;
 				}
 				else { // Goal - player 1 scored
 					// Reset ball position
@@ -119,6 +140,8 @@ int main()
 				if(rect[i].y + rect[i].height >= paddles[0].y && rect[i].y <= paddles[0].y + paddles[0].height) {
 					rect[i].x = paddles[0].x + paddles[0].width;
 					rect[i].xspeed*=-1; //Bounce
+					if(sign(rect[i].yspeed)!=sign(paddles[0].yspeed) && paddles[0].yspeed!=0) // Ball bounces in direction of paddle movement
+						rect[i].yspeed*=-1;
 				}
 				else { // Goal - player 2 scored
 					// Reset ball position
@@ -174,7 +197,7 @@ int main()
 		scores[0] = 0;
 		scores[1] = 0;
 		// Reset game time
-		time = 0;
+		game -> time = 0;
 	}
 	int check_win(Game* game) {
 		int* scores = game->scores;
@@ -202,6 +225,7 @@ int main()
 		draw(pixel_buf_dma_dev, BACKGROUND_COLOUR,buffer, balls, NUM_BALLS);
 		draw(pixel_buf_dma_dev, BACKGROUND_COLOUR, buffer, paddles, NUM_PADDLES);
 		// Game logic
+		cheat_code(game); // Checks for cheat code input
 		update_ball(game);
 		update_paddle(game);
 		// Render the screen
