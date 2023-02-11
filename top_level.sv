@@ -9,11 +9,13 @@ module top_level
   
   
 	//music box
-	logic sound;                                         
-	assign arduino = ~sound;
+	logic sound;              	
+	assign arduino = sound;
 	
-	music_box test(.clk(clk), .sound(sound));
-   //red_nose test(.clk(clk), .sound(sound)); 
-	//music test(.clk(clk), .sound(sound));
+	
+	logic outclk; 
+	pll clktest(.inclk0(clk), .c0(outclk));
+	
+   red_nose test(.clk(outclk), .sound(sound)); 
 	  
 endmodule
