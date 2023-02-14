@@ -97,7 +97,7 @@ module top_level (
 	wire  [31:0] mm_interconnect_0_top_level_debug_mem_slave_writedata;                                    // mm_interconnect_0:top_level_debug_mem_slave_writedata -> top_level:debug_mem_slave_writedata
 	wire         mm_interconnect_0_onchip_memory2_0_s1_chipselect;                                         // mm_interconnect_0:onchip_memory2_0_s1_chipselect -> onchip_memory2_0:chipselect
 	wire  [31:0] mm_interconnect_0_onchip_memory2_0_s1_readdata;                                           // onchip_memory2_0:readdata -> mm_interconnect_0:onchip_memory2_0_s1_readdata
-	wire  [14:0] mm_interconnect_0_onchip_memory2_0_s1_address;                                            // mm_interconnect_0:onchip_memory2_0_s1_address -> onchip_memory2_0:address
+	wire  [15:0] mm_interconnect_0_onchip_memory2_0_s1_address;                                            // mm_interconnect_0:onchip_memory2_0_s1_address -> onchip_memory2_0:address
 	wire   [3:0] mm_interconnect_0_onchip_memory2_0_s1_byteenable;                                         // mm_interconnect_0:onchip_memory2_0_s1_byteenable -> onchip_memory2_0:byteenable
 	wire         mm_interconnect_0_onchip_memory2_0_s1_write;                                              // mm_interconnect_0:onchip_memory2_0_s1_write -> onchip_memory2_0:write
 	wire  [31:0] mm_interconnect_0_onchip_memory2_0_s1_writedata;                                          // mm_interconnect_0:onchip_memory2_0_s1_writedata -> onchip_memory2_0:writedata
@@ -141,10 +141,14 @@ module top_level (
 	wire   [1:0] mm_interconnect_0_ledr_s1_address;                                                        // mm_interconnect_0:ledr_s1_address -> ledr:address
 	wire         mm_interconnect_0_ledr_s1_write;                                                          // mm_interconnect_0:ledr_s1_write -> ledr:write_n
 	wire  [31:0] mm_interconnect_0_ledr_s1_writedata;                                                      // mm_interconnect_0:ledr_s1_writedata -> ledr:writedata
+	wire         mm_interconnect_0_sw_s1_chipselect;                                                       // mm_interconnect_0:sw_s1_chipselect -> sw:chipselect
 	wire  [31:0] mm_interconnect_0_sw_s1_readdata;                                                         // sw:readdata -> mm_interconnect_0:sw_s1_readdata
 	wire   [1:0] mm_interconnect_0_sw_s1_address;                                                          // mm_interconnect_0:sw_s1_address -> sw:address
+	wire         mm_interconnect_0_sw_s1_write;                                                            // mm_interconnect_0:sw_s1_write -> sw:write_n
+	wire  [31:0] mm_interconnect_0_sw_s1_writedata;                                                        // mm_interconnect_0:sw_s1_writedata -> sw:writedata
 	wire         irq_mapper_receiver0_irq;                                                                 // jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	wire         irq_mapper_receiver1_irq;                                                                 // timer_0:irq -> irq_mapper:receiver1_irq
+	wire         irq_mapper_receiver2_irq;                                                                 // sw:irq -> irq_mapper:receiver2_irq
 	wire  [31:0] top_level_irq_irq;                                                                        // irq_mapper:sender_irq -> top_level:irq
 	wire         video_scaler_0_avalon_scaler_source_valid;                                                // video_scaler_0:stream_out_valid -> avalon_st_adapter:in_0_valid
 	wire  [29:0] video_scaler_0_avalon_scaler_source_data;                                                 // video_scaler_0:stream_out_data -> avalon_st_adapter:in_0_data
@@ -251,11 +255,15 @@ module top_level (
 	);
 
 	top_level_sw sw (
-		.clk      (clk_clk),                          //                 clk.clk
-		.reset_n  (~rst_controller_reset_out_reset),  //               reset.reset_n
-		.address  (mm_interconnect_0_sw_s1_address),  //                  s1.address
-		.readdata (mm_interconnect_0_sw_s1_readdata), //                    .readdata
-		.in_port  (sw_external_connection_export)     // external_connection.export
+		.clk        (clk_clk),                            //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),    //               reset.reset_n
+		.address    (mm_interconnect_0_sw_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_sw_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_sw_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_sw_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_sw_s1_readdata),   //                    .readdata
+		.in_port    (sw_external_connection_export),      // external_connection.export
+		.irq        (irq_mapper_receiver2_irq)            //                 irq.irq
 	);
 
 	top_level_sysid_qsys_0 sysid_qsys_0 (
@@ -494,7 +502,10 @@ module top_level (
 		.onchip_memory2_0_s1_chipselect                                         (mm_interconnect_0_onchip_memory2_0_s1_chipselect),                                         //                                                              .chipselect
 		.onchip_memory2_0_s1_clken                                              (mm_interconnect_0_onchip_memory2_0_s1_clken),                                              //                                                              .clken
 		.sw_s1_address                                                          (mm_interconnect_0_sw_s1_address),                                                          //                                                         sw_s1.address
+		.sw_s1_write                                                            (mm_interconnect_0_sw_s1_write),                                                            //                                                              .write
 		.sw_s1_readdata                                                         (mm_interconnect_0_sw_s1_readdata),                                                         //                                                              .readdata
+		.sw_s1_writedata                                                        (mm_interconnect_0_sw_s1_writedata),                                                        //                                                              .writedata
+		.sw_s1_chipselect                                                       (mm_interconnect_0_sw_s1_chipselect),                                                       //                                                              .chipselect
 		.sysid_qsys_0_control_slave_address                                     (mm_interconnect_0_sysid_qsys_0_control_slave_address),                                     //                                    sysid_qsys_0_control_slave.address
 		.sysid_qsys_0_control_slave_readdata                                    (mm_interconnect_0_sysid_qsys_0_control_slave_readdata),                                    //                                                              .readdata
 		.timer_0_s1_address                                                     (mm_interconnect_0_timer_0_s1_address),                                                     //                                                    timer_0_s1.address
@@ -538,6 +549,7 @@ module top_level (
 		.reset         (rst_controller_reset_out_reset), // clk_reset.reset
 		.receiver0_irq (irq_mapper_receiver0_irq),       // receiver0.irq
 		.receiver1_irq (irq_mapper_receiver1_irq),       // receiver1.irq
+		.receiver2_irq (irq_mapper_receiver2_irq),       // receiver2.irq
 		.sender_irq    (top_level_irq_irq)               //    sender.irq
 	);
 

@@ -3,6 +3,19 @@
 #include "sys/alt_alarm.h"
 #include "alt_types.h"
 
+// Interrupt setup for PIO
+static void pio_isr(void * context, alt_u32 id)    //this is the ISR
+{
+	printf("interrupt worked.");
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(SW_BASE, 0x0);    //resets edge capture register so interrupt can be triggered again
+	                                                    //can write anything to the register to reset it, does not have to be 0x0
+}
+void init_pio_interrupt()
+{
+	alt_ic_isr_register(SW_IRQ_INTERRUPT_CONTROLLER_ID, SW_IRQ, (void *)pio_isr, NULL, 0x0);    //connects the ISR with the IRQ. Also requires *context and can choose a flag?
+	IOWR_ALTERA_AVALON_PIO_IRQ_MASK(SW_BASE, 0x20);    //0x20 = 0b0010_0000, so this will trigger an interrupt on rising edge of sw[2]
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(SW_BASE, 0x0);    //resets edge capture register
+}
 
 int main()
 {
@@ -49,6 +62,7 @@ int main()
 	if (alt_alarm_start(&alarm, alt_ticks_per_second(), alarm_callback, NULL) < 0){
 		printf ("No System Clock Available\n");
 	}
+
 
 	// The makefile is not working as intended so the linker is unable to compile the dependencies.
 	// As a result, we have to manually include the functions here ********
@@ -235,6 +249,9 @@ int main()
 	// Clear screen
 	clear(pixel_buf_dma_dev, char_buf_dev,0); // Current screen
 	//clear(pixel_buf_dma_dev, 0, char_buf_dev); // Char buffer
+
+	// Initialize interrupts
+	init_pio_interrupt();
 	while(1) {
 		run_game_tick(pixel_buf_dma_dev, char_buf_dev, 0, &game);
 		sprintf(score_str, "%u - %u", game.scores[0], game.scores[1]);

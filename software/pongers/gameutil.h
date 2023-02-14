@@ -15,6 +15,7 @@
 #include "altera_up_avalon_video_pixel_buffer_dma.h"
 #include "altera_up_avalon_video_character_buffer_with_dma.h"
 #include "altera_avalon_pio_regs.h"
+#include "sys/alt_irq.h"
 
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 240
