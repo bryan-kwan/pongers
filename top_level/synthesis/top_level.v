@@ -6,6 +6,7 @@
 module top_level (
 		input  wire        clk_clk,                         //                      clk.clk
 		output wire        clk_shift_clk,                   //                clk_shift.clk
+		inout  wire [31:0] gpio_export,                     //                     gpio.export
 		output wire [7:0]  ledr_external_connection_export, // ledr_external_connection.export
 		output wire [12:0] memory_addr,                     //                   memory.addr
 		output wire [1:0]  memory_ba,                       //                         .ba
@@ -146,9 +147,15 @@ module top_level (
 	wire   [1:0] mm_interconnect_0_sw_s1_address;                                                          // mm_interconnect_0:sw_s1_address -> sw:address
 	wire         mm_interconnect_0_sw_s1_write;                                                            // mm_interconnect_0:sw_s1_write -> sw:write_n
 	wire  [31:0] mm_interconnect_0_sw_s1_writedata;                                                        // mm_interconnect_0:sw_s1_writedata -> sw:writedata
+	wire         mm_interconnect_0_gpio_s1_chipselect;                                                     // mm_interconnect_0:GPIO_s1_chipselect -> GPIO:chipselect
+	wire  [31:0] mm_interconnect_0_gpio_s1_readdata;                                                       // GPIO:readdata -> mm_interconnect_0:GPIO_s1_readdata
+	wire   [1:0] mm_interconnect_0_gpio_s1_address;                                                        // mm_interconnect_0:GPIO_s1_address -> GPIO:address
+	wire         mm_interconnect_0_gpio_s1_write;                                                          // mm_interconnect_0:GPIO_s1_write -> GPIO:write_n
+	wire  [31:0] mm_interconnect_0_gpio_s1_writedata;                                                      // mm_interconnect_0:GPIO_s1_writedata -> GPIO:writedata
 	wire         irq_mapper_receiver0_irq;                                                                 // jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	wire         irq_mapper_receiver1_irq;                                                                 // timer_0:irq -> irq_mapper:receiver1_irq
 	wire         irq_mapper_receiver2_irq;                                                                 // sw:irq -> irq_mapper:receiver2_irq
+	wire         irq_mapper_receiver3_irq;                                                                 // GPIO:irq -> irq_mapper:receiver3_irq
 	wire  [31:0] top_level_irq_irq;                                                                        // irq_mapper:sender_irq -> top_level:irq
 	wire         video_scaler_0_avalon_scaler_source_valid;                                                // video_scaler_0:stream_out_valid -> avalon_st_adapter:in_0_valid
 	wire  [29:0] video_scaler_0_avalon_scaler_source_data;                                                 // video_scaler_0:stream_out_data -> avalon_st_adapter:in_0_data
@@ -161,10 +168,22 @@ module top_level (
 	wire         avalon_st_adapter_out_0_ready;                                                            // video_alpha_blender_0:background_ready -> avalon_st_adapter:out_0_ready
 	wire         avalon_st_adapter_out_0_startofpacket;                                                    // avalon_st_adapter:out_0_startofpacket -> video_alpha_blender_0:background_startofpacket
 	wire         avalon_st_adapter_out_0_endofpacket;                                                      // avalon_st_adapter:out_0_endofpacket -> video_alpha_blender_0:background_endofpacket
-	wire         rst_controller_reset_out_reset;                                                           // rst_controller:reset_out -> [altpll_0:reset, avalon_st_adapter:in_rst_0_reset, irq_mapper:reset, jtag_uart_0:rst_n, ledr:reset_n, mm_interconnect_0:video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset, new_sdram_controller_0:reset_n, onchip_memory2_0:reset, rst_translator:in_reset, sw:reset_n, sysid_qsys_0:reset_n, timer_0:reset_n, top_level:reset_n, video_dual_clock_buffer_0:reset_stream_in, video_pixel_buffer_dma_0:reset, video_rgb_resampler_0:reset, video_scaler_0:reset]
+	wire         rst_controller_reset_out_reset;                                                           // rst_controller:reset_out -> [GPIO:reset_n, altpll_0:reset, avalon_st_adapter:in_rst_0_reset, irq_mapper:reset, jtag_uart_0:rst_n, ledr:reset_n, mm_interconnect_0:video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset, new_sdram_controller_0:reset_n, onchip_memory2_0:reset, rst_translator:in_reset, sw:reset_n, sysid_qsys_0:reset_n, timer_0:reset_n, top_level:reset_n, video_dual_clock_buffer_0:reset_stream_in, video_pixel_buffer_dma_0:reset, video_rgb_resampler_0:reset, video_scaler_0:reset]
 	wire         rst_controller_reset_out_reset_req;                                                       // rst_controller:reset_req -> [onchip_memory2_0:reset_req, rst_translator:reset_req_in, top_level:reset_req]
 	wire         rst_controller_001_reset_out_reset;                                                       // rst_controller_001:reset_out -> [mm_interconnect_0:video_character_buffer_with_dma_0_reset_reset_bridge_in_reset_reset, video_alpha_blender_0:reset, video_character_buffer_with_dma_0:reset]
 	wire         rst_controller_002_reset_out_reset;                                                       // rst_controller_002:reset_out -> [video_dual_clock_buffer_0:reset_stream_out, video_vga_controller_0:reset]
+
+	top_level_GPIO gpio (
+		.clk        (clk_clk),                              //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),      //               reset.reset_n
+		.address    (mm_interconnect_0_gpio_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_gpio_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_gpio_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_gpio_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_gpio_s1_readdata),   //                    .readdata
+		.bidir_port (gpio_export),                          // external_connection.export
+		.irq        (irq_mapper_receiver3_irq)              //                 irq.irq
+	);
 
 	top_level_altpll_0 altpll_0 (
 		.clk                (clk_clk),                                        //       inclk_interface.clk
@@ -473,6 +492,11 @@ module top_level (
 		.altpll_0_pll_slave_read                                                (mm_interconnect_0_altpll_0_pll_slave_read),                                                //                                                              .read
 		.altpll_0_pll_slave_readdata                                            (mm_interconnect_0_altpll_0_pll_slave_readdata),                                            //                                                              .readdata
 		.altpll_0_pll_slave_writedata                                           (mm_interconnect_0_altpll_0_pll_slave_writedata),                                           //                                                              .writedata
+		.GPIO_s1_address                                                        (mm_interconnect_0_gpio_s1_address),                                                        //                                                       GPIO_s1.address
+		.GPIO_s1_write                                                          (mm_interconnect_0_gpio_s1_write),                                                          //                                                              .write
+		.GPIO_s1_readdata                                                       (mm_interconnect_0_gpio_s1_readdata),                                                       //                                                              .readdata
+		.GPIO_s1_writedata                                                      (mm_interconnect_0_gpio_s1_writedata),                                                      //                                                              .writedata
+		.GPIO_s1_chipselect                                                     (mm_interconnect_0_gpio_s1_chipselect),                                                     //                                                              .chipselect
 		.jtag_uart_0_avalon_jtag_slave_address                                  (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_address),                                  //                                 jtag_uart_0_avalon_jtag_slave.address
 		.jtag_uart_0_avalon_jtag_slave_write                                    (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write),                                    //                                                              .write
 		.jtag_uart_0_avalon_jtag_slave_read                                     (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read),                                     //                                                              .read
@@ -550,6 +574,7 @@ module top_level (
 		.receiver0_irq (irq_mapper_receiver0_irq),       // receiver0.irq
 		.receiver1_irq (irq_mapper_receiver1_irq),       // receiver1.irq
 		.receiver2_irq (irq_mapper_receiver2_irq),       // receiver2.irq
+		.receiver3_irq (irq_mapper_receiver3_irq),       // receiver3.irq
 		.sender_irq    (top_level_irq_irq)               //    sender.irq
 	);
 

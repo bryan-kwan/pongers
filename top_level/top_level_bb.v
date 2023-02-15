@@ -2,6 +2,7 @@
 module top_level (
 	clk_clk,
 	clk_shift_clk,
+	gpio_export,
 	ledr_external_connection_export,
 	memory_addr,
 	memory_ba,
@@ -24,6 +25,7 @@ module top_level (
 
 	input		clk_clk;
 	output		clk_shift_clk;
+	inout	[31:0]	gpio_export;
 	output	[7:0]	ledr_external_connection_export;
 	output	[12:0]	memory_addr;
 	output	[1:0]	memory_ba;

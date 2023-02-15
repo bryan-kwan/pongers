@@ -45,7 +45,7 @@
 //   PIPELINE_ARB:        1
 //   PKT_TRANS_LOCK:      45 (arbitration locking enabled)
 //   ST_DATA_W:           83
-//   ST_CHANNEL_W:        12
+//   ST_CHANNEL_W:        13
 // ------------------------------------------
 
 module top_level_mm_interconnect_0_cmd_mux_005
@@ -55,7 +55,7 @@ module top_level_mm_interconnect_0_cmd_mux_005
     // ----------------------
     input                       sink0_valid,
     input [83-1   : 0]  sink0_data,
-    input [12-1: 0]  sink0_channel,
+    input [13-1: 0]  sink0_channel,
     input                       sink0_startofpacket,
     input                       sink0_endofpacket,
     output                      sink0_ready,
@@ -66,7 +66,7 @@ module top_level_mm_interconnect_0_cmd_mux_005
     // ----------------------
     output                      src_valid,
     output [83-1    : 0] src_data,
-    output [12-1 : 0] src_channel,
+    output [13-1 : 0] src_channel,
     output                      src_startofpacket,
     output                      src_endofpacket,
     input                       src_ready,
@@ -77,12 +77,12 @@ module top_level_mm_interconnect_0_cmd_mux_005
     input clk,
     input reset
 );
-    localparam PAYLOAD_W        = 83 + 12 + 2;
+    localparam PAYLOAD_W        = 83 + 13 + 2;
     localparam NUM_INPUTS       = 1;
     localparam SHARE_COUNTER_W  = 1;
     localparam PIPELINE_ARB     = 1;
     localparam ST_DATA_W        = 83;
-    localparam ST_CHANNEL_W     = 12;
+    localparam ST_CHANNEL_W     = 13;
     localparam PKT_TRANS_LOCK   = 45;
 
     assign	src_valid			=  sink0_valid;

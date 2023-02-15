@@ -2,6 +2,7 @@
 		port (
 			clk_clk                         : in    std_logic                     := 'X';             -- clk
 			clk_shift_clk                   : out   std_logic;                                        -- clk
+			gpio_export                     : inout std_logic_vector(31 downto 0) := (others => 'X'); -- export
 			ledr_external_connection_export : out   std_logic_vector(7 downto 0);                     -- export
 			memory_addr                     : out   std_logic_vector(12 downto 0);                    -- addr
 			memory_ba                       : out   std_logic_vector(1 downto 0);                     -- ba
@@ -28,6 +29,7 @@
 		port map (
 			clk_clk                         => CONNECTED_TO_clk_clk,                         --                      clk.clk
 			clk_shift_clk                   => CONNECTED_TO_clk_shift_clk,                   --                clk_shift.clk
+			gpio_export                     => CONNECTED_TO_gpio_export,                     --                     gpio.export
 			ledr_external_connection_export => CONNECTED_TO_ledr_external_connection_export, -- ledr_external_connection.export
 			memory_addr                     => CONNECTED_TO_memory_addr,                     --                   memory.addr
 			memory_ba                       => CONNECTED_TO_memory_ba,                       --                         .ba

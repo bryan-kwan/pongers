@@ -1,6 +1,7 @@
 	top_level u0 (
 		.clk_clk                         (<connected-to-clk_clk>),                         //                      clk.clk
 		.clk_shift_clk                   (<connected-to-clk_shift_clk>),                   //                clk_shift.clk
+		.gpio_export                     (<connected-to-gpio_export>),                     //                     gpio.export
 		.ledr_external_connection_export (<connected-to-ledr_external_connection_export>), // ledr_external_connection.export
 		.memory_addr                     (<connected-to-memory_addr>),                     //                   memory.addr
 		.memory_ba                       (<connected-to-memory_ba>),                       //                         .ba
