@@ -3,54 +3,7 @@
 #include "sys/alt_alarm.h"
 #include "alt_types.h"
 
-
-int main()
-{
-	// Have to set up these pointers to open the device
-	// Reference : https://faculty-web.msoe.edu/johnsontimoj/EE3921/files3921/nios_pixel_sw.pdf
-	alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev;
-	pixel_buf_dma_dev = alt_up_pixel_buffer_dma_open_dev(VIDEO_PIXEL_BUFFER_DMA_0_NAME);
-	// Check for error
-	if ( pixel_buf_dma_dev == NULL)
-		printf ("Error: could not open pixel buffer device \n");
-	else
-		printf ("Opened pixel buffer device \n");
-	alt_up_char_buffer_dev * char_buf_dev;
-	char_buf_dev = alt_up_char_buffer_open_dev("/dev/video_character_buffer_with_dma_0");
-	if ( char_buf_dev == NULL)
-		printf ("Error: could not open char buffer device \n");
-	else
-		printf ("Opened char buffer device \n");
-
-	alt_up_char_buffer_init(char_buf_dev);
-	alt_up_char_buffer_init(char_buf_dev);
-
-	// Game objects
-	Game game = {SCREEN_WIDTH, SCREEN_HEIGHT, {0,0}, NUM_BALLS, NUM_PADDLES,
-			{{BALL_XDEFAULT, BALL_YDEFAULT, BALL_XSPEED, BALL_YSPEED, BALL_WIDTH, BALL_HEIGHT, BALL_COLOUR}}, //Balls
-			{{0, 0, 0, 0, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_COLOUR}, //Paddles
-					{SCREEN_WIDTH-PADDLE_WIDTH, 0, 0, 0, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_COLOUR}},
-			{0,0,0,0,0,0,0,0}, //User input
-			0 // Game time in s
-	};
-	//Display strings
-	char time_str[10];
-	sprintf(time_str, "Time: %u", game.time);
-	char score_str[20];
-
-	// Alarm setup - executes the callback function periodically (every second)
-	alt_u32 alarm_callback(void *context) {
-		game.time += 1;
-		sprintf(time_str, "Time: %u", game.time);
-		return alt_ticks_per_second();
-	}
-	static alt_alarm alarm;
-	// Setup alarm to call the callback function every N_TICKS
-	if (alt_alarm_start(&alarm, alt_ticks_per_second(), alarm_callback, NULL) < 0){
-		printf ("No System Clock Available\n");
-	}
-
-	// The makefile is not working as intended so the linker is unable to compile the dependencies.
+// The makefile is not working as intended so the linker is unable to compile the dependencies.
 	// As a result, we have to manually include the functions here ********
 	void cheat_code(Game* game) {
 		int* user_input = game->user_input;
@@ -189,6 +142,76 @@ int main()
 			user_input[i] = (0b1 << i) & SW;
 		}
 	}
+
+	void pause_menu(alt_up_char_buffer_dev * char_buf_dev){
+
+
+		int sw[8] = {0};
+		get_user_input(sw);
+
+		//clear(pixel_buf_dma_dev, char_buf_dev,0); // Current screen
+
+		while(!sw[5]){
+			get_user_input(sw);
+			alt_up_char_buffer_string(char_buf_dev, "Pain Pong", 37, 8);
+
+			if(sw[5]){
+				alt_up_char_buffer_clear(char_buf_dev);
+				break;
+			}
+		}
+
+	}
+
+
+int main()
+{
+	// Have to set up these pointers to open the device
+	// Reference : https://faculty-web.msoe.edu/johnsontimoj/EE3921/files3921/nios_pixel_sw.pdf
+	alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev;
+	pixel_buf_dma_dev = alt_up_pixel_buffer_dma_open_dev(VIDEO_PIXEL_BUFFER_DMA_0_NAME);
+	// Check for error
+	if ( pixel_buf_dma_dev == NULL)
+		printf ("Error: could not open pixel buffer device \n");
+	else
+		printf ("Opened pixel buffer device \n");
+	alt_up_char_buffer_dev * char_buf_dev;
+	char_buf_dev = alt_up_char_buffer_open_dev("/dev/video_character_buffer_with_dma_0");
+	if ( char_buf_dev == NULL)
+		printf ("Error: could not open char buffer device \n");
+	else
+		printf ("Opened char buffer device \n");
+
+	alt_up_char_buffer_init(char_buf_dev);
+	alt_up_char_buffer_init(char_buf_dev);
+
+	// Game objects
+	Game game = {SCREEN_WIDTH, SCREEN_HEIGHT, {0,0}, NUM_BALLS, NUM_PADDLES,
+			{{BALL_XDEFAULT, BALL_YDEFAULT, BALL_XSPEED, BALL_YSPEED, BALL_WIDTH, BALL_HEIGHT, BALL_COLOUR}}, //Balls
+			{{0, 0, 0, 0, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_COLOUR}, //Paddles
+					{SCREEN_WIDTH-PADDLE_WIDTH, 0, 0, 0, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_COLOUR}},
+			{0,0,0,0,0,0,0,0}, //User input
+			0 // Game time in s
+	};
+
+
+	//Display strings
+	char time_str[10];
+	sprintf(time_str, "Time: %u", game.time);
+	char score_str[20];
+
+	// Alarm setup - executes the callback function periodically (every second)
+		alt_u32 alarm_callback(void *context) {
+			game.time += 1;
+			sprintf(time_str, "Time: %u", game.time);
+			return alt_ticks_per_second();
+		}
+	static alt_alarm alarm;
+	// Setup alarm to call the callback function every N_TICKS
+	if (alt_alarm_start(&alarm, alt_ticks_per_second(), alarm_callback, NULL) < 0){
+		printf ("No System Clock Available\n");
+	}
+
 	void reset_game(Game* game) {
 		// Reset score
 		int* scores = game -> scores;
@@ -198,6 +221,7 @@ int main()
 		game -> time = 0;
 		sprintf(time_str, "Time: %u", game->time);
 	}
+
 	int check_win(Game* game) {
 		int* scores = game->scores;
 		if(scores[0]>=MAX_SCORE || scores[1]>=MAX_SCORE){
@@ -207,40 +231,48 @@ int main()
 		return 0;
 
 	}
-	void run_game_tick(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, alt_up_char_buffer_dev * char_buf_dev, int buffer, Game* game) {
-		// Check for winner
-		if(check_win(game)) {
-			clear(pixel_buf_dma_dev, char_buf_dev,0);
-		}
-		int* user_input = (game -> user_input);
-		Rectangle* balls = (game -> balls);
-		Rectangle* paddles = (game -> paddles);
-		// Wait for screen refresh
-		alt_up_pixel_buffer_dma_swap_buffers(pixel_buf_dma_dev);
-		while(alt_up_pixel_buffer_dma_check_swap_buffers_status(pixel_buf_dma_dev));
 
-		get_user_input(user_input);
-		// Cleanup - erase old objects
-		draw(pixel_buf_dma_dev, BACKGROUND_COLOUR,buffer, balls, NUM_BALLS);
-		draw(pixel_buf_dma_dev, BACKGROUND_COLOUR, buffer, paddles, NUM_PADDLES);
-		// Game logic
-		cheat_code(game); // Checks for cheat code input
-		update_ball(game);
-		update_paddle(game);
-		// Render the screen
-		draw(pixel_buf_dma_dev, BALL_COLOUR, buffer, balls, NUM_BALLS);
-		draw(pixel_buf_dma_dev, PADDLE_COLOUR, buffer, paddles, NUM_PADDLES);
-	}
-	// ****************
-	// Clear screen
+	void run_game_tick(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, alt_up_char_buffer_dev * char_buf_dev, int buffer, Game* game) {
+			// Check for winner
+			if(check_win(game)) {
+				clear(pixel_buf_dma_dev, char_buf_dev,0);
+			}
+			int* user_input = (game -> user_input);
+			Rectangle* balls = (game -> balls);
+			Rectangle* paddles = (game -> paddles);
+			// Wait for screen refresh
+			alt_up_pixel_buffer_dma_swap_buffers(pixel_buf_dma_dev);
+			while(alt_up_pixel_buffer_dma_check_swap_buffers_status(pixel_buf_dma_dev));
+
+			get_user_input(user_input);
+			// Cleanup - erase old objects
+			draw(pixel_buf_dma_dev, BACKGROUND_COLOUR,buffer, balls, NUM_BALLS);
+			draw(pixel_buf_dma_dev, BACKGROUND_COLOUR, buffer, paddles, NUM_PADDLES);
+			// Game logic
+			cheat_code(game); // Checks for cheat code input
+			update_ball(game);
+			update_paddle(game);
+			// Render the screen
+			draw(pixel_buf_dma_dev, BALL_COLOUR, buffer, balls, NUM_BALLS);
+			draw(pixel_buf_dma_dev, PADDLE_COLOUR, buffer, paddles, NUM_PADDLES);
+		}
+		// ****************
+
+
+		// Clear screen
 	clear(pixel_buf_dma_dev, char_buf_dev,0); // Current screen
 	//clear(pixel_buf_dma_dev, 0, char_buf_dev); // Char buffer
 	while(1) {
+
+		pause_menu(char_buf_dev);
+
+
 		run_game_tick(pixel_buf_dma_dev, char_buf_dev, 0, &game);
 		sprintf(score_str, "%u - %u", game.scores[0], game.scores[1]);
 		alt_up_char_buffer_string(char_buf_dev, score_str, 37, 2);
 		alt_up_char_buffer_string(char_buf_dev, time_str, 65, 2);
 		usleep(10000);
+
 	}
 	return 0;
 }
