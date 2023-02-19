@@ -4,7 +4,7 @@
  * Machine generated for CPU 'top_level' in SOPC Builder design 'top_level'
  * SOPC Builder design path: ../../top_level.sopcinfo
  *
- * Generated: Tue Feb 14 13:25:19 MST 2023
+ * Generated: Sun Feb 19 11:42:21 MST 2023
  */
 
 /*
@@ -146,6 +146,33 @@
 
 
 /*
+ * GPIO configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_GPIO altera_avalon_pio
+#define GPIO_BASE 0x8083050
+#define GPIO_BIT_CLEARING_EDGE_REGISTER 0
+#define GPIO_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define GPIO_CAPTURE 1
+#define GPIO_DATA_WIDTH 32
+#define GPIO_DO_TEST_BENCH_WIRING 0
+#define GPIO_DRIVEN_SIM_VALUE 0
+#define GPIO_EDGE_TYPE "RISING"
+#define GPIO_FREQ 50000000
+#define GPIO_HAS_IN 0
+#define GPIO_HAS_OUT 0
+#define GPIO_HAS_TRI 1
+#define GPIO_IRQ 3
+#define GPIO_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define GPIO_IRQ_TYPE "EDGE"
+#define GPIO_NAME "/dev/GPIO"
+#define GPIO_RESET_VALUE 0
+#define GPIO_SPAN 16
+#define GPIO_TYPE "altera_avalon_pio"
+
+
+/*
  * System configuration
  *
  */
@@ -161,19 +188,19 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart_0"
-#define ALT_STDERR_BASE 0x8083098
+#define ALT_STDERR_BASE 0x80830a8
 #define ALT_STDERR_DEV jtag_uart_0
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart_0"
-#define ALT_STDIN_BASE 0x8083098
+#define ALT_STDIN_BASE 0x80830a8
 #define ALT_STDIN_DEV jtag_uart_0
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart_0"
-#define ALT_STDOUT_BASE 0x8083098
+#define ALT_STDOUT_BASE 0x80830a8
 #define ALT_STDOUT_DEV jtag_uart_0
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
@@ -186,7 +213,7 @@
  *
  */
 
-#define ALTPLL_0_BASE 0x8083070
+#define ALTPLL_0_BASE 0x8083080
 #define ALTPLL_0_IRQ -1
 #define ALTPLL_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define ALTPLL_0_NAME "/dev/altpll_0"
@@ -212,7 +239,7 @@
  */
 
 #define ALT_MODULE_CLASS_jtag_uart_0 altera_avalon_jtag_uart
-#define JTAG_UART_0_BASE 0x8083098
+#define JTAG_UART_0_BASE 0x80830a8
 #define JTAG_UART_0_IRQ 0
 #define JTAG_UART_0_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_0_NAME "/dev/jtag_uart_0"
@@ -230,7 +257,7 @@
  */
 
 #define ALT_MODULE_CLASS_ledr altera_avalon_pio
-#define LEDR_BASE 0x8083060
+#define LEDR_BASE 0x8083070
 #define LEDR_BIT_CLEARING_EDGE_REGISTER 0
 #define LEDR_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define LEDR_CAPTURE 0
@@ -325,7 +352,7 @@
  */
 
 #define ALT_MODULE_CLASS_sw altera_avalon_pio
-#define SW_BASE 0x8083050
+#define SW_BASE 0x8083060
 #define SW_BIT_CLEARING_EDGE_REGISTER 0
 #define SW_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define SW_CAPTURE 1
@@ -352,13 +379,13 @@
  */
 
 #define ALT_MODULE_CLASS_sysid_qsys_0 altera_avalon_sysid_qsys
-#define SYSID_QSYS_0_BASE 0x8083090
+#define SYSID_QSYS_0_BASE 0x80830a0
 #define SYSID_QSYS_0_ID 0
 #define SYSID_QSYS_0_IRQ -1
 #define SYSID_QSYS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_0_NAME "/dev/sysid_qsys_0"
 #define SYSID_QSYS_0_SPAN 8
-#define SYSID_QSYS_0_TIMESTAMP 1676406126
+#define SYSID_QSYS_0_TIMESTAMP 1676492413
 #define SYSID_QSYS_0_TYPE "altera_avalon_sysid_qsys"
 
 
@@ -408,7 +435,7 @@
  */
 
 #define ALT_MODULE_CLASS_video_character_buffer_with_dma_0_avalon_char_control_slave altera_up_avalon_video_character_buffer_with_dma
-#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_BASE 0x80830a0
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_BASE 0x80830b0
 #define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_IRQ -1
 #define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_NAME "/dev/video_character_buffer_with_dma_0_avalon_char_control_slave"
@@ -422,7 +449,7 @@
  */
 
 #define ALT_MODULE_CLASS_video_pixel_buffer_dma_0 altera_up_avalon_video_pixel_buffer_dma
-#define VIDEO_PIXEL_BUFFER_DMA_0_BASE 0x8083080
+#define VIDEO_PIXEL_BUFFER_DMA_0_BASE 0x8083090
 #define VIDEO_PIXEL_BUFFER_DMA_0_IRQ -1
 #define VIDEO_PIXEL_BUFFER_DMA_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define VIDEO_PIXEL_BUFFER_DMA_0_NAME "/dev/video_pixel_buffer_dma_0"

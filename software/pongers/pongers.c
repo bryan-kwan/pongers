@@ -3,10 +3,12 @@
 #include "sys/alt_alarm.h"
 #include "alt_types.h"
 
+int pause_flag = 0;
+int main_menu_flag = 0;
 // Interrupt setup for PIO
 static void pio_isr(void * context, alt_u32 id)    //this is the ISR
 {
-	printf("interrupt worked.");
+	pause_flag = !pause_flag;
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(SW_BASE, 0x0);    //resets edge capture register so interrupt can be triggered again
 	                                                    //can write anything to the register to reset it, does not have to be 0x0
 }
@@ -64,7 +66,7 @@ int main()
 	}
 
 
-	// The makefile is not working as intended so the linker is unable to compile the dependencies.
+	// The makefile is not working as intended so the linker is unable to link the dependencies.
 	// As a result, we have to manually include the functions here ********
 	void cheat_code(Game* game) {
 		int* user_input = game->user_input;
@@ -245,7 +247,15 @@ int main()
 		draw(pixel_buf_dma_dev, BALL_COLOUR, buffer, balls, NUM_BALLS);
 		draw(pixel_buf_dma_dev, PADDLE_COLOUR, buffer, paddles, NUM_PADDLES);
 	}
+
+	void pause_menu(alt_up_char_buffer_dev * char_buf_dev) {
+		alt_up_char_buffer_string(char_buf_dev, "Pain Pong", 37, 8);
+	}
+	void clear_pause_menu(alt_up_char_buffer_dev * char_buf_dev) {
+		alt_up_char_buffer_string(char_buf_dev, "         ", 37, 8);
+	}
 	// ****************
+
 	// Clear screen
 	clear(pixel_buf_dma_dev, char_buf_dev,0); // Current screen
 	//clear(pixel_buf_dma_dev, 0, char_buf_dev); // Char buffer
@@ -253,11 +263,17 @@ int main()
 	// Initialize interrupts
 	init_pio_interrupt();
 	while(1) {
-		run_game_tick(pixel_buf_dma_dev, char_buf_dev, 0, &game);
-		sprintf(score_str, "%u - %u", game.scores[0], game.scores[1]);
-		alt_up_char_buffer_string(char_buf_dev, score_str, 37, 2);
-		alt_up_char_buffer_string(char_buf_dev, time_str, 65, 2);
-		usleep(10000);
+		if(pause_flag) { // Pause menu
+			pause_menu(char_buf_dev);
+		}
+		else {
+			clear_pause_menu(char_buf_dev);
+			// Run Pong game
+			run_game_tick(pixel_buf_dma_dev, char_buf_dev, 0, &game);
+			sprintf(score_str, "%u - %u", game.scores[0], game.scores[1]);
+			alt_up_char_buffer_string(char_buf_dev, score_str, 37, 2);
+			alt_up_char_buffer_string(char_buf_dev, time_str, 65, 2);
+		}
 	}
 	return 0;
 }
