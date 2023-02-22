@@ -21,7 +21,7 @@
    {
       datum baseAddress
       {
-         value = "134754912";
+         value = "134754896";
          type = "String";
       }
    }
@@ -42,7 +42,7 @@
    {
       datum baseAddress
       {
-         value = "134754960";
+         value = "134754928";
          type = "String";
       }
    }
@@ -84,7 +84,7 @@
    {
       datum baseAddress
       {
-         value = "134755008";
+         value = "134754976";
          type = "String";
       }
    }
@@ -105,7 +105,7 @@
    {
       datum baseAddress
       {
-         value = "134754944";
+         value = "134754928";
          type = "String";
       }
    }
@@ -129,7 +129,7 @@
    {
       datum baseAddress
       {
-         value = "134754992";
+         value = "134754960";
          type = "String";
       }
    }
@@ -192,7 +192,7 @@
    {
       datum baseAddress
       {
-         value = "134754928";
+         value = "134754912";
          type = "String";
       }
    }
@@ -213,7 +213,7 @@
    {
       datum baseAddress
       {
-         value = "134755000";
+         value = "134754968";
          type = "String";
       }
    }
@@ -287,7 +287,7 @@
    {
       datum baseAddress
       {
-         value = "134755016";
+         value = "134754984";
          type = "String";
       }
    }
@@ -321,7 +321,7 @@
    {
       datum baseAddress
       {
-         value = "134754976";
+         value = "134754944";
          type = "String";
       }
    }
@@ -391,11 +391,7 @@
    internal="GPIO.external_connection"
    type="conduit"
    dir="end" />
- <interface
-   name="ledr_external_connection"
-   internal="ledr.external_connection"
-   type="conduit"
-   dir="end" />
+ <interface name="ledr_external_connection" internal="ledr.external_connection" />
  <interface
    name="memory"
    internal="new_sdram_controller_0.wire"
@@ -417,14 +413,14 @@
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="true" />
   <parameter name="clockRate" value="50000000" />
-  <parameter name="direction" value="Bidir" />
+  <parameter name="direction" value="Input" />
   <parameter name="edgeType" value="RISING" />
   <parameter name="generateIRQ" value="true" />
   <parameter name="irqType" value="EDGE" />
   <parameter name="resetValue" value="0" />
   <parameter name="simDoTestBenchWiring" value="false" />
   <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="32" />
+  <parameter name="width" value="4" />
  </module>
  <module name="altpll_0" kind="altpll" version="17.1" enabled="1">
   <parameter name="AUTO_DEVICE_FAMILY" value="MAX 10" />
@@ -624,7 +620,7 @@
   <parameter name="writeBufferDepth" value="64" />
   <parameter name="writeIRQThreshold" value="8" />
  </module>
- <module name="ledr" kind="altera_avalon_pio" version="17.1" enabled="1">
+ <module name="ledr" kind="altera_avalon_pio" version="17.1" enabled="0">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="false" />
@@ -695,8 +691,8 @@
   <parameter name="prescaler_ch8" value="false" />
   <parameter name="refsel" value="1" />
   <parameter name="sample_rate" value="0" />
-  <parameter name="seq_order_length" value="1" />
-  <parameter name="seq_order_slot_1" value="0" />
+  <parameter name="seq_order_length" value="4" />
+  <parameter name="seq_order_slot_1" value="1" />
   <parameter name="seq_order_slot_10" value="30" />
   <parameter name="seq_order_slot_11" value="30" />
   <parameter name="seq_order_slot_12" value="30" />
@@ -707,7 +703,7 @@
   <parameter name="seq_order_slot_17" value="30" />
   <parameter name="seq_order_slot_18" value="30" />
   <parameter name="seq_order_slot_19" value="30" />
-  <parameter name="seq_order_slot_2" value="30" />
+  <parameter name="seq_order_slot_2" value="2" />
   <parameter name="seq_order_slot_20" value="30" />
   <parameter name="seq_order_slot_21" value="30" />
   <parameter name="seq_order_slot_22" value="30" />
@@ -718,7 +714,7 @@
   <parameter name="seq_order_slot_27" value="30" />
   <parameter name="seq_order_slot_28" value="30" />
   <parameter name="seq_order_slot_29" value="30" />
-  <parameter name="seq_order_slot_3" value="30" />
+  <parameter name="seq_order_slot_3" value="3" />
   <parameter name="seq_order_slot_30" value="30" />
   <parameter name="seq_order_slot_31" value="30" />
   <parameter name="seq_order_slot_32" value="30" />
@@ -729,7 +725,7 @@
   <parameter name="seq_order_slot_37" value="30" />
   <parameter name="seq_order_slot_38" value="30" />
   <parameter name="seq_order_slot_39" value="30" />
-  <parameter name="seq_order_slot_4" value="30" />
+  <parameter name="seq_order_slot_4" value="4" />
   <parameter name="seq_order_slot_40" value="30" />
   <parameter name="seq_order_slot_41" value="30" />
   <parameter name="seq_order_slot_42" value="30" />
@@ -823,9 +819,9 @@
   <parameter name="use_ch14" value="false" />
   <parameter name="use_ch15" value="false" />
   <parameter name="use_ch16" value="false" />
-  <parameter name="use_ch2" value="false" />
-  <parameter name="use_ch3" value="false" />
-  <parameter name="use_ch4" value="false" />
+  <parameter name="use_ch2" value="true" />
+  <parameter name="use_ch3" value="true" />
+  <parameter name="use_ch4" value="true" />
   <parameter name="use_ch5" value="false" />
   <parameter name="use_ch6" value="false" />
   <parameter name="use_ch7" value="false" />
@@ -947,7 +943,7 @@
   <parameter name="dataAddrWidth" value="28" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='new_sdram_controller_0.s1' start='0x4000000' end='0x8000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='onchip_memory2_0.s1' start='0x8040000' end='0x80680A0' type='altera_avalon_onchip_memory2.s1' /><slave name='video_character_buffer_with_dma_0.avalon_char_buffer_slave' start='0x8080000' end='0x8082000' type='altera_up_avalon_video_character_buffer_with_dma.avalon_char_buffer_slave' /><slave name='top_level.debug_mem_slave' start='0x8082800' end='0x8083000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='modular_adc_0.sample_store_csr' start='0x8083000' end='0x8083200' type='altera_modular_adc.sample_store_csr' /><slave name='timer_0.s1' start='0x8083220' end='0x8083240' type='altera_avalon_timer.s1' /><slave name='GPIO.s1' start='0x8083260' end='0x8083270' type='altera_avalon_pio.s1' /><slave name='sw.s1' start='0x8083270' end='0x8083280' type='altera_avalon_pio.s1' /><slave name='ledr.s1' start='0x8083280' end='0x8083290' type='altera_avalon_pio.s1' /><slave name='altpll_0.pll_slave' start='0x8083290' end='0x80832A0' type='altpll.pll_slave' /><slave name='video_pixel_buffer_dma_0.avalon_control_slave' start='0x80832A0' end='0x80832B0' type='altera_up_avalon_video_pixel_buffer_dma.avalon_control_slave' /><slave name='modular_adc_0.sequencer_csr' start='0x80832B0' end='0x80832B8' type='altera_modular_adc.sequencer_csr' /><slave name='sysid_qsys_0.control_slave' start='0x80832B8' end='0x80832C0' type='altera_avalon_sysid_qsys.control_slave' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x80832C0' end='0x80832C8' type='altera_avalon_jtag_uart.avalon_jtag_slave' /><slave name='video_character_buffer_with_dma_0.avalon_char_control_slave' start='0x80832C8' end='0x80832D0' type='altera_up_avalon_video_character_buffer_with_dma.avalon_char_control_slave' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='new_sdram_controller_0.s1' start='0x4000000' end='0x8000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='onchip_memory2_0.s1' start='0x8040000' end='0x80680A0' type='altera_avalon_onchip_memory2.s1' /><slave name='video_character_buffer_with_dma_0.avalon_char_buffer_slave' start='0x8080000' end='0x8082000' type='altera_up_avalon_video_character_buffer_with_dma.avalon_char_buffer_slave' /><slave name='top_level.debug_mem_slave' start='0x8082800' end='0x8083000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='modular_adc_0.sample_store_csr' start='0x8083000' end='0x8083200' type='altera_modular_adc.sample_store_csr' /><slave name='timer_0.s1' start='0x8083220' end='0x8083240' type='altera_avalon_timer.s1' /><slave name='GPIO.s1' start='0x8083250' end='0x8083260' type='altera_avalon_pio.s1' /><slave name='sw.s1' start='0x8083260' end='0x8083270' type='altera_avalon_pio.s1' /><slave name='altpll_0.pll_slave' start='0x8083270' end='0x8083280' type='altpll.pll_slave' /><slave name='video_pixel_buffer_dma_0.avalon_control_slave' start='0x8083280' end='0x8083290' type='altera_up_avalon_video_pixel_buffer_dma.avalon_control_slave' /><slave name='modular_adc_0.sequencer_csr' start='0x8083290' end='0x8083298' type='altera_modular_adc.sequencer_csr' /><slave name='sysid_qsys_0.control_slave' start='0x8083298' end='0x80832A0' type='altera_avalon_sysid_qsys.control_slave' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x80832A0' end='0x80832A8' type='altera_avalon_jtag_uart.avalon_jtag_slave' /><slave name='video_character_buffer_with_dma_0.avalon_char_control_slave' start='0x80832A8' end='0x80832B0' type='altera_up_avalon_video_character_buffer_with_dma.avalon_char_control_slave' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -986,7 +982,7 @@
   <parameter name="icache_tagramBlockType" value="Automatic" />
   <parameter name="impl" value="Tiny" />
   <parameter name="instAddrWidth" value="28" />
-  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='new_sdram_controller_0.s1' start='0x4000000' end='0x8000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='onchip_memory2_0.s1' start='0x8040000' end='0x80680A0' type='altera_avalon_onchip_memory2.s1' /><slave name='top_level.debug_mem_slave' start='0x8082800' end='0x8083000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='timer_0.s1' start='0x8083220' end='0x8083240' type='altera_avalon_timer.s1' /><slave name='video_pixel_buffer_dma_0.avalon_control_slave' start='0x80832A0' end='0x80832B0' type='altera_up_avalon_video_pixel_buffer_dma.avalon_control_slave' /></address-map>]]></parameter>
+  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='new_sdram_controller_0.s1' start='0x4000000' end='0x8000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='onchip_memory2_0.s1' start='0x8040000' end='0x80680A0' type='altera_avalon_onchip_memory2.s1' /><slave name='top_level.debug_mem_slave' start='0x8082800' end='0x8083000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='timer_0.s1' start='0x8083220' end='0x8083240' type='altera_avalon_timer.s1' /><slave name='video_pixel_buffer_dma_0.avalon_control_slave' start='0x8083280' end='0x8083290' type='altera_up_avalon_video_pixel_buffer_dma.avalon_control_slave' /></address-map>]]></parameter>
   <parameter name="instructionMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="instructionMasterHighPerformanceMapParam" value="" />
   <parameter name="instruction_master_high_performance_paddr_base" value="0" />
@@ -1213,7 +1209,7 @@
    start="top_level.data_master"
    end="video_character_buffer_with_dma_0.avalon_char_control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x080832c8" />
+  <parameter name="baseAddress" value="0x080832a8" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1222,7 +1218,7 @@
    start="top_level.data_master"
    end="video_pixel_buffer_dma_0.avalon_control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x080832a0" />
+  <parameter name="baseAddress" value="0x08083280" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1231,7 +1227,7 @@
    start="top_level.data_master"
    end="jtag_uart_0.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x080832c0" />
+  <parameter name="baseAddress" value="0x080832a0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1240,7 +1236,7 @@
    start="top_level.data_master"
    end="sysid_qsys_0.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x080832b8" />
+  <parameter name="baseAddress" value="0x08083298" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1258,7 +1254,7 @@
    start="top_level.data_master"
    end="altpll_0.pll_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x08083290" />
+  <parameter name="baseAddress" value="0x08083270" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1267,7 +1263,7 @@
    start="top_level.data_master"
    end="ledr.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x08083280" />
+  <parameter name="baseAddress" value="0x08083270" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1276,7 +1272,7 @@
    start="top_level.data_master"
    end="sw.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x08083270" />
+  <parameter name="baseAddress" value="0x08083260" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1312,7 +1308,7 @@
    start="top_level.data_master"
    end="GPIO.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x08083260" />
+  <parameter name="baseAddress" value="0x08083250" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1330,7 +1326,7 @@
    start="top_level.data_master"
    end="modular_adc_0.sequencer_csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x080832b0" />
+  <parameter name="baseAddress" value="0x08083290" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1339,7 +1335,7 @@
    start="top_level.instruction_master"
    end="video_pixel_buffer_dma_0.avalon_control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x080832a0" />
+  <parameter name="baseAddress" value="0x08083280" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection

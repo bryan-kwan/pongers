@@ -2,6 +2,7 @@
 #include "gameutil.h"
 #include "sys/alt_alarm.h"
 #include "alt_types.h"
+#include "altera_modular_adc.h"
 
 int pause_flag = 0;
 int main_menu_flag = 0;
@@ -45,6 +46,7 @@ int main()
 			{{BALL_XDEFAULT, BALL_YDEFAULT, BALL_XSPEED, BALL_YSPEED, BALL_WIDTH, BALL_HEIGHT, BALL_COLOUR}}, //Balls
 			{{0, 0, 0, 0, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_COLOUR}, //Paddles
 					{SCREEN_WIDTH-PADDLE_WIDTH, 0, 0, 0, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_COLOUR}},
+			0,0,0,0, // ADC values
 			{0,0,0,0,0,0,0,0}, //User input
 			0 // Game time in s
 	};
@@ -87,13 +89,20 @@ int main()
 		int* user_input = (game -> user_input);
 		int len = (game->paddles_len);
 		Rectangle* paddle = (game -> paddles);
+		float adc_volt_left = game->adc_volt_left;
+		float adc_volt_right = game->adc_volt_right;
 		// Adjust speed according to user input
 		int SW_0 = user_input[0];
 		int SW_1 = user_input[1];
-		if(SW_0) // SW_0 is on (left paddle)
-			paddle[0].yspeed = -PADDLE_SPEED;
-		else
-			paddle[0].yspeed = PADDLE_SPEED;
+		if(adc_volt_left >=2.6) {
+			paddle[0].yspeed = adc_volt_left;
+		}
+		else if(adc_volt_left <=2.4) {
+			paddle[0].yspeed = -(5-adc_volt_left);
+		}
+		else {
+			paddle[0].yspeed = 0;
+		}
 		if(SW_1) // SW_1 is on (right paddle)
 			paddle[1].yspeed = -PADDLE_SPEED;
 		else
@@ -199,8 +208,9 @@ int main()
 					colour, buffer);
 		}
 	}
-	void get_user_input(int* user_input) {
+	void get_user_input(Game* game) {
 		int SW = IORD(SW_BASE, 0);
+		int* user_input = game->user_input;
 		for(int i = 0; i<8; i++) {
 			user_input[i] = (0b1 << i) & SW;
 		}
@@ -228,14 +238,14 @@ int main()
 		if(check_win(game)) {
 			clear(pixel_buf_dma_dev, char_buf_dev,0);
 		}
-		int* user_input = (game -> user_input);
 		Rectangle* balls = (game -> balls);
 		Rectangle* paddles = (game -> paddles);
 		// Wait for screen refresh
 		alt_up_pixel_buffer_dma_swap_buffers(pixel_buf_dma_dev);
 		while(alt_up_pixel_buffer_dma_check_swap_buffers_status(pixel_buf_dma_dev));
 
-		get_user_input(user_input);
+		// User input
+		get_user_input(game);
 		// Cleanup - erase old objects
 		draw(pixel_buf_dma_dev, BACKGROUND_COLOUR,buffer, balls, NUM_BALLS);
 		draw(pixel_buf_dma_dev, BACKGROUND_COLOUR, buffer, paddles, NUM_PADDLES);
@@ -262,6 +272,11 @@ int main()
 
 	// Initialize interrupts
 	init_pio_interrupt();
+
+	// ADC setup
+	adc_stop(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
+	adc_set_mode_run_once(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
+
 	while(1) {
 		if(pause_flag) { // Pause menu
 			pause_menu(char_buf_dev);
@@ -269,6 +284,20 @@ int main()
 		else {
 			clear_pause_menu(char_buf_dev);
 			// Run Pong game
+			// ADC
+			//TODO: Figure out why adc_start crashes the program
+//			adc_start(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
+//			usleep(10000);
+			alt_u32* adc_val_left = &(game.adc_val_left);
+			alt_u32* adc_val_right = &(game.adc_val_right);
+			float* adc_volt_left = &(game.adc_volt_left);
+			float* adc_volt_right = &(game.adc_volt_right);
+			// Read joystick values
+			// TODO: implement right joystick
+			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE, adc_val_left, 1);
+	//		alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE + 32 * 1, adc_val_right, 1);
+			*adc_volt_left = (float)*adc_val_left * 5.0 / 4096.0;
+			// ADC - end
 			run_game_tick(pixel_buf_dma_dev, char_buf_dev, 0, &game);
 			sprintf(score_str, "%u - %u", game.scores[0], game.scores[1]);
 			alt_up_char_buffer_string(char_buf_dev, score_str, 37, 2);

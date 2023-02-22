@@ -53,15 +53,13 @@ struct Game {
 	int paddles_len;
 	Rectangle balls[NUM_BALLS];
 	Rectangle paddles[NUM_PADDLES];
+	alt_u32 adc_val_left;
+	alt_u32 adc_val_right;
+	float adc_volt_left;
+	float adc_volt_right;
 	int user_input[8];
 	int time;
 };
 typedef struct Game Game;
-void update_paddle(Game* game);
-void update_ball(Game* game);
-void clear(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, alt_up_char_buffer_dev * char_buf_dev,int buffer);
-void draw(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev,int colour, int buffer, Rectangle rect[], int len);
-void run_game_tick(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, alt_up_char_buffer_dev * char_buf_dev, int buffer, Game* game);
-void get_user_input(int* user_input);
 
 #endif /* GAMEUTIL_H_ */

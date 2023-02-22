@@ -8,7 +8,6 @@
    <name preferredWidth="227" />
   </columns>
  </systemtable>
- <library
-   expandedCategories="Library/Interface Protocols,Library/Basic Functions/Configuration and Programming,Library/Basic Functions/On Chip Memory,Library/Basic Functions/Clocks; PLLs and Resets,Library/Basic Functions/Bridges and Adaptors/Memory Mapped,Library/Interface Protocols/Ethernet,Library/Basic Functions/Simulation; Debug and Verification,Library/University Program/Audio &amp; Video,Library/DSP/Video and Image Processing,Library,Library/University Program,Library/Qsys Interconnect/Memory-Mapped Alpha,Library/University Program/Audio &amp; Video/Video,Project,Library/Qsys Interconnect/Interrupt,Library/Basic Functions/Bridges and Adaptors,Library/Interface Protocols/Audio &amp; Video,Library/Basic Functions/Simulation; Debug and Verification/Simulation,Library/Basic Functions/Bridges and Adaptors/Clock,Library/Basic Functions,Library/Interface Protocols/Ethernet/Reference Design Components,Library/DSP,Library/University Program/Clock,Library/Qsys Interconnect" />
+ <library expandedCategories="Project,Library" />
  <window width="1364" height="718" x="1" y="1" />
 </preferences>

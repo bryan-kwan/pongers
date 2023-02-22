@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Feb 20, 2023 12:00:39 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1676919639500</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Feb 22, 2023 2:16:06 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1677100566379</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\bryan\VSCodeWorkspace\ENEL400\software\pongers_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\top_level.sopcinfo</SopcDesignFile>
@@ -930,55 +930,49 @@
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>GPIO</slaveDescriptor>
-                <addressRange>0x08083260 - 0x0808326F</addressRange>
+                <addressRange>0x08083250 - 0x0808325F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sw</slaveDescriptor>
-                <addressRange>0x08083270 - 0x0808327F</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>ledr</slaveDescriptor>
-                <addressRange>0x08083280 - 0x0808328F</addressRange>
+                <addressRange>0x08083260 - 0x0808326F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>altpll_0</slaveDescriptor>
-                <addressRange>0x08083290 - 0x0808329F</addressRange>
+                <addressRange>0x08083270 - 0x0808327F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>video_pixel_buffer_dma_0</slaveDescriptor>
-                <addressRange>0x080832A0 - 0x080832AF</addressRange>
+                <addressRange>0x08083280 - 0x0808328F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>modular_adc_0_sequencer_csr</slaveDescriptor>
-                <addressRange>0x080832B0 - 0x080832B7</addressRange>
+                <addressRange>0x08083290 - 0x08083297</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sysid_qsys_0</slaveDescriptor>
-                <addressRange>0x080832B8 - 0x080832BF</addressRange>
+                <addressRange>0x08083298 - 0x0808329F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart_0</slaveDescriptor>
-                <addressRange>0x080832C0 - 0x080832C7</addressRange>
+                <addressRange>0x080832A0 - 0x080832A7</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>video_character_buffer_with_dma_0_avalon_char_control_slave</slaveDescriptor>
-                <addressRange>0x080832C8 - 0x080832CF</addressRange>
+                <addressRange>0x080832A8 - 0x080832AF</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
