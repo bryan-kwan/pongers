@@ -277,6 +277,7 @@ int main()
 	adc_stop(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
 	adc_set_mode_run_once(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
 
+
 	while(1) {
 		if(pause_flag) { // Pause menu
 			pause_menu(char_buf_dev);
@@ -286,8 +287,8 @@ int main()
 			// Run Pong game
 			// ADC
 			//TODO: Figure out why adc_start crashes the program
-//			adc_start(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
-//			usleep(10000);
+			adc_start(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
+			usleep(10000);
 			alt_u32* adc_val_left = &(game.adc_val_left);
 			alt_u32* adc_val_right = &(game.adc_val_right);
 			float* adc_volt_left = &(game.adc_volt_left);

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="top_level" kind="top_level" version="1.0" fabric="QSYS">
  <!-- Format version 17.1 590 (Future versions may contain additional information.) -->
- <!-- 2023.02.22.14:09:46 -->
+ <!-- 2023.02.23.10:16:16 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1677100185</value>
+  <value>1677172575</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -10170,7 +10170,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1677100185</value>
+   <value>1677172575</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -10190,7 +10190,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1677100185</value>
+   <value>1677172575</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -10206,7 +10206,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1677100185</value>
+   <value>1677172575</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -13189,7 +13189,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="internalIrqMaskSystemInfo">
    <type>long</type>
-   <value>31</value>
+   <value>15</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -14261,13 +14261,6 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>irq</slaveName>
     <name>GPIO.irq</name>
     <interruptNumber>3</interruptNumber>
-   </interrupt>
-   <interrupt>
-    <isBridge>false</isBridge>
-    <moduleName>modular_adc_0</moduleName>
-    <slaveName>sample_store_irq</slaveName>
-    <name>modular_adc_0.sample_store_irq</name>
-    <interruptNumber>4</interruptNumber>
    </interrupt>
   </interface>
   <interface name="debug_reset_request" kind="reset_source" version="17.1">
@@ -21509,41 +21502,6 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>irq</endConnectionPoint>
  </connection>
  <connection
-   name="top_level.irq/modular_adc_0.sample_store_irq"
-   kind="interrupt"
-   version="17.1"
-   start="top_level.irq"
-   end="modular_adc_0.sample_store_irq">
-  <parameter name="irqNumber">
-   <type>int</type>
-   <value>4</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>top_level</startModule>
-  <startConnectionPoint>irq</startConnectionPoint>
-  <endModule>modular_adc_0</endModule>
-  <endConnectionPoint>sample_store_irq</endConnectionPoint>
- </connection>
- <connection
    name="clk_0.clk_reset/clk_1.clk_in_reset"
    kind="reset"
    version="17.1"
@@ -22434,7 +22392,7 @@ parameters are a RESULT of the module parameters. -->
   <version>17.1</version>
  </plugin>
  <plugin>
-  <instanceCount>5</instanceCount>
+  <instanceCount>4</instanceCount>
   <name>interrupt</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IConnection</subtype>

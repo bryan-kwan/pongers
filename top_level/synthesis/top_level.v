@@ -162,7 +162,6 @@ module top_level (
 	wire         irq_mapper_receiver1_irq;                                                                 // timer_0:irq -> irq_mapper:receiver1_irq
 	wire         irq_mapper_receiver2_irq;                                                                 // sw:irq -> irq_mapper:receiver2_irq
 	wire         irq_mapper_receiver3_irq;                                                                 // GPIO:irq -> irq_mapper:receiver3_irq
-	wire         irq_mapper_receiver4_irq;                                                                 // modular_adc_0:sample_store_irq_irq -> irq_mapper:receiver4_irq
 	wire  [31:0] top_level_irq_irq;                                                                        // irq_mapper:sender_irq -> top_level:irq
 	wire         video_scaler_0_avalon_scaler_source_valid;                                                // video_scaler_0:stream_out_valid -> avalon_st_adapter:in_0_valid
 	wire  [29:0] video_scaler_0_avalon_scaler_source_data;                                                 // video_scaler_0:stream_out_data -> avalon_st_adapter:in_0_data
@@ -249,7 +248,7 @@ module top_level (
 		.sample_store_csr_write     (mm_interconnect_0_modular_adc_0_sample_store_csr_write),     //                 .write
 		.sample_store_csr_writedata (mm_interconnect_0_modular_adc_0_sample_store_csr_writedata), //                 .writedata
 		.sample_store_csr_readdata  (mm_interconnect_0_modular_adc_0_sample_store_csr_readdata),  //                 .readdata
-		.sample_store_irq_irq       (irq_mapper_receiver4_irq)                                    // sample_store_irq.irq
+		.sample_store_irq_irq       ()                                                            // sample_store_irq.irq
 	);
 
 	top_level_new_sdram_controller_0 new_sdram_controller_0 (
@@ -596,7 +595,6 @@ module top_level (
 		.receiver1_irq (irq_mapper_receiver1_irq),       // receiver1.irq
 		.receiver2_irq (irq_mapper_receiver2_irq),       // receiver2.irq
 		.receiver3_irq (irq_mapper_receiver3_irq),       // receiver3.irq
-		.receiver4_irq (irq_mapper_receiver4_irq),       // receiver4.irq
 		.sender_irq    (top_level_irq_irq)               //    sender.irq
 	);
 
