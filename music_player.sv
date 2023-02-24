@@ -18,16 +18,29 @@ module music_player (
 //logic [5:0] fullnote;
 //assign fullnote = tone[27:22];
 
-//Oscilliscope Test: Make counter [40:0] to give us 687s to measure first note!
-logic [40:0] tone;
-always_ff @(posedge clk)
-	tone <= tone + 1;
-	
-logic [5:0] fullnote;
-assign fullnote = tone[39:34];
-
 //With a 25 MHz clk, each note lasts 168 ms.
 //The reason we are instantiating a 28-bit counter and extracting the 6 MSB
+//Is to let each note last for a longer period of time.
+//This is because the counter has to run for longer to reach the 6 MSB 
+//Math: 2^22 = 4,194,304. 1 / (25E6 / 2^22) = 0.168s
+
+//Oscilliscope Test: Make counter [40:0] to give us 687s to measure first note!
+//logic [40:0] tone;
+//always_ff @(posedge clk)
+//	tone <= tone + 1;
+//	
+//logic [5:0] fullnote;
+//assign fullnote = tone[39:34];
+
+//ROM Player
+logic [30:0] tone;
+always_ff @(posedge clk)
+	tone <= tone + 1;
+
+logic [7:0] fullnote;
+musicrom_v rom(.clk(clk), .address(tone[29:22]), .note(fullnote));
+//With a 25 MHz clk, each note lasts 168 ms.
+//The reason we are instantiating a 31-bit counter and extracting the 6 MSB
 //Is to let each note last for a longer period of time.
 //This is because the counter has to run for longer to reach the 6 MSB 
 //Math: 2^22 = 4,194,304. 1 / (25E6 / 2^22) = 0.168s
@@ -40,7 +53,7 @@ assign fullnote = tone[39:34];
 // Let's use a 4-bit bus for note (2^4 = 16), which is enough for us to use 12 notes
 logic [2:0] octave;
 logic [3:0] note;
-divide_by_12 div(.numerator(fullnote), .quotient(octave), .remainder(note));
+divide_by_12 div(.numerator(fullnote[5:0]), .quotient(octave), .remainder(note));
 //	For example: 
 // "fullnote" = 6'b101010 = 42
 // 42 / 12 = 3.5
@@ -52,20 +65,59 @@ divide_by_12 div(.numerator(fullnote), .quotient(octave), .remainder(note));
 //We wil divide the clock by this in order to produce the desired freuqnecy
 //For example, note A - octave 4 produces 440 Hz
 logic [8:0] clkdivider;
-always_ff @(note)
+always_ff @*
 case(note)
-	 0: clkdivider = 9'd511;//A
-	 1: clkdivider = 9'd482;// A#/Bb
-	 2: clkdivider = 9'd455;//B
-	 3: clkdivider = 9'd430;//C
-	 4: clkdivider = 9'd405;// C#/Db
-	 5: clkdivider = 9'd383;//D
-	 6: clkdivider = 9'd361;// D#/Eb
-	 7: clkdivider = 9'd341;//E
-	 8: clkdivider = 9'd322;//F
-	 9: clkdivider = 9'd303;// F#/Gb
-	10: clkdivider = 9'd286;//G
-	11: clkdivider = 9'd270;// G#/Ab
+//	 0: clkdivider = 9'd444 - 1;//A
+//	 1: clkdivider = 9'd419 - 1;// A#/Bb
+//	 2: clkdivider = 9'd396 - 1;//B
+//	 3: clkdivider = 9'd745 - 1;//C
+//	 4: clkdivider = 9'd705 - 1;// C#/Db
+//	 5: clkdivider = 9'd664 - 1;//D
+//	 6: clkdivider = 9'd628 - 1;// D#/Eb
+//	 7: clkdivider = 9'd592 - 1;//E
+//	 8: clkdivider = 9'd560 - 1;//F
+//	 9: clkdivider = 9'd528 - 1;// F#/Gb
+//	10: clkdivider = 9'd498 - 1;//G
+//	11: clkdivider = 9'd470 - 1;// G#/Ab
+	
+//	 0: clkdivider = 9'd888 - 1;//A
+//	 1: clkdivider = 9'd838 - 1;// A#/Bb
+//	 2: clkdivider = 9'd792 - 1;//B
+//	 3: clkdivider = 9'd1490 - 1;//C
+//	 4: clkdivider = 9'd1410 - 1;// C#/Db
+//	 5: clkdivider = 9'd1328 - 1;//D
+//	 6: clkdivider = 9'd1256 - 1;// D#/Eb
+//	 7: clkdivider = 9'd1184 - 1;//E
+//	 8: clkdivider = 9'd1120 - 1;//F
+//	 9: clkdivider = 9'd1056 - 1;// F#/Gb
+//	10: clkdivider = 9'd996 - 1;//G
+//	11: clkdivider = 9'd942 - 1;// G#/Ab
+
+//	 0: clkdivider = 9'd511;//A
+//	 1: clkdivider = 9'd482;// A#/Bb
+//	 2: clkdivider = 9'd455;//B
+//	 3: clkdivider = 9'd430;//C
+//	 4: clkdivider = 9'd405;// C#/Db
+//	 5: clkdivider = 9'd383;//D
+//	 6: clkdivider = 9'd361;// D#/Eb
+//	 7: clkdivider = 9'd341;//E
+//	 8: clkdivider = 9'd322;//F
+//	 9: clkdivider = 9'd303;// F#/Gb
+//	10: clkdivider = 9'd286;//G
+//	11: clkdivider = 9'd270;// G#/Ab
+
+	0: clkdivider = 9'd440;	//A
+	1: clkdivider = 9'd466;	// A#/Bb
+	2: clkdivider = 9'd493;	//B
+	3: clkdivider = 9'd261;	//C
+	4: clkdivider = 9'd277;	// C#/Db
+	5: clkdivider = 9'd293;	//D
+	6: clkdivider = 9'd311;	// D#/Eb
+	7: clkdivider = 9'd329;	//E
+	8: clkdivider = 9'd349;	//F
+	9: clkdivider = 9'd369;	// F#/Gb
+	10: clkdivider = 9'd392;	//G
+	11: clkdivider = 9'd415;	// G#/Ab
 	default: clkdivider = 9'd0;
 endcase
 //There are 12 possible cases of notes from the divide_by_12 module
@@ -90,11 +142,11 @@ always_ff @(posedge clk)
 if (counter_note == 0)
 begin
 	if (counter_octave == 0)
-		counter_octave <= (octave == 0 ? 255 :
-															octave == 1 ? 127 :
-																						octave == 2 ? 62 :
-																													octave == 3 ? 31 : 
-																																				octave == 4 ? 15 : 7);
+		counter_octave <= (octave == 0 ? (256-1) :
+															octave == 1 ? (128-1) :
+																						octave == 2 ? (64-1) :
+																													octave == 2 ? (32-1) : 
+																																				octave == 4 ? (16-1) : (8-1));
 	else
 		counter_octave <= counter_octave - 1;
 end
@@ -105,12 +157,14 @@ end
 //This feeds into our "clkdivider" which will ultimatelty produce the frequencies we want
 //Continuing from the example provided from the "counter_note" module
 //Note A, Octave 0 (First note)
-//F = (25E6) / ( ((25E6) / (511)) + ((25E6) / (255)) ) = 170 or 85
-//I need to check this calculation with an oscilliscope
+//F = (25E6) / (111) / (256) / 2 = 440
 
+//Let A2 = 440
 always_ff @(posedge clk)
-	if (counter_note == 0 && counter_octave == 0)
+	if (counter_note == 0 && counter_octave == 0 && fullnote!=0 && tone[21:18] != 0)
 		tunes <= ~tunes;
-
+//always @(posedge clk) counter_note <= counter_note==0 ? clkdivider : counter_note-9'd1;
+//always @(posedge clk) if(counter_note==0) counter_octave <= counter_octave==0 ? 8'd255 >> octave : counter_octave-8'd1;
+//always @(posedge clk) if(counter_note==0 && counter_octave==0 && fullnote!=0 && tone[21:18]!=0) tunes <= ~tunes;
 
 endmodule
