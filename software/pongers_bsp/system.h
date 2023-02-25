@@ -4,7 +4,7 @@
  * Machine generated for CPU 'top_level' in SOPC Builder design 'top_level'
  * SOPC Builder design path: ../../top_level.sopcinfo
  *
- * Generated: Thu Feb 23 10:23:03 MST 2023
+ * Generated: Fri Feb 24 16:30:03 MST 2023
  */
 
 /*
@@ -144,6 +144,7 @@
 #define __ALTERA_UP_AVALON_VIDEO_CHARACTER_BUFFER_WITH_DMA
 #define __ALTERA_UP_AVALON_VIDEO_PIXEL_BUFFER_DMA
 #define __ALTPLL
+#define __AUDIO_MODULE
 
 
 /*
@@ -221,6 +222,20 @@
 #define ALTPLL_0_SPAN 16
 #define ALTPLL_0_TYPE "altpll"
 #define ALT_MODULE_CLASS_altpll_0 altpll
+
+
+/*
+ * audio_module_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_audio_module_0 audio_module
+#define AUDIO_MODULE_0_BASE 0x80832b0
+#define AUDIO_MODULE_0_IRQ -1
+#define AUDIO_MODULE_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define AUDIO_MODULE_0_NAME "/dev/audio_module_0"
+#define AUDIO_MODULE_0_SPAN 4
+#define AUDIO_MODULE_0_TYPE "audio_module"
 
 
 /*
@@ -567,7 +582,7 @@
 #define SYSID_QSYS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_0_NAME "/dev/sysid_qsys_0"
 #define SYSID_QSYS_0_SPAN 8
-#define SYSID_QSYS_0_TIMESTAMP 1677172575
+#define SYSID_QSYS_0_TIMESTAMP 1677280999
 #define SYSID_QSYS_0_TYPE "altera_avalon_sysid_qsys"
 
 

@@ -33,19 +33,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS
   7 .onchip_memory2_0 00000000  080569b4  080569b4  00015c6c  2**0
                   CONTENTS
-  8 .comment      00000046  00000000  00000000  00015c6c  2**0
+  8 .comment      00000023  00000000  00000000  00015c6c  2**0
                   CONTENTS, READONLY
-  9 .debug_aranges 00000f08  00000000  00000000  00015cb8  2**3
+  9 .debug_aranges 00000f08  00000000  00000000  00015c90  2**3
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_info   000233a1  00000000  00000000  00016bc0  2**0
+ 10 .debug_info   000233bf  00000000  00000000  00016b98  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_abbrev 000091fc  00000000  00000000  00039f61  2**0
+ 11 .debug_abbrev 000091fc  00000000  00000000  00039f57  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_line   0000bc86  00000000  00000000  0004315d  2**0
+ 12 .debug_line   0000bc7c  00000000  00000000  00043153  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_frame  000027ac  00000000  00000000  0004ede4  2**2
+ 13 .debug_frame  000027ac  00000000  00000000  0004edd0  2**2
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    0000410f  00000000  00000000  00051590  2**0
+ 14 .debug_str    00004123  00000000  00000000  0005157c  2**0
                   CONTENTS, READONLY, DEBUGGING
  15 .debug_loc    00017c68  00000000  00000000  0005569f  2**0
                   CONTENTS, READONLY, DEBUGGING
@@ -75,11 +75,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  28 .sopc_system_name 00000009  00000000  00000000  000725c5  2**0
                   CONTENTS, READONLY
- 29 .quartus_project_dir 00000026  00000000  00000000  000725ce  2**0
+ 29 .quartus_project_dir 00000030  00000000  00000000  000725ce  2**0
                   CONTENTS, READONLY
- 30 .jdi          00003d27  00000000  00000000  000725f4  2**0
+ 30 .jdi          00003d27  00000000  00000000  000725fe  2**0
                   CONTENTS, READONLY
- 31 .sopcinfo     0009c633  00000000  00000000  0007631b  2**0
+ 31 .sopcinfo     000a179b  00000000  00000000  00076325  2**0
                   CONTENTS, READONLY
 SYMBOL TABLE:
 08040000 l    d  .entry	00000000 .entry
@@ -1226,7 +1226,7 @@ int main()
  80404c4:	210ca404 	addi	r4,r4,12944
  80404c8:	8050a340 	call	8050a34 <adc_set_mode_run_once>
 
-
+	//IOWR_32DIRECT(AUDIO_MODULE_0_BASE, 0, 0);
 	while(1) {
 		if(pause_flag) { // Pause menu
  80404cc:	d0a70317 	ldw	r2,-25588(gp)
