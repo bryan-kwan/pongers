@@ -8,6 +8,8 @@ You can use Tools / NIOS II Software Build Tools for Eclipse (It's safer to use 
 
 Once you have written your C program, go to Project / Build Project. If it is your first time running this, you may see a settings screen pop up. Afterwards, you will see an .elf file was generated. After you program the hardware onto the board in Quartus Tools / Programmer, you can load the .elf file code into the NIOS core by right clicking the .elf file and selecting Run As / NIOS II Hardware.
 
+To permanently load your C program onto the board (ie. runs on power up), right click the .elf file and select Make Targets -> Build -> mem_init_generate. This will create the mem init hex file as well as the .qip file. You can include the .qip file in your quartus project or select the hex file in platform designer for on-chip memory. *IMPORTANT NOTE: You must disable (ie. select None in the BSP editor) stdin, stdout, stderr before generating the mem_init file or else the program will hang upon reaching a printf() statement.
+
 # Pin assignments on the DE10-Lite After Using Generate
 
 Note that after generating the verilog files from platform designer, you must change the names of the VGA signals from the VGA driver component. Eg. Change vga_conduit_HS to VGA_HS in order to match the default pin naming. 
