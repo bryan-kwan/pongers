@@ -257,12 +257,26 @@ int main()
 		draw(pixel_buf_dma_dev, BALL_COLOUR, buffer, balls, NUM_BALLS);
 		draw(pixel_buf_dma_dev, PADDLE_COLOUR, buffer, paddles, NUM_PADDLES);
 	}
+	void music_on(){
+			IOWR(AUDIO_MODULE_0_BASE, 0, 0x1);
+			printf("Read %d\n", IORD(AUDIO_MODULE_0_BASE, 0));
+		}
+	void music_off(){
+			IOWR(AUDIO_MODULE_0_BASE, 0, 0x0);
+			printf("Read %d\n", IORD(AUDIO_MODULE_0_BASE, 0));
+		}
 
 	void pause_menu(alt_up_char_buffer_dev * char_buf_dev) {
 		alt_up_char_buffer_string(char_buf_dev, "Pain Pong", 37, 8);
+		//Play music
+		music_on();
+
 	}
 	void clear_pause_menu(alt_up_char_buffer_dev * char_buf_dev) {
 		alt_up_char_buffer_string(char_buf_dev, "         ", 37, 8);
+		//Stop Music
+		music_off();
+
 	}
 	// ****************
 
@@ -276,9 +290,6 @@ int main()
 	// ADC setup
 	adc_stop(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
 	adc_set_mode_run_once(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
-	// TODO: audio
-	IOWR(AUDIO_MODULE_0_BASE, 0, 0x1);
-	printf("Read %d\n", IORD(AUDIO_MODULE_0_BASE, 0));
 
 	while(1) {
 		if(pause_flag) { // Pause menu
