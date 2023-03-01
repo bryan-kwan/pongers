@@ -276,8 +276,10 @@ int main()
 	// ADC setup
 	adc_stop(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
 	adc_set_mode_run_once(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
+	// TODO: audio
+	IOWR(AUDIO_MODULE_0_BASE, 0, 0x1);
+	printf("Read %d\n", IORD(AUDIO_MODULE_0_BASE, 0));
 
-	IOWR_32DIRECT(AUDIO_MODULE_0_BASE, 0, 0);
 	while(1) {
 		if(pause_flag) { // Pause menu
 			pause_menu(char_buf_dev);
