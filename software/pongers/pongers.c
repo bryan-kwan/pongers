@@ -184,13 +184,15 @@ int main()
 					scores[1] += 1;
 				}
 			}
-			else if (rect[i].y + rect[i].height >= SCREEN_HEIGHT) {
+			else if (rect[i].y + rect[i].height >= SCREEN_HEIGHT) { // Collisions with top/bottom screen
 				rect[i].y = SCREEN_HEIGHT - rect[i].height;
 				rect[i].yspeed *= -1;
+				collision_sound();
 			}
 			else if (rect[i].y <= 0) {
 				rect[i].y = 0;
 				rect[i].yspeed *= -1;
+				collision_sound();
 			}
 		}
 	}
