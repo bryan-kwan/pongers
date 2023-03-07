@@ -4,7 +4,7 @@
  * Machine generated for CPU 'top_level' in SOPC Builder design 'top_level'
  * SOPC Builder design path: ../../top_level.sopcinfo
  *
- * Generated: Thu Feb 23 10:23:03 MST 2023
+ * Generated: Thu Mar 02 11:24:47 MST 2023
  */
 
 /*
@@ -144,6 +144,7 @@
 #define __ALTERA_UP_AVALON_VIDEO_CHARACTER_BUFFER_WITH_DMA
 #define __ALTERA_UP_AVALON_VIDEO_PIXEL_BUFFER_DMA
 #define __ALTPLL
+#define __AUDIO_MODULE
 
 
 /*
@@ -188,24 +189,18 @@
 #define ALT_NUM_EXTERNAL_INTERRUPT_CONTROLLERS 0
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
-#define ALT_STDERR "/dev/jtag_uart_0"
-#define ALT_STDERR_BASE 0x80832a0
-#define ALT_STDERR_DEV jtag_uart_0
-#define ALT_STDERR_IS_JTAG_UART
-#define ALT_STDERR_PRESENT
-#define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
-#define ALT_STDIN "/dev/jtag_uart_0"
-#define ALT_STDIN_BASE 0x80832a0
-#define ALT_STDIN_DEV jtag_uart_0
-#define ALT_STDIN_IS_JTAG_UART
-#define ALT_STDIN_PRESENT
-#define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
-#define ALT_STDOUT "/dev/jtag_uart_0"
-#define ALT_STDOUT_BASE 0x80832a0
-#define ALT_STDOUT_DEV jtag_uart_0
-#define ALT_STDOUT_IS_JTAG_UART
-#define ALT_STDOUT_PRESENT
-#define ALT_STDOUT_TYPE "altera_avalon_jtag_uart"
+#define ALT_STDERR "/dev/null"
+#define ALT_STDERR_BASE 0x0
+#define ALT_STDERR_DEV null
+#define ALT_STDERR_TYPE ""
+#define ALT_STDIN "/dev/null"
+#define ALT_STDIN_BASE 0x0
+#define ALT_STDIN_DEV null
+#define ALT_STDIN_TYPE ""
+#define ALT_STDOUT "/dev/null"
+#define ALT_STDOUT_BASE 0x0
+#define ALT_STDOUT_DEV null
+#define ALT_STDOUT_TYPE ""
 #define ALT_SYSTEM_NAME "top_level"
 
 
@@ -221,6 +216,20 @@
 #define ALTPLL_0_SPAN 16
 #define ALTPLL_0_TYPE "altpll"
 #define ALT_MODULE_CLASS_altpll_0 altpll
+
+
+/*
+ * audio_module_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_audio_module_0 audio_module
+#define AUDIO_MODULE_0_BASE 0x80832b0
+#define AUDIO_MODULE_0_IRQ -1
+#define AUDIO_MODULE_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define AUDIO_MODULE_0_NAME "/dev/audio_module_0"
+#define AUDIO_MODULE_0_SPAN 4
+#define AUDIO_MODULE_0_TYPE "audio_module"
 
 
 /*
@@ -567,7 +576,7 @@
 #define SYSID_QSYS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_0_NAME "/dev/sysid_qsys_0"
 #define SYSID_QSYS_0_SPAN 8
-#define SYSID_QSYS_0_TIMESTAMP 1677172575
+#define SYSID_QSYS_0_TIMESTAMP 1677697107
 #define SYSID_QSYS_0_TYPE "altera_avalon_sysid_qsys"
 
 

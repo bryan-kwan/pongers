@@ -2,8 +2,6 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Feb 23, 2023 10:23:02 AM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1677172982108</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\bryan\VSCodeWorkspace\ENEL400\software\pongers_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\top_level.sopcinfo</SopcDesignFile>
@@ -974,6 +972,12 @@
                 <slaveDescriptor>video_character_buffer_with_dma_0_avalon_char_control_slave</slaveDescriptor>
                 <addressRange>0x080832A8 - 0x080832AF</addressRange>
                 <addressSpan>8</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>audio_module_0</slaveDescriptor>
+                <addressRange>0x080832B0 - 0x080832B3</addressRange>
+                <addressSpan>4</addressSpan>
                 <attributes/>
         </MemoryMap>
         <LinkerSection>

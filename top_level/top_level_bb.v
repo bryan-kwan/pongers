@@ -1,5 +1,6 @@
 
 module top_level (
+	audio_out_writeresponsevalid_n,
 	clk_clk,
 	gpio_export,
 	memory_addr,
@@ -22,6 +23,7 @@ module top_level (
 	vga_conduit_G,
 	vga_conduit_B);	
 
+	output		audio_out_writeresponsevalid_n;
 	input		clk_clk;
 	input	[3:0]	gpio_export;
 	output	[12:0]	memory_addr;

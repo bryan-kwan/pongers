@@ -132,6 +132,14 @@ int main()
 			return -1;
 		return 1;
 	}
+
+	void collision_sound(){
+			//play the some audio for 100us then stop playing it to make a 'beep' sound
+			IOWR(AUDIO_MODULE_0_BASE, 0, 0x1);
+			usleep(1000);
+			IOWR(AUDIO_MODULE_0_BASE, 0, 0x0);
+		};
+
 	void update_ball(Game* game) {
 		int rect_len = (game -> balls_len);
 		Rectangle* rect = (game -> balls);
@@ -145,6 +153,7 @@ int main()
 			if(rect[i].x + rect[i].width >= SCREEN_WIDTH || rect[i].x + rect[i].width >= paddles[1].x) {
 				// Collision with right paddle
 				if(rect[i].y + rect[i].height >= paddles[1].y && rect[i].y <= paddles[1].y + paddles[1].height) {
+					collision_sound(); //play the collision sound
 					rect[i].x = paddles[1].x - rect[i].width;
 					rect[i].xspeed*=-1; // Bounce
 					if(sign(rect[i].yspeed)!=sign(paddles[1].yspeed)&& paddles[1].yspeed!=0) // Ball bounces in direction of paddle movement
@@ -161,6 +170,7 @@ int main()
 			else if (rect[i].x <= 0 || rect[i].x <= paddles[0].width) {
 				// Collision with left paddle
 				if(rect[i].y + rect[i].height >= paddles[0].y && rect[i].y <= paddles[0].y + paddles[0].height) {
+					collision_sound(); //play the collision sound
 					rect[i].x = paddles[0].x + paddles[0].width;
 					rect[i].xspeed*=-1; //Bounce
 					if(sign(rect[i].yspeed)!=sign(paddles[0].yspeed) && paddles[0].yspeed!=0) // Ball bounces in direction of paddle movement
@@ -174,13 +184,15 @@ int main()
 					scores[1] += 1;
 				}
 			}
-			else if (rect[i].y + rect[i].height >= SCREEN_HEIGHT) {
+			else if (rect[i].y + rect[i].height >= SCREEN_HEIGHT) { // Collisions with top/bottom screen
 				rect[i].y = SCREEN_HEIGHT - rect[i].height;
 				rect[i].yspeed *= -1;
+				collision_sound();
 			}
 			else if (rect[i].y <= 0) {
 				rect[i].y = 0;
 				rect[i].yspeed *= -1;
+				collision_sound();
 			}
 		}
 	}
@@ -257,12 +269,24 @@ int main()
 		draw(pixel_buf_dma_dev, BALL_COLOUR, buffer, balls, NUM_BALLS);
 		draw(pixel_buf_dma_dev, PADDLE_COLOUR, buffer, paddles, NUM_PADDLES);
 	}
+	void music_on(){
+			IOWR(AUDIO_MODULE_0_BASE, 0, 0x1);
+		}
+	void music_off(){
+			IOWR(AUDIO_MODULE_0_BASE, 0, 0x0);
+		}
 
 	void pause_menu(alt_up_char_buffer_dev * char_buf_dev) {
 		alt_up_char_buffer_string(char_buf_dev, "Pain Pong", 37, 8);
+		//Play music
+		music_on();
+
 	}
 	void clear_pause_menu(alt_up_char_buffer_dev * char_buf_dev) {
 		alt_up_char_buffer_string(char_buf_dev, "         ", 37, 8);
+		//Stop Music
+		music_off();
+
 	}
 	// ****************
 
@@ -276,7 +300,6 @@ int main()
 	// ADC setup
 	adc_stop(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
 	adc_set_mode_run_once(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
-
 
 	while(1) {
 		if(pause_flag) { // Pause menu
