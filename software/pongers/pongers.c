@@ -316,10 +316,10 @@ int main()
 			float* adc_volt_left = &(game.adc_volt_left);
 			float* adc_volt_right = &(game.adc_volt_right);
 			// Read joystick values
-			// TODO: implement right joystick
 			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE, adc_val_left, 1);
-	//		alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE + 32 * 1, adc_val_right, 1);
+			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE + 4 * 1, adc_val_right, 1);
 			*adc_volt_left = (float)*adc_val_left * 5.0 / 4096.0;
+			*adc_val_right = (float)*adc_val_right * 5.0 / 4096.0;
 			// ADC - end
 			run_game_tick(pixel_buf_dma_dev, char_buf_dev, 0, &game);
 			sprintf(score_str, "%u - %u", game.scores[0], game.scores[1]);
