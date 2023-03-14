@@ -77,12 +77,12 @@ ALT_CPPFLAGS += -pipe
 
 # This following VERSION comment indicates the version of the tool used to 
 # generate this makefile. A makefile variable is provided for VERSION as well. 
-# ACDS_VERSION: 17.0
-ACDS_VERSION := 17.0
+# ACDS_VERSION: 17.1
+ACDS_VERSION := 17.1
 
 # This following BUILD_NUMBER comment indicates the build number of the tool 
 # used to generate this makefile. 
-# BUILD_NUMBER: 595
+# BUILD_NUMBER: 590
 
 # Qsys--generated SOPCINFO file. Required for resolving node instance ID's with 
 # design component names. 
@@ -157,9 +157,9 @@ SOPC_SYSID_FLAG += --sidp=0x8083298
 ELF_PATCH_FLAG  += --sidp 0x8083298
 
 # The SOPC Timestamp 
-# setting SOPC_TIMESTAMP is 1677697107
-SOPC_SYSID_FLAG += --timestamp=1677697107
-ELF_PATCH_FLAG  += --timestamp 1677697107
+# setting SOPC_TIMESTAMP is 1678677183
+SOPC_SYSID_FLAG += --timestamp=1678677183
+ELF_PATCH_FLAG  += --timestamp 1678677183
 
 # Enable JTAG UART driver to recover when host is inactive causing buffer to 
 # full without returning error. Printf will not fail with this recovery. none 
@@ -344,18 +344,18 @@ ALT_CFLAGS += -mgpopt=global
 
 # Slave descriptor of STDERR character-mode device. This setting is used by the 
 # ALT_STDERR family of defines in system.h. none 
-# setting hal.stderr is none
-ELF_PATCH_FLAG  += --stderr_dev none
+# setting hal.stderr is jtag_uart_0
+ELF_PATCH_FLAG  += --stderr_dev jtag_uart_0
 
 # Slave descriptor of STDIN character-mode device. This setting is used by the 
 # ALT_STDIN family of defines in system.h. none 
-# setting hal.stdin is none
-ELF_PATCH_FLAG  += --stdin_dev none
+# setting hal.stdin is jtag_uart_0
+ELF_PATCH_FLAG  += --stdin_dev jtag_uart_0
 
 # Slave descriptor of STDOUT character-mode device. This setting is used by the 
 # ALT_STDOUT family of defines in system.h. none 
-# setting hal.stdout is none
-ELF_PATCH_FLAG  += --stdout_dev none
+# setting hal.stdout is jtag_uart_0
+ELF_PATCH_FLAG  += --stdout_dev jtag_uart_0
 
 
 #------------------------------------------------------------------------------

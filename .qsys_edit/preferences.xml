@@ -6,8 +6,9 @@
    <connections preferredWidth="335" />
    <irq preferredWidth="34" />
    <name preferredWidth="227" />
+   <export preferredWidth="453" />
   </columns>
  </systemtable>
- <library expandedCategories="Library,Project,Project/My IP Core" />
- <window width="1366" height="720" x="0" y="0" />
+ <library expandedCategories="Project,Library" />
+ <window width="1366" height="720" x="394" y="270" />
 </preferences>

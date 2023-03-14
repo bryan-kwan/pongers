@@ -12,6 +12,14 @@
 		.memory_ras_n                   (<connected-to-memory_ras_n>),                   //                       .ras_n
 		.memory_we_n                    (<connected-to-memory_we_n>),                    //                       .we_n
 		.sdram_clk_clk                  (<connected-to-sdram_clk_clk>),                  //              sdram_clk.clk
+		.spi_master_MISO                (<connected-to-spi_master_MISO>),                //             spi_master.MISO
+		.spi_master_MOSI                (<connected-to-spi_master_MOSI>),                //                       .MOSI
+		.spi_master_SCLK                (<connected-to-spi_master_SCLK>),                //                       .SCLK
+		.spi_master_SS_n                (<connected-to-spi_master_SS_n>),                //                       .SS_n
+		.spi_slave_MISO                 (<connected-to-spi_slave_MISO>),                 //              spi_slave.MISO
+		.spi_slave_MOSI                 (<connected-to-spi_slave_MOSI>),                 //                       .MOSI
+		.spi_slave_SCLK                 (<connected-to-spi_slave_SCLK>),                 //                       .SCLK
+		.spi_slave_SS_n                 (<connected-to-spi_slave_SS_n>),                 //                       .SS_n
 		.sw_external_connection_export  (<connected-to-sw_external_connection_export>),  // sw_external_connection.export
 		.vga_conduit_CLK                (<connected-to-vga_conduit_CLK>),                //            vga_conduit.CLK
 		.vga_conduit_HS                 (<connected-to-vga_conduit_HS>),                 //                       .HS

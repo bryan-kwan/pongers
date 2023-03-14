@@ -17,6 +17,14 @@ module top_level (
 		output wire        memory_ras_n,                   //                       .ras_n
 		output wire        memory_we_n,                    //                       .we_n
 		output wire        sdram_clk_clk,                  //              sdram_clk.clk
+		input  wire        spi_master_MISO,                //             spi_master.MISO
+		output wire        spi_master_MOSI,                //                       .MOSI
+		output wire        spi_master_SCLK,                //                       .SCLK
+		output wire        spi_master_SS_n,                //                       .SS_n
+		output wire        spi_slave_MISO,                 //              spi_slave.MISO
+		input  wire        spi_slave_MOSI,                 //                       .MOSI
+		input  wire        spi_slave_SCLK,                 //                       .SCLK
+		input  wire        spi_slave_SS_n,                 //                       .SS_n
 		input  wire [7:0]  sw_external_connection_export,  // sw_external_connection.export
 		output wire        vga_conduit_CLK,                //            vga_conduit.CLK
 		output wire        vga_conduit_HS,                 //                       .HS
@@ -56,7 +64,7 @@ module top_level (
 	wire         altpll_0_c0_clk;                                                                          // altpll_0:c0 -> [audio_module_0:clock25, rst_controller_002:clk, video_dual_clock_buffer_0:clk_stream_out, video_vga_controller_0:clk]
 	wire         altpll_0_c1_clk;                                                                          // altpll_0:c1 -> modular_adc_0:adc_pll_clock_clk
 	wire         altpll_0_locked_conduit_export;                                                           // altpll_0:locked -> modular_adc_0:adc_pll_locked_export
-	wire         top_level_debug_reset_request_reset;                                                      // top_level:debug_reset_request -> [rst_controller:reset_in0, rst_controller_001:reset_in0, rst_controller_001:reset_in1, rst_controller_002:reset_in0]
+	wire         top_level_debug_reset_request_reset;                                                      // top_level:debug_reset_request -> [mm_interconnect_0:spi_0_reset_reset_bridge_in_reset_reset, rst_controller:reset_in0, rst_controller_001:reset_in0, rst_controller_001:reset_in1, rst_controller_002:reset_in0, spi_0:reset_n, spi_1:reset_n]
 	wire         video_pixel_buffer_dma_0_avalon_pixel_dma_master_waitrequest;                             // mm_interconnect_0:video_pixel_buffer_dma_0_avalon_pixel_dma_master_waitrequest -> video_pixel_buffer_dma_0:master_waitrequest
 	wire  [15:0] video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdata;                                // mm_interconnect_0:video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdata -> video_pixel_buffer_dma_0:master_readdata
 	wire  [31:0] video_pixel_buffer_dma_0_avalon_pixel_dma_master_address;                                 // video_pixel_buffer_dma_0:master_address -> mm_interconnect_0:video_pixel_buffer_dma_0_avalon_pixel_dma_master_address
@@ -163,10 +171,24 @@ module top_level (
 	wire         mm_interconnect_0_modular_adc_0_sequencer_csr_read;                                       // mm_interconnect_0:modular_adc_0_sequencer_csr_read -> modular_adc_0:sequencer_csr_read
 	wire         mm_interconnect_0_modular_adc_0_sequencer_csr_write;                                      // mm_interconnect_0:modular_adc_0_sequencer_csr_write -> modular_adc_0:sequencer_csr_write
 	wire  [31:0] mm_interconnect_0_modular_adc_0_sequencer_csr_writedata;                                  // mm_interconnect_0:modular_adc_0_sequencer_csr_writedata -> modular_adc_0:sequencer_csr_writedata
+	wire         mm_interconnect_0_spi_0_spi_control_port_chipselect;                                      // mm_interconnect_0:spi_0_spi_control_port_chipselect -> spi_0:spi_select
+	wire  [15:0] mm_interconnect_0_spi_0_spi_control_port_readdata;                                        // spi_0:data_to_cpu -> mm_interconnect_0:spi_0_spi_control_port_readdata
+	wire   [2:0] mm_interconnect_0_spi_0_spi_control_port_address;                                         // mm_interconnect_0:spi_0_spi_control_port_address -> spi_0:mem_addr
+	wire         mm_interconnect_0_spi_0_spi_control_port_read;                                            // mm_interconnect_0:spi_0_spi_control_port_read -> spi_0:read_n
+	wire         mm_interconnect_0_spi_0_spi_control_port_write;                                           // mm_interconnect_0:spi_0_spi_control_port_write -> spi_0:write_n
+	wire  [15:0] mm_interconnect_0_spi_0_spi_control_port_writedata;                                       // mm_interconnect_0:spi_0_spi_control_port_writedata -> spi_0:data_from_cpu
+	wire         mm_interconnect_0_spi_1_spi_control_port_chipselect;                                      // mm_interconnect_0:spi_1_spi_control_port_chipselect -> spi_1:spi_select
+	wire  [15:0] mm_interconnect_0_spi_1_spi_control_port_readdata;                                        // spi_1:data_to_cpu -> mm_interconnect_0:spi_1_spi_control_port_readdata
+	wire   [2:0] mm_interconnect_0_spi_1_spi_control_port_address;                                         // mm_interconnect_0:spi_1_spi_control_port_address -> spi_1:mem_addr
+	wire         mm_interconnect_0_spi_1_spi_control_port_read;                                            // mm_interconnect_0:spi_1_spi_control_port_read -> spi_1:read_n
+	wire         mm_interconnect_0_spi_1_spi_control_port_write;                                           // mm_interconnect_0:spi_1_spi_control_port_write -> spi_1:write_n
+	wire  [15:0] mm_interconnect_0_spi_1_spi_control_port_writedata;                                       // mm_interconnect_0:spi_1_spi_control_port_writedata -> spi_1:data_from_cpu
 	wire         irq_mapper_receiver0_irq;                                                                 // jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	wire         irq_mapper_receiver1_irq;                                                                 // timer_0:irq -> irq_mapper:receiver1_irq
 	wire         irq_mapper_receiver2_irq;                                                                 // sw:irq -> irq_mapper:receiver2_irq
 	wire         irq_mapper_receiver3_irq;                                                                 // GPIO:irq -> irq_mapper:receiver3_irq
+	wire         irq_mapper_receiver4_irq;                                                                 // spi_0:irq -> irq_mapper:receiver4_irq
+	wire         irq_mapper_receiver5_irq;                                                                 // spi_1:irq -> irq_mapper:receiver5_irq
 	wire  [31:0] top_level_irq_irq;                                                                        // irq_mapper:sender_irq -> top_level:irq
 	wire         video_scaler_0_avalon_scaler_source_valid;                                                // video_scaler_0:stream_out_valid -> avalon_st_adapter:in_0_valid
 	wire  [29:0] video_scaler_0_avalon_scaler_source_data;                                                 // video_scaler_0:stream_out_data -> avalon_st_adapter:in_0_data
@@ -302,6 +324,38 @@ module top_level (
 		.reset      (rst_controller_reset_out_reset),                   // reset1.reset
 		.reset_req  (rst_controller_reset_out_reset_req),               //       .reset_req
 		.freeze     (1'b0)                                              // (terminated)
+	);
+
+	top_level_spi_0 spi_0 (
+		.clk           (clk_clk),                                             //              clk.clk
+		.reset_n       (~top_level_debug_reset_request_reset),                //            reset.reset_n
+		.data_from_cpu (mm_interconnect_0_spi_0_spi_control_port_writedata),  // spi_control_port.writedata
+		.data_to_cpu   (mm_interconnect_0_spi_0_spi_control_port_readdata),   //                 .readdata
+		.mem_addr      (mm_interconnect_0_spi_0_spi_control_port_address),    //                 .address
+		.read_n        (~mm_interconnect_0_spi_0_spi_control_port_read),      //                 .read_n
+		.spi_select    (mm_interconnect_0_spi_0_spi_control_port_chipselect), //                 .chipselect
+		.write_n       (~mm_interconnect_0_spi_0_spi_control_port_write),     //                 .write_n
+		.irq           (irq_mapper_receiver4_irq),                            //              irq.irq
+		.MISO          (spi_slave_MISO),                                      //         external.export
+		.MOSI          (spi_slave_MOSI),                                      //                 .export
+		.SCLK          (spi_slave_SCLK),                                      //                 .export
+		.SS_n          (spi_slave_SS_n)                                       //                 .export
+	);
+
+	top_level_spi_1 spi_1 (
+		.clk           (clk_clk),                                             //              clk.clk
+		.reset_n       (~top_level_debug_reset_request_reset),                //            reset.reset_n
+		.data_from_cpu (mm_interconnect_0_spi_1_spi_control_port_writedata),  // spi_control_port.writedata
+		.data_to_cpu   (mm_interconnect_0_spi_1_spi_control_port_readdata),   //                 .readdata
+		.mem_addr      (mm_interconnect_0_spi_1_spi_control_port_address),    //                 .address
+		.read_n        (~mm_interconnect_0_spi_1_spi_control_port_read),      //                 .read_n
+		.spi_select    (mm_interconnect_0_spi_1_spi_control_port_chipselect), //                 .chipselect
+		.write_n       (~mm_interconnect_0_spi_1_spi_control_port_write),     //                 .write_n
+		.irq           (irq_mapper_receiver5_irq),                            //              irq.irq
+		.MISO          (spi_master_MISO),                                     //         external.export
+		.MOSI          (spi_master_MOSI),                                     //                 .export
+		.SCLK          (spi_master_SCLK),                                     //                 .export
+		.SS_n          (spi_master_SS_n)                                      //                 .export
 	);
 
 	top_level_sw sw (
@@ -498,6 +552,7 @@ module top_level (
 
 	top_level_mm_interconnect_0 mm_interconnect_0 (
 		.clk_0_clk_clk                                                          (clk_clk),                                                                                  //                                                     clk_0_clk.clk
+		.spi_0_reset_reset_bridge_in_reset_reset                                (top_level_debug_reset_request_reset),                                                      //                             spi_0_reset_reset_bridge_in_reset.reset
 		.video_character_buffer_with_dma_0_reset_reset_bridge_in_reset_reset    (rst_controller_001_reset_out_reset),                                                       // video_character_buffer_with_dma_0_reset_reset_bridge_in_reset.reset
 		.video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset             (rst_controller_reset_out_reset),                                                           //          video_pixel_buffer_dma_0_reset_reset_bridge_in_reset.reset
 		.top_level_data_master_address                                          (top_level_data_master_address),                                                            //                                         top_level_data_master.address
@@ -565,6 +620,18 @@ module top_level (
 		.onchip_memory2_0_s1_byteenable                                         (mm_interconnect_0_onchip_memory2_0_s1_byteenable),                                         //                                                              .byteenable
 		.onchip_memory2_0_s1_chipselect                                         (mm_interconnect_0_onchip_memory2_0_s1_chipselect),                                         //                                                              .chipselect
 		.onchip_memory2_0_s1_clken                                              (mm_interconnect_0_onchip_memory2_0_s1_clken),                                              //                                                              .clken
+		.spi_0_spi_control_port_address                                         (mm_interconnect_0_spi_0_spi_control_port_address),                                         //                                        spi_0_spi_control_port.address
+		.spi_0_spi_control_port_write                                           (mm_interconnect_0_spi_0_spi_control_port_write),                                           //                                                              .write
+		.spi_0_spi_control_port_read                                            (mm_interconnect_0_spi_0_spi_control_port_read),                                            //                                                              .read
+		.spi_0_spi_control_port_readdata                                        (mm_interconnect_0_spi_0_spi_control_port_readdata),                                        //                                                              .readdata
+		.spi_0_spi_control_port_writedata                                       (mm_interconnect_0_spi_0_spi_control_port_writedata),                                       //                                                              .writedata
+		.spi_0_spi_control_port_chipselect                                      (mm_interconnect_0_spi_0_spi_control_port_chipselect),                                      //                                                              .chipselect
+		.spi_1_spi_control_port_address                                         (mm_interconnect_0_spi_1_spi_control_port_address),                                         //                                        spi_1_spi_control_port.address
+		.spi_1_spi_control_port_write                                           (mm_interconnect_0_spi_1_spi_control_port_write),                                           //                                                              .write
+		.spi_1_spi_control_port_read                                            (mm_interconnect_0_spi_1_spi_control_port_read),                                            //                                                              .read
+		.spi_1_spi_control_port_readdata                                        (mm_interconnect_0_spi_1_spi_control_port_readdata),                                        //                                                              .readdata
+		.spi_1_spi_control_port_writedata                                       (mm_interconnect_0_spi_1_spi_control_port_writedata),                                       //                                                              .writedata
+		.spi_1_spi_control_port_chipselect                                      (mm_interconnect_0_spi_1_spi_control_port_chipselect),                                      //                                                              .chipselect
 		.sw_s1_address                                                          (mm_interconnect_0_sw_s1_address),                                                          //                                                         sw_s1.address
 		.sw_s1_write                                                            (mm_interconnect_0_sw_s1_write),                                                            //                                                              .write
 		.sw_s1_readdata                                                         (mm_interconnect_0_sw_s1_readdata),                                                         //                                                              .readdata
@@ -615,6 +682,8 @@ module top_level (
 		.receiver1_irq (irq_mapper_receiver1_irq),       // receiver1.irq
 		.receiver2_irq (irq_mapper_receiver2_irq),       // receiver2.irq
 		.receiver3_irq (irq_mapper_receiver3_irq),       // receiver3.irq
+		.receiver4_irq (irq_mapper_receiver4_irq),       // receiver4.irq
+		.receiver5_irq (irq_mapper_receiver5_irq),       // receiver5.irq
 		.sender_irq    (top_level_irq_irq)               //    sender.irq
 	);
 

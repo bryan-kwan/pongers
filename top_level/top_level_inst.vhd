@@ -13,6 +13,14 @@
 			memory_ras_n                   : out   std_logic;                                        -- ras_n
 			memory_we_n                    : out   std_logic;                                        -- we_n
 			sdram_clk_clk                  : out   std_logic;                                        -- clk
+			spi_master_MISO                : in    std_logic                     := 'X';             -- MISO
+			spi_master_MOSI                : out   std_logic;                                        -- MOSI
+			spi_master_SCLK                : out   std_logic;                                        -- SCLK
+			spi_master_SS_n                : out   std_logic;                                        -- SS_n
+			spi_slave_MISO                 : out   std_logic;                                        -- MISO
+			spi_slave_MOSI                 : in    std_logic                     := 'X';             -- MOSI
+			spi_slave_SCLK                 : in    std_logic                     := 'X';             -- SCLK
+			spi_slave_SS_n                 : in    std_logic                     := 'X';             -- SS_n
 			sw_external_connection_export  : in    std_logic_vector(7 downto 0)  := (others => 'X'); -- export
 			vga_conduit_CLK                : out   std_logic;                                        -- CLK
 			vga_conduit_HS                 : out   std_logic;                                        -- HS
@@ -40,6 +48,14 @@
 			memory_ras_n                   => CONNECTED_TO_memory_ras_n,                   --                       .ras_n
 			memory_we_n                    => CONNECTED_TO_memory_we_n,                    --                       .we_n
 			sdram_clk_clk                  => CONNECTED_TO_sdram_clk_clk,                  --              sdram_clk.clk
+			spi_master_MISO                => CONNECTED_TO_spi_master_MISO,                --             spi_master.MISO
+			spi_master_MOSI                => CONNECTED_TO_spi_master_MOSI,                --                       .MOSI
+			spi_master_SCLK                => CONNECTED_TO_spi_master_SCLK,                --                       .SCLK
+			spi_master_SS_n                => CONNECTED_TO_spi_master_SS_n,                --                       .SS_n
+			spi_slave_MISO                 => CONNECTED_TO_spi_slave_MISO,                 --              spi_slave.MISO
+			spi_slave_MOSI                 => CONNECTED_TO_spi_slave_MOSI,                 --                       .MOSI
+			spi_slave_SCLK                 => CONNECTED_TO_spi_slave_SCLK,                 --                       .SCLK
+			spi_slave_SS_n                 => CONNECTED_TO_spi_slave_SS_n,                 --                       .SS_n
 			sw_external_connection_export  => CONNECTED_TO_sw_external_connection_export,  -- sw_external_connection.export
 			vga_conduit_CLK                => CONNECTED_TO_vga_conduit_CLK,                --            vga_conduit.CLK
 			vga_conduit_HS                 => CONNECTED_TO_vga_conduit_HS,                 --                       .HS

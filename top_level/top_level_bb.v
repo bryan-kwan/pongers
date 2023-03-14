@@ -13,6 +13,14 @@ module top_level (
 	memory_ras_n,
 	memory_we_n,
 	sdram_clk_clk,
+	spi_master_MISO,
+	spi_master_MOSI,
+	spi_master_SCLK,
+	spi_master_SS_n,
+	spi_slave_MISO,
+	spi_slave_MOSI,
+	spi_slave_SCLK,
+	spi_slave_SS_n,
 	sw_external_connection_export,
 	vga_conduit_CLK,
 	vga_conduit_HS,
@@ -36,6 +44,14 @@ module top_level (
 	output		memory_ras_n;
 	output		memory_we_n;
 	output		sdram_clk_clk;
+	input		spi_master_MISO;
+	output		spi_master_MOSI;
+	output		spi_master_SCLK;
+	output		spi_master_SS_n;
+	output		spi_slave_MISO;
+	input		spi_slave_MOSI;
+	input		spi_slave_SCLK;
+	input		spi_slave_SS_n;
 	input	[7:0]	sw_external_connection_export;
 	output		vga_conduit_CLK;
 	output		vga_conduit_HS;

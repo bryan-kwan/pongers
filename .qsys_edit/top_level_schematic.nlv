@@ -1,53 +1,57 @@
 # # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
 # 
-preplace inst top_level.video_pixel_buffer_dma_0 -pg 1 -lvl 3 -y 180
-preplace inst top_level.video_dual_clock_buffer_0 -pg 1 -lvl 7 -y 160
-preplace inst top_level.video_scaler_0 -pg 1 -lvl 5 -y 300
-preplace inst top_level.video_rgb_resampler_0 -pg 1 -lvl 4 -y 280
-preplace inst top_level.new_sdram_controller_0 -pg 1 -lvl 9 -y 380
-preplace inst top_level.GPIO -pg 1 -lvl 3 -y 740
+preplace inst top_level.video_pixel_buffer_dma_0 -pg 1 -lvl 3 -y 240
+preplace inst top_level.video_dual_clock_buffer_0 -pg 1 -lvl 7 -y 190
+preplace inst top_level.video_scaler_0 -pg 1 -lvl 5 -y 310
+preplace inst top_level.video_rgb_resampler_0 -pg 1 -lvl 4 -y 290
+preplace inst top_level.new_sdram_controller_0 -pg 1 -lvl 9 -y 410
+preplace inst top_level.GPIO -pg 1 -lvl 3 -y 780
 preplace inst top_level.modular_adc_0.sample_store_internal -pg 1
-preplace inst top_level.audio_module_0 -pg 1 -lvl 4 -y 400
+preplace inst top_level.audio_module_0 -pg 1 -lvl 4 -y 470
 preplace inst top_level.top_level.reset_bridge -pg 1
-preplace inst top_level.modular_adc_0 -pg 1 -lvl 4 -y 50
-preplace inst top_level.clk_0 -pg 1 -lvl 2 -y 220
+preplace inst top_level.modular_adc_0 -pg 1 -lvl 4 -y 80
+preplace inst top_level.clk_0 -pg 1 -lvl 2 -y 160
 preplace inst top_level.top_level.cpu -pg 1
-preplace inst top_level.timer_0 -pg 1 -lvl 3 -y 460
-preplace inst top_level.clk_1 -pg 1 -lvl 3 -y 120
-preplace inst top_level.onchip_memory2_0 -pg 1 -lvl 2 -y 440
+preplace inst top_level.timer_0 -pg 1 -lvl 3 -y 540
+preplace inst top_level.spi_0 -pg 1 -lvl 3 -y 320
+preplace inst top_level.clk_1 -pg 1 -lvl 3 -y 40
+preplace inst top_level.spi_1 -pg 1 -lvl 3 -y 100
+preplace inst top_level.onchip_memory2_0 -pg 1 -lvl 2 -y 460
 preplace inst top_level.top_level.clock_bridge -pg 1
-preplace inst top_level.top_level -pg 1 -lvl 1 -y 460
-preplace inst top_level.video_alpha_blender_0 -pg 1 -lvl 6 -y 320
-preplace inst top_level.sysid_qsys_0 -pg 1 -lvl 3 -y 970
-preplace inst top_level.jtag_uart_0 -pg 1 -lvl 2 -y 280
+preplace inst top_level.top_level -pg 1 -lvl 1 -y 250
+preplace inst top_level.video_alpha_blender_0 -pg 1 -lvl 6 -y 330
+preplace inst top_level.sysid_qsys_0 -pg 1 -lvl 3 -y 1000
+preplace inst top_level.jtag_uart_0 -pg 1 -lvl 2 -y 220
 preplace inst top_level.modular_adc_0.rst_inst -pg 1
 preplace inst top_level.modular_adc_0.cb_inst -pg 1
-preplace inst top_level.video_vga_controller_0 -pg 1 -lvl 8 -y 550
-preplace inst top_level.sw -pg 1 -lvl 2 -y 710
-preplace inst top_level.altpll_0 -pg 1 -lvl 3 -y 610
-preplace inst top_level.video_character_buffer_with_dma_0 -pg 1 -lvl 3 -y 870
+preplace inst top_level.video_vga_controller_0 -pg 1 -lvl 8 -y 600
+preplace inst top_level.sw -pg 1 -lvl 2 -y 740
+preplace inst top_level.altpll_0 -pg 1 -lvl 3 -y 680
+preplace inst top_level.video_character_buffer_with_dma_0 -pg 1 -lvl 3 -y 900
 preplace inst top_level.modular_adc_0.control_internal -pg 1
 preplace inst top_level -pg 1 -lvl 1 -y 40 -regy -20
 preplace inst top_level.modular_adc_0.sequencer_internal -pg 1
-preplace netloc EXPORT<net_container>top_level</net_container>(SLAVE)top_level.vga_conduit,(SLAVE)video_vga_controller_0.external_interface) 1 0 8 NJ 600 NJ 600 NJ 600 NJ 600 NJ 600 NJ 600 NJ 600 NJ
-preplace netloc EXPORT<net_container>top_level</net_container>(SLAVE)sw.external_connection,(SLAVE)top_level.sw_external_connection) 1 0 2 NJ 740 NJ
-preplace netloc EXPORT<net_container>top_level</net_container>(MASTER)clk_1.clk,(MASTER)top_level.sdram_clk) 1 3 7 NJ 250 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ
+preplace netloc EXPORT<net_container>top_level</net_container>(SLAVE)top_level.vga_conduit,(SLAVE)video_vga_controller_0.external_interface) 1 0 8 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ 650 NJ
+preplace netloc EXPORT<net_container>top_level</net_container>(SLAVE)spi_1.external,(SLAVE)top_level.spi_master) 1 0 3 NJ 130 NJ 130 NJ
+preplace netloc EXPORT<net_container>top_level</net_container>(SLAVE)clk_0.clk_in,(SLAVE)top_level.clk) 1 0 2 NJ 150 NJ
 preplace netloc POINT_TO_POINT<net_container>top_level</net_container>(SLAVE)video_scaler_0.avalon_scaler_sink,(MASTER)video_rgb_resampler_0.avalon_rgb_source) 1 4 1 N
-preplace netloc POINT_TO_POINT<net_container>top_level</net_container>(SLAVE)video_dual_clock_buffer_0.avalon_dc_buffer_sink,(MASTER)video_alpha_blender_0.avalon_blended_source) 1 6 1 2490
-preplace netloc INTERCONNECT<net_container>top_level</net_container>(SLAVE)altpll_0.pll_slave,(SLAVE)modular_adc_0.sample_store_csr,(SLAVE)top_level.debug_mem_slave,(SLAVE)sw.s1,(SLAVE)jtag_uart_0.avalon_jtag_slave,(SLAVE)GPIO.s1,(MASTER)top_level.instruction_master,(SLAVE)audio_module_0.avalon_slave_0_1,(SLAVE)video_character_buffer_with_dma_0.avalon_char_buffer_slave,(SLAVE)video_pixel_buffer_dma_0.avalon_control_slave,(SLAVE)modular_adc_0.sequencer_csr,(MASTER)top_level.data_master,(SLAVE)onchip_memory2_0.s1,(SLAVE)new_sdram_controller_0.s1,(SLAVE)timer_0.s1,(SLAVE)video_character_buffer_with_dma_0.avalon_char_control_slave,(MASTER)video_pixel_buffer_dma_0.avalon_pixel_dma_master,(SLAVE)sysid_qsys_0.control_slave) 1 0 9 200 400 580 570 980 270 1520 390 NJ 470 NJ 470 NJ 470 NJ 470 3110
+preplace netloc POINT_TO_POINT<net_container>top_level</net_container>(MASTER)video_pixel_buffer_dma_0.avalon_pixel_source,(SLAVE)video_rgb_resampler_0.avalon_rgb_sink) 1 3 1 1460
+preplace netloc POINT_TO_POINT<net_container>top_level</net_container>(SLAVE)video_dual_clock_buffer_0.avalon_dc_buffer_sink,(MASTER)video_alpha_blender_0.avalon_blended_source) 1 6 1 2550
+preplace netloc EXPORT<net_container>top_level</net_container>(SLAVE)audio_module_0.conduit_end,(SLAVE)top_level.audio_out) 1 0 4 NJ 430 NJ 430 NJ 490 NJ
 preplace netloc POINT_TO_POINT<net_container>top_level</net_container>(SLAVE)video_alpha_blender_0.avalon_background_sink,(MASTER)video_scaler_0.avalon_scaler_source) 1 5 1 N
-preplace netloc POINT_TO_POINT<net_container>top_level</net_container>(SLAVE)video_alpha_blender_0.avalon_foreground_sink,(MASTER)video_character_buffer_with_dma_0.avalon_char_source) 1 3 3 NJ 900 NJ 900 2130
-preplace netloc POINT_TO_POINT<net_container>top_level</net_container>(SLAVE)video_rgb_resampler_0.avalon_rgb_sink,(MASTER)video_pixel_buffer_dma_0.avalon_pixel_source) 1 3 1 1480
-preplace netloc POINT_TO_POINT<net_container>top_level</net_container>(MASTER)video_dual_clock_buffer_0.avalon_dc_buffer_source,(SLAVE)video_vga_controller_0.avalon_vga_sink) 1 7 1 2860
-preplace netloc FAN_OUT<net_container>top_level</net_container>(SLAVE)video_dual_clock_buffer_0.clock_stream_out,(MASTER)altpll_0.c0,(SLAVE)audio_module_0.clock_sink_25,(SLAVE)video_vga_controller_0.clk) 1 3 5 1440 530 NJ 530 NJ 530 2530 580 NJ
-preplace netloc EXPORT<net_container>top_level</net_container>(SLAVE)top_level.clk,(SLAVE)clk_0.clk_in) 1 0 2 NJ 230 NJ
-preplace netloc FAN_OUT<net_container>top_level</net_container>(SLAVE)GPIO.irq,(SLAVE)jtag_uart_0.irq,(SLAVE)timer_0.irq,(MASTER)top_level.irq,(SLAVE)sw.irq) 1 1 2 620 840 960
-preplace netloc POINT_TO_POINT<net_container>top_level</net_container>(SLAVE)altpll_0.locked_conduit,(SLAVE)modular_adc_0.adc_pll_locked) 1 2 2 1000 720 1420
-preplace netloc EXPORT<net_container>top_level</net_container>(SLAVE)top_level.audio_out,(SLAVE)audio_module_0.conduit_end) 1 0 4 NJ 370 NJ 430 NJ 430 NJ
-preplace netloc POINT_TO_POINT<net_container>top_level</net_container>(SLAVE)modular_adc_0.adc_pll_clock,(MASTER)altpll_0.c1) 1 3 1 1400
-preplace netloc EXPORT<net_container>top_level</net_container>(SLAVE)GPIO.external_connection,(SLAVE)top_level.gpio) 1 0 3 NJ 860 NJ 860 NJ
-preplace netloc EXPORT<net_container>top_level</net_container>(SLAVE)new_sdram_controller_0.wire,(SLAVE)top_level.memory) 1 0 9 NJ 330 NJ 390 NJ 350 NJ 370 NJ 450 NJ 450 NJ 450 NJ 450 NJ
-preplace netloc INTERCONNECT<net_container>top_level</net_container>(SLAVE)onchip_memory2_0.reset1,(SLAVE)video_dual_clock_buffer_0.reset_stream_out,(SLAVE)new_sdram_controller_0.reset,(SLAVE)video_dual_clock_buffer_0.reset_stream_in,(SLAVE)modular_adc_0.reset_sink,(MASTER)top_level.debug_reset_request,(SLAVE)sysid_qsys_0.reset,(SLAVE)video_pixel_buffer_dma_0.reset,(SLAVE)video_alpha_blender_0.reset,(SLAVE)jtag_uart_0.reset,(SLAVE)video_scaler_0.reset,(MASTER)clk_0.clk_reset,(SLAVE)timer_0.reset,(SLAVE)altpll_0.inclk_interface_reset,(SLAVE)sw.reset,(SLAVE)clk_1.clk_in_reset,(SLAVE)video_rgb_resampler_0.reset,(SLAVE)clk_0.clk_in_reset,(SLAVE)video_character_buffer_with_dma_0.reset,(SLAVE)GPIO.reset,(SLAVE)video_vga_controller_0.reset,(SLAVE)top_level.reset,(SLAVE)audio_module_0.clock_reset) 1 0 9 220 420 660 550 940 410 1540 270 1830 270 2110 270 2550 620 2880 540 3090
-preplace netloc FAN_OUT<net_container>top_level</net_container>(SLAVE)video_pixel_buffer_dma_0.clk,(SLAVE)GPIO.clk,(SLAVE)altpll_0.inclk_interface,(SLAVE)sysid_qsys_0.clk,(SLAVE)video_alpha_blender_0.clk,(SLAVE)audio_module_0.clock_sink_50,(MASTER)clk_0.clk,(SLAVE)modular_adc_0.clock,(SLAVE)video_dual_clock_buffer_0.clock_stream_in,(SLAVE)jtag_uart_0.clk,(SLAVE)video_rgb_resampler_0.clk,(SLAVE)new_sdram_controller_0.clk,(SLAVE)clk_1.clk_in,(SLAVE)onchip_memory2_0.clk1,(SLAVE)sw.clk,(SLAVE)video_character_buffer_with_dma_0.clk,(SLAVE)timer_0.clk,(SLAVE)video_scaler_0.clk,(SLAVE)top_level.clk) 1 0 9 180 350 640 530 920 290 1460 230 1850 230 2150 230 2510 290 NJ 290 3090
-levelinfo -pg 1 0 150 3420
-levelinfo -hier top_level 160 340 730 1070 1660 1920 2180 2580 2930 3200 3330
+preplace netloc EXPORT<net_container>top_level</net_container>(SLAVE)top_level.sw_external_connection,(SLAVE)sw.external_connection) 1 0 2 NJ 770 NJ
+preplace netloc EXPORT<net_container>top_level</net_container>(SLAVE)spi_0.external,(SLAVE)top_level.spi_slave) 1 0 3 NJ 450 NJ 350 NJ
+preplace netloc POINT_TO_POINT<net_container>top_level</net_container>(SLAVE)modular_adc_0.adc_pll_locked,(SLAVE)altpll_0.locked_conduit) 1 2 2 1040 670 1420
+preplace netloc POINT_TO_POINT<net_container>top_level</net_container>(MASTER)video_dual_clock_buffer_0.avalon_dc_buffer_source,(SLAVE)video_vga_controller_0.avalon_vga_sink) 1 7 1 2940
+preplace netloc FAN_OUT<net_container>top_level</net_container>(MASTER)altpll_0.c0,(SLAVE)audio_module_0.clock_sink_25,(SLAVE)video_vga_controller_0.clk,(SLAVE)video_dual_clock_buffer_0.clock_stream_out) 1 3 5 1560 460 NJ 510 NJ 510 2590 630 NJ
+preplace netloc INTERCONNECT<net_container>top_level</net_container>(SLAVE)video_vga_controller_0.reset,(SLAVE)sw.reset,(SLAVE)new_sdram_controller_0.reset,(SLAVE)video_alpha_blender_0.reset,(SLAVE)onchip_memory2_0.reset1,(SLAVE)video_character_buffer_with_dma_0.reset,(SLAVE)GPIO.reset,(SLAVE)spi_0.reset,(SLAVE)spi_1.reset,(MASTER)top_level.debug_reset_request,(SLAVE)timer_0.reset,(SLAVE)video_pixel_buffer_dma_0.reset,(SLAVE)video_dual_clock_buffer_0.reset_stream_out,(SLAVE)video_scaler_0.reset,(SLAVE)jtag_uart_0.reset,(SLAVE)clk_0.clk_in_reset,(SLAVE)audio_module_0.clock_reset,(SLAVE)sysid_qsys_0.reset,(SLAVE)modular_adc_0.reset_sink,(MASTER)clk_0.clk_reset,(SLAVE)video_dual_clock_buffer_0.reset_stream_in,(SLAVE)clk_1.clk_in_reset,(SLAVE)video_rgb_resampler_0.reset,(SLAVE)altpll_0.inclk_interface_reset,(SLAVE)top_level.reset) 1 0 9 200 210 620 610 940 510 1480 280 1890 300 2150 300 2610 670 2960 440 NJ
+preplace netloc FAN_OUT<net_container>top_level</net_container>(SLAVE)spi_0.clk,(SLAVE)jtag_uart_0.clk,(SLAVE)video_alpha_blender_0.clk,(SLAVE)sw.clk,(SLAVE)onchip_memory2_0.clk1,(SLAVE)new_sdram_controller_0.clk,(SLAVE)video_character_buffer_with_dma_0.clk,(SLAVE)altpll_0.inclk_interface,(SLAVE)video_dual_clock_buffer_0.clock_stream_in,(SLAVE)sysid_qsys_0.clk,(MASTER)clk_0.clk,(SLAVE)modular_adc_0.clock,(SLAVE)spi_1.clk,(SLAVE)top_level.clk,(SLAVE)video_scaler_0.clk,(SLAVE)video_rgb_resampler_0.clk,(SLAVE)video_pixel_buffer_dma_0.clk,(SLAVE)clk_1.clk_in,(SLAVE)GPIO.clk,(SLAVE)timer_0.clk,(SLAVE)audio_module_0.clock_sink_50) 1 0 9 220 190 600 550 920 530 1540 260 1930 280 2190 280 2570 420 NJ 420 NJ
+preplace netloc POINT_TO_POINT<net_container>top_level</net_container>(SLAVE)modular_adc_0.adc_pll_clock,(MASTER)altpll_0.c1) 1 3 1 1440
+preplace netloc INTERCONNECT<net_container>top_level</net_container>(SLAVE)modular_adc_0.sequencer_csr,(SLAVE)modular_adc_0.sample_store_csr,(SLAVE)spi_1.spi_control_port,(MASTER)top_level.data_master,(SLAVE)sw.s1,(SLAVE)GPIO.s1,(SLAVE)onchip_memory2_0.s1,(SLAVE)new_sdram_controller_0.s1,(SLAVE)top_level.debug_mem_slave,(SLAVE)jtag_uart_0.avalon_jtag_slave,(SLAVE)video_character_buffer_with_dma_0.avalon_char_buffer_slave,(SLAVE)video_character_buffer_with_dma_0.avalon_char_control_slave,(SLAVE)sysid_qsys_0.control_slave,(SLAVE)video_pixel_buffer_dma_0.avalon_control_slave,(SLAVE)timer_0.s1,(MASTER)top_level.instruction_master,(SLAVE)spi_0.spi_control_port,(MASTER)video_pixel_buffer_dma_0.avalon_pixel_dma_master,(SLAVE)altpll_0.pll_slave,(SLAVE)audio_module_0.avalon_slave_0_1) 1 0 9 180 170 580 590 1000 450 1520 440 NJ 490 NJ 490 NJ 490 NJ 490 3190
+preplace netloc EXPORT<net_container>top_level</net_container>(MASTER)top_level.sdram_clk,(MASTER)clk_1.clk) 1 3 7 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ
+preplace netloc EXPORT<net_container>top_level</net_container>(SLAVE)GPIO.external_connection,(SLAVE)top_level.gpio) 1 0 3 NJ 890 NJ 890 NJ
+preplace netloc EXPORT<net_container>top_level</net_container>(SLAVE)new_sdram_controller_0.wire,(SLAVE)top_level.memory) 1 0 9 NJ 410 NJ 410 NJ 470 NJ 420 NJ 470 NJ 470 NJ 470 NJ 470 NJ
+preplace netloc FAN_OUT<net_container>top_level</net_container>(SLAVE)timer_0.irq,(SLAVE)jtag_uart_0.irq,(SLAVE)sw.irq,(SLAVE)spi_0.irq,(SLAVE)GPIO.irq,(SLAVE)spi_1.irq,(MASTER)top_level.irq) 1 1 2 640 570 1020
+preplace netloc POINT_TO_POINT<net_container>top_level</net_container>(MASTER)video_character_buffer_with_dma_0.avalon_char_source,(SLAVE)video_alpha_blender_0.avalon_foreground_sink) 1 3 3 NJ 930 NJ 930 2170
+levelinfo -pg 1 0 150 3500
+levelinfo -hier top_level 160 340 750 1090 1720 1960 2240 2660 3010 3280 3410

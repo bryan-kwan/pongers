@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(10M50DAF484ES) Path("C:/Users/bryan/VSCodeWorkspace/ENEL400/output_files/") File("top_level.pof") MfrSpec(OpMask(1) Child_OpMask(2 1 1));
+		Device PartName(10M50DAF484ES) Path("C:/Quartus17.1/pongers/output_files/") File("top_level.pof") MfrSpec(OpMask(1) Child_OpMask(2 1 1));
 
 ChainEnd;
 
