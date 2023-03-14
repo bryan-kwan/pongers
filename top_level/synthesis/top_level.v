@@ -62,8 +62,6 @@ module top_level (
 	wire         video_rgb_resampler_0_avalon_rgb_source_startofpacket;                                    // video_rgb_resampler_0:stream_out_startofpacket -> video_scaler_0:stream_in_startofpacket
 	wire         video_rgb_resampler_0_avalon_rgb_source_endofpacket;                                      // video_rgb_resampler_0:stream_out_endofpacket -> video_scaler_0:stream_in_endofpacket
 	wire         altpll_0_c0_clk;                                                                          // altpll_0:c0 -> [audio_module_0:clock25, rst_controller_002:clk, video_dual_clock_buffer_0:clk_stream_out, video_vga_controller_0:clk]
-	wire         altpll_0_c1_clk;                                                                          // altpll_0:c1 -> modular_adc_0:adc_pll_clock_clk
-	wire         altpll_0_locked_conduit_export;                                                           // altpll_0:locked -> modular_adc_0:adc_pll_locked_export
 	wire         top_level_debug_reset_request_reset;                                                      // top_level:debug_reset_request -> [mm_interconnect_0:spi_0_reset_reset_bridge_in_reset_reset, rst_controller:reset_in0, rst_controller_001:reset_in0, rst_controller_001:reset_in1, rst_controller_002:reset_in0, spi_0:reset_n, spi_1:reset_n]
 	wire         video_pixel_buffer_dma_0_avalon_pixel_dma_master_waitrequest;                             // mm_interconnect_0:video_pixel_buffer_dma_0_avalon_pixel_dma_master_waitrequest -> video_pixel_buffer_dma_0:master_waitrequest
 	wire  [15:0] video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdata;                                // mm_interconnect_0:video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdata -> video_pixel_buffer_dma_0:master_readdata
@@ -161,16 +159,6 @@ module top_level (
 	wire   [1:0] mm_interconnect_0_gpio_s1_address;                                                        // mm_interconnect_0:GPIO_s1_address -> GPIO:address
 	wire         mm_interconnect_0_gpio_s1_write;                                                          // mm_interconnect_0:GPIO_s1_write -> GPIO:write_n
 	wire  [31:0] mm_interconnect_0_gpio_s1_writedata;                                                      // mm_interconnect_0:GPIO_s1_writedata -> GPIO:writedata
-	wire  [31:0] mm_interconnect_0_modular_adc_0_sample_store_csr_readdata;                                // modular_adc_0:sample_store_csr_readdata -> mm_interconnect_0:modular_adc_0_sample_store_csr_readdata
-	wire   [6:0] mm_interconnect_0_modular_adc_0_sample_store_csr_address;                                 // mm_interconnect_0:modular_adc_0_sample_store_csr_address -> modular_adc_0:sample_store_csr_address
-	wire         mm_interconnect_0_modular_adc_0_sample_store_csr_read;                                    // mm_interconnect_0:modular_adc_0_sample_store_csr_read -> modular_adc_0:sample_store_csr_read
-	wire         mm_interconnect_0_modular_adc_0_sample_store_csr_write;                                   // mm_interconnect_0:modular_adc_0_sample_store_csr_write -> modular_adc_0:sample_store_csr_write
-	wire  [31:0] mm_interconnect_0_modular_adc_0_sample_store_csr_writedata;                               // mm_interconnect_0:modular_adc_0_sample_store_csr_writedata -> modular_adc_0:sample_store_csr_writedata
-	wire  [31:0] mm_interconnect_0_modular_adc_0_sequencer_csr_readdata;                                   // modular_adc_0:sequencer_csr_readdata -> mm_interconnect_0:modular_adc_0_sequencer_csr_readdata
-	wire   [0:0] mm_interconnect_0_modular_adc_0_sequencer_csr_address;                                    // mm_interconnect_0:modular_adc_0_sequencer_csr_address -> modular_adc_0:sequencer_csr_address
-	wire         mm_interconnect_0_modular_adc_0_sequencer_csr_read;                                       // mm_interconnect_0:modular_adc_0_sequencer_csr_read -> modular_adc_0:sequencer_csr_read
-	wire         mm_interconnect_0_modular_adc_0_sequencer_csr_write;                                      // mm_interconnect_0:modular_adc_0_sequencer_csr_write -> modular_adc_0:sequencer_csr_write
-	wire  [31:0] mm_interconnect_0_modular_adc_0_sequencer_csr_writedata;                                  // mm_interconnect_0:modular_adc_0_sequencer_csr_writedata -> modular_adc_0:sequencer_csr_writedata
 	wire         mm_interconnect_0_spi_0_spi_control_port_chipselect;                                      // mm_interconnect_0:spi_0_spi_control_port_chipselect -> spi_0:spi_select
 	wire  [15:0] mm_interconnect_0_spi_0_spi_control_port_readdata;                                        // spi_0:data_to_cpu -> mm_interconnect_0:spi_0_spi_control_port_readdata
 	wire   [2:0] mm_interconnect_0_spi_0_spi_control_port_address;                                         // mm_interconnect_0:spi_0_spi_control_port_address -> spi_0:mem_addr
@@ -201,7 +189,7 @@ module top_level (
 	wire         avalon_st_adapter_out_0_ready;                                                            // video_alpha_blender_0:background_ready -> avalon_st_adapter:out_0_ready
 	wire         avalon_st_adapter_out_0_startofpacket;                                                    // avalon_st_adapter:out_0_startofpacket -> video_alpha_blender_0:background_startofpacket
 	wire         avalon_st_adapter_out_0_endofpacket;                                                      // avalon_st_adapter:out_0_endofpacket -> video_alpha_blender_0:background_endofpacket
-	wire         rst_controller_reset_out_reset;                                                           // rst_controller:reset_out -> [GPIO:reset_n, altpll_0:reset, audio_module_0:reset_n, avalon_st_adapter:in_rst_0_reset, irq_mapper:reset, jtag_uart_0:rst_n, mm_interconnect_0:video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset, modular_adc_0:reset_sink_reset_n, new_sdram_controller_0:reset_n, onchip_memory2_0:reset, rst_translator:in_reset, sw:reset_n, sysid_qsys_0:reset_n, timer_0:reset_n, top_level:reset_n, video_dual_clock_buffer_0:reset_stream_in, video_pixel_buffer_dma_0:reset, video_rgb_resampler_0:reset, video_scaler_0:reset]
+	wire         rst_controller_reset_out_reset;                                                           // rst_controller:reset_out -> [GPIO:reset_n, altpll_0:reset, audio_module_0:reset_n, avalon_st_adapter:in_rst_0_reset, irq_mapper:reset, jtag_uart_0:rst_n, mm_interconnect_0:video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset, new_sdram_controller_0:reset_n, onchip_memory2_0:reset, rst_translator:in_reset, sw:reset_n, sysid_qsys_0:reset_n, timer_0:reset_n, top_level:reset_n, video_dual_clock_buffer_0:reset_stream_in, video_pixel_buffer_dma_0:reset, video_rgb_resampler_0:reset, video_scaler_0:reset]
 	wire         rst_controller_reset_out_reset_req;                                                       // rst_controller:reset_req -> [onchip_memory2_0:reset_req, rst_translator:reset_req_in, top_level:reset_req]
 	wire         rst_controller_001_reset_out_reset;                                                       // rst_controller_001:reset_out -> [mm_interconnect_0:video_character_buffer_with_dma_0_reset_reset_bridge_in_reset_reset, video_alpha_blender_0:reset, video_character_buffer_with_dma_0:reset]
 	wire         rst_controller_002_reset_out_reset;                                                       // rst_controller_002:reset_out -> [video_dual_clock_buffer_0:reset_stream_out, video_vga_controller_0:reset]
@@ -227,8 +215,8 @@ module top_level (
 		.readdata           (mm_interconnect_0_altpll_0_pll_slave_readdata),  //                      .readdata
 		.writedata          (mm_interconnect_0_altpll_0_pll_slave_writedata), //                      .writedata
 		.c0                 (altpll_0_c0_clk),                                //                    c0.clk
-		.c1                 (altpll_0_c1_clk),                                //                    c1.clk
-		.locked             (altpll_0_locked_conduit_export),                 //        locked_conduit.export
+		.c1                 (),                                               //                    c1.clk
+		.locked             (),                                               //        locked_conduit.export
 		.scandone           (),                                               //           (terminated)
 		.scandataout        (),                                               //           (terminated)
 		.c2                 (),                                               //           (terminated)
@@ -267,26 +255,6 @@ module top_level (
 		.av_writedata   (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_writedata),   //                  .writedata
 		.av_waitrequest (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_waitrequest), //                  .waitrequest
 		.av_irq         (irq_mapper_receiver0_irq)                                     //               irq.irq
-	);
-
-	top_level_modular_adc_0 #(
-		.is_this_first_or_second_adc (1)
-	) modular_adc_0 (
-		.clock_clk                  (clk_clk),                                                    //            clock.clk
-		.reset_sink_reset_n         (~rst_controller_reset_out_reset),                            //       reset_sink.reset_n
-		.adc_pll_clock_clk          (altpll_0_c1_clk),                                            //    adc_pll_clock.clk
-		.adc_pll_locked_export      (altpll_0_locked_conduit_export),                             //   adc_pll_locked.export
-		.sequencer_csr_address      (mm_interconnect_0_modular_adc_0_sequencer_csr_address),      //    sequencer_csr.address
-		.sequencer_csr_read         (mm_interconnect_0_modular_adc_0_sequencer_csr_read),         //                 .read
-		.sequencer_csr_write        (mm_interconnect_0_modular_adc_0_sequencer_csr_write),        //                 .write
-		.sequencer_csr_writedata    (mm_interconnect_0_modular_adc_0_sequencer_csr_writedata),    //                 .writedata
-		.sequencer_csr_readdata     (mm_interconnect_0_modular_adc_0_sequencer_csr_readdata),     //                 .readdata
-		.sample_store_csr_address   (mm_interconnect_0_modular_adc_0_sample_store_csr_address),   // sample_store_csr.address
-		.sample_store_csr_read      (mm_interconnect_0_modular_adc_0_sample_store_csr_read),      //                 .read
-		.sample_store_csr_write     (mm_interconnect_0_modular_adc_0_sample_store_csr_write),     //                 .write
-		.sample_store_csr_writedata (mm_interconnect_0_modular_adc_0_sample_store_csr_writedata), //                 .writedata
-		.sample_store_csr_readdata  (mm_interconnect_0_modular_adc_0_sample_store_csr_readdata),  //                 .readdata
-		.sample_store_irq_irq       ()                                                            // sample_store_irq.irq
 	);
 
 	top_level_new_sdram_controller_0 new_sdram_controller_0 (
@@ -594,16 +562,6 @@ module top_level (
 		.jtag_uart_0_avalon_jtag_slave_writedata                                (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_writedata),                                //                                                              .writedata
 		.jtag_uart_0_avalon_jtag_slave_waitrequest                              (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_waitrequest),                              //                                                              .waitrequest
 		.jtag_uart_0_avalon_jtag_slave_chipselect                               (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_chipselect),                               //                                                              .chipselect
-		.modular_adc_0_sample_store_csr_address                                 (mm_interconnect_0_modular_adc_0_sample_store_csr_address),                                 //                                modular_adc_0_sample_store_csr.address
-		.modular_adc_0_sample_store_csr_write                                   (mm_interconnect_0_modular_adc_0_sample_store_csr_write),                                   //                                                              .write
-		.modular_adc_0_sample_store_csr_read                                    (mm_interconnect_0_modular_adc_0_sample_store_csr_read),                                    //                                                              .read
-		.modular_adc_0_sample_store_csr_readdata                                (mm_interconnect_0_modular_adc_0_sample_store_csr_readdata),                                //                                                              .readdata
-		.modular_adc_0_sample_store_csr_writedata                               (mm_interconnect_0_modular_adc_0_sample_store_csr_writedata),                               //                                                              .writedata
-		.modular_adc_0_sequencer_csr_address                                    (mm_interconnect_0_modular_adc_0_sequencer_csr_address),                                    //                                   modular_adc_0_sequencer_csr.address
-		.modular_adc_0_sequencer_csr_write                                      (mm_interconnect_0_modular_adc_0_sequencer_csr_write),                                      //                                                              .write
-		.modular_adc_0_sequencer_csr_read                                       (mm_interconnect_0_modular_adc_0_sequencer_csr_read),                                       //                                                              .read
-		.modular_adc_0_sequencer_csr_readdata                                   (mm_interconnect_0_modular_adc_0_sequencer_csr_readdata),                                   //                                                              .readdata
-		.modular_adc_0_sequencer_csr_writedata                                  (mm_interconnect_0_modular_adc_0_sequencer_csr_writedata),                                  //                                                              .writedata
 		.new_sdram_controller_0_s1_address                                      (mm_interconnect_0_new_sdram_controller_0_s1_address),                                      //                                     new_sdram_controller_0_s1.address
 		.new_sdram_controller_0_s1_write                                        (mm_interconnect_0_new_sdram_controller_0_s1_write),                                        //                                                              .write
 		.new_sdram_controller_0_s1_read                                         (mm_interconnect_0_new_sdram_controller_0_s1_read),                                         //                                                              .read

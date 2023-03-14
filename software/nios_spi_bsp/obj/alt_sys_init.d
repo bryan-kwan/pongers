@@ -8,9 +8,7 @@ obj/alt_sys_init.o: alt_sys_init.c system.h linker.h \
  drivers/inc/altera_avalon_jtag_uart_fd.h HAL/inc/sys/alt_dev.h \
  HAL/inc/sys/alt_llist.h HAL/inc/priv/alt_dev_llist.h \
  drivers/inc/altera_avalon_spi.h drivers/inc/altera_avalon_sysid_qsys.h \
- drivers/inc/altera_avalon_timer.h drivers/inc/altera_modular_adc.h \
- drivers/inc/altera_modular_adc_sequencer_regs.h HAL/inc/io.h \
- HAL/inc/alt_types.h drivers/inc/altera_modular_adc_sample_store_regs.h \
+ drivers/inc/altera_avalon_timer.h \
  drivers/inc/altera_up_avalon_video_character_buffer_with_dma.h \
  drivers/inc/altera_up_avalon_video_pixel_buffer_dma.h
 
@@ -59,16 +57,6 @@ drivers/inc/altera_avalon_spi.h:
 drivers/inc/altera_avalon_sysid_qsys.h:
 
 drivers/inc/altera_avalon_timer.h:
-
-drivers/inc/altera_modular_adc.h:
-
-drivers/inc/altera_modular_adc_sequencer_regs.h:
-
-HAL/inc/io.h:
-
-HAL/inc/alt_types.h:
-
-drivers/inc/altera_modular_adc_sample_store_regs.h:
 
 drivers/inc/altera_up_avalon_video_character_buffer_with_dma.h:
 

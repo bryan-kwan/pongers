@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>13-Mar-2023 11:15:43 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1678770943534</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>14-Mar-2023 2:56:08 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1678827368778</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Quartus17.1\pongers\software\nios_spi_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\top_level.sopcinfo</SopcDesignFile>
@@ -917,80 +917,68 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>modular_adc_0_sample_store_csr</slaveDescriptor>
-                <addressRange>0x08083000 - 0x080831FF</addressRange>
-                <addressSpan>512</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
                 <slaveDescriptor>spi_1</slaveDescriptor>
-                <addressRange>0x08083220 - 0x0808323F</addressRange>
+                <addressRange>0x08083020 - 0x0808303F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>spi_0</slaveDescriptor>
-                <addressRange>0x08083240 - 0x0808325F</addressRange>
+                <addressRange>0x08083040 - 0x0808305F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>timer_0</slaveDescriptor>
-                <addressRange>0x08083260 - 0x0808327F</addressRange>
+                <addressRange>0x08083060 - 0x0808307F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>GPIO</slaveDescriptor>
-                <addressRange>0x08083290 - 0x0808329F</addressRange>
+                <addressRange>0x08083090 - 0x0808309F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sw</slaveDescriptor>
-                <addressRange>0x080832A0 - 0x080832AF</addressRange>
+                <addressRange>0x080830A0 - 0x080830AF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>altpll_0</slaveDescriptor>
-                <addressRange>0x080832B0 - 0x080832BF</addressRange>
+                <addressRange>0x080830B0 - 0x080830BF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>video_pixel_buffer_dma_0</slaveDescriptor>
-                <addressRange>0x080832C0 - 0x080832CF</addressRange>
+                <addressRange>0x080830C0 - 0x080830CF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>modular_adc_0_sequencer_csr</slaveDescriptor>
-                <addressRange>0x080832D0 - 0x080832D7</addressRange>
-                <addressSpan>8</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
                 <slaveDescriptor>sysid_qsys_0</slaveDescriptor>
-                <addressRange>0x080832D8 - 0x080832DF</addressRange>
+                <addressRange>0x080830D0 - 0x080830D7</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart_0</slaveDescriptor>
-                <addressRange>0x080832E0 - 0x080832E7</addressRange>
+                <addressRange>0x080830D8 - 0x080830DF</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>video_character_buffer_with_dma_0_avalon_char_control_slave</slaveDescriptor>
-                <addressRange>0x080832E8 - 0x080832EF</addressRange>
+                <addressRange>0x080830E0 - 0x080830E7</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>audio_module_0</slaveDescriptor>
-                <addressRange>0x080832F0 - 0x080832F3</addressRange>
+                <addressRange>0x080830E8 - 0x080830EB</addressRange>
                 <addressSpan>4</addressSpan>
                 <attributes/>
         </MemoryMap>

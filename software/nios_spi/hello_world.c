@@ -26,17 +26,17 @@
 int main()
 {
   printf("Entered Main\n");
-  alt_u16 rcvd_M;
+  alt_u16 rcvd_S;
 
 
 
   while(1){
-	  IOWR_ALTERA_AVALON_SPI_TXDATA(SPI_1_BASE, 1);
-	  usleep(75);
-	  rcvd_M = IORD_ALTERA_AVALON_SPI_RXDATA(SPI_1_BASE);
 
 
-	  printf("adc value = %i\n", rcvd_M);
+	  rcvd_S = IORD_ALTERA_AVALON_SPI_RXDATA(SPI_0_BASE);
+
+
+	  printf("adc value = %i\n", rcvd_S);
 
 	  usleep(1000);
 

@@ -180,10 +180,10 @@ set_location_assignment PIN_AB15 -to GSENSOR_SCLK
 set_location_assignment PIN_V11 -to GSENSOR_SDI
 set_location_assignment PIN_V12 -to GSENSOR_SDO
 set_location_assignment PIN_AB5 -to audio_out_writeresponsevalid_n
-set_location_assignment PIN_AB6 -to spi_master_MISO
-set_location_assignment PIN_AB7 -to spi_master_MOSI
-set_location_assignment PIN_AB8 -to spi_master_SCLK
-set_location_assignment PIN_AB9 -to spi_master_SS_n
+set_location_assignment PIN_AB6 -to spi_slave_MISO
+set_location_assignment PIN_AB7 -to spi_slave_MOSI
+set_location_assignment PIN_AB8 -to spi_slave_SCLK
+set_location_assignment PIN_AB9 -to spi_slave_SS_n
 set_location_assignment PIN_Y10 -to ARDUINO_IO[5]
 set_location_assignment PIN_AA11 -to ARDUINO_IO[6]
 set_location_assignment PIN_AA12 -to ARDUINO_IO[7]
@@ -377,10 +377,10 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GSENSOR_SCLK
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GSENSOR_SDI
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GSENSOR_SDO
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to audio_out_writeresponsevalid_n
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spi_master_MISO
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spi_master_MOSI
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spi_master_SCLK
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spi_master_SS_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spi_slave_MISO
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spi_slave_MOSI
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spi_slave_SCLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spi_slave_SS_n
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[5]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[7]

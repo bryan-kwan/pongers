@@ -4,7 +4,7 @@
  * Machine generated for CPU 'top_level' in SOPC Builder design 'top_level'
  * SOPC Builder design path: ../../top_level.sopcinfo
  *
- * Generated: Mon Mar 13 22:43:05 MDT 2023
+ * Generated: Tue Mar 14 14:41:07 MDT 2023
  */
 
 /*
@@ -63,7 +63,6 @@
 #include "altera_avalon_spi.h"
 #include "altera_avalon_sysid_qsys.h"
 #include "altera_avalon_timer.h"
-#include "altera_modular_adc.h"
 #include "altera_up_avalon_video_character_buffer_with_dma.h"
 #include "altera_up_avalon_video_pixel_buffer_dma.h"
 
@@ -77,7 +76,6 @@ ALTERA_AVALON_SPI_INSTANCE ( SPI_0, spi_0);
 ALTERA_AVALON_SPI_INSTANCE ( SPI_1, spi_1);
 ALTERA_AVALON_SYSID_QSYS_INSTANCE ( SYSID_QSYS_0, sysid_qsys_0);
 ALTERA_AVALON_TIMER_INSTANCE ( TIMER_0, timer_0);
-ALTERA_MODULAR_ADC_INSTANCE ( MODULAR_ADC_0, modular_adc_0);
 ALTERA_UP_AVALON_VIDEO_CHARACTER_BUFFER_WITH_DMA_INSTANCE ( VIDEO_CHARACTER_BUFFER_WITH_DMA_0, video_character_buffer_with_dma_0);
 ALTERA_UP_AVALON_VIDEO_PIXEL_BUFFER_DMA_INSTANCE ( VIDEO_PIXEL_BUFFER_DMA_0, video_pixel_buffer_dma_0);
 
@@ -107,7 +105,6 @@ void alt_sys_init( void )
     ALTERA_AVALON_SPI_INIT ( SPI_0, spi_0);
     ALTERA_AVALON_SPI_INIT ( SPI_1, spi_1);
     ALTERA_AVALON_SYSID_QSYS_INIT ( SYSID_QSYS_0, sysid_qsys_0);
-    ALTERA_MODULAR_ADC_INIT ( MODULAR_ADC_0, modular_adc_0);
     ALTERA_UP_AVALON_VIDEO_CHARACTER_BUFFER_WITH_DMA_INIT ( VIDEO_CHARACTER_BUFFER_WITH_DMA_0, video_character_buffer_with_dma_0);
     ALTERA_UP_AVALON_VIDEO_PIXEL_BUFFER_DMA_INIT ( VIDEO_PIXEL_BUFFER_DMA_0, video_pixel_buffer_dma_0);
 }

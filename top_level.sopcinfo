@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="top_level" kind="top_level" version="1.0" fabric="QSYS">
  <!-- Format version 17.1 590 (Future versions may contain additional information.) -->
- <!-- 2023.03.13.23:10:04 -->
+ <!-- 2023.03.14.14:35:12 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1678770604</value>
+  <value>1678826112</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -2931,12 +2931,6 @@ parameters are a RESULT of the module parameters. -->
     <width>1</width>
     <role>clk</role>
    </port>
-   <clockDomainMember>
-    <isBridge>false</isBridge>
-    <moduleName>modular_adc_0</moduleName>
-    <slaveName>adc_pll_clock</slaveName>
-    <name>modular_adc_0.adc_pll_clock</name>
-   </clockDomainMember>
   </interface>
   <interface name="locked_conduit" kind="conduit_end" version="17.1">
    <!-- The connection points exposed by a module instance for the
@@ -3877,12 +3871,6 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>clk_1</moduleName>
     <slaveName>clk_in</slaveName>
     <name>clk_1.clk_in</name>
-   </clockDomainMember>
-   <clockDomainMember>
-    <isBridge>false</isBridge>
-    <moduleName>modular_adc_0</moduleName>
-    <slaveName>clock</slaveName>
-    <name>modular_adc_0.clock</name>
    </clockDomainMember>
    <clockDomainMember>
     <isBridge>false</isBridge>
@@ -5004,3066 +4992,6 @@ parameters are a RESULT of the module parameters. -->
    <isStart>false</isStart>
    <port>
     <name>av_irq</name>
-    <direction>Output</direction>
-    <width>1</width>
-    <role>irq</role>
-   </port>
-  </interface>
- </module>
- <module
-   name="modular_adc_0"
-   kind="altera_modular_adc"
-   version="17.1"
-   path="modular_adc_0">
-  <!-- Describes a single module. Module parameters are
-the requested settings for a module instance. -->
-  <assignment>
-   <name>embeddedsw.CMacro.CORE_VARIANT</name>
-   <value>0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_LENGTH</name>
-   <value>4</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_0</name>
-   <value>CH1</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_1</name>
-   <value>CH2</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_10</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_11</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_12</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_13</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_14</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_15</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_16</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_17</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_18</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_19</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_2</name>
-   <value>CH3</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_20</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_21</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_22</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_23</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_24</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_25</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_26</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_27</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_28</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_29</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_3</name>
-   <value>CH4</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_30</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_31</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_32</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_33</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_34</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_35</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_36</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_37</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_38</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_39</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_4</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_40</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_41</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_42</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_43</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_44</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_45</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_46</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_47</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_48</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_49</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_5</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_50</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_51</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_52</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_53</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_54</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_55</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_56</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_57</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_58</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_59</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_6</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_60</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_61</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_62</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_63</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_7</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_8</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.CSD_SLOT_9</name>
-   <value>CH0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.DUAL_ADC_MODE</name>
-   <value>false</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.IS_THIS_FIRST_OR_SECOND_ADC</name>
-   <value>1</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.PRESCALER_CH16</name>
-   <value>0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.PRESCALER_CH8</name>
-   <value>0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.REFSEL</name>
-   <value>Internal VREF</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH0</name>
-   <value>1</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH1</name>
-   <value>1</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH10</name>
-   <value>0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH11</name>
-   <value>0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH12</name>
-   <value>0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH13</name>
-   <value>0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH14</name>
-   <value>0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH15</name>
-   <value>0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH16</name>
-   <value>0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH2</name>
-   <value>1</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH3</name>
-   <value>1</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH4</name>
-   <value>1</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH5</name>
-   <value>0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH6</name>
-   <value>0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH7</name>
-   <value>0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH8</name>
-   <value>0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_CH9</name>
-   <value>0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.USE_TSD</name>
-   <value>0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.CMacro.VREF</name>
-   <value>2.5</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.dts.compatible</name>
-   <value>altr,modular-adc-1.0</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.dts.group</name>
-   <value>adc</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.dts.name</name>
-   <value>modular-adc</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.dts.params.altr,adc-mode</name>
-   <value>1</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.dts.params.altr,adc-number</name>
-   <value>1</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.dts.params.altr,adc-slot-count</name>
-   <value>4</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.dts.params.altr,adc1-slot-sequence-1</name>
-   <value>1</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.dts.params.altr,adc1-slot-sequence-2</name>
-   <value>2</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.dts.params.altr,adc1-slot-sequence-3</name>
-   <value>3</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.dts.params.altr,adc1-slot-sequence-4</name>
-   <value>4</value>
-  </assignment>
-  <assignment>
-   <name>embeddedsw.dts.vendor</name>
-   <value>altr</value>
-  </assignment>
-  <parameter name="CORE_VAR">
-   <type>int</type>
-   <value>0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="ENABLE_DEBUG">
-   <type>int</type>
-   <value>0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="MONITOR_COUNT_WIDTH">
-   <type>int</type>
-   <value>12</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="CLOCK_FREQ">
-   <type>long</type>
-   <value>50000000</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-   <sysinfo_type>CLOCK_RATE</sysinfo_type>
-   <sysinfo_arg>clock</sysinfo_arg>
-  </parameter>
-  <parameter name="FAMILY">
-   <type>java.lang.String</type>
-   <value>MAX10FPGA</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-   <sysinfo_type>DEVICE_FAMILY</sysinfo_type>
-  </parameter>
-  <parameter name="DEVICE_PART">
-   <type>java.lang.String</type>
-   <value>10M50DAF484C6GES</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-   <sysinfo_type>DEVICE</sysinfo_type>
-  </parameter>
-  <parameter name="device_partname_fivechar_prefix">
-   <type>java.lang.String</type>
-   <value>10M50</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="device_adc_type">
-   <type>int</type>
-   <value>33</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="max_adc_count_on_die">
-   <type>int</type>
-   <value>2</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="adc_count_on_device">
-   <type>int</type>
-   <value>2</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="device_power_supply_type">
-   <type>int</type>
-   <value>2</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="ip_is_for_which_adc">
-   <type>int</type>
-   <value>1</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="is_this_first_or_second_adc">
-   <type>int</type>
-   <value>1</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="analog_input_pin_mask">
-   <type>java.math.BigInteger</type>
-   <value>0</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="hard_pwd">
-   <type>int</type>
-   <value>0</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="sample_rate">
-   <type>int</type>
-   <value>0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="clkdiv">
-   <type>int</type>
-   <value>2</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="derived_clkdiv">
-   <type>int</type>
-   <value>2</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="tsclkdiv">
-   <type>int</type>
-   <value>1</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="tsclksel">
-   <type>int</type>
-   <value>1</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="refsel">
-   <type>int</type>
-   <value>1</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="external_vref">
-   <type>double</type>
-   <value>2.5</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="int_vref_vr">
-   <type>double</type>
-   <value>3.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="int_vref_nonvr">
-   <type>double</type>
-   <value>2.5</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="reference_voltage">
-   <type>double</type>
-   <value>2.5</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="reference_voltage_sim">
-   <type>int</type>
-   <value>65536</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="prescalar">
-   <type>int</type>
-   <value>0</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="enable_usr_sim">
-   <type>int</type>
-   <value>0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_tsd">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_tsd_max">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="tsd_max">
-   <type>int</type>
-   <value>125</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_tsd_min">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="tsd_min">
-   <type>int</type>
-   <value>0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch0">
-   <type>boolean</type>
-   <value>true</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch0">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch0">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch0">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch0">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch0">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch1">
-   <type>boolean</type>
-   <value>true</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch1">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch1">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch1">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch1">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch1">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch2">
-   <type>boolean</type>
-   <value>true</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch2">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch2">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch2">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch2">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch2">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch3">
-   <type>boolean</type>
-   <value>true</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch3">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch3">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch3">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch3">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch3">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch4">
-   <type>boolean</type>
-   <value>true</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch4">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch4">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch4">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch4">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch4">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch5">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch5">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch5">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch5">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch5">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch5">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch6">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch6">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch6">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch6">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch6">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch6">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch7">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch7">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch7">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch7">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch7">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch7">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch8">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="prescaler_ch8">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch8">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch8">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch8">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch8">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch8">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch9">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch9">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch9">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch9">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch9">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch9">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch10">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch10">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch10">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch10">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch10">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch10">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch11">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch11">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch11">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch11">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch11">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch11">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch12">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch12">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch12">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch12">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch12">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch12">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch13">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch13">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch13">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch13">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch13">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch13">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch14">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch14">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch14">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch14">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch14">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch14">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch15">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch15">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch15">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch15">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch15">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch15">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="use_ch16">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="prescaler_ch16">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmax_ch16">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmax_ch16">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="en_thmin_ch16">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="thmin_ch16">
-   <type>double</type>
-   <value>0.0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="simfilename_ch16">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_length">
-   <type>int</type>
-   <value>4</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_1">
-   <type>int</type>
-   <value>1</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_2">
-   <type>int</type>
-   <value>2</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_3">
-   <type>int</type>
-   <value>3</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_4">
-   <type>int</type>
-   <value>4</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_5">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_6">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_7">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_8">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_9">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_10">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_11">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_12">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_13">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_14">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_15">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_16">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_17">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_18">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_19">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_20">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_21">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_22">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_23">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_24">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_25">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_26">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_27">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_28">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_29">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_30">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_31">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_32">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_33">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_34">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_35">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_36">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_37">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_38">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_39">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_40">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_41">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_42">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_43">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_44">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_45">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_46">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_47">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_48">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_49">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_50">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_51">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_52">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_53">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_54">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_55">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_56">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_57">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_58">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_59">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_60">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_61">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_62">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_63">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="seq_order_slot_64">
-   <type>int</type>
-   <value>30</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="AUTO_DEVICE_SPEEDGRADE">
-   <type>java.lang.String</type>
-   <value>6</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-   <sysinfo_type>DEVICE_SPEEDGRADE</sysinfo_type>
-  </parameter>
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <interface name="clock" kind="clock_sink" version="17.1">
-   <!-- The connection points exposed by a module instance for the
-particular module parameters. Connection points and their
-parameters are a RESULT of the module parameters. -->
-   <parameter name="externallyDriven">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="ptfSchematicName">
-    <type>java.lang.String</type>
-    <value></value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="deviceFamily">
-    <type>java.lang.String</type>
-    <value>UNKNOWN</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="generateLegacySim">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="clockRateKnown">
-    <type>java.lang.Boolean</type>
-    <value>true</value>
-    <derived>true</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="clockRate">
-    <type>java.lang.Long</type>
-    <value>50000000</value>
-    <derived>true</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <type>clock</type>
-   <isStart>false</isStart>
-   <port>
-    <name>clock_clk</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>clk</role>
-   </port>
-  </interface>
-  <interface name="reset_sink" kind="reset_sink" version="17.1">
-   <!-- The connection points exposed by a module instance for the
-particular module parameters. Connection points and their
-parameters are a RESULT of the module parameters. -->
-   <parameter name="associatedClock">
-    <type>java.lang.String</type>
-    <value>clock</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="synchronousEdges">
-    <type>com.altera.sopcmodel.reset.Reset$Edges</type>
-    <value>DEASSERT</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="deviceFamily">
-    <type>java.lang.String</type>
-    <value>UNKNOWN</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="generateLegacySim">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <type>reset</type>
-   <isStart>false</isStart>
-   <port>
-    <name>reset_sink_reset_n</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>reset_n</role>
-   </port>
-  </interface>
-  <interface name="adc_pll_clock" kind="clock_sink" version="17.1">
-   <!-- The connection points exposed by a module instance for the
-particular module parameters. Connection points and their
-parameters are a RESULT of the module parameters. -->
-   <parameter name="externallyDriven">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="ptfSchematicName">
-    <type>java.lang.String</type>
-    <value></value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="deviceFamily">
-    <type>java.lang.String</type>
-    <value>UNKNOWN</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="generateLegacySim">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <type>clock</type>
-   <isStart>false</isStart>
-   <port>
-    <name>adc_pll_clock_clk</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>clk</role>
-   </port>
-  </interface>
-  <interface name="adc_pll_locked" kind="conduit_end" version="17.1">
-   <!-- The connection points exposed by a module instance for the
-particular module parameters. Connection points and their
-parameters are a RESULT of the module parameters. -->
-   <parameter name="associatedClock">
-    <type>java.lang.String</type>
-    <value></value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="associatedReset">
-    <type>java.lang.String</type>
-    <value></value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="deviceFamily">
-    <type>java.lang.String</type>
-    <value>UNKNOWN</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="generateLegacySim">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <type>conduit</type>
-   <isStart>false</isStart>
-   <port>
-    <name>adc_pll_locked_export</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>export</role>
-   </port>
-  </interface>
-  <interface name="sequencer_csr" kind="avalon_slave" version="17.1">
-   <!-- The connection points exposed by a module instance for the
-particular module parameters. Connection points and their
-parameters are a RESULT of the module parameters. -->
-   <assignment>
-    <name>embeddedsw.configuration.isFlash</name>
-    <value>0</value>
-   </assignment>
-   <assignment>
-    <name>embeddedsw.configuration.isMemoryDevice</name>
-    <value>0</value>
-   </assignment>
-   <assignment>
-    <name>embeddedsw.configuration.isNonVolatileStorage</name>
-    <value>0</value>
-   </assignment>
-   <assignment>
-    <name>embeddedsw.configuration.isPrintableDevice</name>
-    <value>0</value>
-   </assignment>
-   <parameter name="addressAlignment">
-    <type>com.altera.sopcmodel.avalon.AvalonConnectionPoint$AddressAlignment</type>
-    <value>DYNAMIC</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="addressGroup">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="addressSpan">
-    <type>java.math.BigInteger</type>
-    <value>8</value>
-    <derived>true</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="addressUnits">
-    <type>com.altera.sopcmodel.avalon.EAddrBurstUnits</type>
-    <value>WORDS</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="alwaysBurstMaxBurst">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="associatedClock">
-    <type>java.lang.String</type>
-    <value>clock</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="associatedReset">
-    <type>java.lang.String</type>
-    <value>reset_sink</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="bitsPerSymbol">
-    <type>int</type>
-    <value>8</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="bridgedAddressOffset">
-    <type>java.math.BigInteger</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="bridgesToMaster">
-    <type>com.altera.entityinterfaces.IConnectionPoint</type>
-    <value></value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="burstOnBurstBoundariesOnly">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="burstcountUnits">
-    <type>com.altera.sopcmodel.avalon.EAddrBurstUnits</type>
-    <value>WORDS</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="constantBurstBehavior">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="explicitAddressSpan">
-    <type>java.math.BigInteger</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="holdTime">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="interleaveBursts">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="isBigEndian">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="isFlash">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="isMemoryDevice">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="isNonVolatileStorage">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="linewrapBursts">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="maximumPendingReadTransactions">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>false</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="maximumPendingWriteTransactions">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>false</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="minimumUninterruptedRunLength">
-    <type>int</type>
-    <value>1</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="printableDevice">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="readLatency">
-    <type>int</type>
-    <value>1</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="readWaitStates">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="readWaitTime">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="registerIncomingSignals">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="registerOutgoingSignals">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="setupTime">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="timingUnits">
-    <type>com.altera.sopcmodel.avalon.TimingUnits</type>
-    <value>Cycles</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="transparentBridge">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="wellBehavedWaitrequest">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="writeLatency">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="writeWaitStates">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="writeWaitTime">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="deviceFamily">
-    <type>java.lang.String</type>
-    <value>UNKNOWN</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="generateLegacySim">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <type>avalon</type>
-   <isStart>false</isStart>
-   <port>
-    <name>sequencer_csr_address</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>address</role>
-   </port>
-   <port>
-    <name>sequencer_csr_read</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>read</role>
-   </port>
-   <port>
-    <name>sequencer_csr_write</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>write</role>
-   </port>
-   <port>
-    <name>sequencer_csr_writedata</name>
-    <direction>Input</direction>
-    <width>32</width>
-    <role>writedata</role>
-   </port>
-   <port>
-    <name>sequencer_csr_readdata</name>
-    <direction>Output</direction>
-    <width>32</width>
-    <role>readdata</role>
-   </port>
-  </interface>
-  <interface name="sample_store_csr" kind="avalon_slave" version="17.1">
-   <!-- The connection points exposed by a module instance for the
-particular module parameters. Connection points and their
-parameters are a RESULT of the module parameters. -->
-   <assignment>
-    <name>embeddedsw.configuration.isFlash</name>
-    <value>0</value>
-   </assignment>
-   <assignment>
-    <name>embeddedsw.configuration.isMemoryDevice</name>
-    <value>0</value>
-   </assignment>
-   <assignment>
-    <name>embeddedsw.configuration.isNonVolatileStorage</name>
-    <value>0</value>
-   </assignment>
-   <assignment>
-    <name>embeddedsw.configuration.isPrintableDevice</name>
-    <value>0</value>
-   </assignment>
-   <parameter name="addressAlignment">
-    <type>com.altera.sopcmodel.avalon.AvalonConnectionPoint$AddressAlignment</type>
-    <value>DYNAMIC</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="addressGroup">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="addressSpan">
-    <type>java.math.BigInteger</type>
-    <value>512</value>
-    <derived>true</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="addressUnits">
-    <type>com.altera.sopcmodel.avalon.EAddrBurstUnits</type>
-    <value>WORDS</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="alwaysBurstMaxBurst">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="associatedClock">
-    <type>java.lang.String</type>
-    <value>clock</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="associatedReset">
-    <type>java.lang.String</type>
-    <value>reset_sink</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="bitsPerSymbol">
-    <type>int</type>
-    <value>8</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="bridgedAddressOffset">
-    <type>java.math.BigInteger</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="bridgesToMaster">
-    <type>com.altera.entityinterfaces.IConnectionPoint</type>
-    <value></value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="burstOnBurstBoundariesOnly">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="burstcountUnits">
-    <type>com.altera.sopcmodel.avalon.EAddrBurstUnits</type>
-    <value>WORDS</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="constantBurstBehavior">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="explicitAddressSpan">
-    <type>java.math.BigInteger</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="holdTime">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="interleaveBursts">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="isBigEndian">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="isFlash">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="isMemoryDevice">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="isNonVolatileStorage">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="linewrapBursts">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="maximumPendingReadTransactions">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>false</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="maximumPendingWriteTransactions">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>false</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="minimumUninterruptedRunLength">
-    <type>int</type>
-    <value>1</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="printableDevice">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="readLatency">
-    <type>int</type>
-    <value>2</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="readWaitStates">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="readWaitTime">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="registerIncomingSignals">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="registerOutgoingSignals">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="setupTime">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="timingUnits">
-    <type>com.altera.sopcmodel.avalon.TimingUnits</type>
-    <value>Cycles</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="transparentBridge">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="wellBehavedWaitrequest">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="writeLatency">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="writeWaitStates">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="writeWaitTime">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="deviceFamily">
-    <type>java.lang.String</type>
-    <value>UNKNOWN</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="generateLegacySim">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <type>avalon</type>
-   <isStart>false</isStart>
-   <port>
-    <name>sample_store_csr_address</name>
-    <direction>Input</direction>
-    <width>7</width>
-    <role>address</role>
-   </port>
-   <port>
-    <name>sample_store_csr_read</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>read</role>
-   </port>
-   <port>
-    <name>sample_store_csr_write</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>write</role>
-   </port>
-   <port>
-    <name>sample_store_csr_writedata</name>
-    <direction>Input</direction>
-    <width>32</width>
-    <role>writedata</role>
-   </port>
-   <port>
-    <name>sample_store_csr_readdata</name>
-    <direction>Output</direction>
-    <width>32</width>
-    <role>readdata</role>
-   </port>
-  </interface>
-  <interface name="sample_store_irq" kind="interrupt_sender" version="17.1">
-   <!-- The connection points exposed by a module instance for the
-particular module parameters. Connection points and their
-parameters are a RESULT of the module parameters. -->
-   <parameter name="associatedAddressablePoint">
-    <type>com.altera.entityinterfaces.IConnectionPoint</type>
-    <value>modular_adc_0.sample_store_csr</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="associatedClock">
-    <type>java.lang.String</type>
-    <value>clock</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="associatedReset">
-    <type>java.lang.String</type>
-    <value>reset_sink</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="bridgedReceiverOffset">
-    <type>java.lang.Integer</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="bridgesToReceiver">
-    <type>com.altera.entityinterfaces.IConnectionPoint</type>
-    <value></value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="irqScheme">
-    <type>com.altera.sopcmodel.interrupt.InterruptConnectionPoint$EIrqScheme</type>
-    <value>NONE</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="deviceFamily">
-    <type>java.lang.String</type>
-    <value>UNKNOWN</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="generateLegacySim">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <type>interrupt</type>
-   <isStart>false</isStart>
-   <port>
-    <name>sample_store_irq_irq</name>
     <direction>Output</direction>
     <width>1</width>
     <role>irq</role>
@@ -12493,7 +9421,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1678770604</value>
+   <value>1678826112</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -12513,7 +9441,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1678770604</value>
+   <value>1678826112</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -12529,7 +9457,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1678770604</value>
+   <value>1678826112</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -15363,7 +12291,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="instSlaveMapParam">
    <type>java.lang.String</type>
-   <value><![CDATA[<address-map><slave name='new_sdram_controller_0.s1' start='0x4000000' end='0x8000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='onchip_memory2_0.s1' start='0x8040000' end='0x80680A0' type='altera_avalon_onchip_memory2.s1' /><slave name='top_level.debug_mem_slave' start='0x8082800' end='0x8083000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='timer_0.s1' start='0x8083260' end='0x8083280' type='altera_avalon_timer.s1' /><slave name='video_pixel_buffer_dma_0.avalon_control_slave' start='0x80832C0' end='0x80832D0' type='altera_up_avalon_video_pixel_buffer_dma.avalon_control_slave' /></address-map>]]></value>
+   <value><![CDATA[<address-map><slave name='new_sdram_controller_0.s1' start='0x4000000' end='0x8000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='onchip_memory2_0.s1' start='0x8040000' end='0x80680A0' type='altera_avalon_onchip_memory2.s1' /><slave name='top_level.debug_mem_slave' start='0x8082800' end='0x8083000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='timer_0.s1' start='0x8083060' end='0x8083080' type='altera_avalon_timer.s1' /><slave name='video_pixel_buffer_dma_0.avalon_control_slave' start='0x80830C0' end='0x80830D0' type='altera_up_avalon_video_pixel_buffer_dma.avalon_control_slave' /></address-map>]]></value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -15383,7 +12311,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="dataSlaveMapParam">
    <type>java.lang.String</type>
-   <value><![CDATA[<address-map><slave name='new_sdram_controller_0.s1' start='0x4000000' end='0x8000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='onchip_memory2_0.s1' start='0x8040000' end='0x80680A0' type='altera_avalon_onchip_memory2.s1' /><slave name='video_character_buffer_with_dma_0.avalon_char_buffer_slave' start='0x8080000' end='0x8082000' type='altera_up_avalon_video_character_buffer_with_dma.avalon_char_buffer_slave' /><slave name='top_level.debug_mem_slave' start='0x8082800' end='0x8083000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='modular_adc_0.sample_store_csr' start='0x8083000' end='0x8083200' type='altera_modular_adc.sample_store_csr' /><slave name='spi_1.spi_control_port' start='0x8083220' end='0x8083240' type='altera_avalon_spi.spi_control_port' /><slave name='spi_0.spi_control_port' start='0x8083240' end='0x8083260' type='altera_avalon_spi.spi_control_port' /><slave name='timer_0.s1' start='0x8083260' end='0x8083280' type='altera_avalon_timer.s1' /><slave name='GPIO.s1' start='0x8083290' end='0x80832A0' type='altera_avalon_pio.s1' /><slave name='sw.s1' start='0x80832A0' end='0x80832B0' type='altera_avalon_pio.s1' /><slave name='altpll_0.pll_slave' start='0x80832B0' end='0x80832C0' type='altpll.pll_slave' /><slave name='video_pixel_buffer_dma_0.avalon_control_slave' start='0x80832C0' end='0x80832D0' type='altera_up_avalon_video_pixel_buffer_dma.avalon_control_slave' /><slave name='modular_adc_0.sequencer_csr' start='0x80832D0' end='0x80832D8' type='altera_modular_adc.sequencer_csr' /><slave name='sysid_qsys_0.control_slave' start='0x80832D8' end='0x80832E0' type='altera_avalon_sysid_qsys.control_slave' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x80832E0' end='0x80832E8' type='altera_avalon_jtag_uart.avalon_jtag_slave' /><slave name='video_character_buffer_with_dma_0.avalon_char_control_slave' start='0x80832E8' end='0x80832F0' type='altera_up_avalon_video_character_buffer_with_dma.avalon_char_control_slave' /><slave name='audio_module_0.avalon_slave_0_1' start='0x80832F0' end='0x80832F4' type='audio_module.avalon_slave_0_1' /></address-map>]]></value>
+   <value><![CDATA[<address-map><slave name='new_sdram_controller_0.s1' start='0x4000000' end='0x8000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='onchip_memory2_0.s1' start='0x8040000' end='0x80680A0' type='altera_avalon_onchip_memory2.s1' /><slave name='video_character_buffer_with_dma_0.avalon_char_buffer_slave' start='0x8080000' end='0x8082000' type='altera_up_avalon_video_character_buffer_with_dma.avalon_char_buffer_slave' /><slave name='top_level.debug_mem_slave' start='0x8082800' end='0x8083000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='spi_1.spi_control_port' start='0x8083020' end='0x8083040' type='altera_avalon_spi.spi_control_port' /><slave name='spi_0.spi_control_port' start='0x8083040' end='0x8083060' type='altera_avalon_spi.spi_control_port' /><slave name='timer_0.s1' start='0x8083060' end='0x8083080' type='altera_avalon_timer.s1' /><slave name='GPIO.s1' start='0x8083090' end='0x80830A0' type='altera_avalon_pio.s1' /><slave name='sw.s1' start='0x80830A0' end='0x80830B0' type='altera_avalon_pio.s1' /><slave name='altpll_0.pll_slave' start='0x80830B0' end='0x80830C0' type='altpll.pll_slave' /><slave name='video_pixel_buffer_dma_0.avalon_control_slave' start='0x80830C0' end='0x80830D0' type='altera_up_avalon_video_pixel_buffer_dma.avalon_control_slave' /><slave name='sysid_qsys_0.control_slave' start='0x80830D0' end='0x80830D8' type='altera_avalon_sysid_qsys.control_slave' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x80830D8' end='0x80830E0' type='altera_avalon_jtag_uart.avalon_jtag_slave' /><slave name='video_character_buffer_with_dma_0.avalon_char_control_slave' start='0x80830E0' end='0x80830E8' type='altera_up_avalon_video_character_buffer_with_dma.avalon_char_control_slave' /><slave name='audio_module_0.avalon_slave_0_1' start='0x80830E8' end='0x80830EC' type='audio_module.avalon_slave_0_1' /></address-map>]]></value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -15589,7 +12517,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="AUTO_CLK_CLOCK_DOMAIN">
    <type>java.lang.Integer</type>
-   <value>3</value>
+   <value>2</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -15599,7 +12527,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="AUTO_CLK_RESET_DOMAIN">
    <type>java.lang.Integer</type>
-   <value>3</value>
+   <value>2</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -16062,7 +12990,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>video_character_buffer_with_dma_0</moduleName>
     <slaveName>avalon_char_control_slave</slaveName>
     <name>video_character_buffer_with_dma_0.avalon_char_control_slave</name>
-    <baseAddress>134755048</baseAddress>
+    <baseAddress>134754528</baseAddress>
     <span>8</span>
    </memoryBlock>
    <memoryBlock>
@@ -16070,7 +12998,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>video_pixel_buffer_dma_0</moduleName>
     <slaveName>avalon_control_slave</slaveName>
     <name>video_pixel_buffer_dma_0.avalon_control_slave</name>
-    <baseAddress>134755008</baseAddress>
+    <baseAddress>134754496</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -16078,7 +13006,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>jtag_uart_0</moduleName>
     <slaveName>avalon_jtag_slave</slaveName>
     <name>jtag_uart_0.avalon_jtag_slave</name>
-    <baseAddress>134755040</baseAddress>
+    <baseAddress>134754520</baseAddress>
     <span>8</span>
    </memoryBlock>
    <memoryBlock>
@@ -16086,7 +13014,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>audio_module_0</moduleName>
     <slaveName>avalon_slave_0_1</slaveName>
     <name>audio_module_0.avalon_slave_0_1</name>
-    <baseAddress>134755056</baseAddress>
+    <baseAddress>134754536</baseAddress>
     <span>4</span>
    </memoryBlock>
    <memoryBlock>
@@ -16094,7 +13022,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>sysid_qsys_0</moduleName>
     <slaveName>control_slave</slaveName>
     <name>sysid_qsys_0.control_slave</name>
-    <baseAddress>134755032</baseAddress>
+    <baseAddress>134754512</baseAddress>
     <span>8</span>
    </memoryBlock>
    <memoryBlock>
@@ -16110,7 +13038,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>altpll_0</moduleName>
     <slaveName>pll_slave</slaveName>
     <name>altpll_0.pll_slave</name>
-    <baseAddress>134754992</baseAddress>
+    <baseAddress>134754480</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -16118,7 +13046,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>sw</moduleName>
     <slaveName>s1</slaveName>
     <name>sw.s1</name>
-    <baseAddress>134754976</baseAddress>
+    <baseAddress>134754464</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -16126,7 +13054,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>timer_0</moduleName>
     <slaveName>s1</slaveName>
     <name>timer_0.s1</name>
-    <baseAddress>134754912</baseAddress>
+    <baseAddress>134754400</baseAddress>
     <span>32</span>
    </memoryBlock>
    <memoryBlock>
@@ -16150,31 +13078,15 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>GPIO</moduleName>
     <slaveName>s1</slaveName>
     <name>GPIO.s1</name>
-    <baseAddress>134754960</baseAddress>
+    <baseAddress>134754448</baseAddress>
     <span>16</span>
-   </memoryBlock>
-   <memoryBlock>
-    <isBridge>false</isBridge>
-    <moduleName>modular_adc_0</moduleName>
-    <slaveName>sample_store_csr</slaveName>
-    <name>modular_adc_0.sample_store_csr</name>
-    <baseAddress>134754304</baseAddress>
-    <span>512</span>
-   </memoryBlock>
-   <memoryBlock>
-    <isBridge>false</isBridge>
-    <moduleName>modular_adc_0</moduleName>
-    <slaveName>sequencer_csr</slaveName>
-    <name>modular_adc_0.sequencer_csr</name>
-    <baseAddress>134755024</baseAddress>
-    <span>8</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>spi_0</moduleName>
     <slaveName>spi_control_port</slaveName>
     <name>spi_0.spi_control_port</name>
-    <baseAddress>134754880</baseAddress>
+    <baseAddress>134754368</baseAddress>
     <span>32</span>
    </memoryBlock>
    <memoryBlock>
@@ -16182,7 +13094,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>spi_1</moduleName>
     <slaveName>spi_control_port</slaveName>
     <name>spi_1.spi_control_port</name>
-    <baseAddress>134754848</baseAddress>
+    <baseAddress>134754336</baseAddress>
     <span>32</span>
    </memoryBlock>
   </interface>
@@ -16477,7 +13389,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>video_pixel_buffer_dma_0</moduleName>
     <slaveName>avalon_control_slave</slaveName>
     <name>video_pixel_buffer_dma_0.avalon_control_slave</name>
-    <baseAddress>134755008</baseAddress>
+    <baseAddress>134754496</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -16509,7 +13421,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>timer_0</moduleName>
     <slaveName>s1</slaveName>
     <name>timer_0.s1</name>
-    <baseAddress>134754912</baseAddress>
+    <baseAddress>134754400</baseAddress>
     <span>32</span>
    </memoryBlock>
   </interface>
@@ -22051,7 +18963,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x080832e8</value>
+   <value>0x080830e0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -22102,7 +19014,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x080832c0</value>
+   <value>0x080830c0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -22153,7 +19065,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x080832e0</value>
+   <value>0x080830d8</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -22204,7 +19116,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x080832f0</value>
+   <value>0x080830e8</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -22255,7 +19167,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x080832d8</value>
+   <value>0x080830d0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -22357,7 +19269,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x080832b0</value>
+   <value>0x080830b0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -22408,7 +19320,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x080832a0</value>
+   <value>0x080830a0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -22459,7 +19371,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x08083260</value>
+   <value>0x08083060</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -22612,7 +19524,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x08083290</value>
+   <value>0x08083090</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -22648,108 +19560,6 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>s1</endConnectionPoint>
  </connection>
  <connection
-   name="top_level.data_master/modular_adc_0.sample_store_csr"
-   kind="avalon"
-   version="17.1"
-   start="top_level.data_master"
-   end="modular_adc_0.sample_store_csr">
-  <parameter name="arbitrationPriority">
-   <type>int</type>
-   <value>1</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="baseAddress">
-   <type>java.math.BigInteger</type>
-   <value>0x08083000</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="defaultConnection">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>top_level</startModule>
-  <startConnectionPoint>data_master</startConnectionPoint>
-  <endModule>modular_adc_0</endModule>
-  <endConnectionPoint>sample_store_csr</endConnectionPoint>
- </connection>
- <connection
-   name="top_level.data_master/modular_adc_0.sequencer_csr"
-   kind="avalon"
-   version="17.1"
-   start="top_level.data_master"
-   end="modular_adc_0.sequencer_csr">
-  <parameter name="arbitrationPriority">
-   <type>int</type>
-   <value>1</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="baseAddress">
-   <type>java.math.BigInteger</type>
-   <value>0x080832d0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="defaultConnection">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>top_level</startModule>
-  <startConnectionPoint>data_master</startConnectionPoint>
-  <endModule>modular_adc_0</endModule>
-  <endConnectionPoint>sequencer_csr</endConnectionPoint>
- </connection>
- <connection
    name="top_level.data_master/spi_0.spi_control_port"
    kind="avalon"
    version="17.1"
@@ -22765,7 +19575,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x08083240</value>
+   <value>0x08083040</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -22816,7 +19626,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x08083220</value>
+   <value>0x08083020</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -22867,7 +19677,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x080832c0</value>
+   <value>0x080830c0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -23071,7 +19881,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x08083260</value>
+   <value>0x08083060</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -23348,33 +20158,6 @@ parameters are a RESULT of the module parameters. -->
   <startConnectionPoint>c0</startConnectionPoint>
   <endModule>video_dual_clock_buffer_0</endModule>
   <endConnectionPoint>clock_stream_out</endConnectionPoint>
- </connection>
- <connection
-   name="altpll_0.c1/modular_adc_0.adc_pll_clock"
-   kind="clock"
-   version="17.1"
-   start="altpll_0.c1"
-   end="modular_adc_0.adc_pll_clock">
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>altpll_0</startModule>
-  <startConnectionPoint>c1</startConnectionPoint>
-  <endModule>modular_adc_0</endModule>
-  <endConnectionPoint>adc_pll_clock</endConnectionPoint>
  </connection>
  <connection
    name="clk_0.clk/top_level.clk"
@@ -23809,33 +20592,6 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>clk_in</endConnectionPoint>
  </connection>
  <connection
-   name="clk_0.clk/modular_adc_0.clock"
-   kind="clock"
-   version="17.1"
-   start="clk_0.clk"
-   end="modular_adc_0.clock">
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>clk_0</startModule>
-  <startConnectionPoint>clk</startConnectionPoint>
-  <endModule>modular_adc_0</endModule>
-  <endConnectionPoint>clock</endConnectionPoint>
- </connection>
- <connection
    name="clk_0.clk/audio_module_0.clock_sink_50"
    kind="clock"
    version="17.1"
@@ -23915,73 +20671,6 @@ parameters are a RESULT of the module parameters. -->
   <startConnectionPoint>clk</startConnectionPoint>
   <endModule>altpll_0</endModule>
   <endConnectionPoint>inclk_interface</endConnectionPoint>
- </connection>
- <connection
-   name="altpll_0.locked_conduit/modular_adc_0.adc_pll_locked"
-   kind="conduit"
-   version="17.1"
-   start="altpll_0.locked_conduit"
-   end="modular_adc_0.adc_pll_locked">
-  <parameter name="endPort">
-   <type>com.altera.entityinterfaces.IPort</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="endPortLSB">
-   <type>int</type>
-   <value>0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="startPort">
-   <type>com.altera.entityinterfaces.IPort</type>
-   <value></value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="startPortLSB">
-   <type>int</type>
-   <value>0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="width">
-   <type>int</type>
-   <value>0</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>altpll_0</startModule>
-  <startConnectionPoint>locked_conduit</startConnectionPoint>
-  <endModule>modular_adc_0</endModule>
-  <endConnectionPoint>adc_pll_locked</endConnectionPoint>
  </connection>
  <connection
    name="top_level.irq/jtag_uart_0.irq"
@@ -24653,33 +21342,6 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>reset1</endConnectionPoint>
  </connection>
  <connection
-   name="clk_0.clk_reset/modular_adc_0.reset_sink"
-   kind="reset"
-   version="17.1"
-   start="clk_0.clk_reset"
-   end="modular_adc_0.reset_sink">
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>clk_0</startModule>
-  <startConnectionPoint>clk_reset</startConnectionPoint>
-  <endModule>modular_adc_0</endModule>
-  <endConnectionPoint>reset_sink</endConnectionPoint>
- </connection>
- <connection
    name="clk_0.clk_reset/video_dual_clock_buffer_0.reset_stream_in"
    kind="reset"
    version="17.1"
@@ -24877,7 +21539,7 @@ parameters are a RESULT of the module parameters. -->
   <version>17.1</version>
  </plugin>
  <plugin>
-  <instanceCount>23</instanceCount>
+  <instanceCount>21</instanceCount>
   <name>clock_sink</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -24885,7 +21547,7 @@ parameters are a RESULT of the module parameters. -->
   <version>17.1</version>
  </plugin>
  <plugin>
-  <instanceCount>21</instanceCount>
+  <instanceCount>20</instanceCount>
   <name>reset_sink</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -24893,7 +21555,7 @@ parameters are a RESULT of the module parameters. -->
   <version>17.1</version>
  </plugin>
  <plugin>
-  <instanceCount>17</instanceCount>
+  <instanceCount>15</instanceCount>
   <name>avalon_slave</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -24901,7 +21563,7 @@ parameters are a RESULT of the module parameters. -->
   <version>17.1</version>
  </plugin>
  <plugin>
-  <instanceCount>9</instanceCount>
+  <instanceCount>8</instanceCount>
   <name>conduit_end</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -24909,7 +21571,7 @@ parameters are a RESULT of the module parameters. -->
   <version>17.1</version>
  </plugin>
  <plugin>
-  <instanceCount>7</instanceCount>
+  <instanceCount>6</instanceCount>
   <name>interrupt_sender</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -24986,14 +21648,6 @@ parameters are a RESULT of the module parameters. -->
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IModule</subtype>
   <displayName>JTAG UART</displayName>
-  <version>17.1</version>
- </plugin>
- <plugin>
-  <instanceCount>1</instanceCount>
-  <name>altera_modular_adc</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>Altera Modular ADC core</displayName>
   <version>17.1</version>
  </plugin>
  <plugin>
@@ -25149,7 +21803,7 @@ parameters are a RESULT of the module parameters. -->
   <version>17.1</version>
  </plugin>
  <plugin>
-  <instanceCount>23</instanceCount>
+  <instanceCount>21</instanceCount>
   <name>avalon</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IConnection</subtype>
@@ -25165,19 +21819,11 @@ parameters are a RESULT of the module parameters. -->
   <version>17.1</version>
  </plugin>
  <plugin>
-  <instanceCount>24</instanceCount>
+  <instanceCount>22</instanceCount>
   <name>clock</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IConnection</subtype>
   <displayName>Clock Connection</displayName>
-  <version>17.1</version>
- </plugin>
- <plugin>
-  <instanceCount>1</instanceCount>
-  <name>conduit</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IConnection</subtype>
-  <displayName>Conduit Connection</displayName>
   <version>17.1</version>
  </plugin>
  <plugin>
@@ -25189,7 +21835,7 @@ parameters are a RESULT of the module parameters. -->
   <version>17.1</version>
  </plugin>
  <plugin>
-  <instanceCount>25</instanceCount>
+  <instanceCount>24</instanceCount>
   <name>reset</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IConnection</subtype>
