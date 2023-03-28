@@ -9,6 +9,7 @@
 #define GAMEUTIL_H_
 #include <system.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <io.h>
 #include <system.h>
 #include <unistd.h>
@@ -35,7 +36,7 @@
 #define BACKGROUND_COLOUR 0x0000
 #define MAX_SCORE 69
 #define MAX_SNAKE_LENGTH 100
-#define SNAKE_SIZE 5
+#define SNAKE_PIXEL_SIZE 5
 #define SNAKE_COLOUR 0x0FF0
 #define FRUIT_COLOUR 0xF000
 #define JOYSTICK_LEFT 0
@@ -71,7 +72,7 @@ struct Game {
 	int time;
 };
 typedef struct Game Game;
-typedef struct SnakeGame {
+struct SnakeGame {
 	Rectangle snake[MAX_SNAKE_LENGTH];
 	int snake_size;
 	Rectangle fruit;
@@ -83,6 +84,6 @@ typedef struct SnakeGame {
 	int previous_joystick_direction;
 	int time;
 	int game_over_flag;
-} SnakeGame;
+}; typedef struct SnakeGame SnakeGame;
 
 #endif /* GAMEUTIL_H_ */
