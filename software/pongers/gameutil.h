@@ -34,6 +34,16 @@
 #define PADDLE_COLOUR 0xFFFF
 #define BACKGROUND_COLOUR 0x0000
 #define MAX_SCORE 69
+#define MAX_SNAKE_LENGTH 100
+#define SNAKE_SIZE 5
+#define SNAKE_COLOUR 0x0FF0
+#define FRUIT_COLOUR 0xF000
+#define JOYSTICK_LEFT 0
+#define JOYSTICK_RIGHT 1
+#define JOYSTICK_UP 2
+#define JOYSTICK_DOWN 3
+#define SNAKE_DEFAULT_X SCREEN_WIDTH / 2
+#define SNAKE_DEFAULT_Y SCREEN_HEIGHT / 2
 
 struct Rectangle {
 	int x;
@@ -61,5 +71,18 @@ struct Game {
 	int time;
 };
 typedef struct Game Game;
+typedef struct SnakeGame {
+	Rectangle snake[MAX_SNAKE_LENGTH];
+	int snake_size;
+	Rectangle fruit;
+	int score;
+	alt_u32 adc_val_horz;
+	alt_u32 adc_val_vert;
+	int user_input[8];
+	int current_joystick_direction;
+	int previous_joystick_direction;
+	int time;
+	int game_over_flag;
+} SnakeGame;
 
 #endif /* GAMEUTIL_H_ */
