@@ -389,13 +389,13 @@ int main()
 		int old_tail_x = snake[snake_size-1].x;
 		int old_tail_y = snake[snake_size-1].y;
 		int score = game-> score;
-		snake[0].x += snake[0].xspeed;
-		snake[0].y += snake[0].yspeed;
 		// Shift the position of every body segment "up by one"
 		for(int i = snake_size-1; i>0; i--) {
 			snake[i].x = snake[i-1].x;
 			snake[i].y = snake[i-1].y;
 		}
+		snake[0].x += snake[0].xspeed;
+		snake[0].y += snake[0].yspeed;
 		// If fruit eaten, add a body segment at the last segment's previous position
 		if(check_fruit_eaten(game)) {
 			(game->snake_size)++;
@@ -452,10 +452,16 @@ int main()
 		for(int i = 0; i<8; i++) {
 			user_input[i] = (0b1 << i) & SW;
 		}
-		// Restart game if SW[0] is on
-		if(user_input[0]) { 
-			reset_game_snake(game, pixel_buf_dma_dev, char_buf_dev);
+		while(!user_input[0]) {
+			// Read switch inputs
+			int SW = IORD(SW_BASE, 0);
+			int* user_input = game->user_input;
+			for(int i = 0; i<8; i++) {
+				user_input[i] = (0b1 << i) & SW;
+			}
 		}
+		// Restart game if SW[0] is on
+		reset_game_snake(game, pixel_buf_dma_dev, char_buf_dev);
 	}
 	void run_game_tick_snake(SnakeGame* game, alt_up_pixel_buffer_dma_dev* pixel_buf_dma_dev, alt_up_char_buffer_dev* char_buf_dev) {
 		Rectangle* snake = game->snake;
@@ -504,6 +510,8 @@ int main()
 	adc_stop(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
 	adc_set_mode_run_once(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
 
+	int count = 0;
+	int MAX_COUNT = 100;
 	while(1) {
 		if(pause_flag) { // Pause menu
 			pause_menu(char_buf_dev);
@@ -539,7 +547,8 @@ int main()
 			// Read joystick values
 			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE, adc_val_horz, 1);
 			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE + 4 * 1, adc_val_vert, 1);
-			run_game_tick_snake(&snake_game,pixel_buf_dma_dev, char_buf_dev);
+			if(count==MAX_COUNT)
+				run_game_tick_snake(&snake_game,pixel_buf_dma_dev, char_buf_dev);
 		}
 		
 
