@@ -547,8 +547,11 @@ int main()
 			// Read joystick values
 			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE, adc_val_horz, 1);
 			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE + 4 * 1, adc_val_vert, 1);
-			if(count==MAX_COUNT)
+			if(count==MAX_COUNT) {
 				run_game_tick_snake(&snake_game,pixel_buf_dma_dev, char_buf_dev);
+				count=0;
+			}
+			count++;
 		}
 		
 
