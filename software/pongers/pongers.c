@@ -312,6 +312,12 @@ int main()
 		// Generate random coordinates for the fruit
 		game->fruit.x = ( rand() % (SCREEN_WIDTH / SNAKE_PIXEL_SIZE) ) * SNAKE_PIXEL_SIZE;
 		game->fruit.y = ( rand() % (SCREEN_HEIGHT / SNAKE_PIXEL_SIZE) ) * SNAKE_PIXEL_SIZE;
+		if(game->fruit.x==0) {
+			game->fruit.x += 1;
+		}
+		if(game->fruit.y==0) {
+			game->fruit.y += 1;
+		}
 	}
 	int check_opposite_direction(int previous_direction, int current_direction) {
 		// If previous direction is in the opposite direction (an illegal move)
