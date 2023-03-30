@@ -567,7 +567,8 @@ int main()
 							pong_button.y + pong_button.height - 1,
 							pong_button.colour, 0);
 
-			alt_up_char_buffer_string(char_buf_dev, "PONG", 39, 30);
+			alt_up_char_buffer_string(char_buf_dev, "PONG", 39, 31);
+			alt_up_char_buffer_string(char_buf_dev, "SNAKE", 38, 36);
 			while(main_menu_flag) {
 				// Read switch inputs
 				int SW = IORD(SW_BASE, 0);
