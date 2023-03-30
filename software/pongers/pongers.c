@@ -8,6 +8,7 @@
 #define SNAKE_FLAG 1
 int pause_flag = 0;
 int main_menu_flag = 0;
+int game_clear_flag = 0;
 int game_flag = 1;
 
 // Interrupt setup for PIO
@@ -528,8 +529,8 @@ int main()
 				clear(pixel_buf_dma_dev, char_buf_dev,0);
 				game_clear_flag = 1;
 			}
-			reset_game(game);
-			reset_game_snake(snake_game);
+			reset_game(&game);
+			reset_game_snake(&snake_game, pixel_buf_dma_dev, char_buf_dev);
 			alt_up_char_buffer_string(char_buf_dev, "PONGERS!!!!", 37, 8);
 			//Game selection Buttons
 			//draw a white box at a specific location
@@ -560,12 +561,12 @@ int main()
 			while(main_menu_flag) {
 				// Read switch inputs
 				int SW = IORD(SW_BASE, 0);
-				int* user_input = game->user_input;
+				int* user_input = game.user_input;
 				for(int i = 0; i<8; i++) {
 					user_input[i] = (0b1 << i) & SW;
 				}
-				if(SW[0]) { // turning on SW[0] runs the selected game
-					if(!SW[1]) { // SW[1] off runs pong
+				if(user_input[0]) { // turning on SW[0] runs the selected game
+					if(!user_input[1]) { // SW[1] off runs pong
 					main_menu_flag=0;
 					game_flag = PONG_FLAG;
 					}
