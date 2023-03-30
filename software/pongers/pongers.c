@@ -519,6 +519,10 @@ int main()
 	int count = 0;
 	int MAX_COUNT = 100;
 	while(1) {
+		get_user_input(&game);
+		if(game.user_input[2] == 1){
+			main_menu_flag=1;
+		}
 		if(main_menu_flag) { // Main menu
 			if(!game_clear_flag){
 				clear(pixel_buf_dma_dev, char_buf_dev,0);
