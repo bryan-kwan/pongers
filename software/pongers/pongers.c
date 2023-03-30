@@ -519,7 +519,61 @@ int main()
 	int count = 0;
 	int MAX_COUNT = 100;
 	while(1) {
-		if(pause_flag) { // Pause menu
+		if(main_menu_flag) { // Main menu
+			if(!game_clear_flag){
+				clear(pixel_buf_dma_dev, char_buf_dev,0);
+				game_clear_flag = 1;
+			}
+			reset_game(game);
+			reset_game_snake(snake_game);
+			alt_up_char_buffer_string(char_buf_dev, "PONGERS!!!!", 37, 8);
+			//Game selection Buttons
+			//draw a white box at a specific location
+			//Write text "Pong" to the white box
+			//Clear and unclear the text by writing "		" to give blinking effect
+			Rectangle pong_button = {149,120,	//x, y
+									0,0,		//xspeed, yspeed
+									30,15,	//width, height
+									0x7800};	//colour
+			Rectangle snake_button = {149,140,	//x, y
+									0,0,		//xspeed, yspeed
+									30,15,	//width, height
+									0x0300};	//colour
+
+			Rectangle menu_select_buttons[2] = {pong_button, snake_button};
+			Rectangle ponge[1] = {pong_button};
+			Rectangle snock[1] = {snake_button};
+			alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
+						snake_button.x, snake_button.y, snake_button.x + snake_button.width - 1,
+						snake_button.y + snake_button.height - 1,
+						snake_button.colour, 0);
+			alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
+							pong_button.x, pong_button.y, pong_button.x + pong_button.width - 1,
+							pong_button.y + pong_button.height - 1,
+							pong_button.colour, 0);
+
+			alt_up_char_buffer_string(char_buf_dev, "PONG", 39, 30);
+			while(main_menu_flag) {
+				// Read switch inputs
+				int SW = IORD(SW_BASE, 0);
+				int* user_input = game->user_input;
+				for(int i = 0; i<8; i++) {
+					user_input[i] = (0b1 << i) & SW;
+				}
+				if(SW[0]) { // turning on SW[0] runs the selected game
+					if(!SW[1]) { // SW[1] off runs pong
+					main_menu_flag=0;
+					game_flag = PONG_FLAG;
+					}
+					else { // SW[1] on runs snake
+						main_menu_flag=0;
+						game_flag = SNAKE_FLAG;
+					}
+				}
+				
+			}
+		}
+		else if(pause_flag) { // Pause menu
 			pause_menu(char_buf_dev);
 		}
 		else if(game_flag==PONG_FLAG){
@@ -560,6 +614,9 @@ int main()
 			count++;
 		}
 		
+		if(!main_menu_flag) {
+			game_clear_flag = 0;
+		}
 
 	}
 	return 0;
