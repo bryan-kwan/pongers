@@ -7,9 +7,9 @@
 #define PONG_FLAG 0
 #define SNAKE_FLAG 1
 int pause_flag = 0;
-int main_menu_flag = 0;
+int main_menu_flag = 1;
 int game_clear_flag = 0;
-int game_flag = 1;
+int game_flag = SNAKE_FLAG;
 
 // Interrupt setup for PIO
 static void pio_isr(void * context, alt_u32 id)    //this is the ISR
@@ -47,7 +47,7 @@ int main()
 	alt_up_char_buffer_init(char_buf_dev);
 
 	// Game objects
-	Game game = {SCREEN_WIDTH, SCREEN_HEIGHT, {0,0}, NUM_BALLS, NUM_PADDLES,
+	Game pong_game = {SCREEN_WIDTH, SCREEN_HEIGHT, {0,0}, NUM_BALLS, NUM_PADDLES,
 			{{BALL_XDEFAULT, BALL_YDEFAULT, BALL_XSPEED, BALL_YSPEED, BALL_WIDTH, BALL_HEIGHT, BALL_COLOUR}}, //Balls
 			{{0, 0, 0, 0, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_COLOUR}, //Paddles
 					{SCREEN_WIDTH-PADDLE_WIDTH, 0, 0, 0, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_COLOUR}},
@@ -71,13 +71,13 @@ int main()
 
 	//Display strings
 	char time_str[10];
-	sprintf(time_str, "Time: %u", game.time);
+	sprintf(time_str, "Time: %u", pong_game.time);
 	char score_str[20];
 
 	// Alarm setup - executes the callback function periodically (every second)
 	alt_u32 alarm_callback(void *context) {
-		game.time += 1;
-		sprintf(time_str, "Time: %u", game.time);
+		pong_game.time += 1;
+		sprintf(time_str, "Time: %u", pong_game.time);
 		return alt_ticks_per_second();
 	}
 	static alt_alarm alarm;
@@ -420,11 +420,13 @@ int main()
 			// Snake head collides with one of its body segments
 			if(snake[0].x==snake[i].x && snake[0].y==snake[i].y) {
 				return 1;
+				game->game_over_flag = 1;
 			}
-			// Snake head collides with edge of screen
-			if(snake[0].x<=0 || snake[0].x>=SCREEN_WIDTH || snake[0].y<=0 || snake[0].y>=SCREEN_HEIGHT) {
-				return 1;
-			} 
+		}
+		// Snake head collides with edge of screen
+		if(snake[0].x<=0 || snake[0].x>=SCREEN_WIDTH || snake[0].y<=0 || snake[0].y>=SCREEN_HEIGHT) {
+			return 1;
+			game->game_over_flag = 1;
 		}
 		return 0;
 	}
@@ -433,10 +435,10 @@ int main()
 		// Reset game parameters to default values
 		game-> snake_size = 1;
 		Rectangle* snake = game-> snake;
-		snake[0].x = SNAKE_DEFAULT_X;
-		snake[0].y = SNAKE_DEFAULT_Y;
-		snake[0].xspeed = 0;
-		snake[0].yspeed = 0;
+		game->snake[0].x = SNAKE_DEFAULT_X;
+		game->snake[0].y = SNAKE_DEFAULT_Y;
+		game->snake[0].xspeed = 0;
+		game->snake[0].yspeed = 0;
 		game-> score = 0;
 		game-> current_joystick_direction = JOYSTICK_RIGHT;
 		game-> previous_joystick_direction= JOYSTICK_RIGHT;
@@ -453,56 +455,64 @@ int main()
 	    sprintf(score_str, "Score: %u", score);
 	    alt_up_char_buffer_string(char_buf_dev, "Game Over", 37, 8);
 	    alt_up_char_buffer_string(char_buf_dev, score_str, 37, 20);
-		// Read switch inputs
-		int SW = IORD(SW_BASE, 0);
-		int* user_input = game->user_input;
-		for(int i = 0; i<8; i++) {
-			user_input[i] = (0b1 << i) & SW;
-		}
-		while(!user_input[0]) {
+	}
+	void run_game_tick_snake(SnakeGame* game, alt_up_pixel_buffer_dma_dev* pixel_buf_dma_dev, alt_up_char_buffer_dev* char_buf_dev) {
+		Rectangle* snake = game->snake;
+		Rectangle fruit = game->fruit;
+		int snake_size = game->snake_size;
+		// Check for game over
+		if((game->game_over_flag) || check_snake_collision(game)) {
+			// Display game over screen
+			snake_game_over(game, pixel_buf_dma_dev, char_buf_dev);
 			// Read switch inputs
 			int SW = IORD(SW_BASE, 0);
 			int* user_input = game->user_input;
 			for(int i = 0; i<8; i++) {
 				user_input[i] = (0b1 << i) & SW;
 			}
+			while(!user_input[0]) {
+				// Read switch inputs
+				int SW = IORD(SW_BASE, 0);
+				int* user_input = game->user_input;
+				for(int i = 0; i<8; i++) {
+					user_input[i] = (0b1 << i) & SW;
+				}
+				if(user_input[0]) { // Restart game button
+					reset_game_snake(game, pixel_buf_dma_dev, char_buf_dev);
+				}
+				if(user_input[2]) { // Main menu button
+					main_menu_flag=1;
+					break;
+				}
+			}
+
 		}
-		// Restart game if SW[0] is on
-		reset_game_snake(game, pixel_buf_dma_dev, char_buf_dev);
-	}
-	void run_game_tick_snake(SnakeGame* game, alt_up_pixel_buffer_dma_dev* pixel_buf_dma_dev, alt_up_char_buffer_dev* char_buf_dev) {
-		Rectangle* snake = game->snake;
-		Rectangle fruit = game->fruit;
-		int snake_size = game->snake_size;
-		int game_over_flag = game->game_over_flag;
-		// Check for game over
-		if(game_over_flag || check_snake_collision(game)) {
-			game->game_over_flag = 1;
-			snake_game_over(game, pixel_buf_dma_dev, char_buf_dev);
-		}
-		// Wait for screen refresh
-		alt_up_pixel_buffer_dma_swap_buffers(pixel_buf_dma_dev);
-		while(alt_up_pixel_buffer_dma_check_swap_buffers_status(pixel_buf_dma_dev));
-		// Cleanup old game objects
-		alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
-					fruit.x, fruit.y, fruit.x+SNAKE_PIXEL_SIZE, fruit.y+SNAKE_PIXEL_SIZE,
-					BACKGROUND_COLOUR, 0);
-		for(int i = 0; i<snake_size; i++) {
+		else {
+			// Wait for screen refresh
+			alt_up_pixel_buffer_dma_swap_buffers(pixel_buf_dma_dev);
+			while(alt_up_pixel_buffer_dma_check_swap_buffers_status(pixel_buf_dma_dev));
+			// Cleanup old game objects
 			alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
-					snake[i].x, snake[i].y, snake[i].x+SNAKE_PIXEL_SIZE, snake[i].y+SNAKE_PIXEL_SIZE,
-					BACKGROUND_COLOUR, 0);
-		}
-		// Game logic - update
-		update_snake(game);
-		// Draw screen
-		alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
-					fruit.x, fruit.y, fruit.x+SNAKE_PIXEL_SIZE, fruit.y+SNAKE_PIXEL_SIZE,
-					FRUIT_COLOUR, 0);
-		for(int i = 0; i<snake_size; i++) {
+						fruit.x, fruit.y, fruit.x+SNAKE_PIXEL_SIZE, fruit.y+SNAKE_PIXEL_SIZE,
+						BACKGROUND_COLOUR, 0);
+			for(int i = 0; i<snake_size; i++) {
+				alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
+						snake[i].x, snake[i].y, snake[i].x+SNAKE_PIXEL_SIZE, snake[i].y+SNAKE_PIXEL_SIZE,
+						BACKGROUND_COLOUR, 0);
+			}
+			// Game logic - update
+			update_snake(game);
+			// Draw screen
 			alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
-					snake[i].x, snake[i].y, snake[i].x+SNAKE_PIXEL_SIZE, snake[i].y+SNAKE_PIXEL_SIZE,
-					SNAKE_COLOUR, 0);
+						fruit.x, fruit.y, fruit.x+SNAKE_PIXEL_SIZE, fruit.y+SNAKE_PIXEL_SIZE,
+						FRUIT_COLOUR, 0);
+			for(int i = 0; i<snake_size; i++) {
+				alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
+						snake[i].x, snake[i].y, snake[i].x+SNAKE_PIXEL_SIZE, snake[i].y+SNAKE_PIXEL_SIZE,
+						SNAKE_COLOUR, 0);
+			}
 		}
+
 	}
 	// ****************
 
@@ -520,8 +530,8 @@ int main()
 	int count = 0;
 	int MAX_COUNT = 100;
 	while(1) {
-		get_user_input(&game);
-		if(game.user_input[2] == 1){
+		get_user_input(&pong_game);
+		if(pong_game.user_input[2]){
 			main_menu_flag=1;
 		}
 		if(main_menu_flag) { // Main menu
@@ -529,7 +539,7 @@ int main()
 				clear(pixel_buf_dma_dev, char_buf_dev,0);
 				game_clear_flag = 1;
 			}
-			reset_game(&game);
+			reset_game(&pong_game);
 			reset_game_snake(&snake_game, pixel_buf_dma_dev, char_buf_dev);
 			alt_up_char_buffer_string(char_buf_dev, "PONGERS!!!!", 37, 8);
 			//Game selection Buttons
@@ -561,7 +571,7 @@ int main()
 			while(main_menu_flag) {
 				// Read switch inputs
 				int SW = IORD(SW_BASE, 0);
-				int* user_input = game.user_input;
+				int* user_input = pong_game.user_input;
 				for(int i = 0; i<8; i++) {
 					user_input[i] = (0b1 << i) & SW;
 				}
@@ -569,10 +579,12 @@ int main()
 					if(!user_input[1]) { // SW[1] off runs pong
 					main_menu_flag=0;
 					game_flag = PONG_FLAG;
+					clear(pixel_buf_dma_dev, char_buf_dev, 0);
 					}
 					else { // SW[1] on runs snake
 						main_menu_flag=0;
 						game_flag = SNAKE_FLAG;
+						clear(pixel_buf_dma_dev, char_buf_dev, 0);
 					}
 				}
 				
@@ -587,18 +599,18 @@ int main()
 			// ADC
 			adc_start(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
 			//usleep(10000);
-			alt_u32* adc_val_left = &(game.adc_val_left);
-			alt_u32* adc_val_right = &(game.adc_val_right);
-			float* adc_volt_left = &(game.adc_volt_left);
-			float* adc_volt_right = &(game.adc_volt_right);
+			alt_u32* adc_val_left = &(pong_game.adc_val_left);
+			alt_u32* adc_val_right = &(pong_game.adc_val_right);
+			float* adc_volt_left = &(pong_game.adc_volt_left);
+			float* adc_volt_right = &(pong_game.adc_volt_right);
 			// Read joystick values
 			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE, adc_val_left, 1);
 			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE + 4 * 1, adc_val_right, 1);
 			*adc_volt_left = (float)*adc_val_left * 5.0 / 4096.0;
 			*adc_val_right = (float)*adc_val_right * 5.0 / 4096.0;
 			// ADC - end
-			run_game_tick(pixel_buf_dma_dev, char_buf_dev, 0, &game);
-			sprintf(score_str, "%u - %u", game.scores[0], game.scores[1]);
+			run_game_tick(pixel_buf_dma_dev, char_buf_dev, 0, &pong_game);
+			sprintf(score_str, "%u - %u", pong_game.scores[0], pong_game.scores[1]);
 			alt_up_char_buffer_string(char_buf_dev, score_str, 37, 2);
 			alt_up_char_buffer_string(char_buf_dev, time_str, 65, 2);
 			
