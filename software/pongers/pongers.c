@@ -122,10 +122,13 @@ int main()
 		else {
 			paddle[0].yspeed = 0;
 		}
-		if(SW_1) // SW_1 is on (right paddle)
-			paddle[1].yspeed = -PADDLE_SPEED;
-		else
-			paddle[1].yspeed = PADDLE_SPEED;
+		if(adc_volt_right <=2.4) // Player 2 moving up
+			paddle[1].yspeed = -(5-adc_volt_right);
+		else if(adc_volt_right >=2.6) // Moving down
+			paddle[1].yspeed = adc_volt_right;
+		else {
+			paddle[1].yspeed = 0;
+		}
 		// Adjust paddle positions
 		for(int i = 0; i< len; i++) {
 			// Update position
@@ -470,19 +473,15 @@ int main()
 			for(int i = 0; i<8; i++) {
 				user_input[i] = (0b1 << i) & SW;
 			}
-			while(!user_input[0]) {
+			while(!user_input[2]) {
 				// Read switch inputs
 				int SW = IORD(SW_BASE, 0);
 				int* user_input = game->user_input;
 				for(int i = 0; i<8; i++) {
 					user_input[i] = (0b1 << i) & SW;
 				}
-				if(user_input[0]) { // Restart game button
-					reset_game_snake(game, pixel_buf_dma_dev, char_buf_dev);
-				}
 				if(user_input[2]) { // Main menu button
 					main_menu_flag=1;
-					break;
 				}
 			}
 
