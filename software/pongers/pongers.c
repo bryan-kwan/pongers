@@ -605,7 +605,7 @@ int main()
 			float* adc_volt_right = &(pong_game.adc_volt_right);
 			// Read joystick values
 			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE, adc_val_left, 1);
-			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE + 4 * 1, adc_val_right, 1);
+			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE + 4 * 2, adc_val_right, 1);
 			*adc_volt_left = (float)*adc_val_left * 5.0 / 4096.0;
 			*adc_val_right = (float)*adc_val_right * 5.0 / 4096.0;
 			// ADC - end
