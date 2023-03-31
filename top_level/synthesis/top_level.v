@@ -6,6 +6,7 @@
 module top_level (
 		input  wire        clk_clk,                       //                    clk.clk
 		input  wire [3:0]  gpio_export,                   //                   gpio.export
+		input  wire [1:0]  key_export,                    //                    key.export
 		output wire [12:0] memory_addr,                   //                 memory.addr
 		output wire [1:0]  memory_ba,                     //                       .ba
 		output wire        memory_cas_n,                  //                       .cas_n
@@ -153,6 +154,11 @@ module top_level (
 	wire   [1:0] mm_interconnect_0_gpio_s1_address;                                                        // mm_interconnect_0:GPIO_s1_address -> GPIO:address
 	wire         mm_interconnect_0_gpio_s1_write;                                                          // mm_interconnect_0:GPIO_s1_write -> GPIO:write_n
 	wire  [31:0] mm_interconnect_0_gpio_s1_writedata;                                                      // mm_interconnect_0:GPIO_s1_writedata -> GPIO:writedata
+	wire         mm_interconnect_0_key_buttons_s1_chipselect;                                              // mm_interconnect_0:KEY_Buttons_s1_chipselect -> KEY_Buttons:chipselect
+	wire  [31:0] mm_interconnect_0_key_buttons_s1_readdata;                                                // KEY_Buttons:readdata -> mm_interconnect_0:KEY_Buttons_s1_readdata
+	wire   [1:0] mm_interconnect_0_key_buttons_s1_address;                                                 // mm_interconnect_0:KEY_Buttons_s1_address -> KEY_Buttons:address
+	wire         mm_interconnect_0_key_buttons_s1_write;                                                   // mm_interconnect_0:KEY_Buttons_s1_write -> KEY_Buttons:write_n
+	wire  [31:0] mm_interconnect_0_key_buttons_s1_writedata;                                               // mm_interconnect_0:KEY_Buttons_s1_writedata -> KEY_Buttons:writedata
 	wire  [31:0] mm_interconnect_0_modular_adc_0_sample_store_csr_readdata;                                // modular_adc_0:sample_store_csr_readdata -> mm_interconnect_0:modular_adc_0_sample_store_csr_readdata
 	wire   [6:0] mm_interconnect_0_modular_adc_0_sample_store_csr_address;                                 // mm_interconnect_0:modular_adc_0_sample_store_csr_address -> modular_adc_0:sample_store_csr_address
 	wire         mm_interconnect_0_modular_adc_0_sample_store_csr_read;                                    // mm_interconnect_0:modular_adc_0_sample_store_csr_read -> modular_adc_0:sample_store_csr_read
@@ -167,6 +173,7 @@ module top_level (
 	wire         irq_mapper_receiver1_irq;                                                                 // timer_0:irq -> irq_mapper:receiver1_irq
 	wire         irq_mapper_receiver2_irq;                                                                 // sw:irq -> irq_mapper:receiver2_irq
 	wire         irq_mapper_receiver3_irq;                                                                 // GPIO:irq -> irq_mapper:receiver3_irq
+	wire         irq_mapper_receiver4_irq;                                                                 // KEY_Buttons:irq -> irq_mapper:receiver4_irq
 	wire  [31:0] top_level_irq_irq;                                                                        // irq_mapper:sender_irq -> top_level:irq
 	wire         video_scaler_0_avalon_scaler_source_valid;                                                // video_scaler_0:stream_out_valid -> avalon_st_adapter:in_0_valid
 	wire  [29:0] video_scaler_0_avalon_scaler_source_data;                                                 // video_scaler_0:stream_out_data -> avalon_st_adapter:in_0_data
@@ -179,7 +186,7 @@ module top_level (
 	wire         avalon_st_adapter_out_0_ready;                                                            // video_alpha_blender_0:background_ready -> avalon_st_adapter:out_0_ready
 	wire         avalon_st_adapter_out_0_startofpacket;                                                    // avalon_st_adapter:out_0_startofpacket -> video_alpha_blender_0:background_startofpacket
 	wire         avalon_st_adapter_out_0_endofpacket;                                                      // avalon_st_adapter:out_0_endofpacket -> video_alpha_blender_0:background_endofpacket
-	wire         rst_controller_reset_out_reset;                                                           // rst_controller:reset_out -> [GPIO:reset_n, altpll_0:reset, avalon_st_adapter:in_rst_0_reset, irq_mapper:reset, jtag_uart_0:rst_n, mm_interconnect_0:video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset, modular_adc_0:reset_sink_reset_n, new_sdram_controller_0:reset_n, onchip_memory2_0:reset, rst_translator:in_reset, sine_wave_audio_module_0:reset_n, sw:reset_n, sysid_qsys_0:reset_n, timer_0:reset_n, top_level:reset_n, video_dual_clock_buffer_0:reset_stream_in, video_pixel_buffer_dma_0:reset, video_rgb_resampler_0:reset, video_scaler_0:reset]
+	wire         rst_controller_reset_out_reset;                                                           // rst_controller:reset_out -> [GPIO:reset_n, KEY_Buttons:reset_n, altpll_0:reset, avalon_st_adapter:in_rst_0_reset, irq_mapper:reset, jtag_uart_0:rst_n, mm_interconnect_0:video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset, modular_adc_0:reset_sink_reset_n, new_sdram_controller_0:reset_n, onchip_memory2_0:reset, rst_translator:in_reset, sine_wave_audio_module_0:reset_n, sw:reset_n, sysid_qsys_0:reset_n, timer_0:reset_n, top_level:reset_n, video_dual_clock_buffer_0:reset_stream_in, video_pixel_buffer_dma_0:reset, video_rgb_resampler_0:reset, video_scaler_0:reset]
 	wire         rst_controller_reset_out_reset_req;                                                       // rst_controller:reset_req -> [onchip_memory2_0:reset_req, rst_translator:reset_req_in, top_level:reset_req]
 	wire         rst_controller_001_reset_out_reset;                                                       // rst_controller_001:reset_out -> [mm_interconnect_0:video_character_buffer_with_dma_0_reset_reset_bridge_in_reset_reset, video_alpha_blender_0:reset, video_character_buffer_with_dma_0:reset]
 	wire         rst_controller_002_reset_out_reset;                                                       // rst_controller_002:reset_out -> [video_dual_clock_buffer_0:reset_stream_out, video_vga_controller_0:reset]
@@ -194,6 +201,18 @@ module top_level (
 		.readdata   (mm_interconnect_0_gpio_s1_readdata),   //                    .readdata
 		.in_port    (gpio_export),                          // external_connection.export
 		.irq        (irq_mapper_receiver3_irq)              //                 irq.irq
+	);
+
+	top_level_KEY_Buttons key_buttons (
+		.clk        (clk_clk),                                     //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),             //               reset.reset_n
+		.address    (mm_interconnect_0_key_buttons_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_key_buttons_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_key_buttons_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_key_buttons_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_key_buttons_s1_readdata),   //                    .readdata
+		.in_port    (key_export),                                  // external_connection.export
+		.irq        (irq_mapper_receiver4_irq)                     //                 irq.irq
 	);
 
 	top_level_altpll_0 altpll_0 (
@@ -535,6 +554,11 @@ module top_level (
 		.jtag_uart_0_avalon_jtag_slave_writedata                                (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_writedata),                                //                                                              .writedata
 		.jtag_uart_0_avalon_jtag_slave_waitrequest                              (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_waitrequest),                              //                                                              .waitrequest
 		.jtag_uart_0_avalon_jtag_slave_chipselect                               (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_chipselect),                               //                                                              .chipselect
+		.KEY_Buttons_s1_address                                                 (mm_interconnect_0_key_buttons_s1_address),                                                 //                                                KEY_Buttons_s1.address
+		.KEY_Buttons_s1_write                                                   (mm_interconnect_0_key_buttons_s1_write),                                                   //                                                              .write
+		.KEY_Buttons_s1_readdata                                                (mm_interconnect_0_key_buttons_s1_readdata),                                                //                                                              .readdata
+		.KEY_Buttons_s1_writedata                                               (mm_interconnect_0_key_buttons_s1_writedata),                                               //                                                              .writedata
+		.KEY_Buttons_s1_chipselect                                              (mm_interconnect_0_key_buttons_s1_chipselect),                                              //                                                              .chipselect
 		.modular_adc_0_sample_store_csr_address                                 (mm_interconnect_0_modular_adc_0_sample_store_csr_address),                                 //                                modular_adc_0_sample_store_csr.address
 		.modular_adc_0_sample_store_csr_write                                   (mm_interconnect_0_modular_adc_0_sample_store_csr_write),                                   //                                                              .write
 		.modular_adc_0_sample_store_csr_read                                    (mm_interconnect_0_modular_adc_0_sample_store_csr_read),                                    //                                                              .read
@@ -615,6 +639,7 @@ module top_level (
 		.receiver1_irq (irq_mapper_receiver1_irq),       // receiver1.irq
 		.receiver2_irq (irq_mapper_receiver2_irq),       // receiver2.irq
 		.receiver3_irq (irq_mapper_receiver3_irq),       // receiver3.irq
+		.receiver4_irq (irq_mapper_receiver4_irq),       // receiver4.irq
 		.sender_irq    (top_level_irq_irq)               //    sender.irq
 	);
 

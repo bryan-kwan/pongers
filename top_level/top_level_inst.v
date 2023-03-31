@@ -20,6 +20,7 @@
 		.vga_conduit_R                 (<connected-to-vga_conduit_R>),                 //                       .R
 		.vga_conduit_G                 (<connected-to-vga_conduit_G>),                 //                       .G
 		.vga_conduit_B                 (<connected-to-vga_conduit_B>),                 //                       .B
-		.sine_wave_output_readdata     (<connected-to-sine_wave_output_readdata>)      //       sine_wave_output.readdata
+		.sine_wave_output_readdata     (<connected-to-sine_wave_output_readdata>),     //       sine_wave_output.readdata
+		.key_export                    (<connected-to-key_export>)                     //                    key.export
 	);
 

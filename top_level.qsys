@@ -21,6 +21,22 @@
    {
       datum baseAddress
       {
+         value = "134754912";
+         type = "String";
+      }
+   }
+   element KEY_Buttons
+   {
+      datum _sortIndex
+      {
+         value = "21";
+         type = "int";
+      }
+   }
+   element KEY_Buttons.s1
+   {
+      datum baseAddress
+      {
          value = "134754896";
          type = "String";
       }
@@ -42,7 +58,7 @@
    {
       datum baseAddress
       {
-         value = "134754928";
+         value = "134754944";
          type = "String";
       }
    }
@@ -84,7 +100,7 @@
    {
       datum baseAddress
       {
-         value = "134754976";
+         value = "134754992";
          type = "String";
       }
    }
@@ -129,7 +145,7 @@
    {
       datum baseAddress
       {
-         value = "134754960";
+         value = "134754976";
          type = "String";
       }
    }
@@ -183,6 +199,14 @@
          type = "int";
       }
    }
+   element sine_wave_audio_module_0.avalon_slave_0
+   {
+      datum baseAddress
+      {
+         value = "134755008";
+         type = "String";
+      }
+   }
    element sw
    {
       datum _sortIndex
@@ -200,7 +224,7 @@
    {
       datum baseAddress
       {
-         value = "134754912";
+         value = "134754928";
          type = "String";
       }
    }
@@ -221,7 +245,7 @@
    {
       datum baseAddress
       {
-         value = "134754968";
+         value = "134754984";
          type = "String";
       }
    }
@@ -300,7 +324,7 @@
    {
       datum baseAddress
       {
-         value = "134754984";
+         value = "134755000";
          type = "String";
       }
    }
@@ -334,7 +358,7 @@
    {
       datum baseAddress
       {
-         value = "134754944";
+         value = "134754960";
          type = "String";
       }
    }
@@ -404,6 +428,11 @@
    internal="GPIO.external_connection"
    type="conduit"
    dir="end" />
+ <interface
+   name="key"
+   internal="KEY_Buttons.external_connection"
+   type="conduit"
+   dir="end" />
  <interface name="ledr_external_connection" internal="ledr.external_connection" />
  <interface
    name="memory"
@@ -439,6 +468,24 @@
   <parameter name="simDoTestBenchWiring" value="false" />
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="4" />
+ </module>
+ <module
+   name="KEY_Buttons"
+   kind="altera_avalon_pio"
+   version="17.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="true" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="true" />
+  <parameter name="irqType" value="EDGE" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="2" />
  </module>
  <module name="altpll_0" kind="altpll" version="17.1" enabled="1">
   <parameter name="AUTO_DEVICE_FAMILY" value="MAX 10" />
@@ -966,7 +1013,7 @@
   <parameter name="dataAddrWidth" value="28" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sine_wave_audio_module_0.avalon_slave_0' start='0x0' end='0x4' type='sine_wave_audio_module.avalon_slave_0' /><slave name='new_sdram_controller_0.s1' start='0x4000000' end='0x8000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='onchip_memory2_0.s1' start='0x8040000' end='0x80680A0' type='altera_avalon_onchip_memory2.s1' /><slave name='video_character_buffer_with_dma_0.avalon_char_buffer_slave' start='0x8080000' end='0x8082000' type='altera_up_avalon_video_character_buffer_with_dma.avalon_char_buffer_slave' /><slave name='top_level.debug_mem_slave' start='0x8082800' end='0x8083000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='modular_adc_0.sample_store_csr' start='0x8083000' end='0x8083200' type='altera_modular_adc.sample_store_csr' /><slave name='timer_0.s1' start='0x8083220' end='0x8083240' type='altera_avalon_timer.s1' /><slave name='GPIO.s1' start='0x8083250' end='0x8083260' type='altera_avalon_pio.s1' /><slave name='sw.s1' start='0x8083260' end='0x8083270' type='altera_avalon_pio.s1' /><slave name='altpll_0.pll_slave' start='0x8083270' end='0x8083280' type='altpll.pll_slave' /><slave name='video_pixel_buffer_dma_0.avalon_control_slave' start='0x8083280' end='0x8083290' type='altera_up_avalon_video_pixel_buffer_dma.avalon_control_slave' /><slave name='modular_adc_0.sequencer_csr' start='0x8083290' end='0x8083298' type='altera_modular_adc.sequencer_csr' /><slave name='sysid_qsys_0.control_slave' start='0x8083298' end='0x80832A0' type='altera_avalon_sysid_qsys.control_slave' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x80832A0' end='0x80832A8' type='altera_avalon_jtag_uart.avalon_jtag_slave' /><slave name='video_character_buffer_with_dma_0.avalon_char_control_slave' start='0x80832A8' end='0x80832B0' type='altera_up_avalon_video_character_buffer_with_dma.avalon_char_control_slave' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='new_sdram_controller_0.s1' start='0x4000000' end='0x8000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='onchip_memory2_0.s1' start='0x8040000' end='0x80680A0' type='altera_avalon_onchip_memory2.s1' /><slave name='video_character_buffer_with_dma_0.avalon_char_buffer_slave' start='0x8080000' end='0x8082000' type='altera_up_avalon_video_character_buffer_with_dma.avalon_char_buffer_slave' /><slave name='top_level.debug_mem_slave' start='0x8082800' end='0x8083000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='modular_adc_0.sample_store_csr' start='0x8083000' end='0x8083200' type='altera_modular_adc.sample_store_csr' /><slave name='timer_0.s1' start='0x8083220' end='0x8083240' type='altera_avalon_timer.s1' /><slave name='KEY_Buttons.s1' start='0x8083250' end='0x8083260' type='altera_avalon_pio.s1' /><slave name='GPIO.s1' start='0x8083260' end='0x8083270' type='altera_avalon_pio.s1' /><slave name='sw.s1' start='0x8083270' end='0x8083280' type='altera_avalon_pio.s1' /><slave name='altpll_0.pll_slave' start='0x8083280' end='0x8083290' type='altpll.pll_slave' /><slave name='video_pixel_buffer_dma_0.avalon_control_slave' start='0x8083290' end='0x80832A0' type='altera_up_avalon_video_pixel_buffer_dma.avalon_control_slave' /><slave name='modular_adc_0.sequencer_csr' start='0x80832A0' end='0x80832A8' type='altera_modular_adc.sequencer_csr' /><slave name='sysid_qsys_0.control_slave' start='0x80832A8' end='0x80832B0' type='altera_avalon_sysid_qsys.control_slave' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x80832B0' end='0x80832B8' type='altera_avalon_jtag_uart.avalon_jtag_slave' /><slave name='video_character_buffer_with_dma_0.avalon_char_control_slave' start='0x80832B8' end='0x80832C0' type='altera_up_avalon_video_character_buffer_with_dma.avalon_char_control_slave' /><slave name='sine_wave_audio_module_0.avalon_slave_0' start='0x80832C0' end='0x80832C4' type='sine_wave_audio_module.avalon_slave_0' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -1005,14 +1052,14 @@
   <parameter name="icache_tagramBlockType" value="Automatic" />
   <parameter name="impl" value="Tiny" />
   <parameter name="instAddrWidth" value="28" />
-  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='new_sdram_controller_0.s1' start='0x4000000' end='0x8000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='onchip_memory2_0.s1' start='0x8040000' end='0x80680A0' type='altera_avalon_onchip_memory2.s1' /><slave name='top_level.debug_mem_slave' start='0x8082800' end='0x8083000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='timer_0.s1' start='0x8083220' end='0x8083240' type='altera_avalon_timer.s1' /><slave name='video_pixel_buffer_dma_0.avalon_control_slave' start='0x8083280' end='0x8083290' type='altera_up_avalon_video_pixel_buffer_dma.avalon_control_slave' /></address-map>]]></parameter>
+  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='new_sdram_controller_0.s1' start='0x4000000' end='0x8000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='onchip_memory2_0.s1' start='0x8040000' end='0x80680A0' type='altera_avalon_onchip_memory2.s1' /><slave name='top_level.debug_mem_slave' start='0x8082800' end='0x8083000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='timer_0.s1' start='0x8083220' end='0x8083240' type='altera_avalon_timer.s1' /><slave name='video_pixel_buffer_dma_0.avalon_control_slave' start='0x8083290' end='0x80832A0' type='altera_up_avalon_video_pixel_buffer_dma.avalon_control_slave' /></address-map>]]></parameter>
   <parameter name="instructionMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="instructionMasterHighPerformanceMapParam" value="" />
   <parameter name="instruction_master_high_performance_paddr_base" value="0" />
   <parameter name="instruction_master_high_performance_paddr_size" value="0" />
   <parameter name="instruction_master_paddr_base" value="0" />
   <parameter name="instruction_master_paddr_size" value="0" />
-  <parameter name="internalIrqMaskSystemInfo" value="15" />
+  <parameter name="internalIrqMaskSystemInfo" value="31" />
   <parameter name="io_regionbase" value="0" />
   <parameter name="io_regionsize" value="0" />
   <parameter name="master_addr_map" value="false" />
@@ -1232,7 +1279,7 @@
    start="top_level.data_master"
    end="video_character_buffer_with_dma_0.avalon_char_control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x080832a8" />
+  <parameter name="baseAddress" value="0x080832b8" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1241,7 +1288,7 @@
    start="top_level.data_master"
    end="video_pixel_buffer_dma_0.avalon_control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x08083280" />
+  <parameter name="baseAddress" value="0x08083290" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1250,7 +1297,7 @@
    start="top_level.data_master"
    end="jtag_uart_0.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x080832a0" />
+  <parameter name="baseAddress" value="0x080832b0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1259,7 +1306,7 @@
    start="top_level.data_master"
    end="sine_wave_audio_module_0.avalon_slave_0">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x080832c0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1268,7 +1315,7 @@
    start="top_level.data_master"
    end="sysid_qsys_0.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x08083298" />
+  <parameter name="baseAddress" value="0x080832a8" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1286,7 +1333,7 @@
    start="top_level.data_master"
    end="altpll_0.pll_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x08083270" />
+  <parameter name="baseAddress" value="0x08083280" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1304,7 +1351,7 @@
    start="top_level.data_master"
    end="sw.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x08083260" />
+  <parameter name="baseAddress" value="0x08083270" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1340,6 +1387,15 @@
    start="top_level.data_master"
    end="GPIO.s1">
   <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x08083260" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.1"
+   start="top_level.data_master"
+   end="KEY_Buttons.s1">
+  <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x08083250" />
   <parameter name="defaultConnection" value="false" />
  </connection>
@@ -1358,7 +1414,7 @@
    start="top_level.data_master"
    end="modular_adc_0.sequencer_csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x08083290" />
+  <parameter name="baseAddress" value="0x080832a0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1367,7 +1423,7 @@
    start="top_level.instruction_master"
    end="video_pixel_buffer_dma_0.avalon_control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x08083280" />
+  <parameter name="baseAddress" value="0x08083290" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1493,6 +1549,7 @@
    start="clk_0.clk"
    end="video_alpha_blender_0.clk" />
  <connection kind="clock" version="17.1" start="clk_0.clk" end="GPIO.clk" />
+ <connection kind="clock" version="17.1" start="clk_0.clk" end="KEY_Buttons.clk" />
  <connection
    kind="clock"
    version="17.1"
@@ -1549,6 +1606,13 @@
  </connection>
  <connection kind="interrupt" version="17.1" start="top_level.irq" end="GPIO.irq">
   <parameter name="irqNumber" value="3" />
+ </connection>
+ <connection
+   kind="interrupt"
+   version="17.1"
+   start="top_level.irq"
+   end="KEY_Buttons.irq">
+  <parameter name="irqNumber" value="4" />
  </connection>
  <connection
    kind="reset"
@@ -1623,6 +1687,11 @@
    start="clk_0.clk_reset"
    end="video_alpha_blender_0.reset" />
  <connection kind="reset" version="17.1" start="clk_0.clk_reset" end="GPIO.reset" />
+ <connection
+   kind="reset"
+   version="17.1"
+   start="clk_0.clk_reset"
+   end="KEY_Buttons.reset" />
  <connection
    kind="reset"
    version="17.1"

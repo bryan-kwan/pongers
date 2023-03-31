@@ -466,20 +466,20 @@ int main()
 		if((game->game_over_flag) || check_snake_collision(game)) {
 			// Display game over screen
 			snake_game_over(game, pixel_buf_dma_dev, char_buf_dev);
-			// Read switch inputs
-			int SW = IORD(SW_BASE, 0);
-			int* user_input = game->user_input;
-			for(int i = 0; i<8; i++) {
-				user_input[i] = (0b1 << i) & SW;
+			// Read main menu button
+			int bt = IORD(GPIO_BASE, 0);
+			int btns[4];
+			for(int i = 0; i<4; i++) {
+				btns[i] = bt & (0b1 << i);
 			}
-			while(!user_input[2]) {
-				// Read switch inputs
-				int SW = IORD(SW_BASE, 0);
-				int* user_input = game->user_input;
-				for(int i = 0; i<8; i++) {
-					user_input[i] = (0b1 << i) & SW;
+			while(btns[0]) {
+				//printf("%d\n", bt);
+				// Read main menu button
+				int bt = IORD(GPIO_BASE, 0);
+				for(int i = 0; i<4; i++) {
+					btns[i] = bt & (0b1 << i);
 				}
-				if(user_input[2]) { // Main menu button
+				if(!btns[0]) { // Main menu button
 					main_menu_flag=1;
 				}
 			}
@@ -526,10 +526,14 @@ int main()
 	adc_set_mode_run_once(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
 
 	int count = 0;
-	int MAX_COUNT = 100;
+	int MAX_COUNT = 1000;
 	while(1) {
-		get_user_input(&pong_game);
-		if(pong_game.user_input[2]){
+		int bt = IORD(GPIO_BASE, 0);
+		int btns[4];
+		for(int i = 0; i<4; i++) {
+			btns[i] = bt & (0b1 << i);
+		}
+		if(!btns[0]){
 			main_menu_flag=1;
 		}
 		if(main_menu_flag) { // Main menu
@@ -565,27 +569,44 @@ int main()
 							pong_button.y + pong_button.height - 1,
 							pong_button.colour, 0);
 
-			alt_up_char_buffer_string(char_buf_dev, "PONG", 39, 31);
-			alt_up_char_buffer_string(char_buf_dev, "SNAKE", 38, 36);
+			alt_up_char_buffer_string(char_buf_dev, "	PONG	", 39, 31);
+			alt_up_char_buffer_string(char_buf_dev, "	SNAKE	", 38, 36);
 			while(main_menu_flag) {
-				// Read switch inputs
-				int SW = IORD(SW_BASE, 0);
-				int* user_input = pong_game.user_input;
-				for(int i = 0; i<8; i++) {
-					user_input[i] = (0b1 << i) & SW;
-				}
-				if(user_input[0]) { // turning on SW[0] runs the selected game
-					if(!user_input[1]) { // SW[1] off runs pong
-					main_menu_flag=0;
+				// Read joystick
+				// ADC
+				adc_start(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
+				//usleep(10000);
+				alt_u32* adc_val_left = &(pong_game.adc_val_left);
+				float* adc_volt_left = &(pong_game.adc_volt_left);
+				// Read joystick values
+				alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE, adc_val_left, 1);
+				*adc_volt_left = (float)*adc_val_left * 5.0 / 4096.0;
+				if(*adc_volt_left > 2.6) {
 					game_flag = PONG_FLAG;
-					clear(pixel_buf_dma_dev, char_buf_dev, 0);
-					}
-					else { // SW[1] on runs snake
-						main_menu_flag=0;
-						game_flag = SNAKE_FLAG;
-						clear(pixel_buf_dma_dev, char_buf_dev, 0);
-					}
 				}
+				else if(*adc_volt_left < 2.4) {
+					game_flag = SNAKE_FLAG;
+				}
+				// ADC - end
+				alt_up_char_buffer_string(char_buf_dev, "    PONG    ", 39, 31);
+				alt_up_char_buffer_string(char_buf_dev, "    SNAKE    ", 38, 36);
+				if(game_flag==PONG_FLAG) {
+					alt_up_char_buffer_string(char_buf_dev, ">PONG", 39, 31);
+				}
+				else if(game_flag==SNAKE_FLAG) {
+					alt_up_char_buffer_string(char_buf_dev, ">SNAKE", 38, 36);
+				}
+
+				int bt = IORD(GPIO_BASE, 0);
+				int btns[4];
+				for(int i = 0; i<4; i++) {
+					btns[i] = bt & (0b1 << i);
+				}
+				if(!btns[1]) { // Start button
+					main_menu_flag=0;
+					clear(pixel_buf_dma_dev, char_buf_dev, 0);
+				}
+
 
 			}
 		}

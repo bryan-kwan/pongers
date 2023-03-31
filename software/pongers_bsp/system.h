@@ -4,7 +4,7 @@
  * Machine generated for CPU 'top_level' in SOPC Builder design 'top_level'
  * SOPC Builder design path: ../../top_level.sopcinfo
  *
- * Generated: Fri Mar 31 10:49:17 MDT 2023
+ * Generated: Fri Mar 31 13:23:47 MDT 2023
  */
 
 /*
@@ -153,7 +153,7 @@
  */
 
 #define ALT_MODULE_CLASS_GPIO altera_avalon_pio
-#define GPIO_BASE 0x8083250
+#define GPIO_BASE 0x8083260
 #define GPIO_BIT_CLEARING_EDGE_REGISTER 0
 #define GPIO_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define GPIO_CAPTURE 1
@@ -175,6 +175,33 @@
 
 
 /*
+ * KEY_Buttons configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_KEY_Buttons altera_avalon_pio
+#define KEY_BUTTONS_BASE 0x8083250
+#define KEY_BUTTONS_BIT_CLEARING_EDGE_REGISTER 0
+#define KEY_BUTTONS_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define KEY_BUTTONS_CAPTURE 1
+#define KEY_BUTTONS_DATA_WIDTH 2
+#define KEY_BUTTONS_DO_TEST_BENCH_WIRING 0
+#define KEY_BUTTONS_DRIVEN_SIM_VALUE 0
+#define KEY_BUTTONS_EDGE_TYPE "RISING"
+#define KEY_BUTTONS_FREQ 50000000
+#define KEY_BUTTONS_HAS_IN 1
+#define KEY_BUTTONS_HAS_OUT 0
+#define KEY_BUTTONS_HAS_TRI 0
+#define KEY_BUTTONS_IRQ 4
+#define KEY_BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define KEY_BUTTONS_IRQ_TYPE "EDGE"
+#define KEY_BUTTONS_NAME "/dev/KEY_Buttons"
+#define KEY_BUTTONS_RESET_VALUE 0
+#define KEY_BUTTONS_SPAN 16
+#define KEY_BUTTONS_TYPE "altera_avalon_pio"
+
+
+/*
  * System configuration
  *
  */
@@ -190,19 +217,19 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart_0"
-#define ALT_STDERR_BASE 0x80832a0
+#define ALT_STDERR_BASE 0x80832b0
 #define ALT_STDERR_DEV jtag_uart_0
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart_0"
-#define ALT_STDIN_BASE 0x80832a0
+#define ALT_STDIN_BASE 0x80832b0
 #define ALT_STDIN_DEV jtag_uart_0
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart_0"
-#define ALT_STDOUT_BASE 0x80832a0
+#define ALT_STDOUT_BASE 0x80832b0
 #define ALT_STDOUT_DEV jtag_uart_0
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
@@ -215,7 +242,7 @@
  *
  */
 
-#define ALTPLL_0_BASE 0x8083270
+#define ALTPLL_0_BASE 0x8083280
 #define ALTPLL_0_IRQ -1
 #define ALTPLL_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define ALTPLL_0_NAME "/dev/altpll_0"
@@ -241,7 +268,7 @@
  */
 
 #define ALT_MODULE_CLASS_jtag_uart_0 altera_avalon_jtag_uart
-#define JTAG_UART_0_BASE 0x80832a0
+#define JTAG_UART_0_BASE 0x80832b0
 #define JTAG_UART_0_IRQ 0
 #define JTAG_UART_0_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_0_NAME "/dev/jtag_uart_0"
@@ -363,7 +390,7 @@
  */
 
 #define ALT_MODULE_CLASS_modular_adc_0_sequencer_csr altera_modular_adc
-#define MODULAR_ADC_0_SEQUENCER_CSR_BASE 0x8083290
+#define MODULAR_ADC_0_SEQUENCER_CSR_BASE 0x80832a0
 #define MODULAR_ADC_0_SEQUENCER_CSR_CORE_VARIANT 0
 #define MODULAR_ADC_0_SEQUENCER_CSR_CSD_LENGTH 4
 #define MODULAR_ADC_0_SEQUENCER_CSR_CSD_SLOT_0 "CH1"
@@ -535,7 +562,7 @@
  */
 
 #define ALT_MODULE_CLASS_sine_wave_audio_module_0 sine_wave_audio_module
-#define SINE_WAVE_AUDIO_MODULE_0_BASE 0x0
+#define SINE_WAVE_AUDIO_MODULE_0_BASE 0x80832c0
 #define SINE_WAVE_AUDIO_MODULE_0_IRQ -1
 #define SINE_WAVE_AUDIO_MODULE_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SINE_WAVE_AUDIO_MODULE_0_NAME "/dev/sine_wave_audio_module_0"
@@ -549,7 +576,7 @@
  */
 
 #define ALT_MODULE_CLASS_sw altera_avalon_pio
-#define SW_BASE 0x8083260
+#define SW_BASE 0x8083270
 #define SW_BIT_CLEARING_EDGE_REGISTER 0
 #define SW_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define SW_CAPTURE 1
@@ -576,13 +603,13 @@
  */
 
 #define ALT_MODULE_CLASS_sysid_qsys_0 altera_avalon_sysid_qsys
-#define SYSID_QSYS_0_BASE 0x8083298
+#define SYSID_QSYS_0_BASE 0x80832a8
 #define SYSID_QSYS_0_ID 0
 #define SYSID_QSYS_0_IRQ -1
 #define SYSID_QSYS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_0_NAME "/dev/sysid_qsys_0"
 #define SYSID_QSYS_0_SPAN 8
-#define SYSID_QSYS_0_TIMESTAMP 1680248944
+#define SYSID_QSYS_0_TIMESTAMP 1680290199
 #define SYSID_QSYS_0_TYPE "altera_avalon_sysid_qsys"
 
 
@@ -632,7 +659,7 @@
  */
 
 #define ALT_MODULE_CLASS_video_character_buffer_with_dma_0_avalon_char_control_slave altera_up_avalon_video_character_buffer_with_dma
-#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_BASE 0x80832a8
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_BASE 0x80832b8
 #define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_IRQ -1
 #define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_NAME "/dev/video_character_buffer_with_dma_0_avalon_char_control_slave"
@@ -646,7 +673,7 @@
  */
 
 #define ALT_MODULE_CLASS_video_pixel_buffer_dma_0 altera_up_avalon_video_pixel_buffer_dma
-#define VIDEO_PIXEL_BUFFER_DMA_0_BASE 0x8083280
+#define VIDEO_PIXEL_BUFFER_DMA_0_BASE 0x8083290
 #define VIDEO_PIXEL_BUFFER_DMA_0_IRQ -1
 #define VIDEO_PIXEL_BUFFER_DMA_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define VIDEO_PIXEL_BUFFER_DMA_0_NAME "/dev/video_pixel_buffer_dma_0"

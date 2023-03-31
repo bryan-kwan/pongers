@@ -21,7 +21,8 @@ module top_level (
 	vga_conduit_R,
 	vga_conduit_G,
 	vga_conduit_B,
-	sine_wave_output_readdata);	
+	sine_wave_output_readdata,
+	key_export);	
 
 	input		clk_clk;
 	input	[3:0]	gpio_export;
@@ -45,4 +46,5 @@ module top_level (
 	output	[3:0]	vga_conduit_G;
 	output	[3:0]	vga_conduit_B;
 	output	[6:0]	sine_wave_output_readdata;
+	input	[1:0]	key_export;
 endmodule

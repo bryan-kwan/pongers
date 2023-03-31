@@ -22,6 +22,7 @@ module audio_avalon_interface (input logic clock25,
 	end
 
 	// Audio output
+	//TODO: song selection
 	logic audio_enable;
 	logic [6:0] audio_signal;
 	assign audio_enable=data[0];

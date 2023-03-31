@@ -21,7 +21,8 @@
 			vga_conduit_R                 : out   std_logic_vector(3 downto 0);                     -- R
 			vga_conduit_G                 : out   std_logic_vector(3 downto 0);                     -- G
 			vga_conduit_B                 : out   std_logic_vector(3 downto 0);                     -- B
-			sine_wave_output_readdata     : out   std_logic_vector(6 downto 0)                      -- readdata
+			sine_wave_output_readdata     : out   std_logic_vector(6 downto 0);                     -- readdata
+			key_export                    : in    std_logic_vector(1 downto 0)  := (others => 'X')  -- export
 		);
 	end component top_level;
 
@@ -48,6 +49,7 @@
 			vga_conduit_R                 => CONNECTED_TO_vga_conduit_R,                 --                       .R
 			vga_conduit_G                 => CONNECTED_TO_vga_conduit_G,                 --                       .G
 			vga_conduit_B                 => CONNECTED_TO_vga_conduit_B,                 --                       .B
-			sine_wave_output_readdata     => CONNECTED_TO_sine_wave_output_readdata      --       sine_wave_output.readdata
+			sine_wave_output_readdata     => CONNECTED_TO_sine_wave_output_readdata,     --       sine_wave_output.readdata
+			key_export                    => CONNECTED_TO_key_export                     --                    key.export
 		);
 
