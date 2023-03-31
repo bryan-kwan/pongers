@@ -179,13 +179,13 @@ set_location_assignment PIN_Y13 -to GSENSOR_INT[2]
 set_location_assignment PIN_AB15 -to GSENSOR_SCLK
 set_location_assignment PIN_V11 -to GSENSOR_SDI
 set_location_assignment PIN_V12 -to GSENSOR_SDO
-set_location_assignment PIN_AB5 -to audio_out_writeresponsevalid_n
-set_location_assignment PIN_AB6 -to ARDUINO_IO[1]
-set_location_assignment PIN_AB7 -to ARDUINO_IO[2]
-set_location_assignment PIN_AB8 -to ARDUINO_IO[3]
-set_location_assignment PIN_AB9 -to ARDUINO_IO[4]
-set_location_assignment PIN_Y10 -to ARDUINO_IO[5]
-set_location_assignment PIN_AA11 -to ARDUINO_IO[6]
+set_location_assignment PIN_AB5 -to sine_wave_output_readdata[0]
+set_location_assignment PIN_AB6 -to sine_wave_output_readdata[1]
+set_location_assignment PIN_AB7 -to sine_wave_output_readdata[2]
+set_location_assignment PIN_AB8 -to sine_wave_output_readdata[3]
+set_location_assignment PIN_AB9 -to sine_wave_output_readdata[4]
+set_location_assignment PIN_Y10 -to sine_wave_output_readdata[5]
+set_location_assignment PIN_AA11 -to sine_wave_output_readdata[6]
 set_location_assignment PIN_AA12 -to ARDUINO_IO[7]
 set_location_assignment PIN_AB17 -to ARDUINO_IO[8]
 set_location_assignment PIN_AA17 -to ARDUINO_IO[9]
@@ -376,13 +376,13 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GSENSOR_INT[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GSENSOR_SCLK
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GSENSOR_SDI
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GSENSOR_SDO
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to audio_out_writeresponsevalid_n
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[4]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[5]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sine_wave_output_readdata[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sine_wave_output_readdata[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sine_wave_output_readdata[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sine_wave_output_readdata[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sine_wave_output_readdata[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sine_wave_output_readdata[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sine_wave_output_readdata[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[7]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[8]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[9]
@@ -438,6 +438,10 @@ set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
 set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
+set_global_assignment -name TEXT_FILE sine_lut_2.txt
+set_global_assignment -name TEXT_FILE number.txt
+set_global_assignment -name TEXT_FILE note.txt
+set_global_assignment -name TEXT_FILE duration.txt
 set_global_assignment -name QIP_FILE software/pongers/mem_init/meminit.qip
 set_global_assignment -name SOURCE_FILE top_level.qsf
 set_global_assignment -name QIP_FILE top_level/synthesis/top_level.qip
@@ -447,4 +451,10 @@ set_global_assignment -name SYSTEMVERILOG_FILE divide_by_12.sv
 set_global_assignment -name VERILOG_FILE musicrom_v.v
 set_global_assignment -name SYSTEMVERILOG_FILE audio_top_level.sv
 set_global_assignment -name VERILOG_FILE audio_avalon_interface.v
+set_global_assignment -name SYSTEMVERILOG_FILE sine_wave_audio_top_level.sv
+set_global_assignment -name SYSTEMVERILOG_FILE sine_wave.sv
+set_global_assignment -name SYSTEMVERILOG_FILE sine_wave_song.sv
+set_global_assignment -name SYSTEMVERILOG_FILE posedge_det.sv
+set_global_assignment -name SYSTEMVERILOG_FILE downcounter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE counter.sv
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

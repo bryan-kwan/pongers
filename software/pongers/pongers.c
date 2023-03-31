@@ -1,11 +1,15 @@
-
 #include "gameutil.h"
 #include "sys/alt_alarm.h"
 #include "alt_types.h"
 #include "altera_modular_adc.h"
 
+#define PONG_FLAG 0
+#define SNAKE_FLAG 1
 int pause_flag = 0;
-int main_menu_flag = 0;
+int main_menu_flag = 1;
+int game_clear_flag = 0;
+int game_flag = SNAKE_FLAG;
+
 // Interrupt setup for PIO
 static void pio_isr(void * context, alt_u32 id)    //this is the ISR
 {
@@ -42,7 +46,7 @@ int main()
 	alt_up_char_buffer_init(char_buf_dev);
 
 	// Game objects
-	Game game = {SCREEN_WIDTH, SCREEN_HEIGHT, {0,0}, NUM_BALLS, NUM_PADDLES,
+	Game pong_game = {SCREEN_WIDTH, SCREEN_HEIGHT, {0,0}, NUM_BALLS, NUM_PADDLES,
 			{{BALL_XDEFAULT, BALL_YDEFAULT, BALL_XSPEED, BALL_YSPEED, BALL_WIDTH, BALL_HEIGHT, BALL_COLOUR}}, //Balls
 			{{0, 0, 0, 0, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_COLOUR}, //Paddles
 					{SCREEN_WIDTH-PADDLE_WIDTH, 0, 0, 0, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_COLOUR}},
@@ -50,15 +54,29 @@ int main()
 			{0,0,0,0,0,0,0,0}, //User input
 			0 // Game time in s
 	};
+	SnakeGame snake_game = {
+			{{SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 0, 0, SNAKE_PIXEL_SIZE, SNAKE_PIXEL_SIZE, SNAKE_COLOUR}},
+			1, // Snake size
+			{SCREEN_WIDTH/2+4*SNAKE_PIXEL_SIZE, SCREEN_HEIGHT/2, 0, 0, SNAKE_PIXEL_SIZE, SNAKE_PIXEL_SIZE, FRUIT_COLOUR},
+			0, // Score
+			0, // ADC value horz
+			0, // ADC value vert
+			{0,0,0,0,0,0,0,0}, //User input
+			JOYSTICK_RIGHT, // Current joystick direction
+			JOYSTICK_RIGHT, // Previous joystick direction
+			0, // Game time in s
+			0 // Game over flag: 1=game over, 0=game running
+	};
+
 	//Display strings
 	char time_str[10];
-	sprintf(time_str, "Time: %u", game.time);
+	sprintf(time_str, "Time: %u", pong_game.time);
 	char score_str[20];
 
 	// Alarm setup - executes the callback function periodically (every second)
 	alt_u32 alarm_callback(void *context) {
-		game.time += 1;
-		sprintf(time_str, "Time: %u", game.time);
+		pong_game.time += 1;
+		sprintf(time_str, "Time: %u", pong_game.time);
 		return alt_ticks_per_second();
 	}
 	static alt_alarm alarm;
@@ -103,10 +121,13 @@ int main()
 		else {
 			paddle[0].yspeed = 0;
 		}
-		if(SW_1) // SW_1 is on (right paddle)
-			paddle[1].yspeed = -PADDLE_SPEED;
-		else
-			paddle[1].yspeed = PADDLE_SPEED;
+		if(adc_volt_right <=2.4) // Player 2 moving up
+			paddle[1].yspeed = -(5-adc_volt_right);
+		else if(adc_volt_right >=2.6) // Moving down
+			paddle[1].yspeed = adc_volt_right;
+		else {
+			paddle[1].yspeed = 0;
+		}
 		// Adjust paddle positions
 		for(int i = 0; i< len; i++) {
 			// Update position
@@ -135,9 +156,9 @@ int main()
 
 	void collision_sound(){
 			//play the some audio for 100us then stop playing it to make a 'beep' sound
-			IOWR(AUDIO_MODULE_0_BASE, 0, 0x1);
+			IOWR(SINE_WAVE_AUDIO_MODULE_0_BASE, 0, 0x1);
 			usleep(1000);
-			IOWR(AUDIO_MODULE_0_BASE, 0, 0x0);
+			IOWR(SINE_WAVE_AUDIO_MODULE_0_BASE, 0, 0x0);
 		};
 
 	void update_ball(Game* game) {
@@ -270,10 +291,10 @@ int main()
 		draw(pixel_buf_dma_dev, PADDLE_COLOUR, buffer, paddles, NUM_PADDLES);
 	}
 	void music_on(){
-			IOWR(AUDIO_MODULE_0_BASE, 0, 0x1);
+			IOWR(SINE_WAVE_AUDIO_MODULE_0_BASE, 0, 0x1);
 		}
 	void music_off(){
-			IOWR(AUDIO_MODULE_0_BASE, 0, 0x0);
+			IOWR(SINE_WAVE_AUDIO_MODULE_0_BASE, 0, 0x0);
 		}
 
 	void pause_menu(alt_up_char_buffer_dev * char_buf_dev) {
@@ -286,6 +307,209 @@ int main()
 		alt_up_char_buffer_string(char_buf_dev, "         ", 37, 8);
 		//Stop Music
 		music_off();
+
+	}
+
+	// Snake game functions ---
+	void generate_fruit(SnakeGame* game) {
+		// Generate random coordinates for the fruit
+		game->fruit.x = ( rand() % (SCREEN_WIDTH / SNAKE_PIXEL_SIZE) ) * SNAKE_PIXEL_SIZE;
+		game->fruit.y = ( rand() % (SCREEN_HEIGHT / SNAKE_PIXEL_SIZE) ) * SNAKE_PIXEL_SIZE;
+		if(game->fruit.x==0) {
+			game->fruit.x += 1;
+		}
+		if(game->fruit.y==0) {
+			game->fruit.y += 1;
+		}
+	}
+	int check_opposite_direction(int previous_direction, int current_direction) {
+		// If previous direction is in the opposite direction (an illegal move)
+		// of the current direction, return 1. Otherwise, return 0.
+		if(
+			(previous_direction==JOYSTICK_LEFT && current_direction == JOYSTICK_RIGHT)
+			|| (previous_direction==JOYSTICK_RIGHT && current_direction == JOYSTICK_LEFT)
+			|| (previous_direction==JOYSTICK_UP && current_direction == JOYSTICK_DOWN)
+			|| (previous_direction==JOYSTICK_DOWN && current_direction == JOYSTICK_UP)
+		) {
+			return 1;
+		}
+		return 0;
+	}
+	int check_fruit_eaten(SnakeGame* game) {
+		Rectangle* snake = game->snake;
+		if(snake[0].x==game->fruit.x && snake[0].y==game->fruit.y) {
+			return 1;
+		}
+		return 0;
+	}
+	void update_snake(SnakeGame* game) {
+		// Update joystick input values
+		alt_u32 adc_val_horz = game->adc_val_horz;
+		alt_u32 adc_val_vert = game-> adc_val_vert;
+
+		game->previous_joystick_direction = game->current_joystick_direction;
+		if(adc_val_horz < 1500) { // Left joystick input
+			game-> current_joystick_direction = JOYSTICK_LEFT;
+		}
+		if(adc_val_horz > 2500) { // Right
+			game-> current_joystick_direction = JOYSTICK_RIGHT;
+		}
+		if(adc_val_vert < 1500) { // Up
+			game-> current_joystick_direction=JOYSTICK_UP;
+		}
+		if(adc_val_vert > 2500) { // Down
+			game-> current_joystick_direction=JOYSTICK_DOWN;
+		}
+		// If user tries to turn snake 180 degrees, override with the most recent direction input
+		if(check_opposite_direction(game->previous_joystick_direction, game->current_joystick_direction)) {
+			game-> current_joystick_direction=game->previous_joystick_direction;
+		}
+		// Update speed of head based off of user input
+		Rectangle* snake = game->snake;
+		switch(game->current_joystick_direction) {
+			case(JOYSTICK_LEFT): {
+				snake[0].xspeed = -1 * SNAKE_PIXEL_SIZE;
+				snake[0].yspeed = 0;
+				break;
+			}
+			case(JOYSTICK_RIGHT): {
+				snake[0].xspeed = 1 * SNAKE_PIXEL_SIZE;
+				snake[0].yspeed = 0;
+				break;
+			}
+			case(JOYSTICK_UP): {
+				snake[0].xspeed = 0;
+				snake[0].yspeed = -1 * SNAKE_PIXEL_SIZE;
+				break;
+			}
+			case(JOYSTICK_DOWN): {
+				snake[0].xspeed = 0;
+				snake[0].yspeed = 1 * SNAKE_PIXEL_SIZE;
+				break;
+			}
+			default: { // Default to JOYSTICK_RIGHT
+				snake[0].xspeed = 1 * SNAKE_PIXEL_SIZE;
+				snake[0].yspeed = 0;
+				break;
+			}
+		}
+		// Update position of head and body segments
+		int snake_size = game->snake_size;
+		int old_tail_x = snake[snake_size-1].x;
+		int old_tail_y = snake[snake_size-1].y;
+		int score = game-> score;
+		// Shift the position of every body segment "up by one"
+		for(int i = snake_size-1; i>0; i--) {
+			snake[i].x = snake[i-1].x;
+			snake[i].y = snake[i-1].y;
+		}
+		snake[0].x += snake[0].xspeed;
+		snake[0].y += snake[0].yspeed;
+		// If fruit eaten, add a body segment at the last segment's previous position
+		if(check_fruit_eaten(game)) {
+			(game->snake_size)++;
+			(game->score)++;
+			Rectangle new_tail = {old_tail_x, old_tail_y, 0, 0, SNAKE_PIXEL_SIZE, SNAKE_PIXEL_SIZE, SNAKE_COLOUR};
+			snake[snake_size-1] = new_tail;
+			// Move fruit to new location
+			generate_fruit(game);
+		}
+	}
+	int check_snake_collision(SnakeGame* game) {
+		Rectangle* snake = game->snake;
+		int snake_size = game->snake_size;
+		for(int i = 1; i<snake_size; i++) {
+			// Snake head collides with one of its body segments
+			if(snake[0].x==snake[i].x && snake[0].y==snake[i].y) {
+				return 1;
+				game->game_over_flag = 1;
+			}
+		}
+		// Snake head collides with edge of screen
+		if(snake[0].x<=0 || snake[0].x>=SCREEN_WIDTH || snake[0].y<=0 || snake[0].y>=SCREEN_HEIGHT) {
+			return 1;
+			game->game_over_flag = 1;
+		}
+		return 0;
+	}
+	void reset_game_snake(SnakeGame* game, alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, alt_up_char_buffer_dev * char_buf_dev) {
+		clear(pixel_buf_dma_dev, char_buf_dev,0);
+		// Reset game parameters to default values
+		game-> snake_size = 1;
+		Rectangle* snake = game-> snake;
+		game->snake[0].x = SNAKE_DEFAULT_X;
+		game->snake[0].y = SNAKE_DEFAULT_Y;
+		game->snake[0].xspeed = 0;
+		game->snake[0].yspeed = 0;
+		game-> score = 0;
+		game-> current_joystick_direction = JOYSTICK_RIGHT;
+		game-> previous_joystick_direction= JOYSTICK_RIGHT;
+		game-> time= 0;
+		game-> game_over_flag = 0;
+		// Generate a random location for the fruit
+		generate_fruit(game);
+	}
+	void snake_game_over(SnakeGame* game, alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev, alt_up_char_buffer_dev * char_buf_dev) {
+		// Display game over screen
+		clear(pixel_buf_dma_dev, char_buf_dev,0);
+		char score_str[5];
+		int score = game-> score;
+	    sprintf(score_str, "Score: %u", score);
+	    alt_up_char_buffer_string(char_buf_dev, "Game Over", 37, 8);
+	    alt_up_char_buffer_string(char_buf_dev, score_str, 37, 20);
+	}
+	void run_game_tick_snake(SnakeGame* game, alt_up_pixel_buffer_dma_dev* pixel_buf_dma_dev, alt_up_char_buffer_dev* char_buf_dev) {
+		Rectangle* snake = game->snake;
+		Rectangle fruit = game->fruit;
+		int snake_size = game->snake_size;
+		// Check for game over
+		if((game->game_over_flag) || check_snake_collision(game)) {
+			// Display game over screen
+			snake_game_over(game, pixel_buf_dma_dev, char_buf_dev);
+			// Read switch inputs
+			int SW = IORD(SW_BASE, 0);
+			int* user_input = game->user_input;
+			for(int i = 0; i<8; i++) {
+				user_input[i] = (0b1 << i) & SW;
+			}
+			while(!user_input[2]) {
+				// Read switch inputs
+				int SW = IORD(SW_BASE, 0);
+				int* user_input = game->user_input;
+				for(int i = 0; i<8; i++) {
+					user_input[i] = (0b1 << i) & SW;
+				}
+				if(user_input[2]) { // Main menu button
+					main_menu_flag=1;
+				}
+			}
+
+		}
+		else {
+			// Wait for screen refresh
+			alt_up_pixel_buffer_dma_swap_buffers(pixel_buf_dma_dev);
+			while(alt_up_pixel_buffer_dma_check_swap_buffers_status(pixel_buf_dma_dev));
+			// Cleanup old game objects
+			alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
+						fruit.x, fruit.y, fruit.x+SNAKE_PIXEL_SIZE, fruit.y+SNAKE_PIXEL_SIZE,
+						BACKGROUND_COLOUR, 0);
+			for(int i = 0; i<snake_size; i++) {
+				alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
+						snake[i].x, snake[i].y, snake[i].x+SNAKE_PIXEL_SIZE, snake[i].y+SNAKE_PIXEL_SIZE,
+						BACKGROUND_COLOUR, 0);
+			}
+			// Game logic - update
+			update_snake(game);
+			// Draw screen
+			alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
+						fruit.x, fruit.y, fruit.x+SNAKE_PIXEL_SIZE, fruit.y+SNAKE_PIXEL_SIZE,
+						FRUIT_COLOUR, 0);
+			for(int i = 0; i<snake_size; i++) {
+				alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
+						snake[i].x, snake[i].y, snake[i].x+SNAKE_PIXEL_SIZE, snake[i].y+SNAKE_PIXEL_SIZE,
+						SNAKE_COLOUR, 0);
+			}
+		}
 
 	}
 	// ****************
@@ -301,31 +525,115 @@ int main()
 	adc_stop(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
 	adc_set_mode_run_once(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
 
+	int count = 0;
+	int MAX_COUNT = 100;
 	while(1) {
-		if(pause_flag) { // Pause menu
+		get_user_input(&pong_game);
+		if(pong_game.user_input[2]){
+			main_menu_flag=1;
+		}
+		if(main_menu_flag) { // Main menu
+			if(!game_clear_flag){
+				clear(pixel_buf_dma_dev, char_buf_dev,0);
+				game_clear_flag = 1;
+			}
+			reset_game(&pong_game);
+			reset_game_snake(&snake_game, pixel_buf_dma_dev, char_buf_dev);
+			alt_up_char_buffer_string(char_buf_dev, "PONGERS!!!!", 37, 8);
+			//Game selection Buttons
+			//draw a white box at a specific location
+			//Write text "Pong" to the white box
+			//Clear and unclear the text by writing "		" to give blinking effect
+			Rectangle pong_button = {149,120,	//x, y
+									0,0,		//xspeed, yspeed
+									30,15,	//width, height
+									0x7800};	//colour
+			Rectangle snake_button = {149,140,	//x, y
+									0,0,		//xspeed, yspeed
+									30,15,	//width, height
+									0x0300};	//colour
+
+			Rectangle menu_select_buttons[2] = {pong_button, snake_button};
+			Rectangle ponge[1] = {pong_button};
+			Rectangle snock[1] = {snake_button};
+			alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
+						snake_button.x, snake_button.y, snake_button.x + snake_button.width - 1,
+						snake_button.y + snake_button.height - 1,
+						snake_button.colour, 0);
+			alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
+							pong_button.x, pong_button.y, pong_button.x + pong_button.width - 1,
+							pong_button.y + pong_button.height - 1,
+							pong_button.colour, 0);
+
+			alt_up_char_buffer_string(char_buf_dev, "PONG", 39, 31);
+			alt_up_char_buffer_string(char_buf_dev, "SNAKE", 38, 36);
+			while(main_menu_flag) {
+				// Read switch inputs
+				int SW = IORD(SW_BASE, 0);
+				int* user_input = pong_game.user_input;
+				for(int i = 0; i<8; i++) {
+					user_input[i] = (0b1 << i) & SW;
+				}
+				if(user_input[0]) { // turning on SW[0] runs the selected game
+					if(!user_input[1]) { // SW[1] off runs pong
+					main_menu_flag=0;
+					game_flag = PONG_FLAG;
+					clear(pixel_buf_dma_dev, char_buf_dev, 0);
+					}
+					else { // SW[1] on runs snake
+						main_menu_flag=0;
+						game_flag = SNAKE_FLAG;
+						clear(pixel_buf_dma_dev, char_buf_dev, 0);
+					}
+				}
+
+			}
+		}
+		else if(pause_flag) { // Pause menu
 			pause_menu(char_buf_dev);
 		}
-		else {
+		else if(game_flag==PONG_FLAG){
 			clear_pause_menu(char_buf_dev);
 			// Run Pong game
 			// ADC
 			adc_start(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
 			//usleep(10000);
-			alt_u32* adc_val_left = &(game.adc_val_left);
-			alt_u32* adc_val_right = &(game.adc_val_right);
-			float* adc_volt_left = &(game.adc_volt_left);
-			float* adc_volt_right = &(game.adc_volt_right);
+			alt_u32* adc_val_left = &(pong_game.adc_val_left);
+			alt_u32* adc_val_right = &(pong_game.adc_val_right);
+			float* adc_volt_left = &(pong_game.adc_volt_left);
+			float* adc_volt_right = &(pong_game.adc_volt_right);
 			// Read joystick values
-			// TODO: implement right joystick
 			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE, adc_val_left, 1);
-	//		alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE + 32 * 1, adc_val_right, 1);
+			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE + 4 * 1, adc_val_right, 1);
 			*adc_volt_left = (float)*adc_val_left * 5.0 / 4096.0;
+			*adc_val_right = (float)*adc_val_right * 5.0 / 4096.0;
 			// ADC - end
-			run_game_tick(pixel_buf_dma_dev, char_buf_dev, 0, &game);
-			sprintf(score_str, "%u - %u", game.scores[0], game.scores[1]);
+			run_game_tick(pixel_buf_dma_dev, char_buf_dev, 0, &pong_game);
+			sprintf(score_str, "%u - %u", pong_game.scores[0], pong_game.scores[1]);
 			alt_up_char_buffer_string(char_buf_dev, score_str, 37, 2);
 			alt_up_char_buffer_string(char_buf_dev, time_str, 65, 2);
+
 		}
+		else if(game_flag==SNAKE_FLAG) {
+			clear_pause_menu(char_buf_dev);
+			// ADC
+			adc_start(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
+			alt_u32* adc_val_horz = &(snake_game.adc_val_horz);
+			alt_u32* adc_val_vert = &(snake_game.adc_val_vert);
+			// Read joystick values
+			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE, adc_val_horz, 1);
+			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE + 4 * 1, adc_val_vert, 1);
+			if(count==MAX_COUNT) {
+				run_game_tick_snake(&snake_game,pixel_buf_dma_dev, char_buf_dev);
+				count=0;
+			}
+			count++;
+		}
+
+		if(!main_menu_flag) {
+			game_clear_flag = 0;
+		}
+
 	}
 	return 0;
 }

@@ -47,7 +47,7 @@ module top_level_mm_interconnect_0_router_002_default_decode
      parameter DEFAULT_CHANNEL = 0,
                DEFAULT_WR_CHANNEL = -1,
                DEFAULT_RD_CHANNEL = -1,
-               DEFAULT_DESTID = 6 
+               DEFAULT_DESTID = 5 
    )
   (output [96 - 93 : 0] default_destination_id,
    output [15-1 : 0] default_wr_channel,
@@ -195,13 +195,13 @@ module top_level_mm_interconnect_0_router_002
     // ( 0x4000000 .. 0x8000000 )
     if ( {address[RG:PAD0],{PAD0{1'b0}}} == 28'h4000000   ) begin
             src_channel = 15'b00001;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 6;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 5;
     end
 
     // ( 0x8040000 .. 0x8080000 )
     if ( {address[RG:PAD1],{PAD1{1'b0}}} == 28'h8040000   ) begin
             src_channel = 15'b01000;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 7;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 6;
     end
 
     // ( 0x8082800 .. 0x8083000 )

@@ -1,6 +1,5 @@
 
 module top_level (
-	audio_out_writeresponsevalid_n,
 	clk_clk,
 	gpio_export,
 	memory_addr,
@@ -21,9 +20,9 @@ module top_level (
 	vga_conduit_SYNC,
 	vga_conduit_R,
 	vga_conduit_G,
-	vga_conduit_B);	
+	vga_conduit_B,
+	sine_wave_output_readdata);	
 
-	output		audio_out_writeresponsevalid_n;
 	input		clk_clk;
 	input	[3:0]	gpio_export;
 	output	[12:0]	memory_addr;
@@ -45,4 +44,5 @@ module top_level (
 	output	[3:0]	vga_conduit_R;
 	output	[3:0]	vga_conduit_G;
 	output	[3:0]	vga_conduit_B;
+	output	[6:0]	sine_wave_output_readdata;
 endmodule
