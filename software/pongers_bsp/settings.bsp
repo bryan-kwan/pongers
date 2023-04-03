@@ -2,7 +2,9 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedLocation>C:\Users\bryan\VSCodeWorkspace\ENEL400\software\pongers_bsp</BspGeneratedLocation>
+        <BspGeneratedTimeStamp>3-Apr-2023 10:58:39 AM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1680541119738</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>C:\Users\kumai\OneDrive\Documents\GitHub\pongers\software\pongers_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\top_level.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
@@ -927,56 +929,62 @@
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>GPIO</slaveDescriptor>
+                <slaveDescriptor>KEY_Buttons</slaveDescriptor>
                 <addressRange>0x08083250 - 0x0808325F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>sw</slaveDescriptor>
+                <slaveDescriptor>GPIO</slaveDescriptor>
                 <addressRange>0x08083260 - 0x0808326F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>altpll_0</slaveDescriptor>
+                <slaveDescriptor>sw</slaveDescriptor>
                 <addressRange>0x08083270 - 0x0808327F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>video_pixel_buffer_dma_0</slaveDescriptor>
+                <slaveDescriptor>altpll_0</slaveDescriptor>
                 <addressRange>0x08083280 - 0x0808328F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>video_pixel_buffer_dma_0</slaveDescriptor>
+                <addressRange>0x08083290 - 0x0808329F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>modular_adc_0_sequencer_csr</slaveDescriptor>
-                <addressRange>0x08083290 - 0x08083297</addressRange>
+                <addressRange>0x080832A0 - 0x080832A7</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sysid_qsys_0</slaveDescriptor>
-                <addressRange>0x08083298 - 0x0808329F</addressRange>
-                <addressSpan>8</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>jtag_uart_0</slaveDescriptor>
-                <addressRange>0x080832A0 - 0x080832A7</addressRange>
-                <addressSpan>8</addressSpan>
-                <attributes>printable</attributes>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>video_character_buffer_with_dma_0_avalon_char_control_slave</slaveDescriptor>
                 <addressRange>0x080832A8 - 0x080832AF</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>audio_module_0</slaveDescriptor>
-                <addressRange>0x080832B0 - 0x080832B3</addressRange>
+                <slaveDescriptor>jtag_uart_0</slaveDescriptor>
+                <addressRange>0x080832B0 - 0x080832B7</addressRange>
+                <addressSpan>8</addressSpan>
+                <attributes>printable</attributes>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>video_character_buffer_with_dma_0_avalon_char_control_slave</slaveDescriptor>
+                <addressRange>0x080832B8 - 0x080832BF</addressRange>
+                <addressSpan>8</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>sine_wave_audio_module_0</slaveDescriptor>
+                <addressRange>0x080832C0 - 0x080832C3</addressRange>
                 <addressSpan>4</addressSpan>
                 <attributes/>
         </MemoryMap>

@@ -5,7 +5,7 @@ module audio_avalon_interface (input logic clock25,
 							output logic [31:0]readdata,
 							input logic [31:0] writedata, 
 							input logic write, 
-							output logic speaker);
+							output logic [6:0] speaker);
 
 							
 	// Data registers
@@ -22,8 +22,9 @@ module audio_avalon_interface (input logic clock25,
 	end
 
 	// Audio output
+	//TODO: song selection
 	logic audio_enable;
-	logic audio_signal;
+	logic [6:0] audio_signal;
 	assign audio_enable=data[0];
 	always_comb begin
 		if(audio_enable)
@@ -31,6 +32,6 @@ module audio_avalon_interface (input logic clock25,
 		else
 			speaker = 0;
 	end
-	audio_top_level U1 ( .clk(clock25), .enable(audio_enable), .reset_n(reset_n), .speaker(audio_signal));
+	sine_wave_audio_top_level U1 ( .clk(clock25), .en_n(audio_enable), .reset_n(reset_n), .r2r(audio_signal));
 	
 endmodule

@@ -4,28 +4,29 @@
 
 `timescale 1 ps / 1 ps
 module top_level (
-		output wire        audio_out_writeresponsevalid_n, //              audio_out.writeresponsevalid_n
-		input  wire        clk_clk,                        //                    clk.clk
-		input  wire [3:0]  gpio_export,                    //                   gpio.export
-		output wire [12:0] memory_addr,                    //                 memory.addr
-		output wire [1:0]  memory_ba,                      //                       .ba
-		output wire        memory_cas_n,                   //                       .cas_n
-		output wire        memory_cke,                     //                       .cke
-		output wire        memory_cs_n,                    //                       .cs_n
-		inout  wire [15:0] memory_dq,                      //                       .dq
-		output wire [1:0]  memory_dqm,                     //                       .dqm
-		output wire        memory_ras_n,                   //                       .ras_n
-		output wire        memory_we_n,                    //                       .we_n
-		output wire        sdram_clk_clk,                  //              sdram_clk.clk
-		input  wire [7:0]  sw_external_connection_export,  // sw_external_connection.export
-		output wire        vga_conduit_CLK,                //            vga_conduit.CLK
-		output wire        vga_conduit_HS,                 //                       .HS
-		output wire        vga_conduit_VS,                 //                       .VS
-		output wire        vga_conduit_BLANK,              //                       .BLANK
-		output wire        vga_conduit_SYNC,               //                       .SYNC
-		output wire [3:0]  vga_conduit_R,                  //                       .R
-		output wire [3:0]  vga_conduit_G,                  //                       .G
-		output wire [3:0]  vga_conduit_B                   //                       .B
+		input  wire        clk_clk,                       //                    clk.clk
+		input  wire [3:0]  gpio_export,                   //                   gpio.export
+		input  wire [1:0]  key_export,                    //                    key.export
+		output wire [12:0] memory_addr,                   //                 memory.addr
+		output wire [1:0]  memory_ba,                     //                       .ba
+		output wire        memory_cas_n,                  //                       .cas_n
+		output wire        memory_cke,                    //                       .cke
+		output wire        memory_cs_n,                   //                       .cs_n
+		inout  wire [15:0] memory_dq,                     //                       .dq
+		output wire [1:0]  memory_dqm,                    //                       .dqm
+		output wire        memory_ras_n,                  //                       .ras_n
+		output wire        memory_we_n,                   //                       .we_n
+		output wire        sdram_clk_clk,                 //              sdram_clk.clk
+		output wire [6:0]  sine_wave_output_readdata,     //       sine_wave_output.readdata
+		input  wire [7:0]  sw_external_connection_export, // sw_external_connection.export
+		output wire        vga_conduit_CLK,               //            vga_conduit.CLK
+		output wire        vga_conduit_HS,                //                       .HS
+		output wire        vga_conduit_VS,                //                       .VS
+		output wire        vga_conduit_BLANK,             //                       .BLANK
+		output wire        vga_conduit_SYNC,              //                       .SYNC
+		output wire [3:0]  vga_conduit_R,                 //                       .R
+		output wire [3:0]  vga_conduit_G,                 //                       .G
+		output wire [3:0]  vga_conduit_B                  //                       .B
 	);
 
 	wire         video_alpha_blender_0_avalon_blended_source_valid;                                        // video_alpha_blender_0:output_valid -> video_dual_clock_buffer_0:stream_in_valid
@@ -53,7 +54,7 @@ module top_level (
 	wire         video_rgb_resampler_0_avalon_rgb_source_ready;                                            // video_scaler_0:stream_in_ready -> video_rgb_resampler_0:stream_out_ready
 	wire         video_rgb_resampler_0_avalon_rgb_source_startofpacket;                                    // video_rgb_resampler_0:stream_out_startofpacket -> video_scaler_0:stream_in_startofpacket
 	wire         video_rgb_resampler_0_avalon_rgb_source_endofpacket;                                      // video_rgb_resampler_0:stream_out_endofpacket -> video_scaler_0:stream_in_endofpacket
-	wire         altpll_0_c0_clk;                                                                          // altpll_0:c0 -> [audio_module_0:clock25, rst_controller_002:clk, video_dual_clock_buffer_0:clk_stream_out, video_vga_controller_0:clk]
+	wire         altpll_0_c0_clk;                                                                          // altpll_0:c0 -> [rst_controller_002:clk, sine_wave_audio_module_0:clock25, video_dual_clock_buffer_0:clk_stream_out, video_vga_controller_0:clk]
 	wire         altpll_0_c1_clk;                                                                          // altpll_0:c1 -> modular_adc_0:adc_pll_clock_clk
 	wire         altpll_0_locked_conduit_export;                                                           // altpll_0:locked -> modular_adc_0:adc_pll_locked_export
 	wire         top_level_debug_reset_request_reset;                                                      // top_level:debug_reset_request -> [rst_controller:reset_in0, rst_controller_001:reset_in0, rst_controller_001:reset_in1, rst_controller_002:reset_in0]
@@ -132,10 +133,10 @@ module top_level (
 	wire         mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read;                                     // mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_read -> jtag_uart_0:av_read_n
 	wire         mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write;                                    // mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_write -> jtag_uart_0:av_write_n
 	wire  [31:0] mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_writedata;                                // mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_writedata -> jtag_uart_0:av_writedata
-	wire  [31:0] mm_interconnect_0_audio_module_0_avalon_slave_0_1_readdata;                               // audio_module_0:readdata -> mm_interconnect_0:audio_module_0_avalon_slave_0_1_readdata
-	wire         mm_interconnect_0_audio_module_0_avalon_slave_0_1_read;                                   // mm_interconnect_0:audio_module_0_avalon_slave_0_1_read -> audio_module_0:read
-	wire         mm_interconnect_0_audio_module_0_avalon_slave_0_1_write;                                  // mm_interconnect_0:audio_module_0_avalon_slave_0_1_write -> audio_module_0:write
-	wire  [31:0] mm_interconnect_0_audio_module_0_avalon_slave_0_1_writedata;                              // mm_interconnect_0:audio_module_0_avalon_slave_0_1_writedata -> audio_module_0:writedata
+	wire  [31:0] mm_interconnect_0_sine_wave_audio_module_0_avalon_slave_0_readdata;                       // sine_wave_audio_module_0:readdata -> mm_interconnect_0:sine_wave_audio_module_0_avalon_slave_0_readdata
+	wire         mm_interconnect_0_sine_wave_audio_module_0_avalon_slave_0_read;                           // mm_interconnect_0:sine_wave_audio_module_0_avalon_slave_0_read -> sine_wave_audio_module_0:read
+	wire         mm_interconnect_0_sine_wave_audio_module_0_avalon_slave_0_write;                          // mm_interconnect_0:sine_wave_audio_module_0_avalon_slave_0_write -> sine_wave_audio_module_0:write
+	wire  [31:0] mm_interconnect_0_sine_wave_audio_module_0_avalon_slave_0_writedata;                      // mm_interconnect_0:sine_wave_audio_module_0_avalon_slave_0_writedata -> sine_wave_audio_module_0:writedata
 	wire  [31:0] mm_interconnect_0_sysid_qsys_0_control_slave_readdata;                                    // sysid_qsys_0:readdata -> mm_interconnect_0:sysid_qsys_0_control_slave_readdata
 	wire   [0:0] mm_interconnect_0_sysid_qsys_0_control_slave_address;                                     // mm_interconnect_0:sysid_qsys_0_control_slave_address -> sysid_qsys_0:address
 	wire  [31:0] mm_interconnect_0_altpll_0_pll_slave_readdata;                                            // altpll_0:readdata -> mm_interconnect_0:altpll_0_pll_slave_readdata
@@ -153,6 +154,11 @@ module top_level (
 	wire   [1:0] mm_interconnect_0_gpio_s1_address;                                                        // mm_interconnect_0:GPIO_s1_address -> GPIO:address
 	wire         mm_interconnect_0_gpio_s1_write;                                                          // mm_interconnect_0:GPIO_s1_write -> GPIO:write_n
 	wire  [31:0] mm_interconnect_0_gpio_s1_writedata;                                                      // mm_interconnect_0:GPIO_s1_writedata -> GPIO:writedata
+	wire         mm_interconnect_0_key_buttons_s1_chipselect;                                              // mm_interconnect_0:KEY_Buttons_s1_chipselect -> KEY_Buttons:chipselect
+	wire  [31:0] mm_interconnect_0_key_buttons_s1_readdata;                                                // KEY_Buttons:readdata -> mm_interconnect_0:KEY_Buttons_s1_readdata
+	wire   [1:0] mm_interconnect_0_key_buttons_s1_address;                                                 // mm_interconnect_0:KEY_Buttons_s1_address -> KEY_Buttons:address
+	wire         mm_interconnect_0_key_buttons_s1_write;                                                   // mm_interconnect_0:KEY_Buttons_s1_write -> KEY_Buttons:write_n
+	wire  [31:0] mm_interconnect_0_key_buttons_s1_writedata;                                               // mm_interconnect_0:KEY_Buttons_s1_writedata -> KEY_Buttons:writedata
 	wire  [31:0] mm_interconnect_0_modular_adc_0_sample_store_csr_readdata;                                // modular_adc_0:sample_store_csr_readdata -> mm_interconnect_0:modular_adc_0_sample_store_csr_readdata
 	wire   [6:0] mm_interconnect_0_modular_adc_0_sample_store_csr_address;                                 // mm_interconnect_0:modular_adc_0_sample_store_csr_address -> modular_adc_0:sample_store_csr_address
 	wire         mm_interconnect_0_modular_adc_0_sample_store_csr_read;                                    // mm_interconnect_0:modular_adc_0_sample_store_csr_read -> modular_adc_0:sample_store_csr_read
@@ -167,6 +173,7 @@ module top_level (
 	wire         irq_mapper_receiver1_irq;                                                                 // timer_0:irq -> irq_mapper:receiver1_irq
 	wire         irq_mapper_receiver2_irq;                                                                 // sw:irq -> irq_mapper:receiver2_irq
 	wire         irq_mapper_receiver3_irq;                                                                 // GPIO:irq -> irq_mapper:receiver3_irq
+	wire         irq_mapper_receiver4_irq;                                                                 // KEY_Buttons:irq -> irq_mapper:receiver4_irq
 	wire  [31:0] top_level_irq_irq;                                                                        // irq_mapper:sender_irq -> top_level:irq
 	wire         video_scaler_0_avalon_scaler_source_valid;                                                // video_scaler_0:stream_out_valid -> avalon_st_adapter:in_0_valid
 	wire  [29:0] video_scaler_0_avalon_scaler_source_data;                                                 // video_scaler_0:stream_out_data -> avalon_st_adapter:in_0_data
@@ -179,7 +186,7 @@ module top_level (
 	wire         avalon_st_adapter_out_0_ready;                                                            // video_alpha_blender_0:background_ready -> avalon_st_adapter:out_0_ready
 	wire         avalon_st_adapter_out_0_startofpacket;                                                    // avalon_st_adapter:out_0_startofpacket -> video_alpha_blender_0:background_startofpacket
 	wire         avalon_st_adapter_out_0_endofpacket;                                                      // avalon_st_adapter:out_0_endofpacket -> video_alpha_blender_0:background_endofpacket
-	wire         rst_controller_reset_out_reset;                                                           // rst_controller:reset_out -> [GPIO:reset_n, altpll_0:reset, audio_module_0:reset_n, avalon_st_adapter:in_rst_0_reset, irq_mapper:reset, jtag_uart_0:rst_n, mm_interconnect_0:video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset, modular_adc_0:reset_sink_reset_n, new_sdram_controller_0:reset_n, onchip_memory2_0:reset, rst_translator:in_reset, sw:reset_n, sysid_qsys_0:reset_n, timer_0:reset_n, top_level:reset_n, video_dual_clock_buffer_0:reset_stream_in, video_pixel_buffer_dma_0:reset, video_rgb_resampler_0:reset, video_scaler_0:reset]
+	wire         rst_controller_reset_out_reset;                                                           // rst_controller:reset_out -> [GPIO:reset_n, KEY_Buttons:reset_n, altpll_0:reset, avalon_st_adapter:in_rst_0_reset, irq_mapper:reset, jtag_uart_0:rst_n, mm_interconnect_0:video_pixel_buffer_dma_0_reset_reset_bridge_in_reset_reset, modular_adc_0:reset_sink_reset_n, new_sdram_controller_0:reset_n, onchip_memory2_0:reset, rst_translator:in_reset, sine_wave_audio_module_0:reset_n, sw:reset_n, sysid_qsys_0:reset_n, timer_0:reset_n, top_level:reset_n, video_dual_clock_buffer_0:reset_stream_in, video_pixel_buffer_dma_0:reset, video_rgb_resampler_0:reset, video_scaler_0:reset]
 	wire         rst_controller_reset_out_reset_req;                                                       // rst_controller:reset_req -> [onchip_memory2_0:reset_req, rst_translator:reset_req_in, top_level:reset_req]
 	wire         rst_controller_001_reset_out_reset;                                                       // rst_controller_001:reset_out -> [mm_interconnect_0:video_character_buffer_with_dma_0_reset_reset_bridge_in_reset_reset, video_alpha_blender_0:reset, video_character_buffer_with_dma_0:reset]
 	wire         rst_controller_002_reset_out_reset;                                                       // rst_controller_002:reset_out -> [video_dual_clock_buffer_0:reset_stream_out, video_vga_controller_0:reset]
@@ -194,6 +201,18 @@ module top_level (
 		.readdata   (mm_interconnect_0_gpio_s1_readdata),   //                    .readdata
 		.in_port    (gpio_export),                          // external_connection.export
 		.irq        (irq_mapper_receiver3_irq)              //                 irq.irq
+	);
+
+	top_level_KEY_Buttons key_buttons (
+		.clk        (clk_clk),                                     //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),             //               reset.reset_n
+		.address    (mm_interconnect_0_key_buttons_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_key_buttons_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_key_buttons_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_key_buttons_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_key_buttons_s1_readdata),   //                    .readdata
+		.in_port    (key_export),                                  // external_connection.export
+		.irq        (irq_mapper_receiver4_irq)                     //                 irq.irq
 	);
 
 	top_level_altpll_0 altpll_0 (
@@ -221,17 +240,6 @@ module top_level (
 		.scanclkena         (1'b0),                                           //           (terminated)
 		.scandata           (1'b0),                                           //           (terminated)
 		.configupdate       (1'b0)                                            //           (terminated)
-	);
-
-	audio_avalon_interface audio_module_0 (
-		.reset_n   (~rst_controller_reset_out_reset),                             //      clock_reset.reset_n
-		.speaker   (audio_out_writeresponsevalid_n),                              //      conduit_end.writeresponsevalid_n
-		.clock25   (altpll_0_c0_clk),                                             //    clock_sink_25.clk
-		.clock50   (clk_clk),                                                     //    clock_sink_50.clk
-		.writedata (mm_interconnect_0_audio_module_0_avalon_slave_0_1_writedata), // avalon_slave_0_1.writedata
-		.write     (mm_interconnect_0_audio_module_0_avalon_slave_0_1_write),     //                 .write
-		.read      (mm_interconnect_0_audio_module_0_avalon_slave_0_1_read),      //                 .read
-		.readdata  (mm_interconnect_0_audio_module_0_avalon_slave_0_1_readdata)   //                 .readdata
 	);
 
 	top_level_jtag_uart_0 jtag_uart_0 (
@@ -302,6 +310,17 @@ module top_level (
 		.reset      (rst_controller_reset_out_reset),                   // reset1.reset
 		.reset_req  (rst_controller_reset_out_reset_req),               //       .reset_req
 		.freeze     (1'b0)                                              // (terminated)
+	);
+
+	audio_avalon_interface sine_wave_audio_module_0 (
+		.read      (mm_interconnect_0_sine_wave_audio_module_0_avalon_slave_0_read),      // avalon_slave_0.read
+		.readdata  (mm_interconnect_0_sine_wave_audio_module_0_avalon_slave_0_readdata),  //               .readdata
+		.writedata (mm_interconnect_0_sine_wave_audio_module_0_avalon_slave_0_writedata), //               .writedata
+		.write     (mm_interconnect_0_sine_wave_audio_module_0_avalon_slave_0_write),     //               .write
+		.speaker   (sine_wave_output_readdata),                                           //    conduit_end.readdata
+		.clock25   (altpll_0_c0_clk),                                                     //  clock_sink_25.clk
+		.clock50   (clk_clk),                                                             //  clock_sink_50.clk
+		.reset_n   (~rst_controller_reset_out_reset)                                      //    clock_reset.reset_n
 	);
 
 	top_level_sw sw (
@@ -523,10 +542,6 @@ module top_level (
 		.altpll_0_pll_slave_read                                                (mm_interconnect_0_altpll_0_pll_slave_read),                                                //                                                              .read
 		.altpll_0_pll_slave_readdata                                            (mm_interconnect_0_altpll_0_pll_slave_readdata),                                            //                                                              .readdata
 		.altpll_0_pll_slave_writedata                                           (mm_interconnect_0_altpll_0_pll_slave_writedata),                                           //                                                              .writedata
-		.audio_module_0_avalon_slave_0_1_write                                  (mm_interconnect_0_audio_module_0_avalon_slave_0_1_write),                                  //                               audio_module_0_avalon_slave_0_1.write
-		.audio_module_0_avalon_slave_0_1_read                                   (mm_interconnect_0_audio_module_0_avalon_slave_0_1_read),                                   //                                                              .read
-		.audio_module_0_avalon_slave_0_1_readdata                               (mm_interconnect_0_audio_module_0_avalon_slave_0_1_readdata),                               //                                                              .readdata
-		.audio_module_0_avalon_slave_0_1_writedata                              (mm_interconnect_0_audio_module_0_avalon_slave_0_1_writedata),                              //                                                              .writedata
 		.GPIO_s1_address                                                        (mm_interconnect_0_gpio_s1_address),                                                        //                                                       GPIO_s1.address
 		.GPIO_s1_write                                                          (mm_interconnect_0_gpio_s1_write),                                                          //                                                              .write
 		.GPIO_s1_readdata                                                       (mm_interconnect_0_gpio_s1_readdata),                                                       //                                                              .readdata
@@ -539,6 +554,11 @@ module top_level (
 		.jtag_uart_0_avalon_jtag_slave_writedata                                (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_writedata),                                //                                                              .writedata
 		.jtag_uart_0_avalon_jtag_slave_waitrequest                              (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_waitrequest),                              //                                                              .waitrequest
 		.jtag_uart_0_avalon_jtag_slave_chipselect                               (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_chipselect),                               //                                                              .chipselect
+		.KEY_Buttons_s1_address                                                 (mm_interconnect_0_key_buttons_s1_address),                                                 //                                                KEY_Buttons_s1.address
+		.KEY_Buttons_s1_write                                                   (mm_interconnect_0_key_buttons_s1_write),                                                   //                                                              .write
+		.KEY_Buttons_s1_readdata                                                (mm_interconnect_0_key_buttons_s1_readdata),                                                //                                                              .readdata
+		.KEY_Buttons_s1_writedata                                               (mm_interconnect_0_key_buttons_s1_writedata),                                               //                                                              .writedata
+		.KEY_Buttons_s1_chipselect                                              (mm_interconnect_0_key_buttons_s1_chipselect),                                              //                                                              .chipselect
 		.modular_adc_0_sample_store_csr_address                                 (mm_interconnect_0_modular_adc_0_sample_store_csr_address),                                 //                                modular_adc_0_sample_store_csr.address
 		.modular_adc_0_sample_store_csr_write                                   (mm_interconnect_0_modular_adc_0_sample_store_csr_write),                                   //                                                              .write
 		.modular_adc_0_sample_store_csr_read                                    (mm_interconnect_0_modular_adc_0_sample_store_csr_read),                                    //                                                              .read
@@ -565,6 +585,10 @@ module top_level (
 		.onchip_memory2_0_s1_byteenable                                         (mm_interconnect_0_onchip_memory2_0_s1_byteenable),                                         //                                                              .byteenable
 		.onchip_memory2_0_s1_chipselect                                         (mm_interconnect_0_onchip_memory2_0_s1_chipselect),                                         //                                                              .chipselect
 		.onchip_memory2_0_s1_clken                                              (mm_interconnect_0_onchip_memory2_0_s1_clken),                                              //                                                              .clken
+		.sine_wave_audio_module_0_avalon_slave_0_write                          (mm_interconnect_0_sine_wave_audio_module_0_avalon_slave_0_write),                          //                       sine_wave_audio_module_0_avalon_slave_0.write
+		.sine_wave_audio_module_0_avalon_slave_0_read                           (mm_interconnect_0_sine_wave_audio_module_0_avalon_slave_0_read),                           //                                                              .read
+		.sine_wave_audio_module_0_avalon_slave_0_readdata                       (mm_interconnect_0_sine_wave_audio_module_0_avalon_slave_0_readdata),                       //                                                              .readdata
+		.sine_wave_audio_module_0_avalon_slave_0_writedata                      (mm_interconnect_0_sine_wave_audio_module_0_avalon_slave_0_writedata),                      //                                                              .writedata
 		.sw_s1_address                                                          (mm_interconnect_0_sw_s1_address),                                                          //                                                         sw_s1.address
 		.sw_s1_write                                                            (mm_interconnect_0_sw_s1_write),                                                            //                                                              .write
 		.sw_s1_readdata                                                         (mm_interconnect_0_sw_s1_readdata),                                                         //                                                              .readdata
@@ -615,6 +639,7 @@ module top_level (
 		.receiver1_irq (irq_mapper_receiver1_irq),       // receiver1.irq
 		.receiver2_irq (irq_mapper_receiver2_irq),       // receiver2.irq
 		.receiver3_irq (irq_mapper_receiver3_irq),       // receiver3.irq
+		.receiver4_irq (irq_mapper_receiver4_irq),       // receiver4.irq
 		.sender_irq    (top_level_irq_irq)               //    sender.irq
 	);
 
