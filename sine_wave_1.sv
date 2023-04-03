@@ -1,6 +1,6 @@
 (* multstyle = "dsp" *)
 
-module sine_wave
+module sine_wave_1
  #(int                      width = 7,
 	int							 length = 8192,
 	int 							 song_length = 128)
@@ -39,24 +39,9 @@ module sine_wave
   initial begin // normally we don't use initial in RTL code, this is an exception
     $readmemh("sine_lut_2.txt",my_lut); // reads hexadecimal data from v2d_rom and places into my_rom
 	 
-	//Song 1
-	$readmemh("duration.txt",duration_list);
-	$readmemh("note.txt",note_list);
-
 	//Song 2
-	//$readmemh("duration.txt",duration_list);
-	//$readmemh("note.txt",note_list);
-
-	//Song 3
-	//$readmemh("duration.txt",duration_list);
-	//$readmemh("note.txt",note_list);
-
-	//Song 4
-	//$readmemh("duration.txt",duration_list);
-	//$readmemh("note.txt",note_list);
-
-
-
+	$readmemh("duration_1.txt",duration_list);
+	$readmemh("note_1.txt",note_list);
 	 
 
   end

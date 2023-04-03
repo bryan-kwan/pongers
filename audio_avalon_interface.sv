@@ -24,14 +24,16 @@ module audio_avalon_interface (input logic clock25,
 	// Audio output
 	//TODO: song selection
 	logic audio_enable;
+	logic [1:0] song_select;		//want to pick between 4 songs so need 3 bits (can have up to 8 songs with 3 bits)
 	logic [6:0] audio_signal;
-	assign audio_enable=data[0];
+	assign audio_enable=data[0];	//choose data[0] as an enable for the audio (sent from NIOS)
+	assign song_select = data[2:1]; //choose data[3:1] as select bits foe which song will be played(sent from NIOS)
 	always_comb begin
 		if(audio_enable)
 			speaker = audio_signal;
 		else
 			speaker = 0;
 	end
-	sine_wave_audio_top_level U1 ( .clk(clock25), .en_n(audio_enable), .reset_n(reset_n), .r2r(audio_signal));
+	sine_wave_audio_top_level U1 ( .clk(clock25), .en_n(audio_enable), .reset_n(reset_n), .r2r(audio_signal), .song_select(song_select));
 	
 endmodule
