@@ -484,6 +484,7 @@ int main()
 //				}
 //			}
 
+
 		}
 		else {
 			// Wait for screen refresh
@@ -534,6 +535,7 @@ int main()
 			btns[i] = bt & (0b1 << i);
 		}
 		if(btns[0]){
+
 			main_menu_flag=1;
 		}
 		if(main_menu_flag) { // Main menu
@@ -649,6 +651,7 @@ int main()
 			}
 			count++;
 		}
+
 
 		if(!main_menu_flag) {
 			game_clear_flag = 0;
