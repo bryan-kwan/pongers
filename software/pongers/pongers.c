@@ -112,19 +112,21 @@ int main()
 		// Adjust speed according to user input
 		int SW_0 = user_input[0];
 		int SW_1 = user_input[1];
-		if(adc_volt_left >=2.6) {
-			paddle[0].yspeed = adc_volt_left;
+		//TODO: fine tune the paddle speeds
+		//TODO: fix right joystick deadzone to eliminate stick drift
+		if(adc_volt_left <=2.3) {
+			paddle[0].yspeed = 3;
 		}
-		else if(adc_volt_left <=2.4) {
-			paddle[0].yspeed = -(5-adc_volt_left);
+		else if(adc_volt_left >=2.7) {
+			paddle[0].yspeed = -3;
 		}
 		else {
 			paddle[0].yspeed = 0;
 		}
-		if(adc_volt_right <=2.4) // Player 2 moving up
-			paddle[1].yspeed = -(5-adc_volt_right);
-		else if(adc_volt_right >=2.6) // Moving down
-			paddle[1].yspeed = adc_volt_right;
+		if(adc_volt_right <=1.8) // Player 2 moving up
+			paddle[1].yspeed = -3;
+		else if(adc_volt_right >=2.2) // Moving down
+			paddle[1].yspeed = 3;
 		else {
 			paddle[1].yspeed = 0;
 		}
@@ -144,6 +146,7 @@ int main()
 				paddle[i].yspeed = 0;
 			}
 		}
+		//printf("%f \n", adc_volt_right);
 	}
 	// Updates the position of each Rectangle object
 	// "bounces" each object upon collision with screen top/bottom edges
@@ -226,14 +229,6 @@ int main()
 	void draw(alt_up_pixel_buffer_dma_dev * pixel_buf_dma_dev,int colour, int buffer, Rectangle rect[], int len) {
 		// Draw each rectangle
 		for(int i = 0; i<len; i++) {
-
-			// Naive implementation of drawing each pixel - Much slower than draw_box function
-			// alt_up_pixel_buffer_dma_draw() draws to the back buffer (buffer=1)
-	//		for(int x = rect[i].x; x<rect[i].x + rect[i].width; x++) {
-	//			for(int y = rect[i].y; y<rect[i].y + rect[i].height; y++) {
-	//				alt_up_pixel_buffer_dma_draw(pixel_buf_dma_dev, colour, x, y);
-	//			}
-	//		}
 
 			alt_up_pixel_buffer_dma_draw_box (pixel_buf_dma_dev,
 					rect[i].x, rect[i].y, rect[i].x + rect[i].width - 1,
@@ -348,16 +343,16 @@ int main()
 		alt_u32 adc_val_vert = game-> adc_val_vert;
 
 		game->previous_joystick_direction = game->current_joystick_direction;
-		if(adc_val_horz < 1500) { // Left joystick input
+		if(adc_val_horz > 2500) { // Left joystick input
 			game-> current_joystick_direction = JOYSTICK_LEFT;
 		}
-		if(adc_val_horz > 2500) { // Right
+		if(adc_val_horz < 1500) { // Right
 			game-> current_joystick_direction = JOYSTICK_RIGHT;
 		}
-		if(adc_val_vert < 1500) { // Up
+		if(adc_val_vert > 2500) { // Up
 			game-> current_joystick_direction=JOYSTICK_UP;
 		}
-		if(adc_val_vert > 2500) { // Down
+		if(adc_val_vert < 1500) { // Down
 			game-> current_joystick_direction=JOYSTICK_DOWN;
 		}
 		// If user tries to turn snake 180 degrees, override with the most recent direction input
@@ -466,23 +461,6 @@ int main()
 		if((game->game_over_flag) || check_snake_collision(game)) {
 			// Display game over screen
 			snake_game_over(game, pixel_buf_dma_dev, char_buf_dev);
-			// Read main menu button
-//			int bt = IORD(GPIO_BASE, 0);
-//			int btns[4];
-//			for(int i = 0; i<4; i++) {
-//				btns[i] = bt & (0b1 << i);
-//			}
-//			while(btns[0]) {
-//				//printf("%d\n", bt);
-//				// Read main menu button
-//				int bt = IORD(GPIO_BASE, 0);
-//				for(int i = 0; i<4; i++) {
-//					btns[i] = bt & (0b1 << i);
-//				}
-//				if(!btns[0]) { // Main menu button
-//					main_menu_flag=1;
-//				}
-//			}
 
 		}
 		else {
@@ -533,7 +511,7 @@ int main()
 		for(int i = 0; i<4; i++) {
 			btns[i] = bt & (0b1 << i);
 		}
-		if(btns[0]){
+		if(!btns[0]){
 			main_menu_flag=1;
 		}
 		if(main_menu_flag) { // Main menu
@@ -572,19 +550,19 @@ int main()
 			alt_up_char_buffer_string(char_buf_dev, "PONG", 39, 31);
 			alt_up_char_buffer_string(char_buf_dev, "SNAKE", 38, 36);
 			while(main_menu_flag) {
+				IOWR(SINE_WAVE_AUDIO_MODULE_0_BASE, 0, 0x3);	//play song 1
 				// Read joystick
 				// ADC
 				adc_start(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
-				//usleep(10000);
 				alt_u32* adc_val_left = &(pong_game.adc_val_left);
 				float* adc_volt_left = &(pong_game.adc_volt_left);
 				// Read joystick values
 				alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE+4, adc_val_left, 1);
 				*adc_volt_left = (float)*adc_val_left * 5.0 / 4096.0;
-				if(*adc_volt_left < 2.4) {
+				if(*adc_volt_left > 2.7) {
 					game_flag = PONG_FLAG;
 				}
-				else if(*adc_volt_left > 2.6) {
+				else if(*adc_volt_left < 2.3) {
 					game_flag = SNAKE_FLAG;
 				}
 				// ADC - end
@@ -605,6 +583,13 @@ int main()
 				if(!botns[1]) { // Start button
 					main_menu_flag=0;
 					clear(pixel_buf_dma_dev, char_buf_dev, 0);
+					if(game_flag==SNAKE_FLAG) {
+						IOWR(SINE_WAVE_AUDIO_MODULE_0_BASE, 0, 0x3);	//play song 1
+					}
+
+					if(game_flag==PONG_FLAG) {
+						IOWR(SINE_WAVE_AUDIO_MODULE_0_BASE, 0, 0x0); // Music off
+					}
 				}
 
 			}
@@ -624,17 +609,19 @@ int main()
 			float* adc_volt_right = &(pong_game.adc_volt_right);
 			// Read joystick values
 			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE+4, adc_val_left, 1);
-			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE + 12 * 1, adc_val_right, 1);
+			alt_adc_word_read(MODULAR_ADC_0_SAMPLE_STORE_CSR_BASE+12, adc_val_right, 1);
 			*adc_volt_left = (float)*adc_val_left * 5.0 / 4096.0;
-			*adc_val_right = (float)*adc_val_right * 5.0 / 4096.0;
+			*adc_volt_right = (float)*adc_val_right * 5.0 / 4096.0;
 			// ADC - end
 			run_game_tick(pixel_buf_dma_dev, char_buf_dev, 0, &pong_game);
 			sprintf(score_str, "%u - %u", pong_game.scores[0], pong_game.scores[1]);
 			alt_up_char_buffer_string(char_buf_dev, score_str, 37, 2);
 			alt_up_char_buffer_string(char_buf_dev, time_str, 65, 2);
 
+			//printf("%f\n", *adc_volt_right);
 		}
 		else if(game_flag==SNAKE_FLAG) {
+			//IOWR(SINE_WAVE_AUDIO_MODULE_0_BASE, 0, 0x3);	//play song 1
 			clear_pause_menu(char_buf_dev);
 			// ADC
 			adc_start(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
