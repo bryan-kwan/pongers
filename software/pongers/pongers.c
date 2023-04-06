@@ -550,7 +550,7 @@ int main()
 			alt_up_char_buffer_string(char_buf_dev, "PONG", 39, 31);
 			alt_up_char_buffer_string(char_buf_dev, "SNAKE", 38, 36);
 			while(main_menu_flag) {
-				IOWR(SINE_WAVE_AUDIO_MODULE_0_BASE, 0, 0x3);	//play song 1
+				IOWR(SINE_WAVE_AUDIO_MODULE_0_BASE, 0, 0x5);	//play song 2
 				// Read joystick
 				// ADC
 				adc_start(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
@@ -584,7 +584,7 @@ int main()
 					main_menu_flag=0;
 					clear(pixel_buf_dma_dev, char_buf_dev, 0);
 					if(game_flag==SNAKE_FLAG) {
-						IOWR(SINE_WAVE_AUDIO_MODULE_0_BASE, 0, 0x3);	//play song 1
+						//IOWR(SINE_WAVE_AUDIO_MODULE_0_BASE, 0, 0x1);	//play song 1
 					}
 
 					if(game_flag==PONG_FLAG) {
@@ -622,7 +622,7 @@ int main()
 		}
 		else if(game_flag==SNAKE_FLAG) {
 
-			IOWR(SINE_WAVE_AUDIO_MODULE_0_BASE, 0, 0x5);	//play song 2
+			//IOWR(SINE_WAVE_AUDIO_MODULE_0_BASE, 0, 0x5);	//play song 2
 			clear_pause_menu(char_buf_dev);
 			// ADC
 			adc_start(MODULAR_ADC_0_SEQUENCER_CSR_BASE);
