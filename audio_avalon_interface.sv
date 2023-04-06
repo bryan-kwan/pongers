@@ -34,6 +34,6 @@ module audio_avalon_interface (input logic clock25,
 		else
 			speaker = 0;
 	end
-	sine_wave_audio_top_level U1 ( .clk(clock25), .en_n(audio_enable), .reset_n(reset_n), .r2r(audio_signal), .song_select(song_select));
+	sine_wave_audio_top_level U1 ( .clk(clock50), .en_n(audio_enable), .reset_n(reset_n), .r2r(audio_signal), .song_select(song_select));
 	
 endmodule

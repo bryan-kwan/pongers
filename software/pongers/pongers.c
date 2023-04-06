@@ -114,18 +114,18 @@ int main()
 		int SW_1 = user_input[1];
 		//TODO: fine tune the paddle speeds
 		//TODO: fix right joystick deadzone to eliminate stick drift
-		if(adc_volt_left <=2.3) {
+		if(adc_volt_left <=2.1) {
 			paddle[0].yspeed = 3;
 		}
-		else if(adc_volt_left >=2.7) {
+		else if(adc_volt_left >=2.6) {
 			paddle[0].yspeed = -3;
 		}
 		else {
 			paddle[0].yspeed = 0;
 		}
-		if(adc_volt_right <=1.8) // Player 2 moving up
+		if(adc_volt_right <=2.7) // Player 2 moving down
 			paddle[1].yspeed = -3;
-		else if(adc_volt_right >=2.2) // Moving down
+		else if(adc_volt_right >=3.4) // Moving up
 			paddle[1].yspeed = 3;
 		else {
 			paddle[1].yspeed = 0;
@@ -621,7 +621,8 @@ int main()
 			//printf("%f\n", *adc_volt_right);
 		}
 		else if(game_flag==SNAKE_FLAG) {
-			//IOWR(SINE_WAVE_AUDIO_MODULE_0_BASE, 0, 0x3);	//play song 1
+
+			IOWR(SINE_WAVE_AUDIO_MODULE_0_BASE, 0, 0x5);	//play song 2
 			clear_pause_menu(char_buf_dev);
 			// ADC
 			adc_start(MODULAR_ADC_0_SEQUENCER_CSR_BASE);

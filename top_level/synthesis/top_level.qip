@@ -2,7 +2,7 @@ set_global_assignment -entity "top_level" -library "top_level" -name IP_TOOL_NAM
 set_global_assignment -entity "top_level" -library "top_level" -name IP_TOOL_VERSION "17.1"
 set_global_assignment -entity "top_level" -library "top_level" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -library "top_level" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../top_level.sopcinfo"]
-set_global_assignment -entity "top_level" -library "top_level" -name SLD_INFO "QSYS_NAME top_level HAS_SOPCINFO 1 GENERATION_ID 1680545774"
+set_global_assignment -entity "top_level" -library "top_level" -name SLD_INFO "QSYS_NAME top_level HAS_SOPCINFO 1 GENERATION_ID 1680736610"
 set_global_assignment -library "top_level" -name MISC_FILE [file join $::quartus(qip_path) "../top_level.cmp"]
 set_global_assignment -library "top_level" -name SLD_FILE [file join $::quartus(qip_path) "top_level.regmap"]
 set_global_assignment -library "top_level" -name SLD_FILE [file join $::quartus(qip_path) "top_level.debuginfo"]
@@ -16,7 +16,7 @@ set_global_assignment -entity "top_level" -library "top_level" -name IP_COMPONEN
 set_global_assignment -entity "top_level" -library "top_level" -name IP_COMPONENT_REPORT_HIERARCHY "On"
 set_global_assignment -entity "top_level" -library "top_level" -name IP_COMPONENT_INTERNAL "Off"
 set_global_assignment -entity "top_level" -library "top_level" -name IP_COMPONENT_VERSION "MS4w"
-set_global_assignment -entity "top_level" -library "top_level" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTY4MDU0NTc3NA==::QXV0byBHRU5FUkFUSU9OX0lE"
+set_global_assignment -entity "top_level" -library "top_level" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTY4MDczNjYxMA==::QXV0byBHRU5FUkFUSU9OX0lE"
 set_global_assignment -entity "top_level" -library "top_level" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::TUFYIDEw::QXV0byBERVZJQ0VfRkFNSUxZ"
 set_global_assignment -entity "top_level" -library "top_level" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0U=::MTBNNTBEQUY0ODRDNkdFUw==::QXV0byBERVZJQ0U="
 set_global_assignment -entity "top_level" -library "top_level" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfU1BFRURHUkFERQ==::Ng==::QXV0byBERVZJQ0VfU1BFRURHUkFERQ=="
@@ -1497,7 +1497,7 @@ set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPO
 set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPONENT_PARAMETER "Yml0Q2xlYXJpbmdFZGdlQ2FwUmVn::ZmFsc2U=::RW5hYmxlIGJpdC1jbGVhcmluZyBmb3IgZWRnZSBjYXB0dXJlIHJlZ2lzdGVy"
 set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPONENT_PARAMETER "Y2FwdHVyZUVkZ2U=::dHJ1ZQ==::U3luY2hyb25vdXNseSBjYXB0dXJl"
 set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPONENT_PARAMETER "ZGlyZWN0aW9u::SW5wdXQ=::RGlyZWN0aW9u"
-set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPONENT_PARAMETER "ZWRnZVR5cGU=::UklTSU5H::RWRnZSBUeXBl"
+set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPONENT_PARAMETER "ZWRnZVR5cGU=::QU5Z::RWRnZSBUeXBl"
 set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPONENT_PARAMETER "Z2VuZXJhdGVJUlE=::dHJ1ZQ==::R2VuZXJhdGUgSVJR"
 set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPONENT_PARAMETER "aXJxVHlwZQ==::RURHRQ==::SVJRIFR5cGU="
 set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPONENT_PARAMETER "c2ltRG9UZXN0QmVuY2hXaXJpbmc=::ZmFsc2U=::SGFyZHdpcmUgUElPIGlucHV0cyBpbiB0ZXN0IGJlbmNo"
@@ -1508,7 +1508,7 @@ set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPO
 set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPONENT_PARAMETER "ZGVyaXZlZF9oYXNfaW4=::dHJ1ZQ==::ZGVyaXZlZF9oYXNfaW4="
 set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPONENT_PARAMETER "ZGVyaXZlZF9kb190ZXN0X2JlbmNoX3dpcmluZw==::ZmFsc2U=::ZGVyaXZlZF9kb190ZXN0X2JlbmNoX3dpcmluZw=="
 set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPONENT_PARAMETER "ZGVyaXZlZF9jYXB0dXJl::dHJ1ZQ==::ZGVyaXZlZF9jYXB0dXJl"
-set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPONENT_PARAMETER "ZGVyaXZlZF9lZGdlX3R5cGU=::UklTSU5H::ZGVyaXZlZF9lZGdlX3R5cGU="
+set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPONENT_PARAMETER "ZGVyaXZlZF9lZGdlX3R5cGU=::QU5Z::ZGVyaXZlZF9lZGdlX3R5cGU="
 set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPONENT_PARAMETER "ZGVyaXZlZF9pcnFfdHlwZQ==::RURHRQ==::ZGVyaXZlZF9pcnFfdHlwZQ=="
 set_global_assignment -entity "top_level_sw" -library "top_level" -name IP_COMPONENT_PARAMETER "ZGVyaXZlZF9oYXNfaXJx::dHJ1ZQ==::ZGVyaXZlZF9oYXNfaXJx"
 set_global_assignment -entity "audio_avalon_interface" -library "top_level" -name IP_COMPONENT_NAME "YXVkaW9fYXZhbG9uX2ludGVyZmFjZQ=="

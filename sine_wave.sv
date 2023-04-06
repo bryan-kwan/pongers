@@ -13,16 +13,19 @@ module sine_wave
 	);
 	
 	
+
+	
+	
 	logic [1:0] s;
 	logic [11:0] increment;
-	logic [8:0] limit;
+	logic [11:0] limit;
 	logic [8:0]	count;
 	assign increment = 8;
 	
 	
+	
 	logic [2:0] duration_list[song_length-1:0];
 	logic [9:0] note_list[song_length-1:0];
-	
 	
 	
 	logic [9:0] note;
@@ -30,6 +33,9 @@ module sine_wave
 	logic [2:0] duration;
 	
 	logic [10:0] index;
+	
+
+	
 	
 								
   //logic [width-1:0] count_value_2;							
@@ -39,24 +45,9 @@ module sine_wave
   initial begin // normally we don't use initial in RTL code, this is an exception
     $readmemh("sine_lut_2.txt",my_lut); // reads hexadecimal data from v2d_rom and places into my_rom
 	 
-	//Song 1
-	$readmemh("duration.txt",duration_list);
-	$readmemh("note.txt",note_list);
-
-	//Song 2
-	//$readmemh("duration.txt",duration_list);
-	//$readmemh("note.txt",note_list);
-
-	//Song 3
-	//$readmemh("duration.txt",duration_list);
-	//$readmemh("note.txt",note_list);
-
-	//Song 4
-	//$readmemh("duration.txt",duration_list);
-	//$readmemh("note.txt",note_list);
-
-
-
+	 $readmemh("duration.txt",duration_list);
+	 
+	 $readmemh("note.txt",note_list);
 	 
 
   end
@@ -73,22 +64,29 @@ module sine_wave
 		count<=0;
 		
 		end
+	
 	 else if (en[duration]!=0) begin
+		
 		count <= count + 1;
+		
+		
 		if (count>=limit) begin
 			count<=0;
 			counter_value_2 <= counter_value_2 + increment;
-		if(limit==0) begin
-			sine_faze <= 0;
-		end
-		else begin
+			
+		
+			
 			case(s)
-			2'b00: sine_faze <= my_lut[counter_value_2[$clog2(length)-1:0]];
-			2'b01: sine_faze <= -my_lut[~counter_value_2[$clog2(length)-1:0]];
-			2'b10: sine_faze <= -my_lut[counter_value_2[$clog2(length)-1:0]];
-			2'b11: sine_faze <= my_lut[~counter_value_2[$clog2(length)-1:0]];
+				2'b00: sine_faze <= my_lut[counter_value_2[$clog2(length)-1:0]];
+				2'b01: sine_faze <= -my_lut[~counter_value_2[$clog2(length)-1:0]];
+				2'b10: sine_faze <= -my_lut[counter_value_2[$clog2(length)-1:0]];
+				2'b11: sine_faze <= my_lut[~counter_value_2[$clog2(length)-1:0]];
 			endcase
 		end
+		else if(limit==100) begin
+		count<=0;
+		counter_value_2 <= counter_value_2 + increment;
+		sine_faze<='1;
 		end
 		
 	end
@@ -105,10 +103,7 @@ module sine_wave
 	
 		index<=index+1;
 		
-//		
-//		if (index>song_length-1) begin
-//		index<=0;
-//		end
+
 	
 	end
 	
@@ -117,7 +112,7 @@ module sine_wave
 	always_comb begin
 		
 		case(note)
-			11: limit = 0;
+			11: limit = 100; //pause
 			10: limit = 53;//A
 			9: limit = 51;//A#
 			8: limit = 48;//B
@@ -130,7 +125,7 @@ module sine_wave
 			1: limit = 32;//F#
 			0: limit = 30;//G
 			
-			default: limit = 50;
+			default: limit = 10;
 		endcase	
 		
 	end
