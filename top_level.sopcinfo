@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="top_level" kind="top_level" version="1.0" fabric="QSYS">
  <!-- Format version 17.1 590 (Future versions may contain additional information.) -->
- <!-- 2023.04.03.12:16:14 -->
+ <!-- 2023.04.05.17:16:50 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1680545774</value>
+  <value>1680736610</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -10771,7 +10771,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.EDGE_TYPE</name>
-   <value>RISING</value>
+   <value>ANY</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.FREQ</name>
@@ -10815,15 +10815,15 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.altr,interrupt-type</name>
-   <value>1</value>
+   <value>3</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.altr,interrupt_type</name>
-   <value>1</value>
+   <value>3</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.edge_type</name>
-   <value>0</value>
+   <value>2</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.level_trigger</name>
@@ -10871,7 +10871,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="edgeType">
    <type>java.lang.String</type>
-   <value>RISING</value>
+   <value>ANY</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -10977,7 +10977,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="derived_edge_type">
    <type>java.lang.String</type>
-   <value>RISING</value>
+   <value>ANY</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -11626,7 +11626,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1680545774</value>
+   <value>1680736610</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -11646,7 +11646,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1680545774</value>
+   <value>1680736610</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -11662,7 +11662,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1680545774</value>
+   <value>1680736610</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>

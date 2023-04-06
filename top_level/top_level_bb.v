@@ -2,6 +2,7 @@
 module top_level (
 	clk_clk,
 	gpio_export,
+	key_export,
 	memory_addr,
 	memory_ba,
 	memory_cas_n,
@@ -12,6 +13,7 @@ module top_level (
 	memory_ras_n,
 	memory_we_n,
 	sdram_clk_clk,
+	sine_wave_output_readdata,
 	sw_external_connection_export,
 	vga_conduit_CLK,
 	vga_conduit_HS,
@@ -20,12 +22,11 @@ module top_level (
 	vga_conduit_SYNC,
 	vga_conduit_R,
 	vga_conduit_G,
-	vga_conduit_B,
-	sine_wave_output_readdata,
-	key_export);	
+	vga_conduit_B);	
 
 	input		clk_clk;
 	input	[3:0]	gpio_export;
+	input	[1:0]	key_export;
 	output	[12:0]	memory_addr;
 	output	[1:0]	memory_ba;
 	output		memory_cas_n;
@@ -36,6 +37,7 @@ module top_level (
 	output		memory_ras_n;
 	output		memory_we_n;
 	output		sdram_clk_clk;
+	output	[6:0]	sine_wave_output_readdata;
 	input	[7:0]	sw_external_connection_export;
 	output		vga_conduit_CLK;
 	output		vga_conduit_HS;
@@ -45,6 +47,4 @@ module top_level (
 	output	[3:0]	vga_conduit_R;
 	output	[3:0]	vga_conduit_G;
 	output	[3:0]	vga_conduit_B;
-	output	[6:0]	sine_wave_output_readdata;
-	input	[1:0]	key_export;
 endmodule

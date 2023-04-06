@@ -1,6 +1,6 @@
 (* multstyle = "dsp" *)
 
-module sine_wave_1
+module sine_wave_2
  #(int                      width = 7,
 	int							 length = 8192,
 	int 							 song_length = 64)
@@ -45,9 +45,9 @@ module sine_wave_1
   initial begin // normally we don't use initial in RTL code, this is an exception
     $readmemh("sine_lut_2.txt",my_lut); // reads hexadecimal data from v2d_rom and places into my_rom
 	 
-	 $readmemh("duration_1.txt",duration_list);
+	 $readmemh("duration_2.txt",duration_list);
 	 
-	 $readmemh("note_1.txt",note_list);
+	 $readmemh("note_2.txt",note_list);
 	 
 
   end
@@ -112,24 +112,25 @@ module sine_wave_1
 	always_comb begin
 		
 		case(note)
-			16: limit = 100; //pause
-			15: limit = 63; // E
-			14: limit = 61; // F
-			13: limit = 59; // F#
-			12: limit = 57; // G
-			11: limit = 55; //G#
-			10: limit = 53;//A
-			10: limit = 53;//A
-			9: limit = 51;//A#
-			8: limit = 48;//B
-			7: limit = 45;//C
-			6: limit = 42;//C#
-			5: limit = 40;//D
-			4: limit = 38;//D#
-			3: limit = 36;//E
-			2: limit = 34;//F
-			1: limit = 32;//F#
-			0: limit = 30;//G
+			18: limit = 100; //pause
+         17: limit = 63; // E
+         16: limit = 61; //F
+         15: limit = 59; // F#
+         14: limit = 57; // G
+         13: limit = 55; // G#
+         12: limit = 53;//A
+         11: limit = 51;//A#
+         10: limit = 48;//B
+          9: limit = 45;//C
+          8: limit = 42;//C#
+          7: limit = 40;//D
+          6: limit = 38;//D#
+          5: limit = 36;//E
+          4: limit = 34;//F
+          3: limit = 32;//F#
+          2: limit = 30;//G
+          1: limit = 28; // A#
+          0: limit = 26; // A
 			
 			default: limit = 10;
 		endcase	

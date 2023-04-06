@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="top_level" kind="system" version="17.1" fabric="QSYS">
  <!-- Format version 17.1 590 (Future versions may contain additional information.) -->
- <!-- 2023.04.03.12:17:39 -->
+ <!-- 2023.04.05.17:17:53 -->
  <!-- A collection of modules and connections -->
  <parameter name="clockCrossingAdapter">
   <type>com.altera.sopcmodel.ensemble.EClockAdapter</type>
@@ -53,7 +53,7 @@
  </parameter>
  <parameter name="generationId">
   <type>int</type>
-  <value>1680545774</value>
+  <value>1680736610</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>true</visible>
@@ -10865,7 +10865,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.EDGE_TYPE</name>
-   <value>RISING</value>
+   <value>ANY</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.FREQ</name>
@@ -10909,15 +10909,15 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.altr,interrupt-type</name>
-   <value>1</value>
+   <value>3</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.altr,interrupt_type</name>
-   <value>1</value>
+   <value>3</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.edge_type</name>
-   <value>0</value>
+   <value>2</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.level_trigger</name>
@@ -10965,7 +10965,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="edgeType">
    <type>java.lang.String</type>
-   <value>RISING</value>
+   <value>ANY</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -11071,7 +11071,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="derived_edge_type">
    <type>java.lang.String</type>
-   <value>RISING</value>
+   <value>ANY</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -11720,7 +11720,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1680545774</value>
+   <value>1680736610</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -11740,7 +11740,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1680545774</value>
+   <value>1680736610</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -11756,7 +11756,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1680545774</value>
+   <value>1680736610</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -33958,5 +33958,5 @@ parameters are a RESULT of the module parameters. -->
   <version>17.1</version>
  </plugin>
  <reportVersion>17.1 590</reportVersion>
- <uniqueIdentifier>4851C56B93690000018748559A5D</uniqueIdentifier>
+ <uniqueIdentifier>4851C56B93690000018753B5926A</uniqueIdentifier>
 </EnsembleReport>
