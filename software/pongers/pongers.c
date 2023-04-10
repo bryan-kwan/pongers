@@ -123,9 +123,9 @@ int main()
 		else {
 			paddle[0].yspeed = 0;
 		}
-		if(adc_volt_right <=2.7) // Player 2 moving down
+		if(adc_volt_right <=1.0) // Player 2 moving down
 			paddle[1].yspeed = -3;
-		else if(adc_volt_right >=3.4) // Moving up
+		else if(adc_volt_right >=4.0) // Moving up
 			paddle[1].yspeed = 3;
 		else {
 			paddle[1].yspeed = 0;
